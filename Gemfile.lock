@@ -44,6 +44,9 @@ GEM
     bootstrap (4.0.0.alpha6)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
+    bootstrap-glyphicons (0.0.1)
+      railties (>= 3.0)
+      sass (>= 3.2)
     builder (3.2.3)
     byebug (9.0.6)
     coffee-rails (4.2.1)
@@ -160,6 +163,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha6)
+  bootstrap-glyphicons
   byebug
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
