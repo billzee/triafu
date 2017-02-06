@@ -1,12 +1,38 @@
 @import "bootstrap";
 @import 'bootstrap/glyphicons';
 
+html {
+  overflow: hidden;
+}
+
+.navbar {
+  background-color: #fff !important;
+  border-bottom: 0.1em solid black
+}
+
 body {
+  overflow: hidden;
   padding-top: 3.5em;
+}
+
+.post {
+  height: 100%;
+  position: fixed;
+  overflow: scroll;
+}
+
+.commentaries {
+  height: 100%;
+  position: fixed;
+  overflow: scroll;
 }
 
 .c-white {
   color: white;
+}
+
+.c-black {
+  color: black !important;
 }
 
 .center {
