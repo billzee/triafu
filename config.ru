@@ -5,4 +5,4 @@ require 'launchy'
 
 run Rails.application
 
-Launchy.open("http://localhost:3000") if Rails.env.development?
+# Launchy.open("http://localhost:3000") if Rails.env.development?
