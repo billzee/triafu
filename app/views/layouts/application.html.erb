@@ -9,16 +9,12 @@
   </head>
 
   <body>
-    <!-- <nav class="navbar navbar-toggleable-md fixed-top">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-toggleable-sm fixed-top">
       <a class="navbar-brand" href="#">
         <%= image_tag "triafu1.svg", height: 32%>
       </a>
 
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse float-right">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle c-black" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -30,8 +26,11 @@
           </li>
         </ul>
       </div>
-    </nav> -->
+    </nav>
+
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
     
-    <%= yield %>
   </body>
 </html>

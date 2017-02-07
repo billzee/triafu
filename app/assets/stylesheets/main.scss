@@ -5,19 +5,23 @@ html {
   overflow: hidden;
 }
 
-.navbar {
-  background-color: #fff !important;
-  border-bottom: 0.1em solid black
-}
-
 body {
   overflow: hidden;
   padding-top: 3.5em;
 }
 
+.navbar {
+  background-color: #fff !important;
+  border-bottom: 0.1em solid black;
+}
+
+.commentaries-title {
+  border-bottom: 0.1em solid white;
+}
+
 .post {
   height: 100%;
-  position: fixed;
+  position: absolute;
   overflow: scroll;
 }
 
