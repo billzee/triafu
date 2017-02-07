@@ -2,10 +2,12 @@
 @import 'bootstrap/glyphicons';
 
 html {
+  height: 100%;
   overflow: hidden;
 }
 
 body {
+  height: 100%;
   overflow: hidden;
   padding-top: 3.5em;
 }
@@ -15,7 +17,7 @@ body {
   border-bottom: 0.1em solid black;
 }
 
-.commentaries-title {
+.bb-white {
   border-bottom: 0.1em solid white;
 }
 
