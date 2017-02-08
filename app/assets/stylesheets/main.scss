@@ -1,15 +1,37 @@
 @import "bootstrap";
 @import 'bootstrap/glyphicons';
 
-html {
-  height: 100%;
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
   overflow: hidden;
 }
 
 body {
-  height: 100%;
-  overflow: hidden;
   padding-top: 3.5em;
+}
+
+.panel-container {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  margin: 0 !important;
+  height: 100vh;
+  width: 100%;
+  backface-visibility: hidden;
+  will-change: overflow;
+}
+
+.panel {
+  overflow: auto;
+      height: auto;
+      padding: .5rem;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: none;
 }
 
 .navbar {
