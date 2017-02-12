@@ -1,5 +1,5 @@
 @import "bootstrap";
-@import 'bootstrap/glyphicons';
+@import "font-awesome";
 
 * {
   box-sizing: border-box;
@@ -15,6 +15,32 @@ body {
   padding-top: 3.5em;
 }
 
+.navbar {
+  background-color: #fff !important;
+  border-bottom: 0.1em solid black;
+  padding: 0 !important;
+
+  .navbar-collapse {
+    .navbar-nav {
+      .nav-item {
+        color: black;
+        text-align: center;
+        width: 5em;
+        height: 100%;
+        .nav-link {
+          height: 100%;
+          padding-top: 0.8em;
+        }
+      }
+      .nav-item.active {
+        color: #fff;
+        background-color: black;
+      }
+    }
+  }
+}
+
+
 .panel-container {
   position: relative;
   display: flex;
@@ -26,18 +52,19 @@ body {
   will-change: overflow;
 }
 
-.panel {
-  overflow: auto;
-      height: auto;
-      padding: .5rem;
-      -webkit-overflow-scrolling: touch;
-      -ms-overflow-style: none;
+.dropdown-right {
+  right: 0;
+  left:auto;
 }
 
-.navbar {
-  background-color: #fff !important;
-  border-bottom: 0.1em solid black;
+.panel {
+  overflow: auto;
+  height: auto;
+  padding: .5rem;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
 }
+
 
 .bb-white {
   border-bottom: 0.1em solid white;

@@ -46,9 +46,6 @@ GEM
     bootstrap (4.0.0.alpha6)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
-    bootstrap-glyphicons (0.0.1)
-      railties (>= 3.0)
-      sass (>= 3.2)
     builder (3.2.3)
     byebug (9.0.6)
     coffee-rails (4.2.1)
@@ -63,6 +60,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.17)
+    font-awesome-rails (4.7.0.1)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -166,9 +165,9 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha6)
-  bootstrap-glyphicons
   byebug
   coffee-rails (~> 4.2)
+  font-awesome-rails
   jquery-rails
   launchy-rails
   listen (~> 3.0.5)
