@@ -27,9 +27,12 @@ body {
         text-align: center;
         width: 5em;
         height: 100%;
-        .nav-link {
+        a.nav-link {
+          cursor: pointer;
+          color: inherit; /* blue colors for links too */
+          text-decoration: inherit; /* no underline */
           height: 100%;
-          padding-top: 0.8em;
+          padding-top: 1em;
         }
       }
       .nav-item.active {
