@@ -1,0 +1,29 @@
+<div class="modal" id="m_new_post" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title" id="m_new_post">Criar Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal-body text-center">
+
+      <%= form_for Post.new do |f| %>
+        <div class="form-group">
+          <%= f.text_field :title, placeholder: "Título", class: "form-control" %>
+          <small class="form-text text-muted">Um bom post merece um título criativo e objetivo!</small>
+        </div>
+        <!-- <button class="btn btn-primary">
+        Imagem <i class="fa fa-plus"></i>
+        </button> -->
+        <%= f.submit "Postar", class: "btn btn-success" %>
+      </div>
+      <% end %>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
