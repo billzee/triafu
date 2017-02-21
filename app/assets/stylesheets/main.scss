@@ -11,10 +11,6 @@ html, body {
   overflow: hidden;
 }
 
-body {
-  padding-top: 3.5em;
-}
-
 .navbar {
   background-color: #fff !important;
   border-bottom: 0.1em solid black;
@@ -45,6 +41,7 @@ body {
 
 
 .panel-container {
+  padding-top: 3.6em;
   position: relative;
   display: flex;
   overflow: hidden;
@@ -63,7 +60,6 @@ body {
 .panel {
   overflow: auto;
   height: auto;
-  padding: .5rem;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
 }
