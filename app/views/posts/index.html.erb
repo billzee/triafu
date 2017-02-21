@@ -8,7 +8,6 @@
         </div>
       </div>
     <% end %>
-
   </div>
 
     <div class="col-4 panel black c-white">
@@ -20,170 +19,41 @@
         </div>
       </div>
 
+      <div class="row no-gutters bb-white">
+        <div class="col">
+          <%= form_for Comment.new, :html => {:class => 'form-inline'} do |f| %>
+            <%= f.text_area :text, placeholder: "escreva um comentário", class: "form-control mr-2" %>
+            <%= f.submit "comentar", class: "btn btn-success" %>
+          <% end%>
+        </div>
+      </div>
 
+      <div class="row">
 
-          <div class="row">
-
-            <div class="col-12">
-              <div class="row">
-                <div class="col-2 pr-0 mt-2">
-                  <div class="float-right white" style="height: 52px; width: 52px;"></div>
-                </div>
-                <div class="col pt-2">
-                  <p>Guilherme Zordan</p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget augue vitae est ultricies ornare. Proin faucibus rhoncus vehicula.
-                  Maecenas eleifend, quam sed egestas vehicula, eros ex accumsan erat, nec tincidunt nibh dui id tortor. Nam eu odio scelerisque eros dignissim...
-                  <a href="">Leia mais</a>
-                </div>
+        <% @comments.each do |comment| %>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-2 pr-0 mt-2">
+                <div class="float-right white" style="height: 52px; width: 52px;"></div>
               </div>
-
-              <div class="row mt-3">
-                <div class="col text-right c-white">
-                  <span class="glyphicon glyphicon-arrow-up mr-2"></span>
-                  <span class="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#" class="c-white">responder</a>
-                </div>
+              <div class="col pt-2">
+                <p>Guilherme Zordan</p>
+                <%= comment.text %>
+                <!-- <a href="">Leia mais</a> -->
               </div>
             </div>
 
-            <div class="col-12">
-              <div class="row">
-                <div class="col-2 pr-0 mt-2">
-                  <div class="float-right white" style="height: 52px; width: 52px;"></div>
-                </div>
-                <div class="col pt-2">
-                  <p>Guilherme Zordan</p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget augue vitae est ultricies ornare. Proin faucibus rhoncus vehicula.
-                  Maecenas eleifend, quam sed egestas vehicula, eros ex accumsan erat, nec tincidunt nibh dui id tortor. Nam eu odio scelerisque eros dignissim...
-                  <a href="">Leia mais</a>
-                </div>
-              </div>
-
-              <div class="row mt-3">
-                <div class="col text-right c-white">
-                  <span class="glyphicon glyphicon-arrow-up mr-2"></span>
-                  <span class="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#" class="c-white">responder</a>
-                </div>
+            <div class="row mt-3">
+              <div class="col text-right c-white">
+                <span class="glyphicon glyphicon-arrow-up mr-2"></span>
+                <span class="glyphicon glyphicon-arrow-down mr-2"></span>
+                <a href="#" class="c-white">responder</a>
               </div>
             </div>
-
-            <div class="col-12">
-              <div class="row">
-                <div class="col-2 pr-0 mt-2">
-                  <div class="float-right white" style="height: 52px; width: 52px;"></div>
-                </div>
-                <div class="col pt-2">
-                  <p>Guilherme Zordan</p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget augue vitae est ultricies ornare. Proin faucibus rhoncus vehicula.
-                  Maecenas eleifend, quam sed egestas vehicula, eros ex accumsan erat, nec tincidunt nibh dui id tortor. Nam eu odio scelerisque eros dignissim...
-                  <a href="">Leia mais</a>
-                </div>
-              </div>
-
-              <div class="row mt-3">
-                <div class="col text-right c-white">
-                  <span class="glyphicon glyphicon-arrow-up mr-2"></span>
-                  <span class="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#" class="c-white">responder</a>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-12">
-              <div class="row">
-                <div class="col-2 pr-0 mt-2">
-                  <div class="float-right white" style="height: 52px; width: 52px;"></div>
-                </div>
-                <div class="col pt-2">
-                  <p>Guilherme Zordan</p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget augue vitae est ultricies ornare. Proin faucibus rhoncus vehicula.
-                  Maecenas eleifend, quam sed egestas vehicula, eros ex accumsan erat, nec tincidunt nibh dui id tortor. Nam eu odio scelerisque eros dignissim...
-                  <a href="">Leia mais</a>
-                </div>
-              </div>
-
-              <div class="row mt-3">
-                <div class="col text-right c-white">
-                  <span class="glyphicon glyphicon-arrow-up mr-2"></span>
-                  <span class="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#" class="c-white">responder</a>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-12">
-              <div class="row">
-                <div class="col-2 pr-0 mt-2">
-                  <div class="float-right white" style="height: 52px; width: 52px;"></div>
-                </div>
-                <div class="col pt-2">
-                  <p>Guilherme Zordan</p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget augue vitae est ultricies ornare. Proin faucibus rhoncus vehicula.
-                  Maecenas eleifend, quam sed egestas vehicula, eros ex accumsan erat, nec tincidunt nibh dui id tortor. Nam eu odio scelerisque eros dignissim...
-                  <a href="">Leia mais</a>
-                </div>
-              </div>
-
-              <div class="row mt-3">
-                <div class="col text-right c-white">
-                  <span class="glyphicon glyphicon-arrow-up mr-2"></span>
-                  <span class="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#" class="c-white">responder</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <div class="row">
-                <div class="col-2 pr-0 mt-2">
-                  <div class="float-right white" style="height: 52px; width: 52px;"></div>
-                </div>
-                <div class="col pt-2">
-                  <p>Guilherme Zordan</p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget augue vitae est ultricies ornare. Proin faucibus rhoncus vehicula.
-                  Maecenas eleifend, quam sed egestas vehicula, eros ex accumsan erat, nec tincidunt nibh dui id tortor. Nam eu odio scelerisque eros dignissim...
-                  <a href="">Leia mais</a>
-                </div>
-              </div>
-
-              <div class="row mt-3">
-                <div class="col text-right c-white">
-                  <span class="glyphicon glyphicon-arrow-up mr-2"></span>
-                  <span class="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#" class="c-white">responder</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <div class="row">
-                <div class="col-2 pr-0 mt-2">
-                  <div class="float-right white" style="height: 52px; width: 52px;"></div>
-                </div>
-                <div class="col pt-2">
-                  <p>Guilherme Zordan</p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget augue vitae est ultricies ornare. Proin faucibus rhoncus vehicula.
-                  Maecenas eleifend, quam sed egestas vehicula, eros ex accumsan erat, nec tincidunt nibh dui id tortor. Nam eu odio scelerisque eros dignissim...
-                  <a href="">Leia mais</a>
-                </div>
-              </div>
-
-              <div class="row mt-3">
-                <div class="col text-right c-white">
-                  <span class="glyphicon glyphicon-arrow-up mr-2"></span>
-                  <span class="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#" class="c-white">responder</a>
-                </div>
-              </div>
-            </div>
-
           </div>
+        <% end %>
 
-
+      </div>
     </div>
   </div>
-</div>
 </div>
