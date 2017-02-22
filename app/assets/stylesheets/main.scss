@@ -39,7 +39,6 @@ html, body {
   }
 }
 
-
 .panel-container {
   padding-top: 3.6em;
   position: relative;
@@ -57,28 +56,12 @@ html, body {
   left:auto;
 }
 
-.panel {
-  overflow: auto;
-  height: auto;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
-}
-
-
 .bb-white {
   border-bottom: 0.1em solid white;
 }
 
-.post {
-  height: 100%;
-  position: absolute;
-  overflow: scroll;
-}
-
-.commentaries {
-  height: 100%;
-  position: fixed;
-  overflow: scroll;
+.bt-white {
+  border-top: 0.1em solid white;
 }
 
 .c-white {

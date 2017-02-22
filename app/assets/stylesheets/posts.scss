@@ -1,3 +1,12 @@
-// Place all the styles related to the posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.post {
+  height: 100%;
+  position: absolute;
+  overflow: scroll;
+}
+
+.posts {
+  overflow: auto;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+}

@@ -1,3 +1,13 @@
-// Place all the styles related to the comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.comments {
+  overflow: auto;
+  height: 75%;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+}
+
+.comment-box {
+  padding: 0.3em;
+    textarea {
+      width: 73%;
+    }
+}
