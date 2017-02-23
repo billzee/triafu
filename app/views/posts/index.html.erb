@@ -28,47 +28,46 @@
 
   <div class="col-4 black c-white">
 
-    <div class="row no-gutters bb-white">
-      <div class="col">
-        <h4>
-          Comentários
-        </h4>
-      </div>
-    </div>
-
-    <div class="row panel comments">
-      <% @comments.each do |comment| %>
-        <div class="col-12">
-          <div class="row">
-            <div class="col-2 pr-0 mt-2">
-              <div class="float-right white" style="height: 52px; width: 52px;"></div>
-            </div>
-            <div class="col pt-2">
-              <p>Guilherme Zordan</p>
-              <%= comment.text %>
-              <!-- <a href="">Leia mais</a> -->
-            </div>
-          </div>
-
-          <div class="row mt-3">
-            <div class="col text-right c-white">
-              <span class="glyphicon glyphicon-arrow-up mr-2"></span>
-              <span class="glyphicon glyphicon-arrow-down mr-2"></span>
-              <a href="#" class="c-white">responder</a>
-            </div>
-          </div>
+      <div class="row bb-white comment-top">
+        <div class="col">
+          <h4>
+            Comentários
+          </h4>
         </div>
-      <% end %>
-    </div>
-
-    <div class="row no-gutters bt-white comment-box">
-      <div class="col">
-        <%= form_for Comment.new, :html => {:class => 'form-inline'} do |f| %>
-        <%= f.text_area :text, placeholder: "escreva um comentário", class: "form-control mr-2" %>
-        <%= f.submit "comentar", class: "btn btn-success btn-sm" %>
-        <% end%>
       </div>
-    </div>
+
+      <div class="row panel comment-middle">
+        <% @comments.each do |comment| %>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-2 pr-0 mt-2">
+                <div class="float-right white" style="height: 52px; width: 52px;"></div>
+              </div>
+              <div class="col pt-2">
+                <p>Guilherme Zordan</p>
+                <%= comment.text %>
+                <!-- <a href="">Leia mais</a> -->
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col text-right c-white">
+                <span class="glyphicon glyphicon-arrow-up mr-2"></span>
+                <span class="glyphicon glyphicon-arrow-down mr-2"></span>
+                <a href="#" class="c-white">responder</a>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row bt-white comment-bottom">
+        <div class="col">
+          <%= form_for Comment.new, :html => {:class => 'form-inline'} do |f| %>
+          <%= f.text_area :text, placeholder: "escreva um comentário", class: "form-control mr-2" %>
+          <%= f.submit "comentar", class: "btn btn-success btn-sm" %>
+          <% end%>
+        </div>
+      </div>
 
 
   </div>

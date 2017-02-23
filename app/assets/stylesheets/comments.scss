@@ -1,13 +1,21 @@
-.comments {
-  overflow: auto;
-  height: 75%;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
-}
 
-.comment-box {
-  padding: 0.3em;
+  .comment-top {
+    height: 2em;
+    padding: 0.2em;
+  }
+
+  .comment-middle {
+    overflow: auto;
+    height: calc(100% - 7em);
+    top: 10em;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+  }
+
+  .comment-bottom {
+    padding-top: 0.5em;
+    height: 7em;
     textarea {
       width: 73%;
     }
-}
+  }
