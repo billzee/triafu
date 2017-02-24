@@ -9,15 +9,15 @@
         <div class="col col-2 pt-5">
           <ul class="list-unstyled">
             <li>
-              <button class="btn btn-success">Engraçado</button>
+              <%= link_to "Engraçado", post_vote_path(:post_id => post.id, :type => :funny_count) %>
               <%= post[:funny_count] %>
             </li>
             <li>
-              <button class="btn btn-primary">Interessante</button>
+              <%= link_to "Interessante", post_vote_path(:post_id => post.id, :type => :smart_count) %>
               <%= post[:smart_count] %>
             </li>
             <li>
-              <button class="btn btn-danger">Downvote</button>
+              <%= link_to "Negativo", post_vote_path(:post_id => post.id, :type => :negative_count) %>
               <%= post[:negative_count] %>
             </li>
           </ul>
@@ -30,8 +30,8 @@
 
       <div class="row bb-white comment-top">
         <div class="col">
-          <h4>
-            Comentários
+          <h4 class="text-center">
+             <%= @comments.size %> comentários
           </h4>
         </div>
       </div>

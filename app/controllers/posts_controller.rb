@@ -11,9 +11,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def vote
+    post = Post.find(params[:post_id])
+    post.vote params[:type]
+    redirect_to posts_path
+  end
+
   private
 
   def post_params
-    params.require(:post).permit :title
+    params.require(:post).permit :title, :funny_count
   end
 end
