@@ -6,21 +6,36 @@
           <h1 class="c-black text-center"> <%= post.title %></h1>
           <div style="width: 600px; height: 1000px;" class="center black mt-4"></div>
         </div>
-        <div class="col col-2 pt-5">
-          <ul class="list-unstyled">
-            <li>
-              <%= link_to "Engraçado", post_vote_path(:post_id => post.id, :type => :funny_count) %>
-              <%= post[:funny_count] %>
-            </li>
-            <li>
-              <%= link_to "Interessante", post_vote_path(:post_id => post.id, :type => :smart_count) %>
-              <%= post[:smart_count] %>
-            </li>
-            <li>
-              <%= link_to "Negativo", post_vote_path(:post_id => post.id, :type => :negative_count) %>
-              <%= post[:negative_count] %>
-            </li>
-          </ul>
+        <div class="col col-2 align-self-center pt-5">
+          <div class="row no-gutters">
+            <div class="col-8">
+              <ul class="list-unstyled bg-gray p-3 rounded">
+                <li>
+                  <%= link_to "Engraçado", post_vote_path(:post_id => post.id, :type => :funny_count) %>
+                </li>
+                <li>
+                  <%= link_to "Interessante", post_vote_path(:post_id => post.id, :type => :smart_count) %>
+                </li>
+                <li>
+                  <%= link_to "Negativo", post_vote_path(:post_id => post.id, :type => :negative_count) %>
+                </li>
+              </ul>
+            </div>
+            <div class="col-4">
+              <ul class="list-unstyled p-3">
+                <li>
+                  <%= post[:funny_count] %>
+                </li>
+                <li>
+                  <%= post[:smart_count] %>
+                </li>
+                <li>
+                  <%= post[:negative_count] %>
+                </li>
+              </ul>
+
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
@@ -37,8 +52,8 @@
       </div>
 
       <div class="row panel comment-middle">
-        <% @comments.each do |comment| %>
           <div class="col-12">
+            <!-- <% @comments.each do |comment| %>
             <div class="row">
               <div class="col-2 pr-0 mt-2">
                 <div class="float-right white" style="height: 52px; width: 52px;"></div>
@@ -46,7 +61,6 @@
               <div class="col pt-2">
                 <p>Guilherme Zordan</p>
                 <%= comment.text %>
-                <!-- <a href="">Leia mais</a> -->
               </div>
             </div>
             <div class="row mt-3">
@@ -56,8 +70,8 @@
                 <a href="#" class="c-white">responder</a>
               </div>
             </div>
+            <% end %> -->
           </div>
-        <% end %>
       </div>
 
       <div class="row bt-white comment-bottom">
