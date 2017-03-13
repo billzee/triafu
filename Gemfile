@@ -56,3 +56,4 @@ gem 'pg'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem "font-awesome-rails"
 gem 'carrierwave', '~> 1.0'
+gem "react_on_rails", "~> 6"
