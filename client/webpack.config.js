@@ -1,6 +1,6 @@
 /* eslint comma-dangle: ["error",
  {"functions": "never", "arrays": "only-multiline", "objects":
- "only-multiline"} ] */
+"only-multiline"} ] */
 
 const webpack = require('webpack');
 
@@ -11,7 +11,8 @@ const config = {
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
-    './app/bundles/HelloWorld/startup/registration',
+    'react-http-request',
+    './app/bundles/Main/startup/registration'
   ],
 
   output: {

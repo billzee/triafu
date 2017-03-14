@@ -11,6 +11,10 @@ export default class Comment extends React.Component {
     this.setState({ name });
   };
 
+  componentWillMount(){
+    console.log(Request);
+  }
+
   render() {
     return (
       <div className="col-12">
