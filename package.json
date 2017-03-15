@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "cd client && yarn install",
-    "s": "google-chrome 'http://localhost:3000' && foreman start -f Procfile.dev",
+    "s": "foreman start -f Procfile.dev",
     "test": "rspec"
   },
   "dependencies": {}

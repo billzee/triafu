@@ -41,29 +41,7 @@
     <% end %>
   </div>
 
-  <div class="col-4 black c-white">
 
-      <div class="row bb-white comment-top">
-        <div class="col">
-          <h4 class="text-center">
-             <%= @comments.size %> comentários
-          </h4>
-        </div>
-      </div>
+        <%= react_component("CommentBox", html_options: {class: 'col-4 black c-white'}) %>
 
-      <div class="row panel comment-middle">
-        <%= react_component("Comment") %>
-      </div>
-
-      <div class="row bt-white comment-bottom">
-        <div class="col">
-          <%= form_for Comment.new, :html => {:class => 'form-inline'} do |f| %>
-          <%= f.text_area :text, placeholder: "escreva um comentário", class: "form-control mr-2" %>
-          <%= f.submit "comentar", class: "btn btn-success btn-sm" %>
-          <% end%>
-        </div>
-      </div>
-
-
-  </div>
 </div>
