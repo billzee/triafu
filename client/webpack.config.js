@@ -11,7 +11,6 @@ const config = {
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
-    'react-http-request',
     './app/bundles/Main/startup/registration'
   ],
 

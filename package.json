@@ -8,10 +8,8 @@
   },
   "scripts": {
     "postinstall": "cd client && yarn install",
-    "rails-server": "echo 'visit http://localhost:3000/hello_world' && foreman start -f Procfile.dev",
+    "s": "google-chrome 'http://localhost:3000' && foreman start -f Procfile.dev",
     "test": "rspec"
   },
-  "dependencies": {
-    "tether": "^1.4.0"
-  }
+  "dependencies": {}
 }
