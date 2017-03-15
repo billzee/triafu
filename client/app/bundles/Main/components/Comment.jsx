@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, ReactLayout } from 'react';
 
 export default class CommentBox extends Component {
   constructor() {
     super();
-    this.state = {comments: []};
+    this.state = {comments: [], comment: {text: ''}};
   }
 
   componentWillMount(){
@@ -20,11 +20,11 @@ export default class CommentBox extends Component {
   }
   render(){
     return (
-      <div>
-        <CommentCounter />
+      <box>
+        <CommentCounter comments={this.state.comments} />
         <CommentList comments={this.state.comments} />
-        <CommentForm />
-      </div>
+        <CommentForm comment={this.state.comment} />
+      </box>
     );
   }
 }
@@ -35,7 +35,7 @@ class CommentCounter extends Component {
       <div className="row bb-white comment-top">
         <div className="col">
           <h4 className="text-center">
-             10 comentários
+             {this.props.comments.length} comentários
           </h4>
         </div>
       </div>
@@ -77,12 +77,33 @@ class CommentList extends Component {
 }
 
 class CommentForm extends Component {
+
+  constructor() {
+    super();
+    this.state = {comment: {text: 'dsadasdas'}};
+    this.postComment = this.postComment.bind(this);
+  }
+
+  postComment(e){
+    e.preventDefault();
+    fetch('/posts', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state.comment)
+    })
+    console.log(this.state.comment);
+  }
+
   render(){
     return(
       <div className="row bt-white comment-bottom">
         <div className="col">
-          <form className="form-inline">
-            <textarea placeholder="escreva um comentário" className="form-control mr-2"></textarea>
+          <form onSubmit={this.postComment} method="post" className="form-inline">
+          aaa{this.state.comment.text}
+            <textarea value={this.state.comment.text} placeholder="escreva um comentário" className="form-control mr-2"></textarea>
             <input type="submit" className="btn btn-success btn-sm"></input>
           </form>
         </div>
