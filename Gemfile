@@ -5,9 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.0.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -52,6 +51,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Triafu's gems
 gem 'pg'
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem "react_on_rails", "~> 6"
 gem "font-awesome-rails"
 gem 'carrierwave', '~> 1.0'
-gem "react_on_rails", "~> 6"
