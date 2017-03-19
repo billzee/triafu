@@ -3,6 +3,7 @@ import React, { Component, ReactLayout } from 'react';
 export default class CommentBox extends Component {
   constructor() {
     super();
+    console.log(module.exports);
     this.state = {comments: [], comment: {text: ''}};
   }
 
@@ -86,12 +87,8 @@ class CommentForm extends Component {
 
   postComment(e){
     e.preventDefault();
-    fetch('/posts', {
+    api('/posts', {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(this.state.comment)
     })
     console.log(this.state.comment);
@@ -102,7 +99,6 @@ class CommentForm extends Component {
       <div className="row bt-white comment-bottom">
         <div className="col">
           <form onSubmit={this.postComment} method="post" className="form-inline">
-          aaa{this.state.comment.text}
             <textarea value={this.state.comment.text} placeholder="escreva um comentário" className="form-control mr-2"></textarea>
             <input type="submit" className="btn btn-success btn-sm"></input>
           </form>
