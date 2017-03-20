@@ -1,3 +1,4 @@
+import ReactOnRails from 'react-on-rails';
 import React, { Component, ReactLayout } from 'react';
 
 export default class CommentBox extends Component {
@@ -81,17 +82,28 @@ class CommentForm extends Component {
 
   constructor() {
     super();
-    this.state = {comment: {text: 'dsadasdas'}};
+    this.state = {text: 'dsadasdas'};
     this.postComment = this.postComment.bind(this);
+  }
+
+  setField(input, e){
+    var field = {};
+    field[input] = e.target.value;
+    this.setState(field);
   }
 
   postComment(e){
     e.preventDefault();
-    api('/posts', {
+    fetch('/comments', {
       method: 'POST',
-      body: JSON.stringify(this.state.comment)
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': ReactOnRails.authenticityToken()
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({text: this.state.text}),
     })
-    console.log(this.state.comment);
   }
 
   render(){
@@ -99,7 +111,8 @@ class CommentForm extends Component {
       <div className="row bt-white comment-bottom">
         <div className="col">
           <form onSubmit={this.postComment} method="post" className="form-inline">
-            <textarea value={this.state.comment.text} placeholder="escreva um comentário" className="form-control mr-2"></textarea>
+            <textarea value={this.state.text} onChange={this.setField.bind(this, 'text')}
+             placeholder="escreva um comentário" className="form-control mr-2"></textarea>
             <input type="submit" className="btn btn-success btn-sm"></input>
           </form>
         </div>

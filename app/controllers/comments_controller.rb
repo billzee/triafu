@@ -1,13 +1,18 @@
 class CommentsController < ApplicationController
+  before_action :set_comment
+  respond_to :html, :json
 
   def index
     @comments = Comment.all
-    render :json => @comments
+    respond_with(@comments)
   end
 
   def create
-    Comment.create comment_params
-    redirect_to posts_path
+    @comment = Comment.new comment_params
+
+    flash[:notice] = "Task was successfully created." if @comment.save
+    respond_with(@comment)
+
   end
 
   private
