@@ -1,46 +1,6 @@
 <div class="row panel-container">
-  <div class="col posts">
-    <% @posts.each do |post| %>
-      <div class="row justify-content-md-center">
-        <div class="col col-md-auto">
-          <h1 class="c-black text-center"> <%= post.title %></h1>
-          <div style="width: 600px; height: 1000px;" class="center black mt-4"></div>
-        </div>
-        <div class="col col-2 align-self-center pt-5">
-          <div class="row no-gutters">
-            <div class="col-8">
-              <ul class="list-unstyled bg-gray p-3 rounded">
-                <li>
-                  <%= link_to "Engraçado", post_vote_path(:post_id => post.id, :type => :funny_count) %>
-                </li>
-                <li>
-                  <%= link_to "Interessante", post_vote_path(:post_id => post.id, :type => :smart_count) %>
-                </li>
-                <li>
-                  <%= link_to "Negativo", post_vote_path(:post_id => post.id, :type => :negative_count) %>
-                </li>
-              </ul>
-            </div>
-            <div class="col-4">
-              <ul class="list-unstyled p-3">
-                <li>
-                  <%= post[:funny_count] %>
-                </li>
-                <li>
-                  <%= post[:smart_count] %>
-                </li>
-                <li>
-                  <%= post[:negative_count] %>
-                </li>
-              </ul>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
+  <%= react_component("PostBox", html_options: {class: 'col posts'}) %>
   <%= react_component("CommentBox", html_options: {class: 'col-4 black c-white'}) %>
 
 </div>

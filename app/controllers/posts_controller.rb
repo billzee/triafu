@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all.order created_at: :desc
-    @comments = Comment.all.order created_at: :desc
+    @posts = Post.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.json {render :json => @posts}
+    end
   end
 
   def create
