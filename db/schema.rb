@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170221002743) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
+    t.string   "image"
     t.integer  "funny_count"
     t.integer  "smart_count"
     t.integer  "negative_count"

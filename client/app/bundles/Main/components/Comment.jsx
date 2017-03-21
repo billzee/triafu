@@ -23,6 +23,11 @@ export default class CommentBox extends Component {
     .subscribe('comments', (msg, data)=>{
       this.setState({comments: data});
     });
+
+    pubsub
+    .subscribe('post-comments', (msg, data)=>{
+      console.log(data);
+    });
   }
 
   render(){

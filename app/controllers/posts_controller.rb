@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    p post_params
     if Post.create post_params
       redirect_to posts_path
     end
@@ -23,6 +24,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit :title, :funny_count
+    params.require(:post).permit :title, :image, :funny_count
   end
 end
