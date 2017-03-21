@@ -45,7 +45,7 @@ export default class PostBox extends Component {
           <Waypoint key={post.id} onEnter={console.log('teste')}>
             <div className="row justify-content-md-center">
               <div className="col col-md-auto">
-                <h1 className="c-black text-center">{post.title}</h1>
+                <h1 className="text-center">{post.title}</h1>
                 <div className="center mt-4">
                   <img src={post.image.url} />
                 </div>

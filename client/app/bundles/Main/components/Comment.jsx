@@ -73,10 +73,10 @@ class CommentList extends Component {
                 </div>
               </div>
               <div className="row mt-3">
-                <div className="col text-right c-white">
+                <div className="col text-right">
                   <span className="glyphicon glyphicon-arrow-up mr-2"></span>
                   <span className="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#" className="c-white">responder</a>
+                  <a href="#">responder</a>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ class CommentForm extends Component {
 
   constructor() {
     super();
-    this.state = {text: 'dsadasdas'};
+    this.state = {text: 'comentario de teste'};
     this.postComment = this.postComment.bind(this);
   }
 
