@@ -1,5 +1,12 @@
 import ReactOnRails from 'react-on-rails';
 import React, { Component, ReactLayout } from 'react';
+import api from '../components/Api';
+import pubsub from 'pubsub-js'
+
+var calculo = 2+7;
+
+console.log(calculo);
+
 
 export default class CommentBox extends Component {
   constructor() {
@@ -8,18 +15,23 @@ export default class CommentBox extends Component {
     this.state = {comments: [], comment: {text: ''}};
   }
 
-  componentWillMount(){
-    fetch('/comments')
-    .then((response) => response.json())
-    .then((res) => {
-      console.log('will');
-      this.setState({comments: res});
-      console.log('set');
-    })
-    .catch((error) => {
-      console.error(error);
+  async componentWillMount(){
+    try{
+      let res = await api('/comments', {method: 'GET'});
+      let resJson = await res.json();
+      this.setState({comments: resJson});
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+  componentDidMount(){
+    pubsub
+    .subscribe('comments', (msg, data)=>{
+      this.setState({comments: data});
     });
   }
+
   render(){
     return (
       <box>
@@ -92,18 +104,16 @@ class CommentForm extends Component {
     this.setState(field);
   }
 
-  postComment(e){
+  async postComment(e){
     e.preventDefault();
-    fetch('/comments', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': ReactOnRails.authenticityToken()
-      },
-      credentials: 'same-origin',
-      body: JSON.stringify({text: this.state.text}),
-    })
+
+    try{
+      let res = await api('/comments', {method: 'POST', body: JSON.stringify({text: this.state.text})});
+      let resJson = await res.json();
+      pubsub.publish('comments', resJson);
+    } catch(error){
+      console.log(error);
+    }
   }
 
   render(){

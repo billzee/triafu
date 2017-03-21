@@ -1020,6 +1020,10 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
+consolidated-events@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/consolidated-events/-/consolidated-events-1.0.1.tgz#70f475f4a5d6d20428e702da1b8870d9cc031a14"
+
 constants-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
@@ -2092,6 +2096,10 @@ public-encrypt@^4.0.0:
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
 
+pubsub-js@^1.5.6:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/pubsub-js/-/pubsub-js-1.5.6.tgz#8bf6adbb810ffb7ec5129d178084bd7d7bb97de2"
+
 punycode@1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
@@ -2143,6 +2151,12 @@ react-dom@^15.4.2:
 react-on-rails@6.8.0:
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/react-on-rails/-/react-on-rails-6.8.0.tgz#9172d04d7615d6beef162d10a28d0f101d4676c4"
+
+react-waypoint@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-waypoint/-/react-waypoint-5.2.0.tgz#924474f6f3b4b95c7b6527ddba0e8af9c8a8c47d"
+  dependencies:
+    consolidated-events "^1.0.1"
 
 react@^15.4.2:
   version "15.4.2"

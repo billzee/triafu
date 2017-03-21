@@ -1,18 +1,19 @@
 class CommentsController < ApplicationController
-  before_action :set_comment
-  respond_to :html, :json
 
   def index
-    @comments = Comment.all
-    respond_with(@comments)
+    @comments = Comment.order(created_at: :desc)
+    respond_to do |format|
+      format.json {render :json => @comments}
+    end
   end
 
   def create
-    @comment = Comment.new comment_params
-
-    flash[:notice] = "Task was successfully created." if @comment.save
-    respond_with(@comment)
-
+    if Comment.create comment_params
+      respond_to do |format|
+        comments = Comment.order(created_at: :desc)
+        format.json {render :json => comments}
+      end
+    end
   end
 
   private
