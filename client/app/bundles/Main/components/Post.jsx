@@ -28,64 +28,59 @@ export default class PostBox extends Component {
     });
   }
 
-  enter(){
-    console.log('enter');
-  }
-
-  leave(){
-    console.log('leave');
-  }
-
   render(){
     return (
       <box>
-      {
-        this.state.posts.map((post)=>{
-          return(
-          <Waypoint key={post.id} onEnter={console.log('teste')}>
-            <div className="row justify-content-md-center">
-              <div className="col col-md-auto">
-                <h1 className="text-center">{post.title}</h1>
-                <div className="center mt-4">
-                  <img src={post.image.url} />
-                </div>
-              </div>
-              <div className="col col-2 align-self-center pt-5">
-                <div className="row no-gutters">
-                  <div className="col-8">
-                    <ul className="list-unstyled bg-gray p-3 rounded">
-                      <li>
-                        <a>aaa</a>
-                      </li>
-                      <li>
-                        <a>aaa</a>
-                      </li>
-                      <li>
-                        <a>aaa</a>
-                      </li>
-                    </ul>
+        {
+          this.state.posts.map((post)=>{
+            return(
+              <div key={post.id} className="row justify-content-md-center">
+                <Waypoint onEnter={(props)=> {
+                  pubsub.publish('view-post', post.id);
+                }}>
+                  <div className="col col-md-auto">
+                    <h1 className="text-center">{post.title}</h1>
+                    <div className="center mt-4">
+                      <img src={post.image.url} />
+                    </div>
                   </div>
-                  <div className="col-4">
-                    <ul className="list-unstyled p-3">
-                      <li>
-                        12
-                      </li>
-                      <li>
-                        12
-                      </li>
-                      <li>
-                        12
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                </Waypoint>
               </div>
-            </div>
-          </Waypoint>
-        );
-      })
-    }
+            );
+          })
+        }
       </box>
     );
   }
 }
+
+// <div className="col col-2 align-self-center pt-5">
+// <div className="row no-gutters">
+// <div className="col-8">
+// <ul className="list-unstyled bg-gray p-3 rounded">
+// <li>
+// <a>aaa</a>
+// </li>
+// <li>
+// <a>aaa</a>
+// </li>
+// <li>
+// <a>aaa</a>
+// </li>
+// </ul>
+// </div>
+// <div className="col-4">
+// <ul className="list-unstyled p-3">
+// <li>
+// 12
+// </li>
+// <li>
+// 12
+// </li>
+// <li>
+// 12
+// </li>
+// </ul>
+// </div>
+// </div>
+// </div>

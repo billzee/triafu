@@ -1,22 +1,29 @@
 import ReactOnRails from 'react-on-rails';
 
 export default function api(url, options={}) {
-    options = {
-        // your default options
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': ReactOnRails.authenticityToken()
-        },
-        credentials: 'same-origin',
-        redirect: 'error',
-        ...options,
-    };
+  options = {
+      // your default options
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': ReactOnRails.authenticityToken()
+      },
+      credentials: 'same-origin',
+      redirect: 'error',
+      ...options,
+  };
 
-    // if(options.queryParams) {
-    //     url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(options.queryParams);
-    //     delete options.queryParams;
-    // }
+  if(options.params) {
+    console.log(options.params, 'params');
+    url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(options.params);
+    delete options.params;
+  }
 
-    return fetch(url, options);
+  return fetch(url, options);
+}
+
+function queryParams(params) {
+  return Object.keys(params)
+      .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+      .join('&');
 }

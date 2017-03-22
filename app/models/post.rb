@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   validates_processing_of :image
   validate :image_size_validation
 
+  has_many :comments
+
   def vote type
     self[type] = self[type] + 1
     self.save

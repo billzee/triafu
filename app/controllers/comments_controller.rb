@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def index
-    @comments = Comment.order(created_at: :desc)
+    @comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc)
     respond_to do |format|
       format.json {render :json => @comments}
     end

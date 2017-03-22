@@ -5,12 +5,13 @@ import pubsub from 'pubsub-js'
 export default class CommentBox extends Component {
   constructor() {
     super();
-    this.state = {comments: [], comment: {text: ''}};
+    this.state = {comments: [], postId: ''};
+    this.getComments = this.getComments.bind(this);
   }
 
-  async componentWillMount(){
+  async getComments(postId){
     try{
-      let res = await api('/comments', {method: 'GET'});
+      let res = await api('/comments', {method: 'GET', params: {post_id: postId}});
       let resJson = await res.json();
       this.setState({comments: resJson});
     } catch(error){
@@ -25,8 +26,9 @@ export default class CommentBox extends Component {
     });
 
     pubsub
-    .subscribe('post-comments', (msg, data)=>{
-      console.log(data);
+    .subscribe('view-post', (msg, data)=>{
+      console.log('chamou a bomba!!', data);
+      this.getComments(data);
     });
   }
 
@@ -35,7 +37,7 @@ export default class CommentBox extends Component {
       <box>
         <CommentCounter comments={this.state.comments} />
         <CommentList comments={this.state.comments} />
-        <CommentForm comment={this.state.comment} />
+        <CommentForm postId={this.state.postId} />
       </box>
     );
   }
@@ -62,7 +64,7 @@ class CommentList extends Component {
       {
         this.props.comments.map(function(comment){
           return(
-            <div className="col-12">
+            <div key={comment.id} className="col-12">
               <div className="row">
                 <div className="col-2 pr-0 mt-2">
                   <div className="float-right white"></div>
@@ -106,7 +108,18 @@ class CommentForm extends Component {
     e.preventDefault();
 
     try{
-      let res = await api('/comments', {method: 'POST', body: JSON.stringify({text: this.state.text})});
+      let res = await api(
+        '/comments',
+        {
+          method: 'POST',
+          body: JSON.stringify(
+            {
+              text: this.state.text,
+              post_id: this.state.postId
+            }
+          )
+        }
+      );
       let resJson = await res.json();
       pubsub.publish('comments', resJson);
     } catch(error){
@@ -121,6 +134,7 @@ class CommentForm extends Component {
           <form onSubmit={this.postComment} method="post" className="form-inline">
             <textarea value={this.state.text} onChange={this.setField.bind(this, 'text')}
              placeholder="escreva um comentário" className="form-control mr-2"></textarea>
+             aa {this.props.postId}
             <input type="submit" className="btn btn-success btn-sm"></input>
           </form>
         </div>
