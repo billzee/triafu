@@ -9,10 +9,11 @@ export default class CommentBox extends Component {
     this.getComments = this.getComments.bind(this);
   }
 
-  async getComments(postId){
+  async getComments(){
     try{
-      let res = await api('/comments', {method: 'GET', params: {post_id: postId}});
+      let res = await api('/comments', {method: 'GET', params: {post_id: this.state.postId}});
       let resJson = await res.json();
+      console.log(resJson);
       this.setState({comments: resJson});
     } catch(error){
       console.log(error);
@@ -20,15 +21,15 @@ export default class CommentBox extends Component {
   }
 
   componentDidMount(){
-    pubsub
-    .subscribe('comments', (msg, data)=>{
-      this.setState({comments: data});
-    });
+    // pubsub
+    // .subscribe('comments', (msg, data)=>{
+    //   this.setState({comments: data});
+    // });
 
     pubsub
     .subscribe('view-post', (msg, data)=>{
-      console.log('chamou a bomba!!', data);
-      this.getComments(data);
+      this.setState({postId: data});
+      this.getComments();
     });
   }
 
@@ -115,13 +116,12 @@ class CommentForm extends Component {
           body: JSON.stringify(
             {
               text: this.state.text,
-              post_id: this.state.postId
+              post_id: this.props.postId
             }
           )
         }
       );
       let resJson = await res.json();
-      pubsub.publish('comments', resJson);
     } catch(error){
       console.log(error);
     }

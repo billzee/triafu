@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
 
   def create
     if Comment.create comment_params
+      p comment_params
       respond_to do |format|
         comments = Comment.order(created_at: :desc)
         format.json {render :json => comments}
@@ -19,6 +20,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit :text
+    params.require(:comment).permit :text, :post_id
   end
 end
