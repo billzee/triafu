@@ -1,6 +1,6 @@
 import ReactOnRails from 'react-on-rails';
 
-export default function api(url, options={}) {
+export default function Api(url, options={}) {
   options = {
       // your default options
       headers: {

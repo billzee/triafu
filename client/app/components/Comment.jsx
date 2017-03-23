@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import api from '../components/Api';
+import CommentsApi from '../api/CommentsApi';
 import pubsub from 'pubsub-js'
 
 export default class CommentBox extends Component {
   constructor() {
     super();
     this.state = {comments: [], postId: ''};
-    this.getComments = this.getComments.bind(this);
   }
 
   async getComments(){
     try{
-      let res = await api('/comments', {method: 'GET', params: {post_id: this.state.postId}});
+      let res = await CommentsApi.getAll(this.state.postId);
       let resJson = await res.json();
+
+      console.log('aaaa',resJson);
       this.setState({comments: resJson});
     } catch(error){
       console.log(error);
@@ -36,7 +37,7 @@ export default class CommentBox extends Component {
     return (
       <box>
         <CommentCounter comments={this.state.comments} />
-        <CommentList comments={this.state.comments} />
+        <CommentList comments={this.state.comments} postId={this.state.postId} />
         <CommentForm postId={this.state.postId} />
       </box>
     );
@@ -75,17 +76,7 @@ class CommentList extends Component {
     e.preventDefault();
 
     try{
-      let res = await api(
-        '/comments/' + commentId + '/reply',
-        {
-          method: 'POST',
-          body: JSON.stringify(
-            {
-              text: 'blabla'
-            }
-          )
-        }
-      );
+      let res = await CommentsApi.reply(this.props.postId, commentId, comment);
       let resJson = await res.json();
 
       // pubsub.publish('comments', resJson);
@@ -167,18 +158,7 @@ class CommentForm extends Component {
     e.preventDefault();
 
     try{
-      let res = await api(
-        '/comments',
-        {
-          method: 'POST',
-          body: JSON.stringify(
-            {
-              text: this.state.text,
-              post_id: this.props.postId
-            }
-          )
-        }
-      );
+      let res = await CommentsApi.comment(this.props.postId, comment);
       let resJson = await res.json();
 
       pubsub.publish('comments', resJson);

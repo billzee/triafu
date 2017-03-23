@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Waypoint from 'react-waypoint';
-import api from '../components/Api';
+import PostsApi from '../api/PostsApi';
 import pubsub from 'pubsub-js'
 
 export default class PostBox extends Component {
@@ -11,10 +11,9 @@ export default class PostBox extends Component {
 
   async componentWillMount(){
     try{
-      let res = await api('/posts', {method: 'GET'});
+      let res = await PostsApi.getAll('/posts', {method: 'GET'});
       let resJson = await res.json();
 
-      console.log(resJson);
       this.setState({posts: resJson});
     } catch(error){
       console.log(error);
