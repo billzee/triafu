@@ -16,9 +16,14 @@ class CommentsController < ApplicationController
     end
   end
 
+  def reply
+    p params
+
+  end
+
   private
 
   def comment_params
-    params.require(:comment).permit :text, :post_id
+    params.require(:comment).permit :text, :parent_id, :post_id
   end
 end
