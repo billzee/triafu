@@ -14,7 +14,6 @@ export default function api(url, options={}) {
   };
 
   if(options.params) {
-    console.log(options.params, 'params');
     url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(options.params);
     delete options.params;
   }

@@ -1,20 +1,21 @@
-
   .comment-top {
-    height: 2em;
-    padding: 0.2em;
+    height: 1.5em;
   }
 
   .comment-middle {
     overflow: auto;
-    height: calc(100% - 7em);
+    height: calc(100% - 9em);
     top: 10em;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
+    .comment-text {
+      word-break: break-word;
+    }
   }
 
   .comment-bottom {
     padding-top: 0.5em;
-    height: 7em;
+    height: 9em;
     textarea {
       width: 73%;
     }

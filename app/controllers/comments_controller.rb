@@ -9,9 +9,8 @@ class CommentsController < ApplicationController
 
   def create
     if Comment.create comment_params
-      p comment_params
       respond_to do |format|
-        comments = Comment.order(created_at: :desc)
+        comments = Comment.where(post_id: comment_params[:post_id]).order(created_at: :desc)
         format.json {render :json => comments}
       end
     end

@@ -21,10 +21,10 @@ export default class CommentBox extends Component {
   }
 
   componentDidMount(){
-    // pubsub
-    // .subscribe('comments', (msg, data)=>{
-    //   this.setState({comments: data});
-    // });
+    pubsub
+    .subscribe('comments', (msg, data)=>{
+      this.setState({comments: data});
+    });
 
     pubsub
     .subscribe('view-post', (msg, data)=>{
@@ -49,9 +49,9 @@ class CommentCounter extends Component {
     return(
       <div className="row bb-white comment-top">
         <div className="col">
-          <h4 className="text-center">
+          <strong>
              {this.props.comments.length} comentários
-          </h4>
+          </strong>
         </div>
       </div>
     );
@@ -62,32 +62,41 @@ class CommentList extends Component {
   render() {
     return (
       <div className="row panel comment-middle">
-      {
-        this.props.comments.map(function(comment){
-          return(
-            <div key={comment.id} className="col-12">
-              <div className="row">
-                <div className="col-2 pr-0 mt-2">
-                  <div className="float-right white"></div>
-                </div>
-                <div className="col pt-2">
-                  <p>Guilherme Zordan</p>
-                  {comment.text}
-                </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col text-right">
-                  <span className="glyphicon glyphicon-arrow-up mr-2"></span>
-                  <span className="glyphicon glyphicon-arrow-down mr-2"></span>
-                  <a href="#">responder</a>
-                </div>
-              </div>
-            </div>
-          );
-        })
-      }
-      </div>
-    )
+        <div className="col-12">
+          <ul className="list-unstyled">
+            {
+              this.props.comments.map((comment)=>{
+                return(
+                  <li key={comment.id}>
+                    <div className="row">
+                      <div className="col-2 pr-0 mt-2">
+                      <img src="assets/bidu.jpg" width="48px" className="rounded-circle" />
+                    </div>
+                    <div className="col pt-2">
+                      <strong>Guilherme Zordan</strong>
+                      <br/>
+                      <span className="comment-text">
+                        {comment.text}
+                      </span>
+                    </div>
+                    </div>
+                      <div className="row mt-3">
+                        <div className="col text-right">
+                          <small>
+                            <i className="fa fa-arrow-up mr-2"></i>
+                            <i className="fa fa-arrow-down mr-2"></i>
+                            <a href="#">Responder</a>
+                          </small>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })
+              }
+            </ul>
+          </div>
+        </div>
+    );
   }
 }
 
@@ -122,6 +131,8 @@ class CommentForm extends Component {
         }
       );
       let resJson = await res.json();
+
+      pubsub.publish('comments', resJson);
     } catch(error){
       console.log(error);
     }
@@ -131,11 +142,17 @@ class CommentForm extends Component {
     return(
       <div className="row bt-white comment-bottom">
         <div className="col">
-          <form onSubmit={this.postComment} method="post" className="form-inline">
+          <form onSubmit={this.postComment} method="post" className="form">
             <textarea value={this.state.text} onChange={this.setField.bind(this, 'text')}
-             placeholder="escreva um comentário" className="form-control mr-2"></textarea>
-             aa {this.props.postId}
-            <input type="submit" className="btn btn-success btn-sm"></input>
+             placeholder="escreva um comentário" className="form-control w-100   mb-2"></textarea>
+             <ul className="list-unstyled list-inline float-right">
+               <li className="list-inline-item">
+                <input type="button" className="btn btn-secondary btn-sm" value=".gif"></input>
+               </li>
+               <li className="list-inline-item">
+                <input type="submit" className="btn btn-success btn-sm" value="Comentar"></input>
+               </li>
+            </ul>
           </form>
         </div>
       </div>

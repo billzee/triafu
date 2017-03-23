@@ -34,17 +34,19 @@ export default class PostBox extends Component {
         {
           this.state.posts.map((post)=>{
             return(
-              <div key={post.id} className="row justify-content-md-center">
-                <Waypoint onEnter={(props)=> {
-                  pubsub.publish('view-post', post.id);
-                }}>
+              <div key={post.id} className="row justify-content-md-center mb-5 mt-4">
                   <div className="col col-md-auto">
-                    <h1 className="text-center">{post.title}</h1>
-                    <div className="center mt-4">
-                      <img src={post.image.url} />
-                    </div>
+                    <h1>
+                      {post.title}
+                      <Waypoint onEnter={(props)=> {
+                        console.log(props);
+                        pubsub.publish('view-post', post.id);
+                      }} />
+                    </h1>
+                      <div className="center">
+                        <img src={post.image.url} className="post-image" />
+                      </div>
                   </div>
-                </Waypoint>
               </div>
             );
           })

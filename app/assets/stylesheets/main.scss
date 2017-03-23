@@ -2,9 +2,9 @@
 @import "font-awesome";
 
 * {
+  font-family: 'Segoe UI', sans-serif;
   box-sizing: border-box;
-  font-family: Quicksand;
-  font-weight: bold;
+  font-size: 14px;
 }
 
 html, body {
@@ -13,33 +13,31 @@ html, body {
   overflow: hidden;
 }
 
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
 .navbar {
-  background-color: black;
-  color: white;
-  height: 3em;
+  font-weight: bold;
+  // background-color: black;
+  // color: white;
+  height: 3.5em;
   padding: 0 !important;
 
   .navbar-collapse {
     .navbar-nav {
       .nav-item {
         text-align: center;
-        width: 5em;
-        a.nav-link {
-          color: inherit; /* blue colors for links too */
-          text-decoration: inherit; /* no underline */
-          height: 100%;
-        }
-      }
-      .nav-item.active {
-        color: inherit;
-        background-color: #f1f1f1;
+        width: 6em;
       }
     }
   }
 }
 
 .panel-container {
-  padding-top: 3em;
+  padding-top: 3.5em;
   position: relative;
   display: flex;
   overflow: hidden;
@@ -69,6 +67,10 @@ html, body {
 
 .c-white {
   color: white;
+}
+
+.mh-5 {
+  max-height: 5em;
 }
 
 .center {
