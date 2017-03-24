@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import CommentsApi from '../api/CommentsApi';
 import pubsub from 'pubsub-js'
 
+import CommentList from './CommentList';
+
 export default class CommentBox extends Component {
   constructor() {
     super();
@@ -12,8 +14,6 @@ export default class CommentBox extends Component {
     try{
       let res = await CommentsApi.getAll(this.state.postId);
       let resJson = await res.json();
-
-      console.log('aaaa',resJson);
       this.setState({comments: resJson});
     } catch(error){
       console.log(error);
@@ -58,108 +58,31 @@ class CommentCounter extends Component {
   }
 }
 
-class CommentList extends Component {
-
-  constructor(){
-    super();
-    this.state = {showReply: ''};
-    this.toggleReply = this.toggleReply.bind(this);
-    this.reply = this.reply.bind(this);
-  }
-
-  toggleReply(e, commentId){
-    e.preventDefault();
-    this.setState(({showReply: commentId}));
-  }
-
-  async reply(e, commentId){
-    e.preventDefault();
-
-    try{
-      let res = await CommentsApi.reply(this.props.postId, commentId, comment);
-      let resJson = await res.json();
-
-      // pubsub.publish('comments', resJson);
-    } catch(error){
-      console.log(error);
-    }
-  }
-
-  render() {
-    return (
-      <div className="row panel comment-middle">
-        <div className="col-12">
-          <ul className="list-unstyled">
-            {
-              this.props.comments.map((comment)=>{
-                return(
-                  <li key={comment.id}>
-                    <div className="row">
-                      <div className="col-2 pr-0 mt-2">
-                        <img src="assets/bidu.jpg" width="48px" className="rounded-circle" />
-                      </div>
-                      <div className="col pt-2">
-                        <strong>Guilherme Zordan</strong>
-                        <br/>
-                        <span className="comment-text">
-                          {comment.text}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="row mt-2">
-                      <div className="col text-right">
-                          <i className="fa fa-arrow-up mr-2"></i>
-                          <i className="fa fa-arrow-down mr-2"></i>
-                          {
-                            this.state.showReply === comment.id ?
-                            (<a href="#" onClick={(e) => this.toggleReply(e, '')}>Cancelar</a>) :
-                            (<a href="#" onClick={(e) => this.toggleReply(e, comment.id)}>Responder</a>)
-                          }
-                      </div>
-                    </div>
-                    {
-                      this.state.showReply === comment.id ?
-                      <div className="row">
-                        <div className="col">
-                          <form onSubmit={(e) => this.reply(e, comment.id)} method="post">
-                            <textarea className="form-control w-100"></textarea>
-                            <input type="submit" className="btn btn-success btn-sm" value="Responder"></input>
-                          </form>
-                        </div>
-                      </div>
-                     : null
-                    }
-                  </li>
-                  );
-                })
-              }
-            </ul>
-          </div>
-        </div>
-    );
-  }
-}
-
 class CommentForm extends Component {
-
   constructor() {
     super();
-    this.state = {text: 'comentario de teste'};
+    this.state = {comment: {text: ''}};
+    this.handleChange = this.handleChange.bind(this);
     this.comment = this.comment.bind(this);
   }
 
-  setField(input, e){
+  handleChange(e) {
+    console.log([e.target.name], e.target.value);
     var field = {};
-    field[input] = e.target.value;
+    e.target.name = e.target.value;
     this.setState(field);
   }
 
   async comment(e){
     e.preventDefault();
 
+    console.log(this.props.postId, this.state.comment);
+
     try{
-      let res = await CommentsApi.comment(this.props.postId, comment);
+      let res = await CommentsApi.comment(this.props.postId, this.state.comment);
       let resJson = await res.json();
+
+      console.log('resposta', resJson);
 
       pubsub.publish('comments', resJson);
     } catch(error){
@@ -172,7 +95,7 @@ class CommentForm extends Component {
       <div className="row bt-white comment-bottom">
         <div className="col">
           <form onSubmit={this.comment} method="post" className="form">
-            <textarea value={this.state.text} onChange={this.setField.bind(this, 'text')}
+            <textarea value={this.state.comment.text} name="comment['text']" onChange={this.handleChange}
              placeholder="escreva um comentário" className="form-control w-100 mb-2"></textarea>
              <ul className="list-unstyled list-inline float-right">
                <li className="list-inline-item">
