@@ -7,13 +7,22 @@ import ReplyForm from './ReplyForm';
 export default class CommentList extends Component {
   constructor(){
     super();
-    this.state = {showReplyFormTo: null};
+    this.state = {showReplyFormTo: null, unlimit: []};
     this.toggleReply = this.toggleReply.bind(this);
+    this.unlimit = this.unlimit.bind(this);
+    console.log(this.state.unlimit.indexOf(2));
   }
 
   toggleReply(e, commentId){
     e.preventDefault();
     this.setState(({showReplyFormTo: commentId}));
+  }
+
+  unlimit(e, commentId) {
+    e.preventDefault();
+    this.setState(previousState => ({
+      unlimit: [...previousState.unlimit, commentId]
+    }));
   }
 
   render() {
@@ -27,14 +36,30 @@ export default class CommentList extends Component {
                   <li key={comment.id}>
                     <div className="row">
                       <div className="col-2 pr-0 mt-2">
-                        <img src="assets/bidu.jpg" width="48px" className="rounded-circle" />
+                        <img src="assets/bidu.jpg" width="42px" className="rounded-circle" />
                       </div>
                       <div className="col pt-2">
                         <strong>Guilherme Zordan</strong>
                         <br/>
-                        <span className="comment-text">
-                          {comment.text}
-                        </span>
+                        {this.limit = true}
+                          {
+                            comment.text.length < 184 || this.state.unlimit.indexOf(comment.id) !== -1 ?
+                              (
+                                <span className="comment-text">
+                                  {comment.text}
+                                </span>
+                              )
+                            :
+                              (
+                                <span className="comment-text">
+                                  {comment.text.substring(0,184)}
+                                  <a href="#" onClick={(e) => this.unlimit(e, comment.id)}>
+                                    Ler mais...
+                                  </a>
+                                </span>
+                              )
+                          }
+
                       </div>
                     </div>
                     <div className="row mt-2">
