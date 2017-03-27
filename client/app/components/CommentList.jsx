@@ -2,38 +2,18 @@ import React, { Component } from 'react';
 import CommentsApi from '../api/CommentsApi';
 import pubsub from 'pubsub-js'
 
+import ReplyForm from './ReplyForm';
+
 export default class CommentList extends Component {
   constructor(){
     super();
-    this.state = {showReply: '', comment: {text: ''}};
+    this.state = {showReplyFormTo: null};
     this.toggleReply = this.toggleReply.bind(this);
-    this.reply = this.reply.bind(this);
   }
 
   toggleReply(e, commentId){
     e.preventDefault();
-    this.setState(({showReply: commentId}));
-  }
-
-  setField(input, e){
-    var field = {};
-    field[input] = e.target.value;
-    this.setState(field);
-  }
-
-  async reply(e, commentId){
-    e.preventDefault();
-
-    console.log(this.state.comment);
-
-    try{
-      let res = await CommentsApi.reply(this.props.postId, commentId, this.state.comment);
-      let resJson = await res.json();
-
-      pubsub.publish('comments', resJson);
-    } catch(error){
-      console.log(error);
-    }
+    this.setState(({showReplyFormTo: commentId}));
   }
 
   render() {
@@ -62,32 +42,60 @@ export default class CommentList extends Component {
                         <i className="fa fa-arrow-up mr-2"></i>
                         <i className="fa fa-arrow-down mr-2"></i>
                         {
-                          this.state.showReply === comment.id ?
+                          this.state.showReplyFormTo === comment.id ?
                           (<a href="#" onClick={(e) => this.toggleReply(e, '')}>Cancelar</a>) :
                           (<a href="#" onClick={(e) => this.toggleReply(e, comment.id)}>Responder</a>)
                         }
                       </div>
                     </div>
                     {
-                      this.state.showReply === comment.id ?
-                      <div className="row">
-                        <div className="col">
-                          <form onSubmit={(e) => this.reply(e, comment.id)} method="post">
-                            <textarea value={this.state.comment.text} onChange={this.setField.bind(this, 'comment')} className="form-control w-100"></textarea>
-                            <ul className="list-unstyled list-inline float-right">
-                              <li className="list-inline-item">
-                               <input type="button" className="btn btn-secondary btn-sm" value=".gif"></input>
-                              </li>
-                              <li className="list-inline-item">
-                               <input type="submit" className="btn btn-success btn-sm" value="Comentar"></input>
-                              </li>
-                           </ul>
-                          </form>
+                      this.state.showReplyFormTo === comment.id ?
+                        <div className="row">
+                          <div className="col">
+                            <ReplyForm commentId={comment.id} postId={this.props.postId} />
+                          </div>
                         </div>
-                      </div>
-                     : null
+                      : null
                     }
+                    <div className="row justify-content-end">
+                    <div className="col-10">
+                    <ul className="list-unstyled">
+                    {
+                      comment.replies.map((reply)=>{
+                        return(
+                          <li key={reply.id}>
+                          <div className="row">
+                          <div className="col-2 pr-0 mt-2">
+                          <img src="assets/bidu.jpg" width="48px" className="rounded-circle" />
+                          </div>
+                          <div className="col pt-2">
+                          <strong>Guilherme Zordan</strong>
+                          <br/>
+                          <span className="comment-text">
+                          {reply.text}
+                          </span>
+                          </div>
+                          </div>
+                          <div className="row mt-2">
+                          <div className="col text-right">
+                          <i className="fa fa-arrow-up mr-2"></i>
+                          <i className="fa fa-arrow-down mr-2"></i>
+                          {
+                            this.state.showReplyFormTo === comment.id ?
+                            (<a href="#" onClick={(e) => this.toggleReply(e, '')}>Cancelar</a>) :
+                            (<a href="#" onClick={(e) => this.toggleReply(e, comment.id)}>Responder</a>)
+                          }
+                          </div>
+                          </div>
+                          </li>
+                        );
+                      })
+                    }
+                    </ul>
+                    </div>
+                    </div>
                   </li>
+
                   );
                 })
               }

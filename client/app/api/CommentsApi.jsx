@@ -11,7 +11,7 @@ var CommentsApi = {
   },
 
   reply: function(postId, commentId, comment) {
-    console.log(comment);
+    console.log(postId,  commentId, comment);
     return Api('/posts/' + postId + '/comments/' + commentId + '/reply', {method: 'POST', body: JSON.stringify(comment)});
   }
 };
