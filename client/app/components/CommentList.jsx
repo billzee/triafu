@@ -7,10 +7,9 @@ import ReplyForm from './ReplyForm';
 export default class CommentList extends Component {
   constructor(){
     super();
-    this.state = {showReplyFormTo: null, unlimit: []};
+    this.state = {showReplyFormTo: null, unlimit: null};
     this.toggleReply = this.toggleReply.bind(this);
     this.unlimit = this.unlimit.bind(this);
-    console.log(this.state.unlimit.indexOf(2));
   }
 
   toggleReply(e, commentId){
@@ -20,9 +19,7 @@ export default class CommentList extends Component {
 
   unlimit(e, commentId) {
     e.preventDefault();
-    this.setState(previousState => ({
-      unlimit: [...previousState.unlimit, commentId]
-    }));
+    this.setState(({unlimit: commentId}));
   }
 
   render() {
@@ -43,21 +40,33 @@ export default class CommentList extends Component {
                         <br/>
                         {this.limit = true}
                           {
-                            comment.text.length < 184 || this.state.unlimit.indexOf(comment.id) !== -1 ?
+                            comment.text.length <= 184 ?
                               (
                                 <span className="comment-text">
                                   {comment.text}
                                 </span>
                               )
                             :
-                              (
-                                <span className="comment-text">
-                                  {comment.text.substring(0,184)}
-                                  <a href="#" onClick={(e) => this.unlimit(e, comment.id)}>
-                                    Ler mais...
-                                  </a>
-                                </span>
-                              )
+                              this.state.unlimit === comment.id ?
+                                (
+                                  <span className="comment-text">
+                                    {comment.text}
+                                    <a href="#" className="float-right"
+                                    onClick={(e) => this.unlimit(e, null)}>
+                                      Recolher
+                                    </a>
+                                  </span>
+                                )
+                              :
+                                (
+                                  <span className="comment-text">
+                                    {comment.text.substring(0,184)}
+                                    <a href="#" className="float-right"
+                                    onClick={(e) => this.unlimit(e, comment.id)}>
+                                      Ler mais...
+                                    </a>
+                                  </span>
+                                )
                           }
 
                       </div>
@@ -68,7 +77,7 @@ export default class CommentList extends Component {
                         <i className="fa fa-arrow-down mr-2"></i>
                         {
                           this.state.showReplyFormTo === comment.id ?
-                          (<a href="#" onClick={(e) => this.toggleReply(e, '')}>Cancelar</a>) :
+                          (<a href="#" onClick={(e) => this.toggleReply(e, null)}>Cancelar</a>) :
                           (<a href="#" onClick={(e) => this.toggleReply(e, comment.id)}>Responder</a>)
                         }
                       </div>
