@@ -16,23 +16,29 @@ export default class CommentList extends Component {
                 return(
                   <li key={comment.id}>
                     <CommentOrReplyBox photoSize="48px" commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
-                    <div className="row justify-content-end">
-                      <div className="col-11">
-                        <ul className="list-unstyled">
-                        {
-                          comment.replies.map((reply)=>{
-                            return(
-                              <li key={reply.id}>
-                                <CommentOrReplyBox photoSize="38px" commentOrReply={reply} commentId={comment.id} postId={this.props.postId} />
-                              </li>
-                            );
-                          })
-                        }
-                        </ul>
-                      </div>
-                      </div>
-                      <hr className="bgm-white" />  
-                    </li>
+                    {
+                      comment.replies.length > 0 ?
+                      (
+                        <div className="row justify-content-end mt-2">
+                          <div className="col-11">
+                            <ul className="list-unstyled">
+                              {
+                                comment.replies.map((reply)=>{
+                                  return(
+                                    <li key={reply.id}>
+                                    <CommentOrReplyBox photoSize="38px" commentOrReply={reply} commentId={comment.id} postId={this.props.postId} />
+                                    </li>
+                                  );
+                                })
+                              }
+                            </ul>
+                          </div>
+                        </div>
+                      )
+                      : null
+                    }
+                    <hr className="bgm-white" />
+                  </li>
                   );
                 })
               }

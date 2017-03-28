@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import helper from './Helper'
+import TextArea from './TextArea'
 import CommentsApi from '../api/CommentsApi';
 import pubsub from 'pubsub-js'
 
@@ -17,7 +18,7 @@ export default class CommentBox extends Component {
     try{
       let res = await CommentsApi.getAll(this.state.postId);
       let resJson = await res.json();
-      
+
       this.setState({comments: resJson});
     } catch(error){
       console.log(error);
@@ -89,16 +90,7 @@ class CommentForm extends Component {
       <div className="row bt-white comment-bottom">
         <div className="col">
           <form onSubmit={this.comment} method="post" className="form">
-            <textarea value={this.state.text} onChange={helper.handleChange.bind(this, 'text')}
-            placeholder="escreva um comentário" className="form-control w-100 mb-2"></textarea>
-             <ul className="list-unstyled list-inline float-right">
-               <li className="list-inline-item">
-                <input type="button" className="btn btn-secondary btn-sm" value=".gif"></input>
-               </li>
-               <li className="list-inline-item">
-                <input type="submit" className="btn btn-success btn-sm" value="Comentar"></input>
-               </li>
-            </ul>
+            <TextArea value={this.state.text} onChange={helper.handleChange.bind(this, 'text')} placeholder="escreva um comentário" />
           </form>
         </div>
       </div>
