@@ -31,6 +31,7 @@ export default class CommentList extends Component {
                         </ul>
                       </div>
                       </div>
+                      <hr className="bgm-white" />  
                     </li>
                   );
                 })

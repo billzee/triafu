@@ -6,8 +6,8 @@ import ReplyForm from './ReplyForm';
 export default class CommentOrReplyBox extends Component {
   constructor(){
     super();
-    this.state = {showReplyFormTo: null, unlimit: null};
-    this.unlimit = this.unlimit.bind(this);
+    this.state = {showReplyFormTo: null, release: null};
+    this.toggleReleaseText = this.toggleReleaseText.bind(this);
     this.toggleReply = this.toggleReply.bind(this);
   }
 
@@ -16,9 +16,9 @@ export default class CommentOrReplyBox extends Component {
     this.setState(({showReplyFormTo: commentId}));
   }
 
-  unlimit(e, commentId) {
+  toggleReleaseText(e, commentId) {
     e.preventDefault();
-    this.setState(({unlimit: commentId}));
+    this.setState(({release: commentId}));
   }
 
   render() {
@@ -30,50 +30,50 @@ export default class CommentOrReplyBox extends Component {
           </div>
           <div className="col pt-1">
             <strong>Guilherme Zordan </strong>
-              <small className="text-muted">
-                <Moment fromNow>{this.props.commentOrReply.created_at}</Moment>
-              </small>
+            <small className="text-muted">
+              <Moment fromNow>{this.props.commentOrReply.created_at}</Moment>
+            </small>
             <br/>
             {
-              this.props.commentOrReply.text.length <= 184 ?
+              this.props.commentOrReply.text.length <= 100 ?
                 (
                   <span className="comment-text">
                     {this.props.commentOrReply.text}
                   </span>
                 )
               :
-                this.state.unlimit === this.props.commentOrReply.id ?
+                this.state.release === this.props.commentOrReply.id ?
                   (
                     <span className="comment-text">
                       {this.props.commentOrReply.text}
                       <a href="#" className="float-right"
-                      onClick={(e) => this.unlimit(e, null)}>
-                        Recolher
+                      onClick={(e) => this.toggleReleaseText(e, null)}>
+                        <small>Recolher</small>
                       </a>
                     </span>
                   )
                 :
                   (
                     <span className="comment-text">
-                      {this.props.commentOrReply.text.substring(0,184)}
+                      {this.props.commentOrReply.text.substring(0,100)}...
                       <a href="#" className="float-right"
-                      onClick={(e) => this.unlimit(e, this.props.commentOrReply.id)}>
-                        Ler mais...
+                      onClick={(e) => this.toggleReleaseText(e, this.props.commentOrReply.id)}>
+                        <small>Ler mais</small>
                       </a>
                     </span>
                   )
               }
-          </div>
-        </div>
-        <div className="row mt-2">
-          <div className="col text-right">
-            <i className="fa fa-arrow-up mr-2"></i>
-            <i className="fa fa-arrow-down mr-2"></i>
-            {
-              this.state.showReplyFormTo === this.props.commentOrReply.id ?
-              (<a href="#" onClick={(e) => this.toggleReply(e, null)}>Cancelar</a>) :
-              (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}>Responder</a>)
-            }
+              <div className="row">
+                <div className="col text-left">
+                  <i className="fa fa-arrow-up mr-2"></i>
+                  <i className="fa fa-arrow-down mr-2"></i>
+                  {
+                    this.state.showReplyFormTo === this.props.commentOrReply.id ?
+                    (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :
+                    (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}><small>Responder</small></a>)
+                  }
+                </div>
+              </div>
           </div>
         </div>
         {

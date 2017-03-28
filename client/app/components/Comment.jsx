@@ -17,8 +17,7 @@ export default class CommentBox extends Component {
     try{
       let res = await CommentsApi.getAll(this.state.postId);
       let resJson = await res.json();
-
-      console.log(resJson);
+      
       this.setState({comments: resJson});
     } catch(error){
       console.log(error);

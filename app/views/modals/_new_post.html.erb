@@ -14,6 +14,17 @@
           <%= f.text_field :title, placeholder: "Título", class: "form-control" %>
           <small class="form-text text-muted">Um bom post merece um título criativo e objetivo!</small>
         </div>
+        <!-- <button class="btn btn-primary">
+        Imagem <i class="fa fa-plus"></i>
+        </button> -->
+        <div class="field">
+          <%= f.file_field :image %>
+          <% if f.object.image? %>
+            <%= image_tag f.object.image.thumb.url %>
+            <%= f.label :remove_image %>
+            <%= f.check_box :remove_image %>
+          <% end %>
+        </div>
         <%= f.submit "Postar", class: "btn btn-success" %>
       </div>
       <% end %>
