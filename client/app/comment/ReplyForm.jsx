@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import helper from './Helper'
-import TextArea from './TextArea'
+
+import helper from '../components/Helper'
+import TextArea from '../components/TextArea'
 import CommentsApi from '../api/CommentsApi';
 import pubsub from 'pubsub-js'
 

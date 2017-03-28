@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CommentsApi from '../api/CommentsApi';
-import pubsub from 'pubsub-js'
 
+import CommentsApi from '../api/CommentsApi';
+import helper from '../components/Helper'
 import CommentOrReplyBox from './CommentOrReplyBox'
 
 export default class CommentList extends Component {
@@ -15,7 +15,7 @@ export default class CommentList extends Component {
               this.props.comments.map((comment)=>{
                 return(
                   <li key={comment.id}>
-                    <CommentOrReplyBox photoSize="48px" commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
+                    <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
                     {
                       comment.replies.length > 0 ?
                       (
@@ -26,7 +26,7 @@ export default class CommentList extends Component {
                                 comment.replies.map((reply)=>{
                                   return(
                                     <li key={reply.id}>
-                                    <CommentOrReplyBox photoSize="38px" commentOrReply={reply} commentId={comment.id} postId={this.props.postId} />
+                                    <CommentOrReplyBox photoSize={helper.replyPhotoSize} commentOrReply={reply} commentId={comment.id} postId={this.props.postId} />
                                     </li>
                                   );
                                 })

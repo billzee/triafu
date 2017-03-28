@@ -1,12 +1,12 @@
 import ReactOnRails from 'react-on-rails';
 
-import PostBox from '../components/Post';
-import CommentBox from '../components/Comment';
+import PostSection from '../post/PostSection';
+import CommentSection from '../comment/CommentSection';
 
 var moment = require('moment');
 moment.locale('pt-BR');
 
 ReactOnRails.register({
-  PostBox,
-  CommentBox
+  PostSection,
+  CommentSection
 });

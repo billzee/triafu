@@ -3,7 +3,7 @@ import Waypoint from 'react-waypoint';
 import PostsApi from '../api/PostsApi';
 import pubsub from 'pubsub-js'
 
-export default class PostBox extends Component {
+export default class PostSection extends Component {
   constructor() {
     super();
     this.state = {posts: []};

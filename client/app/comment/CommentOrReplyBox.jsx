@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import pubsub from 'pubsub-js'
 import Moment from 'react-moment'
 
 import ReplyForm from './ReplyForm';
@@ -9,6 +10,13 @@ export default class CommentOrReplyBox extends Component {
     this.state = {showReplyFormTo: null, release: null};
     this.toggleReleaseText = this.toggleReleaseText.bind(this);
     this.toggleReply = this.toggleReply.bind(this);
+  }
+
+  componentDidMount(){
+    pubsub
+    .subscribe('hide-reply-form', ()=>{
+      this.setState({showReplyFormTo: null});
+    });
   }
 
   toggleReply(e, commentId){
