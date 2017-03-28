@@ -12,7 +12,7 @@ export default class CommentList extends Component {
         <div className="col-12">
           <ul className="list-unstyled">
             {
-              this.props.comments.map((comment)=>{
+              this.props.comments.map((comment, key)=>{
                 return(
                   <li key={comment.id}>
                     <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
@@ -37,7 +37,12 @@ export default class CommentList extends Component {
                       )
                       : null
                     }
-                    <hr className="bgm-white" />
+
+                    {
+                      this.props.comments.length - 1 !== key ?
+                      (<hr className="bgm-white" />)
+                      : null
+                    }
                   </li>
                   );
                 })

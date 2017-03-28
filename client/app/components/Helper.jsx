@@ -4,12 +4,13 @@ var Helper = {
 
   replyPhotoSize: "38px",
 
-  handleChange: (input, e)=>{
+  maxLengthForRelease: 100,
+
+  handleChange: function(input, e){
     var field = {};
     field[input] = e.target.value;
     this.setState(field);
   }
-
 
 };
 

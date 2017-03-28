@@ -36,7 +36,7 @@ export default class ReplyForm extends Component {
   render() {
     return (
       <form onSubmit={this.reply} method="post">
-        <TextArea value={this.state.text} onChange={helper.handleChange.bind(this, 'text')} />
+        <TextArea value={this.state.text} onChange={helper.handleChange.bind(this, 'text')} placeholder="escreva uma resposta" />
       </form>
     );
   }

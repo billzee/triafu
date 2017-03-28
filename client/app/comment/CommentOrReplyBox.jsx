@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 import Moment from 'react-moment'
 
+import helper from '../components/Helper';
+
 import ReplyForm from './ReplyForm';
 
 export default class CommentOrReplyBox extends Component {
@@ -14,8 +16,8 @@ export default class CommentOrReplyBox extends Component {
 
   componentDidMount(){
     pubsub
-    .subscribe('hide-reply-form', ()=>{
-      this.setState({showReplyFormTo: null});
+    .subscribe('clear-comments-state', ()=>{
+      this.setState({showReplyFormTo: null, release: null});
     });
   }
 
@@ -43,7 +45,7 @@ export default class CommentOrReplyBox extends Component {
             </small>
             <br/>
             {
-              this.props.commentOrReply.text.length <= 100 ?
+              this.props.commentOrReply.text.length <= helper.maxLengthForRelease ?
                 (
                   <span className="comment-text">
                     {this.props.commentOrReply.text}
@@ -54,31 +56,43 @@ export default class CommentOrReplyBox extends Component {
                   (
                     <span className="comment-text">
                       {this.props.commentOrReply.text}
-                      <a href="#" className="float-right"
-                      onClick={(e) => this.toggleReleaseText(e, null)}>
-                        <small>Recolher</small>
-                      </a>
                     </span>
                   )
                 :
                   (
                     <span className="comment-text">
-                      {this.props.commentOrReply.text.substring(0,100)}...
-                      <a href="#" className="float-right"
-                      onClick={(e) => this.toggleReleaseText(e, this.props.commentOrReply.id)}>
-                        <small>Ler mais</small>
-                      </a>
+                      {this.props.commentOrReply.text.substring(0,helper.maxLengthForRelease)}...
                     </span>
                   )
               }
               <div className="row">
-                <div className="col text-left">
+                <div className="col-8 text-left">
                   <i className="fa fa-arrow-up mr-2"></i>
                   <i className="fa fa-arrow-down mr-2"></i>
                   {
                     this.state.showReplyFormTo === this.props.commentOrReply.id ?
                     (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :
                     (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}><small>Responder</small></a>)
+                  }
+                </div>
+                <div className="col-4 text-right">
+                  {
+                    this.props.commentOrReply.text.length > helper.maxLengthForRelease ?
+                      this.state.release === this.props.commentOrReply.id ?
+                        (
+                          <a href="#" className="float-right"
+                          onClick={(e) => this.toggleReleaseText(e, null)}>
+                            <small>Recolher</small>
+                          </a>
+                        )
+                      :
+                        (
+                          <a href="#" className="float-right"
+                          onClick={(e) => this.toggleReleaseText(e, this.props.commentOrReply.id)}>
+                            <small>Ler mais</small>
+                          </a>
+                        )
+                    : null
                   }
                 </div>
               </div>
