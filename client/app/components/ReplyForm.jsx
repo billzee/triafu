@@ -13,8 +13,6 @@ export default class ReplyForm extends Component {
   async reply(e){
     e.preventDefault();
 
-    console.log('what');
-
     try{
       let res = await CommentsApi.reply
         (

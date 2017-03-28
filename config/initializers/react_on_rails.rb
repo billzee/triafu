@@ -57,14 +57,14 @@ ReactOnRails.configure do |config|
   # On MRI, you'll get a deadlock with `pool_size` > 1
   # If you're using JRuby, you can increase `pool_size` to have real multi-threaded rendering.
   config.server_renderer_pool_size = 1 # increase if you're on JRuby
-  config.server_renderer_timeout = 20 # seconds
+  config.server_renderer_timeout = 10 # seconds
 
   ################################################################################
   # I18N OPTIONS
   ################################################################################
   # Replace the following line to the location where you keep translation.js & default.js for use
   # by the npm packages react-intl. Be sure this directory exists!
-  # config.i18n_dir = Rails.root.join("client", "app", "libs", "i18n")
+  config.i18n_dir = Rails.root.join("client", "app", "libs", "i18n")
 
   ################################################################################
   # MISCELLANEOUS OPTIONS

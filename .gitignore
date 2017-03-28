@@ -29,4 +29,5 @@ node_modules
 # Generated js bundles
 /app/assets/webpack/*
 
+# Triafu's ignoreds
 /public/uploads/

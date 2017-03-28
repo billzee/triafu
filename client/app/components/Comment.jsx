@@ -5,6 +5,8 @@ import pubsub from 'pubsub-js'
 
 import CommentList from './CommentList';
 
+import {IntlProvider, FormattedMessage} from 'react-intl';
+
 export default class CommentBox extends Component {
   constructor() {
     super();
