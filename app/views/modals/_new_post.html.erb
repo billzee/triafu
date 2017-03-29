@@ -1,37 +1,33 @@
 <div class="modal" id="m_new_post" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h5 class="modal-title" id="m_new_post">Criar Post</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div> -->
       <div class="modal-body text-center">
 
-      <%= form_for Post.new do |f| %>
+      <%= form_for Post.new, html: { multipart: true, class: "dropzone"} do |f| %>
+
         <div class="form-group">
           <%= f.text_field :title, placeholder: "Título", class: "form-control" %>
           <small class="form-text text-muted">Um bom post merece um título criativo e objetivo!</small>
         </div>
-        <!-- <button class="btn btn-primary">
-        Imagem <i class="fa fa-plus"></i>
-        </button> -->
-        <div class="field">
-          <%= f.file_field :image %>
-          <% if f.object.image? %>
-            <%= image_tag f.object.image.thumb.url %>
-            <%= f.label :remove_image %>
-            <%= f.check_box :remove_image %>
-          <% end %>
+
+        <div class="fallback">
+          <%= f.file_field :image%>
         </div>
-        <%= f.submit "Postar", class: "btn btn-success" %>
-      </div>
+
+        <ul class="list-unstyled list-inline float-right">
+          <li class="list-inline-item">
+            <input type="button" class="btn btn-link" value="Cancelar">
+          </li>
+          <li class="list-inline-item">
+            <%= f.submit "Postar", class: "btn btn-success" %>
+          </li>
+        </ul>
+        <% end %>
+
+      <%= form_for ImageUploader.new, html: { multipart: true, class: "dropzone"} do |f| %>
       <% end %>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
+
+
 
     </div>
   </div>

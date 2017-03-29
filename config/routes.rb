@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
+  match 'post/cache_image' => 'posts#cache_image', :via => :post
+
   root :to => "posts#index"
 end

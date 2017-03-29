@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
     create_table :posts do |t|
       t.string :title
       t.string :image
+      t.string :original
       t.integer :funny_count
       t.integer :smart_count
       t.integer :negative_count

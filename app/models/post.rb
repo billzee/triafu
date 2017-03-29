@@ -2,10 +2,6 @@ class Post < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
 
   validates_presence_of :title
-  mount_uploader :image, ImageUploader
-
-  validates_processing_of :image
-  validate :image_size_validation
 
   has_many :comments
 

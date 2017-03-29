@@ -8,8 +8,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def upload_image
+    @@world = post_params[:image]
+  end
+
   def create
-    if Post.create post_params
+    post = Post.new post_params
+    if post.save
+      p post.image
       redirect_to posts_path
     end
   end
@@ -23,6 +29,10 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit :title, :image, :funny_count
+    params.require(:post).permit(:title, :image, :funny_count).merge(image: @@world)
+  end
+
+  def uploaded_image
+    params.require(:post).permit :image
   end
 end
