@@ -39,7 +39,7 @@ export default class PostSection extends Component {
                     {post.title}
                   </h1>
                     <div className="center">
-                      <img src={post.image.url} className="post-image" />
+                      <img src={post.media.image.url} className="post-image" />
                       <Waypoint onEnter={(props)=> {
                         pubsub.publish('view-post', post.id);
                       }}>

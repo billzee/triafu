@@ -3,15 +3,16 @@
     <div class="modal-content">
       <div class="modal-body text-center">
 
-      <%= form_for Post.new, html: { multipart: true, class: "dropzone"} do |f| %>
+      <%= form_for @post do |f| %>
 
+        <small>Um título massa para o seu post!</small>
         <div class="form-group">
           <%= f.text_field :title, placeholder: "Título", class: "form-control" %>
-          <small class="form-text text-muted">Um bom post merece um título criativo e objetivo!</small>
         </div>
 
-        <div class="fallback">
-          <%= f.file_field :image%>
+        <div class="row">
+          <div class="col-4 offset-4 rounded dropzone new_media" id="new_media">
+          </div>
         </div>
 
         <ul class="list-unstyled list-inline float-right">
@@ -23,11 +24,6 @@
           </li>
         </ul>
         <% end %>
-
-      <%= form_for ImageUploader.new, html: { multipart: true, class: "dropzone"} do |f| %>
-      <% end %>
-
-
 
     </div>
   </div>

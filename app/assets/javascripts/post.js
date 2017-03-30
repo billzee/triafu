@@ -1,20 +1,27 @@
-	Dropzone.autoDiscover = false;
+Dropzone.autoDiscover = false;
 
 $(document).ready(function(){
-	// grap our upload form by its id
-	var dropzone = new Dropzone("#new_post", {
-		// restrict image size to a maximum 1MB
-		maxFilesize: 1,
-		// changed the passed param to one accepted by
-		// our rails app
-		paramName: "post[image]",
-		// show remove links on each image upload
-		addRemoveLinks: true,
-    url: 'post/cache_image'
-	});
+	var token = document.querySelector('meta[name="csrf-token"]').content;
 
-  $('#add').on('click',function(e){
-   e.preventDefault();
-   dropzone.processQueue();
- });
+	var dropzone = new Dropzone
+	(
+		"#new_media",
+		{
+			headers:
+			{
+				'X-CSRF-Token': token
+			},
+
+			dictDefaultMessage: "Arraste",
+			maxFilesize: 1,
+			paramName: "media[image]",
+			maxFiles: 1,
+			addRemoveLinks: true,
+			dictRemoveFile: 'Remover',
+			clickable: true,
+			method: 'post',
+		  url: 'post/upload_media',
+			uploadMultiple: false
+		}
+	);
 });

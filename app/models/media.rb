@@ -4,6 +4,8 @@ class Media < ApplicationRecord
   validates_processing_of :image
   validate :image_size_validation
 
+  belongs_to :post
+
   private
 
   def image_size_validation

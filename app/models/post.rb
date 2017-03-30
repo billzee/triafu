@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
-
   validates_presence_of :title
-
+  
   has_many :comments
+  has_one :media
 
   def vote type
     self[type] = self[type] + 1
@@ -14,6 +14,10 @@ class Post < ApplicationRecord
     self.funny_count = 0
     self.smart_count = 0
     self.negative_count = 0
+  end
+
+  def self.all_with_media
+    self.order(created_at: :desc).to_json(:include => :media)
   end
 
   private

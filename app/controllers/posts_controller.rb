@@ -1,22 +1,28 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.order(created_at: :desc)
+    @post = Post.new
+    @@media = Media.new
     respond_to do |format|
       format.html
-      format.json {render :json => @posts}
+      format.json {render :json => Post.all_with_media}
     end
   end
 
-  def upload_image
-    @@world = post_params[:image]
+  def upload_media
+    @@media = Media.new media_params
   end
 
   def create
-    post = Post.new post_params
-    if post.save
-      p post.image
-      redirect_to posts_path
+    post_params
+    if @@media.save
+      p 'salvou!', @@media
+      post = Post.new post_params
+      post.media = @@media
+
+      if post.save
+        redirect_to posts_path
+      end
     end
   end
 
@@ -29,10 +35,10 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :image, :funny_count).merge(image: @@world)
+    params.require(:post).permit(:title)
   end
 
-  def uploaded_image
-    params.require(:post).permit :image
+  def media_params
+    params.require(:media).permit :image
   end
 end

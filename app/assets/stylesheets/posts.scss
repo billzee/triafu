@@ -26,3 +26,24 @@
   top: 30%;
   left: 45%;
 }
+
+.new_media.dropzone {
+  padding: 0 !important;
+  border: 0.3em dashed purple;
+  height: 150px;
+  .dz-clickable {
+    .dz-message * {
+      font-size: 21px;
+      font-weight: bold;
+    }
+  }
+  .dz-preview {
+    .dz-details {
+      .dz-filename {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
