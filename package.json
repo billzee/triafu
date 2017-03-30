@@ -8,8 +8,7 @@
   },
   "scripts": {
     "postinstall": "cd client && yarn install",
-    "s": "foreman start -f Procfile.dev",
+    "s": "echo 'visit http://localhost:3000/hello_world' && foreman start -f Procfile.dev",
     "test": "rspec"
-  },
-  "dependencies": {}
+  }
 }

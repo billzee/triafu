@@ -1,8 +1,9 @@
 /* eslint comma-dangle: ["error",
  {"functions": "never", "arrays": "only-multiline", "objects":
-"only-multiline"} ] */
+ "only-multiline"} ] */
 
 const webpack = require('webpack');
+const pathLib = require('path');
 
 const devBuild = process.env.NODE_ENV !== 'production';
 
@@ -11,12 +12,12 @@ const config = {
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
-    './app/startup/registration'
+    './app/startup/registration',
   ],
 
   output: {
     filename: 'webpack-bundle.js',
-    path: '../app/assets/webpack',
+    path: pathLib.resolve(__dirname, '../app/assets/webpack'),
   },
 
   resolve: {

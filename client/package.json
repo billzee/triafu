@@ -37,10 +37,10 @@
     "react-dom": "^15.4.2",
     "react-intl": "^2.2.3",
     "react-moment": "^0.2.2",
-    "react-on-rails": "6.8.0",
+    "react-on-rails": "6.8.2",
+    "webpack": "^2.3.1",
     "react-waypoint": "^5.2.0",
-    "tether": "^1.4.0",
-    "webpack": "^2.2.1"
+    "tether": "^1.4.0"
   },
   "devDependencies": {}
 }
