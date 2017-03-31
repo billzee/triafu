@@ -14,14 +14,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    post_params
     if @@media.save
-      p 'salvou!', @@media
       post = Post.new post_params
       post.media = @@media
 
       if post.save
-        redirect_to posts_path
+        redirect_to post
       end
     end
   end
@@ -35,7 +33,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title)
+    params.require(:post).permit :title, :original
   end
 
   def media_params

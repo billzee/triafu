@@ -12,7 +12,7 @@ $(document).ready(function(){
 				'X-CSRF-Token': token
 			},
 
-			dictDefaultMessage: "Arraste",
+			dictDefaultMessage: "Clique ou arraste <br/> (.jpg .gif .png)",
 			maxFilesize: 1,
 			paramName: "media[image]",
 			maxFiles: 1,

@@ -28,16 +28,25 @@
 }
 
 .new_media.dropzone {
-  padding: 0 !important;
-  border: 0.3em dashed purple;
-  height: 150px;
-  .dz-clickable {
-    .dz-message * {
-      font-size: 21px;
-      font-weight: bold;
-    }
+  margin: 15px;
+  padding: 25px;
+  width: 180px;
+  height: 195px;
+  border: 0.4em dashed purple;
+  .dz-message * {
+    font-size: 14px;
+    font-weight: bold;
+    color: purple;
   }
+
   .dz-preview {
+    height: 140px;
+    width: 120px;
+    margin: 0 !important;
+    .dz-image {
+      // width: 200px;
+      // height: 200px;
+    }
     .dz-details {
       .dz-filename {
         span {
