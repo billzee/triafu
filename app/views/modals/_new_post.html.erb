@@ -2,13 +2,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Criar Post!</h5>
+        <h5 class="modal-title">Criar Publicação</h5>
       </div>
+      <%= react_component("PostForm") %>
+      <!-- <%= form_for @post do |f| %>
       <div class="modal-body">
-
-      <%= form_for @post do |f| %>
         <div class="row">
-
           <div width="135px" height="260px" class="rounded dropzone new_media" id="new_media"></div>
 
           <div class="col">
@@ -29,7 +28,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <%= f.submit "Postar", class: "btn btn-success" %>
         </div>
-      <% end %>
+      <% end %> -->
 
   </div>
 </div>
