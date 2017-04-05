@@ -1,13 +1,10 @@
+@import "font-awesome";
 @import "variables";
 
 .post {
   height: 100%;
   position: absolute;
   overflow: scroll;
-}
-
-.post-image {
-  width: 500px;
 }
 
 .posts {
@@ -17,6 +14,15 @@
   -ms-overflow-style: none;
 }
 
+.col-500{
+  width: 500px !important;
+  max-width: 500px !important;
+  .post-image {
+    width: 500px;
+    min-height: 350px;
+  }
+}
+
 .bg-gray {
   background-color: #DCDCDC
 }
@@ -24,9 +30,9 @@
 .waypoint-anchor {
   width: 1px;
   position: absolute;
-  height: 35%;
-  top: 30%;
-  left: 45%;
+  height: 20%;
+  top: 35%;
+  left: 50%;
 }
 
 .new_media.dropzone {

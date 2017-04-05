@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Waypoint from 'react-waypoint';
+import Moment from 'react-moment'
 import PostsApi from '../api/PostsApi';
 import pubsub from 'pubsub-js'
 
@@ -35,20 +36,47 @@ export default class PostSection extends Component {
         {
           this.state.posts.map((post)=>{
             return(
-              <div key={post.id} className="row justify-content-md-center mb-5 mt-4">
-                <div className="col col-md-auto">
+              <div key={post.id} className="row justify-content-center mb-5 mt-4">
+                <div className="col col-500 p-0">
                   <h1>
                     {post.title}
                   </h1>
-                    <div className="center">
-                      <img src={post.media.image.url} className="post-image" />
-                      <Waypoint onEnter={(props)=> {
-                        pubsub.publish('view-post', post.id);
-                      }}>
-                        <div className="waypoint-anchor"></div>
-                      </Waypoint>
+
+                  <img src={post.media.image.url} className="post-image" />
+
+                  <Waypoint onEnter={(props)=> {
+                    pubsub.publish('view-post', post.id);
+                  }}>
+                    <div className="waypoint-anchor"></div>
+                  </Waypoint>
+
+                  <div className="row mt-2">
+                    <div className="col-6">
+                      <span className="text-muted">
+                        publicado <Moment fromNow>{post.created_at}</Moment>
+                      </span>
                     </div>
+                    <div className="col-6 text-right">
+                      <ul className="list-unstyled list-inline">
+                        <li className="list-inline-item">
+                          <button className="btn btn-primary">
+                            <i className="fa fa-facebook-f fa-1x"></i>
+                            <span className="ml-2">Facebook</span>
+                          </button>
+                        </li>
+                        <li className="list-inline-item">
+                          <button className="btn btn-secondary">
+                            <i className="fa fa-twitter fa-1x"></i>
+                            <span className="ml-2">Twitter</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <hr />
                 </div>
+
               </div>
             );
           })

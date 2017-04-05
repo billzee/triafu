@@ -30,10 +30,10 @@ export default class CommentForm extends Component {
 
   render(){
     return(
-      <div className="row bt-white comment-bottom">
-        <div className="col">
+      <div className="row bt-white pt-0 comment-bottom">
+        <div className="col p-2 pt-0">
           <form onSubmit={this.comment} method="post" className="form">
-            <TextArea value={this.state.text} onChange={helper.handleChange.bind(this, 'text')} placeholder="escreva um comentário" />
+            <TextArea value={this.state.text} onChange={helper.handleChange.bind(this, 'text')} rows="4" placeholder="escreva um comentário" />
             <ul className="list-unstyled list-inline float-right">
               <li className="list-inline-item">
                 <input type="button" className="btn btn-secondary btn-sm" value=".gif"></input>
