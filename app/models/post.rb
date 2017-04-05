@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
   validates_presence_of :title
-  
+
   has_many :comments
   has_one :media
 
@@ -14,6 +14,10 @@ class Post < ApplicationRecord
     self.funny_count = 0
     self.smart_count = 0
     self.negative_count = 0
+  end
+
+  def self.with_media id
+    self.find(id).to_json(:include => :media)
   end
 
   def self.all_with_media

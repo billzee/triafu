@@ -6,12 +6,10 @@ var CommentsApi = {
   },
 
   comment: function(postId, comment) {
-    console.log(comment);
     return Api('/posts/' + postId + '/comments', {method: 'POST', body: JSON.stringify(comment)});
   },
 
   reply: function(postId, commentId, comment) {
-    console.log(postId,  commentId, comment);
     return Api('/posts/' + postId + '/comments/' + commentId + '/reply', {method: 'POST', body: JSON.stringify(comment)});
   }
 };

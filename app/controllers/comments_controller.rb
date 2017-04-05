@@ -8,8 +8,8 @@ class CommentsController < ApplicationController
 
   def create
     if Comment.create comment_params
+      comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc)
       respond_to do |format|
-        comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc)
         format.json {render :json => comments.to_json(:include => :replies)}
       end
     end
@@ -18,8 +18,8 @@ class CommentsController < ApplicationController
   def reply
     reply = Reply.new reply_params
     if reply.save reply_params
+      comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc)
       respond_to do |format|
-        comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc)
         format.json {render :json => comments.to_json(:include => :replies)}
       end
     end

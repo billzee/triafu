@@ -4,14 +4,16 @@ import PostsApi from '../api/PostsApi';
 import pubsub from 'pubsub-js'
 
 export default class PostSection extends Component {
-  constructor() {
-    super();
+  constructor(props, _railsContext) {
+    super(props);
+    console.log(props);
+
     this.state = {posts: []};
   }
 
   async componentWillMount(){
     try{
-      let res = await PostsApi.getAll('/posts', {method: 'GET'});
+      let res = await PostsApi.index('/posts', {method: 'GET'});
       let resJson = await res.json();
 
       this.setState({posts: resJson});

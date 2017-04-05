@@ -34,6 +34,14 @@ export default class CommentForm extends Component {
         <div className="col">
           <form onSubmit={this.comment} method="post" className="form">
             <TextArea value={this.state.text} onChange={helper.handleChange.bind(this, 'text')} placeholder="escreva um comentário" />
+            <ul className="list-unstyled list-inline float-right">
+              <li className="list-inline-item">
+                <input type="button" className="btn btn-secondary btn-sm" value=".gif"></input>
+              </li>
+              <li className="list-inline-item">
+                <input type="submit" className="btn btn-success btn-sm" value="Comentar"></input>
+              </li>
+            </ul>
           </form>
         </div>
       </div>

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'hello_world', to: 'hello_world#index'
-  resources :posts, only: [:index, :create] do
+  resources :posts, only: [:index, :create, :show] do
     get :vote
 
     resources :comments, only: [:index, :create] do

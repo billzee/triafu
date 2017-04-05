@@ -9,6 +9,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    p params
+    @post = Post.with_media(params[:id])
+    p @post
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def upload_media
     @@media = Media.new media_params
   end
@@ -17,9 +26,11 @@ class PostsController < ApplicationController
     if @@media.save
       post = Post.new post_params
       post.media = @@media
-
       if post.save
-        redirect_to post
+        respond_to do |format|
+          format.html {redirect_to post}
+          format.json {render json: post.id, status: :ok}
+        end
       end
     end
   end

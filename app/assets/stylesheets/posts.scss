@@ -1,3 +1,5 @@
+@import "variables";
+
 .post {
   height: 100%;
   position: absolute;
@@ -32,11 +34,11 @@
   padding: 25px;
   width: 180px;
   height: 195px;
-  border: 0.4em dashed purple;
+  border: 0.4em dashed $purple;
   .dz-message * {
     font-size: 14px;
     font-weight: bold;
-    color: purple;
+    color: $purple;
   }
 
   .dz-preview {
