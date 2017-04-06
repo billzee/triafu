@@ -1,0 +1,84 @@
+import React, { Component } from 'react';
+import Moment from 'react-moment'
+import pubsub from 'pubsub-js'
+
+export default class PostBox extends Component {
+
+  render(){
+    return (
+      <div className="row justify-content-center mb-5 mt-4">
+        <div className="col-500 p-0">
+          <h1>{this.props.post.title}</h1>
+
+          <img src={this.props.post.media.image.url} className="post-image" />
+
+          <div className="row mt-2">
+            <div className="col-6">
+              <span className="text-muted">
+                publicado <Moment fromNow>{this.props.post.created_at}</Moment>
+              </span>
+            </div>
+            <div className="col-6 text-right">
+              <ul className="list-unstyled list-inline">
+                <li className="list-inline-item">
+                  <button className="btn btn-primary">
+                    <i className="fa fa-facebook-f fa-1x"></i>
+                    <span className="ml-2">Facebook</span>
+                  </button>
+                </li>
+                <li className="list-inline-item">
+                  <button className="btn btn-secondary">
+                    <i className="fa fa-twitter fa-1x"></i>
+                    <span className="ml-2">Twitter</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <hr />
+        </div>
+        {
+          this.props.currentPost === this.props.post.id ?
+          (
+            <div className="col-100 p-0">
+            current
+            </div>
+          )
+          : null
+        }
+      </div>
+    );
+  }
+}
+
+// <div className="col col-2 align-self-center pt-5">
+// <div className="row no-gutters">
+// <div className="col-8">
+// <ul className="list-unstyled bg-gray p-3 rounded">
+// <li>
+// <a>aaa</a>
+// </li>
+// <li>
+// <a>aaa</a>
+// </li>
+// <li>
+// <a>aaa</a>
+// </li>
+// </ul>
+// </div>
+// <div className="col-4">
+// <ul className="list-unstyled p-3">
+// <li>
+// 12
+// </li>
+// <li>
+// 12
+// </li>
+// <li>
+// 12
+// </li>
+// </ul>
+// </div>
+// </div>
+// </div>

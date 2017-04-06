@@ -18,9 +18,14 @@
   width: 500px !important;
   max-width: 500px !important;
   .post-image {
-    width: 500px;
-    min-height: 350px;
+    width: 550px;
+    min-height: 400px;
   }
+}
+
+.col-100{
+  width: 100px !important;
+  max-width: 500px !important;
 }
 
 .bg-gray {
@@ -30,8 +35,9 @@
 .waypoint-anchor {
   width: 1px;
   position: absolute;
-  height: 20%;
-  top: 35%;
+  background: red;
+  height: 10px;
+  top: 45%;
   left: 50%;
 }
 

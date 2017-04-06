@@ -4,7 +4,7 @@
 
   .comment-middle {
     overflow: auto;
-    height: calc(100% - 11em);
+    height: calc(100% - 10em);
     top: 10em;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
@@ -15,7 +15,7 @@
 
   .comment-bottom {
     padding-top: 0.5em;
-    height: 11em;
+    height: 10em;
     textarea {
       width: 73%;
     }

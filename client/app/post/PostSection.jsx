@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-import Waypoint from 'react-waypoint';
-import Moment from 'react-moment'
-import PostsApi from '../api/PostsApi';
 import pubsub from 'pubsub-js'
+import Waypoint from 'react-waypoint';
+
+import PostsApi from '../api/PostsApi';
+import PostBox from './PostBox';
 
 export default class PostSection extends Component {
   constructor(props, _railsContext) {
     super(props);
     console.log(props);
 
-    this.state = {posts: []};
+    this.state = {posts: [], currentPost: ''};
+  }
+
+  componentDidMount(){
+    pubsub
+    .subscribe('view-post', (msg, data)=>{
+      this.setState({currentPost: data});
+    });
   }
 
   async componentWillMount(){
@@ -23,61 +31,21 @@ export default class PostSection extends Component {
     }
   }
 
-  componentDidMount(){
-    pubsub
-    .subscribe('posts', (msg, data)=>{
-      this.setState({posts: data});
-    });
-  }
-
   render(){
     return (
       <box>
         {
           this.state.posts.map((post)=>{
             return(
-              <div key={post.id} className="row justify-content-center mb-5 mt-4">
-                <div className="col col-500 p-0">
-                  <h1>
-                    {post.title}
-                  </h1>
-
-                  <img src={post.media.image.url} className="post-image" />
-
-                  <Waypoint onEnter={(props)=> {
-                    pubsub.publish('view-post', post.id);
-                  }}>
-                    <div className="waypoint-anchor"></div>
-                  </Waypoint>
-
-                  <div className="row mt-2">
-                    <div className="col-6">
-                      <span className="text-muted">
-                        publicado <Moment fromNow>{post.created_at}</Moment>
-                      </span>
-                    </div>
-                    <div className="col-6 text-right">
-                      <ul className="list-unstyled list-inline">
-                        <li className="list-inline-item">
-                          <button className="btn btn-primary">
-                            <i className="fa fa-facebook-f fa-1x"></i>
-                            <span className="ml-2">Facebook</span>
-                          </button>
-                        </li>
-                        <li className="list-inline-item">
-                          <button className="btn btn-secondary">
-                            <i className="fa fa-twitter fa-1x"></i>
-                            <span className="ml-2">Twitter</span>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
+                <Waypoint key={post.id} topOffset="45%" bottomOffset="45%" onEnter={(props)=> {
+                  console.log('fazem sentido');
+                  pubsub.publish('view-post', post.id);
+                }}>
+                  <div>
+                    <PostBox post={post} currentPost={this.state.currentPost}></PostBox>
                   </div>
+                </Waypoint>
 
-                  <hr />
-                </div>
-
-              </div>
             );
           })
         }
@@ -85,34 +53,3 @@ export default class PostSection extends Component {
     );
   }
 }
-
-// <div className="col col-2 align-self-center pt-5">
-// <div className="row no-gutters">
-// <div className="col-8">
-// <ul className="list-unstyled bg-gray p-3 rounded">
-// <li>
-// <a>aaa</a>
-// </li>
-// <li>
-// <a>aaa</a>
-// </li>
-// <li>
-// <a>aaa</a>
-// </li>
-// </ul>
-// </div>
-// <div className="col-4">
-// <ul className="list-unstyled p-3">
-// <li>
-// 12
-// </li>
-// <li>
-// 12
-// </li>
-// <li>
-// 12
-// </li>
-// </ul>
-// </div>
-// </div>
-// </div>
