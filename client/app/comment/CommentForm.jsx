@@ -20,8 +20,6 @@ export default class CommentForm extends Component {
       let res = await CommentsApi.comment(this.props.postId, this.state);
       let resJson = await res.json();
 
-      console.log('resposta', resJson);
-
       pubsub.publish('comments', resJson);
     } catch(error){
       console.log(error);

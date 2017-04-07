@@ -30,7 +30,7 @@ export default class PostSection extends Component {
   			dictRemoveFile: 'Remover',
   			clickable: true,
   			method: 'post',
-  		  url: 'post/upload_media',
+  		  url: '/post/upload_media',
   			uploadMultiple: false
   		}
   	);

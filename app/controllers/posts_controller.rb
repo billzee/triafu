@@ -24,6 +24,8 @@ class PostsController < ApplicationController
 
   def create
     if @@media.save
+      p 'salvou a ibagem'
+      p @@media
       post = Post.new post_params
       post.media = @@media
       if post.save

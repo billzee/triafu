@@ -44,12 +44,12 @@ export default class CommentList extends Component {
                       : null
                     }
                   </li>
-                  );
-                })
-              }
-            </ul>
-          </div>
+                );
+              })
+            }
+          </ul>
         </div>
+      </div>
     );
   }
 }

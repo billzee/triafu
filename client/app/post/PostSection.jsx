@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 import Waypoint from 'react-waypoint';
-
 import PostsApi from '../api/PostsApi';
 import PostBox from './PostBox';
 
 export default class PostSection extends Component {
-  constructor(props, _railsContext) {
+  constructor(props) {
     super(props);
-    console.log(props);
-
-    this.state = {posts: [], currentPost: ''};
+    this.state = {posts: [props], currentPost: ''};
   }
 
   componentDidMount(){
@@ -21,13 +18,15 @@ export default class PostSection extends Component {
   }
 
   async componentWillMount(){
-    try{
-      let res = await PostsApi.index('/posts', {method: 'GET'});
-      let resJson = await res.json();
+    if(this.state.posts.length === 0){
+      try{
+        let res = await PostsApi.index('/posts', {method: 'GET'});
+        let resJson = await res.json();
 
-      this.setState({posts: resJson});
-    } catch(error){
-      console.log(error);
+        this.setState({posts: resJson});
+      } catch(error){
+        console.log(error);
+      }
     }
   }
 
@@ -37,17 +36,16 @@ export default class PostSection extends Component {
         {
           this.state.posts.map((post)=>{
             return(
-                <Waypoint key={post.id}
-                  topOffset="45%"
-                  bottomOffset="45%"
-                  onEnter={(props)=> {
-                    pubsub.publish('view-post', post.id);
-                  }}>
-                  <div>
-                    <PostBox post={post} currentPost={this.state.currentPost}></PostBox>
-                  </div>
-                </Waypoint>
-
+              <Waypoint key={post.id}
+                topOffset="45%"
+                bottomOffset="45%"
+                onEnter={(props)=> {
+                  pubsub.publish('view-post', post.id);
+                }}>
+                <div>
+                  <PostBox post={post} currentPost={this.state.currentPost}></PostBox>
+                </div>
+              </Waypoint>
             );
           })
         }
