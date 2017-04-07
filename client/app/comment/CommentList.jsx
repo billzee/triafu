@@ -26,7 +26,7 @@ export default class CommentList extends Component {
                                 comment.replies.map((reply)=>{
                                   return(
                                     <li key={reply.id}>
-                                    <CommentOrReplyBox photoSize={helper.replyPhotoSize} commentOrReply={reply} commentId={comment.id} postId={this.props.postId} />
+                                      <CommentOrReplyBox photoSize={helper.replyPhotoSize} commentOrReply={reply} commentId={comment.id} postId={this.props.postId} />
                                     </li>
                                   );
                                 })

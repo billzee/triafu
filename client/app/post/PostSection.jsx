@@ -7,7 +7,12 @@ import PostBox from './PostBox';
 export default class PostSection extends Component {
   constructor(props) {
     super(props);
-    this.state = {posts: [props], currentPost: ''};
+    this.state = {posts: [], currentPost: ''};
+    this._handleEnter = this._handleEnter.bind(this);
+  }
+
+  _handleEnter(postId){
+    pubsub.publish('view-post', postId);
   }
 
   componentDidMount(){
@@ -18,12 +23,17 @@ export default class PostSection extends Component {
   }
 
   async componentWillMount(){
-    if(this.state.posts.length === 0){
+    if(this.props.post){
+      
+      let post = JSON.parse(this.props.post)
+      this.setState({posts: this.state.posts.concat([post])});
+    } else{
       try{
         let res = await PostsApi.index('/posts', {method: 'GET'});
         let resJson = await res.json();
 
         this.setState({posts: resJson});
+
       } catch(error){
         console.log(error);
       }
@@ -39,9 +49,7 @@ export default class PostSection extends Component {
               <Waypoint key={post.id}
                 topOffset="45%"
                 bottomOffset="45%"
-                onEnter={(props)=> {
-                  pubsub.publish('view-post', post.id);
-                }}>
+                onEnter={()=> {this._handleEnter(post.id)}}>
                 <div>
                   <PostBox post={post} currentPost={this.state.currentPost}></PostBox>
                 </div>
