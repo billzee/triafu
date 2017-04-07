@@ -37,10 +37,12 @@ export default class PostSection extends Component {
         {
           this.state.posts.map((post)=>{
             return(
-                <Waypoint key={post.id} topOffset="45%" bottomOffset="45%" onEnter={(props)=> {
-                  console.log('fazem sentido');
-                  pubsub.publish('view-post', post.id);
-                }}>
+                <Waypoint key={post.id}
+                  topOffset="45%"
+                  bottomOffset="45%"
+                  onEnter={(props)=> {
+                    pubsub.publish('view-post', post.id);
+                  }}>
                   <div>
                     <PostBox post={post} currentPost={this.state.currentPost}></PostBox>
                   </div>
