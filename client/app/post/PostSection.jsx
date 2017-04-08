@@ -24,7 +24,7 @@ export default class PostSection extends Component {
 
   async componentWillMount(){
     if(this.props.post){
-      
+
       let post = JSON.parse(this.props.post)
       this.setState({posts: this.state.posts.concat([post])});
     } else{
@@ -51,7 +51,7 @@ export default class PostSection extends Component {
                 bottomOffset="45%"
                 onEnter={()=> {this._handleEnter(post.id)}}>
                 <div>
-                  <PostBox post={post} currentPost={this.state.currentPost}></PostBox>
+                  <PostBox post={post} currentPost={this.state.currentPost}/>
                 </div>
               </Waypoint>
             );
