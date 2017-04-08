@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
 
   def index
+    p 'paginaaaaaaaaaaaaaaa',params[:page]
     respond_to do |format|
-      format.json {render :json => Comment.comments_and_replies(params[:post_id]) }
+      format.json {render :json => Comment.comments_and_replies(params[:post_id], params[:page]) }
     end
   end
 
