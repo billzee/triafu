@@ -55,5 +55,6 @@ gem "react_on_rails", "~> 6"
 gem "font-awesome-rails"
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+gem "kaminari"
 
 gem 'mini_racer', platforms: :ruby

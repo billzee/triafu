@@ -23,11 +23,11 @@ export default class PostBox extends Component {
             </div>
           </div>
           <div className="row no-gutters">
-            <div className="col-6 mt-2">
-              <h2>URL do autor original</h2>
+            <div className="col-5 mt-2">
+              <a href="#"><h3>Link ao autor original</h3></a>
             </div>
-            <div className="col-6 mt-1">
-              <ul className="list-unstyled list-inline">
+            <div className="col-7 mt-1">
+              <ul className="list-unstyled list-inline text-right">
                 <li className="list-inline-item">
                   <button className="btn btn-sm btn-success">
                     <i className="fa fa-clipboard fa-1x"></i>
