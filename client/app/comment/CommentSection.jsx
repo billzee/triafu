@@ -21,6 +21,10 @@ export default class CommentSection extends Component {
       let res = await CommentsApi._get(this.state.postId, this.state.page);
       let resJson = await res.json();
 
+      console.log(resJson);
+
+      console.log(resJson.comments);
+
       if(this.state.comments.length > 0){
         this.setState({comments: this.state.comments.concat(resJson)});
       } else{
@@ -94,7 +98,7 @@ export default class CommentSection extends Component {
             <div className="row">
               <div className="col text-right">
                 <a href="#" onClick={(e) => this.getComments(e)}>
-                  Carregar mais comentários {this.state.page}
+                  Carregar mais comentários
                 </a>
               </div>
             </div>

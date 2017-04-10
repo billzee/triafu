@@ -2,7 +2,7 @@ import Api from './Api';
 
 var CommentsApi = {
   _get: function(postId, page=1) {
-    return Api('/posts/' + postId + '/comments?page=' + page, {method: 'GET'});
+    return Api('/posts/' + postId + '/comments/page/' + page, {method: 'GET'});
   },
 
   _comment: function(postId, comment) {

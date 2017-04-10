@@ -1,32 +1,36 @@
 class CommentsController < ApplicationController
 
   def index
-    p 'paginaaaaaaaaaaaaaaa',params[:page]
-    respond_to do |format|
-      format.json {render :json => Comment.comments_and_replies(params[:post_id], params[:page]) }
-    end
+    @comments = Comment.with_replies 1
+
+    p "aaaaaaaaaaaaaaaaaaaaaaaa", @comments
   end
 
   def create
     if Comment.create comment_params
-      comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc)
-      respond_to do |format|
-        format.json {render :json => comments.to_json(:include => :replies)}
-      end
+      json_comments params[:post_id], params[:page]
     end
   end
 
   def reply
-    reply = Reply.new reply_params
-    if reply.save reply_params
-      comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc)
-      respond_to do |format|
-        format.json {render :json => comments.to_json(:include => :replies)}
-      end
+    if Reply.create reply_params
+      json_comments params[:post_id], params[:page]
     end
   end
 
   private
+
+  def json_comments post_id, page=1
+    comments =  Comment.all
+    p comments
+    p comments.display_to_json
+    # comments = Comment.comments_and_replies post_id
+    # paginated_comments = comments.page page
+    #
+    # respond_to do |format|
+    #   format.json { render :json => {comments: paginated_comments.to_json, total_pages: paginated_comments.total_pages} }
+    # end
+  end
 
   def comment_params
     params.require(:comment).permit(:text).merge(post_id: params[:post_id])

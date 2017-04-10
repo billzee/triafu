@@ -16,18 +16,12 @@ export default class ReplyForm extends Component {
     e.preventDefault();
 
     try{
-      let res = await CommentsApi.reply
-        (
-          this.props.postId,
-          this.props.commentId,
-          {
-            text: this.state.text
-          }
-        );
+      let res = await CommentsApi._reply(this.props.postId, this.props.commentId, this.state);
 
       let resJson = await res.json();
 
-      pubsub.publish('comments', resJson);
+      // pubsub.publish('comments', resJson);
+      // this.setState({text: ''});
     } catch(error){
       console.log(error);
     }
