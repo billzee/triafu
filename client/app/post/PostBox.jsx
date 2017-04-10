@@ -22,20 +22,24 @@ export default class PostBox extends Component {
 
           <img src={this.state.post.media.image.url} className="post-image" />
 
-          <div className="row no-gutters mt-2">
-            <div className="col-5">
+          <div className="row no-gutters mt-1">
+            <div className="col">
               <small className="text-muted">
                 9986 pontos &bull; publicado <Moment fromNow>{this.state.post.created_at}</Moment>
+                <span className="float-right">Compartilhar</span>
               </small>
+            </div>
+          </div>
 
+          <div className="row no-gutters">
+            <div className="col">
               <h3 className="mt-1">
                 <a href="#" >
-                  Link para o autor original
+                  Link do autor original
                 </a>
               </h3>
             </div>
             <div className="col-7 text-right">
-              <small className="text-muted">Compartilhar</small>
               <ul className="list-unstyled list-inline">
                 <li className="list-inline-item">
                   <CopyToClipboard text={this.state.postUrl} onCopy={() => $('[data-toggle='+this.state.post.id+']').tooltip('show')}>
@@ -67,36 +71,7 @@ export default class PostBox extends Component {
         <div className="col w-150 p-0 ml-3">
           {
             this.props.currentPost === this.state.post.id ?
-            (
-              <div className="row no-gutters p-fixed">
-                <div className="col-8">
-                  <ul className="list-unstyled bgm-gray p-3 rounded">
-                    <li className="text-center">
-                      <a href="#"><img src="/assets/funny.svg" width="35px" /></a>
-                    </li>
-                    <li className="mt-3 text-center">
-                      <a href="#"><img src="/assets/brain.svg" width="35px"/></a>
-                    </li>
-                    <li className="mt-4 text-center">
-                      <a href="#"><img src="/assets/downvote.svg" width="35px" /></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="col-4">
-                  <ul className="list-unstyled p-3">
-                    <li className="h-35">
-                      33
-                    </li>
-                    <li className="mt-3 h-35">
-                      10
-                    </li>
-                    <li className="mt-3 h-35">
-                      2
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )
+            ('reaction')
             : null
           }
         </div>
@@ -104,3 +79,32 @@ export default class PostBox extends Component {
     );
   }
 }
+
+// <div className="row no-gutters p-fixed">
+// <div className="col-8">
+// <ul className="list-unstyled bgm-gray p-3 rounded">
+// <li className="text-center">
+// <a href="#"><img src="/assets/funny.svg" width="35px" /></a>
+// </li>
+// <li className="mt-3 text-center">
+// <a href="#"><img src="/assets/brain.svg" width="35px"/></a>
+// </li>
+// <li className="mt-4 text-center">
+// <a href="#"><img src="/assets/downvote.svg" width="35px" /></a>
+// </li>
+// </ul>
+// </div>
+// <div className="col-4">
+// <ul className="list-unstyled p-3">
+// <li className="h-35">
+// 33
+// </li>
+// <li className="mt-3 h-35">
+// 10
+// </li>
+// <li className="mt-3 h-35">
+// 2
+// </li>
+// </ul>
+// </div>
+// </div>

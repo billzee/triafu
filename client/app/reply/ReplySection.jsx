@@ -53,33 +53,23 @@ export default class ReplySection extends Component {
                   this.state.replies.map((reply)=>{
                     return(
                       <li key={reply.id}>
-                      <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize} commentOrReply={reply} />
+                        <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize} commentOrReply={reply} />
                       </li>
                     );
                   })
                 }
               </ul>
               {
-                this.state.replies.length > 2 && !this.state.totalPages ?
+                (this.state.replies.length > 2 && !this.state.totalPages) ||
+                (this.state.page < this.state.totalPages) ?
                 (
                   <div className="row">
                     <div className="col text-right">
-                      <a href="#" onClick={(e) => this.getReplies(e)}>
-                        Carregar mais respostas
-                      </a>
-                    </div>
-                  </div>
-                )
-                : null
-              }
-              {
-                this.state.page < this.state.totalPages ?
-                (
-                  <div className="row">
-                    <div className="col text-right">
-                      <a href="#" onClick={(e) => this.getReplies(e)}>
-                        Carregar mais respostas
-                      </a>
+                      <small>
+                        <a href="#" onClick={(e) => this.getReplies(e)}>
+                          Carregar mais respostas
+                        </a>
+                      </small>
                     </div>
                   </div>
                 )
@@ -88,7 +78,6 @@ export default class ReplySection extends Component {
             </div>
           </div>
         )
-
         : null
       }
       </box>

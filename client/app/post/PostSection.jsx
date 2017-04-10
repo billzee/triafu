@@ -46,7 +46,8 @@ export default class PostSection extends Component {
         {
           this.state.posts.map((post)=>{
             return(
-              <Waypoint key={post.id}
+              <Waypoint
+                key={post.id}
                 topOffset="45%"
                 bottomOffset="45%"
                 onEnter={()=> {this._handleEnter(post.id)}}>
