@@ -8,10 +8,6 @@ var CommentsApi = {
   _create: function(postId, comment) {
     return Api('/posts/' + postId + '/comments', {method: 'POST', body: JSON.stringify(comment)});
   },
-
-  _reply: function(postId, commentId, comment) {
-    return Api('/posts/' + postId + '/comments/' + commentId + '/reply', {method: 'POST', body: JSON.stringify(comment)});
-  }
 };
 
 export default CommentsApi;

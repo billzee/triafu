@@ -4,7 +4,7 @@ import helper from '../components/Helper'
 import pubsub from 'pubsub-js'
 
 import TextArea from '../components/TextArea'
-import CommentsApi from '../api/CommentsApi';
+import RepliesApi from '../api/RepliesApi';
 
 export default class ReplyForm extends Component {
   constructor(){
@@ -17,7 +17,7 @@ export default class ReplyForm extends Component {
     e.preventDefault();
 
     try{
-      let res = await CommentsApi._reply(this.props.postId, this.props.commentId, this.state);
+      let res = await RepliesApi._create(this.props.postId, this.props.commentId, this.state);
 
       let resJson = await res.json();
 
