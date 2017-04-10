@@ -1,14 +1,15 @@
 class RepliesController < ApplicationController
 
   def index
-    p 'chegou no controller'
     r = paginated_replies
     @paginated_replies = {replies: r, total_pages: r.total_pages}
   end
 
   def create
     if Reply.create reply_params
-      p paginated_replies
+      r = paginated_replies
+      @paginated_replies = {replies: r, total_pages: r.total_pages}
+      render action: "index"
     end
   end
 

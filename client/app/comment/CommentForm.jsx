@@ -20,8 +20,8 @@ export default class CommentForm extends Component {
       let res = await CommentsApi._create(this.props.postId, this.state);
       let resJson = await res.json();
 
-      pubsub.publish('comments', resJson);
       this.setState({text: ''});
+      pubsub.publish('comments', resJson);
     } catch(error){
       console.log(error);
     }

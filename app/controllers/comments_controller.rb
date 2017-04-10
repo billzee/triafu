@@ -2,21 +2,23 @@ class CommentsController < ApplicationController
 
   def index
     c = paginated_comments
-    @paginated_comments = {comments: c, total_pages: c.total_pages}
+    @paginated_comments = {comments: c, total_pages: c.total_pages, total_count: c.total_count}
   end
 
   def create
     if Comment.create comment_params
-      json_comments params[:post_id], params[:page]
+      c = paginated_comments
+      @paginated_comments = {comments: c, total_pages: c.total_pages, total_count: c.total_count}
+      render action: "index"
     end
   end
 
   private
 
-  def paginated_comments page=1, per=2
+  def paginated_comments page=1
     c = Comment.all_from_post params[:post_id]
     page = params[:page] unless params[:page] == nil
-    c = c.page(page).per(per)
+    c = c.page(page)
   end
 
   def comment_params

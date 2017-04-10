@@ -9,7 +9,7 @@ import RepliesApi from '../api/RepliesApi';
 export default class ReplySection extends Component {
   constructor(props) {
     super();
-    this.state = {replies: props.replies, page: 2, total_pages: null, commentId: '', postId: ''};
+    this.state = {replies: props.replies, page: 2, totalPages: null, commentId: '', postId: ''};
   }
 
   async getReplies(e){
@@ -27,11 +27,18 @@ export default class ReplySection extends Component {
         this.setState({replies: resJson.replies});
       }
 
-      this.setState({total_pages: resJson.total_pages});
+      this.setState({totalPages: resJson.totalPages});
       this.setState({page: 1 + this.state.page});
     } catch(error){
       console.log(error);
     }
+  }
+
+  componentDidMount(){
+    pubsub
+    .subscribe('replies', (msg, data)=>{
+      this.setState({replies: data});
+    });
   }
 
   render(){
@@ -50,7 +57,7 @@ export default class ReplySection extends Component {
               }
             </ul>
             {
-              this.state.replies.length > 2 && !this.state.total_pages ?
+              this.state.replies.length > 2 && !this.state.totalPages ?
               (
                 <div className="row">
                   <div className="col text-right">
@@ -63,7 +70,7 @@ export default class ReplySection extends Component {
               : null
             }
             {
-              this.state.page < this.state.total_pages ?
+              this.state.page < this.state.totalPages ?
               (
                 <div className="row">
                   <div className="col text-right">

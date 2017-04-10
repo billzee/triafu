@@ -14,7 +14,7 @@ import RepliesApi from '../api/RepliesApi';
 export default class CommentSection extends Component {
   constructor() {
     super();
-    this.state = {comments: [], page: 1, total_pages: '', postId: ''};
+    this.state = {comments: [], postId: '', page: 1, totalPages: '', totalCount: ''};
   }
 
   async getComments(e){
@@ -30,7 +30,8 @@ export default class CommentSection extends Component {
         this.setState({comments: resJson.comments});
       }
 
-      this.setState({total_pages: resJson.total_pages});
+      this.setState({totalCount: resJson.totalCount});
+      this.setState({totalPages: resJson.totalPages});
       this.setState({page: 1 + this.state.page});
     } catch(error){
       console.log(error);
@@ -46,7 +47,10 @@ export default class CommentSection extends Component {
 
     pubsub
     .subscribe('comments', (msg, data)=>{
-      this.setState({comments: data});
+      this.setState({comments: data.comments});
+      this.setState({totalPages: data.totalPages});
+      this.setState({totalCount: data.totalCount});
+
       pubsub.publish('clear-comments-state', null);
     });
   }
@@ -54,8 +58,8 @@ export default class CommentSection extends Component {
   render(){
     return (
       <box>
-        <CommentHeader comments={this.state.comments} />
-        <div className="row panel mt-2 comment-middle">
+        <CommentHeader totalCount={this.state.totalCount} />
+        <div className="row panel comment-middle">
           <div className="col-12">
             <ul className="list-unstyled">
               {
@@ -81,7 +85,7 @@ export default class CommentSection extends Component {
               }
             </ul>
             {
-              this.state.page < this.state.total_pages ?
+              this.state.page < this.state.totalPages ?
               (
                 <div className="row">
                   <div className="col text-right">
