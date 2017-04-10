@@ -9,7 +9,6 @@ import CommentOrReplyBox from './CommentOrReplyBox'
 import ReplySection from '../reply/ReplySection'
 
 import CommentsApi from '../api/CommentsApi';
-import RepliesApi from '../api/RepliesApi';
 
 export default class CommentSection extends Component {
   constructor() {
@@ -67,7 +66,7 @@ export default class CommentSection extends Component {
                   return(
                     <li key={comment.id}>
                       <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
-                      <ReplySection postId={this.state.postId} commentId={comment.id} replies={comment.replies} />
+                      <ReplySection commentId={comment.id} replies={comment.replies} />
                       {
                         this.state.comments.length - 1 !== key ?
                         (<hr className="bgm-white" />)

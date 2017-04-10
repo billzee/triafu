@@ -17,7 +17,7 @@ export default class ReplyForm extends Component {
     e.preventDefault();
 
     try{
-      let res = await RepliesApi._create(this.props.postId, this.props.commentId, this.state);
+      let res = await RepliesApi._create(this.props.commentId, this.state);
 
       let resJson = await res.json();
 

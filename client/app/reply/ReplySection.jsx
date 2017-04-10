@@ -9,14 +9,14 @@ import RepliesApi from '../api/RepliesApi';
 export default class ReplySection extends Component {
   constructor(props) {
     super();
-    this.state = {replies: props.replies, page: 2, totalPages: null, commentId: props.commentId, postId: props.postId};
+    this.state = {replies: props.replies, page: 2, totalPages: null, commentId: props.commentId};
   }
 
   async getReplies(e){
     if(e) e.preventDefault();
 
     try{
-      let res = await RepliesApi._get(this.state.postId, this.state.commentId, this.state.page);
+      let res = await RepliesApi._get(this.state.commentId, this.state.page);
       let resJson = await res.json();
 
       console.log(resJson);
@@ -46,7 +46,6 @@ export default class ReplySection extends Component {
   render(){
     return (
       <box>
-      {this.state.postId}
       {
         this.state.replies.length > 0 ?
         (
@@ -57,8 +56,7 @@ export default class ReplySection extends Component {
             this.state.replies.map((reply)=>{
               return(
                 <li key={reply.id}>
-                <CommentOrReplyBox postId={this.state.postId} commentId={this.state.commentId}
-                photoSize={helper.replyPhotoSize} commentOrReply={reply} />
+                <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize} commentOrReply={reply} />
                 </li>
               );
             })
