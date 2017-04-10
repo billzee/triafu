@@ -17,7 +17,7 @@ export default class CommentForm extends Component {
     e.preventDefault();
 
     try{
-      let res = await CommentsApi._comment(this.props.postId, this.state);
+      let res = await CommentsApi._create(this.props.postId, this.state);
       let resJson = await res.json();
 
       pubsub.publish('comments', resJson);

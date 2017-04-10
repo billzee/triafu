@@ -4,7 +4,7 @@ import Moment from 'react-moment'
 
 import helper from '../components/Helper';
 
-import ReplyForm from './ReplyForm';
+import ReplyForm from '../reply/ReplyForm';
 
 export default class CommentOrReplyBox extends Component {
   constructor(){
@@ -39,7 +39,7 @@ export default class CommentOrReplyBox extends Component {
             <img src="/assets/bidu.jpg" width={this.props.photoSize} className="rounded-circle" />
           </div>
           <div className="col pt-1">
-            <strong>Guilherme Zordan</strong>
+            <strong>Guilherme Zordan </strong>
             <small className="text-muted">
               <Moment fromNow>{this.props.commentOrReply.created_at}</Moment>
             </small>

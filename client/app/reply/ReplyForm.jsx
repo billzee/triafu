@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import helper from '../components/Helper'
+import pubsub from 'pubsub-js'
+
 import TextArea from '../components/TextArea'
 import CommentsApi from '../api/CommentsApi';
-import pubsub from 'pubsub-js'
 
 export default class ReplyForm extends Component {
   constructor(){

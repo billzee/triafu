@@ -9,11 +9,12 @@ Rails.application.routes.draw do
 
     resources :comments, concerns: :paginatable, only: [:index, :create] do
       post :reply
+      resources :replies, concerns: :paginatable, only: [:index, :create]
     end
   end
 
-  match 'post/upload_media' => 'posts#upload_media', :via => :post
 
+  match 'post/upload_media' => 'posts#upload_media', :via => :post
 
   root :to => "posts#index"
 end

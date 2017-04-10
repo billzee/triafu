@@ -5,7 +5,7 @@ var CommentsApi = {
     return Api('/posts/' + postId + '/comments/page/' + page, {method: 'GET'});
   },
 
-  _comment: function(postId, comment) {
+  _create: function(postId, comment) {
     return Api('/posts/' + postId + '/comments', {method: 'POST', body: JSON.stringify(comment)});
   },
 

@@ -6,12 +6,15 @@ import CommentHeader from './CommentHeader';
 import CommentForm from './CommentForm';
 import CommentOrReplyBox from './CommentOrReplyBox'
 
+import ReplySection from '../reply/ReplySection'
+
 import CommentsApi from '../api/CommentsApi';
+import RepliesApi from '../api/RepliesApi';
 
 export default class CommentSection extends Component {
   constructor() {
     super();
-    this.state = {comments: [], page: 1, postId: ''};
+    this.state = {comments: [], page: 1, total_pages: '', postId: ''};
   }
 
   async getComments(e){
@@ -21,16 +24,13 @@ export default class CommentSection extends Component {
       let res = await CommentsApi._get(this.state.postId, this.state.page);
       let resJson = await res.json();
 
-      console.log(resJson);
-
-      console.log(resJson.comments);
-
       if(this.state.comments.length > 0){
-        this.setState({comments: this.state.comments.concat(resJson)});
+        this.setState({comments: this.state.comments.concat(resJson.comments)});
       } else{
-        this.setState({comments: resJson});
+        this.setState({comments: resJson.comments});
       }
 
+      this.setState({total_pages: resJson.total_pages});
       this.setState({page: 1 + this.state.page});
     } catch(error){
       console.log(error);
@@ -55,7 +55,7 @@ export default class CommentSection extends Component {
     return (
       <box>
         <CommentHeader comments={this.state.comments} />
-        <div className="row panel comment-middle">
+        <div className="row panel mt-2 comment-middle">
           <div className="col-12">
             <ul className="list-unstyled">
               {
@@ -66,21 +66,7 @@ export default class CommentSection extends Component {
                       {
                         comment.replies.length > 0 ?
                         (
-                          <div className="row justify-content-end mt-2">
-                            <div className="col-11">
-                              <ul className="list-unstyled">
-                                {
-                                  comment.replies.map((reply)=>{
-                                    return(
-                                      <li key={reply.id}>
-                                        <CommentOrReplyBox photoSize={helper.replyPhotoSize} commentOrReply={reply} commentId={comment.id} postId={this.props.postId} />
-                                      </li>
-                                    );
-                                  })
-                                }
-                              </ul>
-                            </div>
-                          </div>
+                          <ReplySection commentId={comment.id} replies={comment.replies} />
                         )
                         : null
                       }
@@ -94,15 +80,19 @@ export default class CommentSection extends Component {
                 })
               }
             </ul>
-
-            <div className="row">
-              <div className="col text-right">
-                <a href="#" onClick={(e) => this.getComments(e)}>
-                  Carregar mais comentários
-                </a>
-              </div>
-            </div>
-
+            {
+              this.state.page < this.state.total_pages ?
+              (
+                <div className="row">
+                  <div className="col text-right">
+                    <a href="#" onClick={(e) => this.getComments(e)}>
+                      Carregar mais comentários
+                    </a>
+                  </div>
+                </div>
+              )
+              : null
+            }
           </div>
         </div>
         <CommentForm postId={this.state.postId} />

@@ -3,7 +3,7 @@
 @import "variables";
 
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Asap', sans-serif;
   box-sizing: border-box;
 }
 
@@ -102,6 +102,10 @@ h5 {
 
 .bt-white {
   border-top: 0.1em solid white;
+}
+
+.bb-white {
+  border-bottom: 0.1em solid white;
 }
 
 .c-white {
