@@ -3,11 +3,6 @@ class Reply < ApplicationRecord
   self.table_name = 'comments'
   belongs_to :comment
 
-  before_save do
-    self.post_id = Comment.find(self.reply_to).post_id
-  end
-
-  validates_presence_of :post_id
   validates_presence_of :reply_to
 
   def self.all_from_comment comment_id

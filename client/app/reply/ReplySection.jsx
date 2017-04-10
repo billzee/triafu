@@ -19,8 +19,6 @@ export default class ReplySection extends Component {
       let res = await RepliesApi._get(this.state.commentId, this.state.page);
       let resJson = await res.json();
 
-      console.log(resJson);
-
       if(this.state.replies.length > 0){
         this.setState({replies: this.state.replies.concat(resJson.replies)});
       } else{
@@ -35,7 +33,6 @@ export default class ReplySection extends Component {
   }
 
   componentDidMount(){
-    console.log("tem q estar auqi ", this.state);
     pubsub
     .subscribe('replies', (msg, data)=>{
       this.setState({replies: data.replies});
@@ -50,45 +47,45 @@ export default class ReplySection extends Component {
         this.state.replies.length > 0 ?
         (
           <div className="row justify-content-end mt-2">
-          <div className="col-11">
-          <ul className="list-unstyled">
-          {
-            this.state.replies.map((reply)=>{
-              return(
-                <li key={reply.id}>
-                <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize} commentOrReply={reply} />
-                </li>
-              );
-            })
-          }
-          </ul>
-          {
-            this.state.replies.length > 2 && !this.state.totalPages ?
-            (
-              <div className="row">
-              <div className="col text-right">
-              <a href="#" onClick={(e) => this.getReplies(e)}>
-              Carregar mais respostas
-              </a>
-              </div>
-              </div>
-            )
-            : null
-          }
-          {
-            this.state.page < this.state.totalPages ?
-            (
-              <div className="row">
-              <div className="col text-right">
-              <a href="#" onClick={(e) => this.getReplies(e)}>
-              Carregar mais respostas
-              </a>
-              </div>
-              </div>
-            )
-            : null
-          }
-          </div>
+            <div className="col-11">
+              <ul className="list-unstyled">
+                {
+                  this.state.replies.map((reply)=>{
+                    return(
+                      <li key={reply.id}>
+                      <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize} commentOrReply={reply} />
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+              {
+                this.state.replies.length > 2 && !this.state.totalPages ?
+                (
+                  <div className="row">
+                    <div className="col text-right">
+                      <a href="#" onClick={(e) => this.getReplies(e)}>
+                        Carregar mais respostas
+                      </a>
+                    </div>
+                  </div>
+                )
+                : null
+              }
+              {
+                this.state.page < this.state.totalPages ?
+                (
+                  <div className="row">
+                    <div className="col text-right">
+                      <a href="#" onClick={(e) => this.getReplies(e)}>
+                        Carregar mais respostas
+                      </a>
+                    </div>
+                  </div>
+                )
+                : null
+              }
+            </div>
           </div>
         )
 

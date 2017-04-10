@@ -15,7 +15,6 @@ export default class CommentOrReplyBox extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props);
     pubsub
     .subscribe('clear-comments-state', ()=>{
       this.setState({showReplyFormTo: null, release: null});
@@ -103,8 +102,7 @@ export default class CommentOrReplyBox extends Component {
           this.state.showReplyFormTo === this.props.commentOrReply.id ?
             <div className="row">
               <div className="col">
-                aaaaaa a{this.props.postId}
-                <ReplyForm postId={this.props.postId} commentId={this.props.commentId} />
+                <ReplyForm commentId={this.props.commentId} />
               </div>
             </div>
           : null

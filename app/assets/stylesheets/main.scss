@@ -87,6 +87,20 @@ h5 {
   background: white;
 }
 
+.btn-twitter {
+  color: #fff;
+  background-color: #4099FF;
+  border-color: #4099FF;
+}
+
+.btn-facebook {
+  color: #fff;
+  background-color: #3b5998;
+  border-color: #3b5998;
+}
+
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
+
 .dropdown-right {
   right: 0;
   left:auto;

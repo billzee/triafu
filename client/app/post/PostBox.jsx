@@ -1,47 +1,58 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment'
+import CopyToClipboard from 'react-copy-to-clipboard';
 import pubsub from 'pubsub-js'
 
 export default class PostBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {post: props.post, postUrl: ''};
+  }
+
+  componentDidMount(){
+    let postUrl = window.location.host + '/posts/' + this.state.post.id;
+    this.setState({postUrl: postUrl});
+  }
 
   render(){
     return (
       <div className="row justify-content-center mb-5 mt-4">
         <div className="col w-500 p-0">
-          <h1>{this.props.post.title}</h1>
+          <h1>{this.state.post.title}</h1>
 
-          <img src={this.props.post.media.image.url} className="post-image" />
+          <img src={this.state.post.media.image.url} className="post-image" />
 
-          <div className="row no-gutters mt-1">
-            <div className="col-8">
+          <div className="row no-gutters mt-2">
+            <div className="col-5">
               <small className="text-muted">
-                9986 pontos &bull; publicado <Moment fromNow>{this.props.post.created_at}</Moment>
+                9986 pontos &bull; publicado <Moment fromNow>{this.state.post.created_at}</Moment>
               </small>
+
+              <h3 className="mt-1">
+                <a href="#" >
+                  Link para o autor original
+                </a>
+              </h3>
             </div>
-            <div className="col">
+            <div className="col-7 text-right">
               <small className="text-muted">Compartilhar</small>
-            </div>
-          </div>
-          <div className="row no-gutters">
-            <div className="col-5 mt-2">
-              <a href="#"><h3>Link ao autor original</h3></a>
-            </div>
-            <div className="col-7 mt-1">
-              <ul className="list-unstyled list-inline text-right">
+              <ul className="list-unstyled list-inline">
                 <li className="list-inline-item">
-                  <button className="btn btn-sm btn-success">
-                    <i className="fa fa-clipboard fa-1x"></i>
-                    <span className="ml-1">Copiar Link</span>
-                  </button>
+                  <CopyToClipboard text={this.state.postUrl} onCopy={() => $('[data-toggle='+this.state.post.id+']').tooltip('show')}>
+                    <button className="btn btn-sm btn-success" data-toggle={this.state.post.id} data-placement="bottom" data-title="Copiado!">
+                      <i className="fa fa-clipboard fa-1x"></i>
+                      <span className="ml-1">Copiar Link</span>
+                    </button>
+                  </CopyToClipboard>
                 </li>
                 <li className="list-inline-item">
-                  <button className="btn btn-sm btn-primary">
+                  <button className="btn btn-sm btn-facebook">
                     <i className="fa fa-facebook-f fa-1x"></i>
                     <span className="ml-1">Facebook</span>
                   </button>
                 </li>
                 <li className="list-inline-item">
-                  <button className="btn btn-sm btn-secondary">
+                  <button className="btn btn-sm btn-twitter">
                     <i className="fa fa-twitter fa-1x"></i>
                     <span className="ml-1">Twitter</span>
                   </button>
@@ -50,12 +61,12 @@ export default class PostBox extends Component {
             </div>
           </div>
 
-          <hr />
+          <hr className="mt-2" />
         </div>
 
         <div className="col w-150 p-0 ml-3">
           {
-            this.props.currentPost === this.props.post.id ?
+            this.props.currentPost === this.state.post.id ?
             (
               <div className="row no-gutters p-fixed">
                 <div className="col-8">
