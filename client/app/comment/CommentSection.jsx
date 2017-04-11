@@ -11,15 +11,17 @@ import ReplySection from '../reply/ReplySection'
 import CommentsApi from '../api/CommentsApi';
 
 export default class CommentSection extends Component {
-  constructor() {
-    super();
-    this.state = {comments: [], postId: '', page: '', totalCount: '', lastPage: true};
+  constructor(props) {
+    super(props);
+    this.state = {comments: [], postId: props.postId, page: '', totalCount: '', lastPage: true};
   }
 
   async getComments(e){
     try{
       let res = await CommentsApi._get(this.state.postId);
       let resJson = await res.json();
+
+      console.log(resJson);
 
       this.setState({
         comments: resJson.comments,
@@ -54,7 +56,7 @@ export default class CommentSection extends Component {
 
   componentWillMount(){
     pubsub
-    .subscribe('view-post', (msg, data)=>{
+    .subscribe('show-comments-for-post', (msg, data)=>{
       this.setState({postId: data});
       this.getComments();
     });
@@ -76,48 +78,51 @@ export default class CommentSection extends Component {
   render(){
     return (
       <box>
-
         <CommentHeader totalCount={this.state.totalCount} />
 
         <div className="row panel pt-2 comment-middle">
-          <div className="col-12">
+          {
+            this.state.comments.length > 0 ?
+            (
+              <div className="col-12">
+                <ul className="list-unstyled">
+                  {
+                    this.state.comments.map((comment, key)=>{
+                      return(
+                        <li key={comment.id}>
+                          <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
+                          <ReplySection commentId={comment.id} replies={comment.replies} hasMoreReplies={comment.hasMoreReplies}/>
+                          {
+                            this.state.comments.length - 1 !== key ?
+                            (<hr className="bgm-white" />)
+                            : null
+                          }
+                        </li>
+                      );
+                    })
+                  }
+                </ul>
 
-            <ul className="list-unstyled">
-              {
-                this.state.comments.map((comment, key)=>{
-                  return(
-                    <li key={comment.id}>
-                      <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
-                      <ReplySection commentId={comment.id} replies={comment.replies} hasMoreReplies={comment.hasMoreReplies}/>
-                      {
-                        this.state.comments.length - 1 !== key ?
-                        (<hr className="bgm-white" />)
-                        : null
-                      }
-                    </li>
-                  );
-                })
-              }
-            </ul>
-
-            {
-              !this.state.lastPage ?
-              (
-                <div className="row">
-                  <div className="col text-right">
-                    <a href="#" onClick={(e) => this.paginateComments(e)}>
-                      Carregar mais comentários
-                    </a>
-                  </div>
-                </div>
-              )
-              : null
-            }
-          </div>
+                {
+                  !this.state.lastPage ?
+                  (
+                    <div className="row mb-2">
+                      <div className="col text-right">
+                        <a href="#" onClick={(e) => this.paginateComments(e)}>
+                          Carregar mais comentários
+                        </a>
+                      </div>
+                    </div>
+                  )
+                  : null
+                }
+              </div>
+            )
+            : null
+          }
         </div>
 
         <CommentForm postId={this.state.postId} />
-
       </box>
     );
   }

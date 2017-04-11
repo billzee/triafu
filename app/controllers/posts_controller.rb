@@ -1,21 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @post = Post.new
-    @@media = Media.new
-    respond_to do |format|
-      format.html
-      format.json {render :json => Post.all_with_media}
-    end
+    @paginated_posts = paginated_posts
   end
 
   def show
-    p params
-    @post = Post.with_media(params[:id])
-    p @post
-    respond_to do |format|
-      format.html
-    end
+    @post = Post.find(params[:id])
   end
 
   def upload_media
@@ -24,8 +14,6 @@ class PostsController < ApplicationController
 
   def create
     if @@media.save
-      p 'salvou a ibagem'
-      p @@media
       post = Post.new post_params
       post.media = @@media
       if post.save
@@ -44,6 +32,12 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def paginated_posts page=1
+    posts = Post.all
+    page = params[:page] unless params[:page] == nil
+    posts = posts.page(page)
+  end
 
   def post_params
     params.require(:post).permit :title, :original

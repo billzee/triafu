@@ -3,9 +3,11 @@ import Moment from 'react-moment'
 import CopyToClipboard from 'react-copy-to-clipboard';
 import pubsub from 'pubsub-js'
 
+import PostsApi from '../api/PostsApi';
+
 export default class PostBox extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {post: props.post, postUrl: ''};
   }
 
@@ -34,15 +36,29 @@ export default class PostBox extends Component {
           <div className="row no-gutters">
             <div className="col">
               <h3 className="mt-1">
-                <a href="#" >
-                  Link do autor original
-                </a>
+                {
+                  this.state.post.original ?
+                  (
+                    <a href={"//"+this.state.post.original} target="_blank">
+                      Link do autor original
+                    </a>
+                  )
+                  : null
+                }
               </h3>
             </div>
             <div className="col-7 text-right">
               <ul className="list-unstyled list-inline">
                 <li className="list-inline-item">
-                  <CopyToClipboard text={this.state.postUrl} onCopy={() => $('[data-toggle='+this.state.post.id+']').tooltip('show')}>
+                  <CopyToClipboard
+                    text={this.state.postUrl}
+                    onCopy={() => {
+                      let copyBtn = $('[data-toggle='+this.state.post.id+']');
+                      copyBtn.tooltip({trigger: 'manual'});
+                      copyBtn.tooltip('show');
+                      setTimeout(()=>{ copyBtn.tooltip('hide'); }, 3000);
+                    }}
+                  >
                     <button className="btn btn-sm btn-success" data-toggle={this.state.post.id} data-placement="bottom" data-title="Copiado!">
                       <i className="fa fa-clipboard fa-1x"></i>
                       <span className="ml-1">Copiar Link</span>
@@ -69,11 +85,6 @@ export default class PostBox extends Component {
         </div>
 
         <div className="col w-150 p-0 ml-3">
-          {
-            this.props.currentPost === this.state.post.id ?
-            ('reaction')
-            : null
-          }
         </div>
       </div>
     );

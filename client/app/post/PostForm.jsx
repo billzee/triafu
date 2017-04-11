@@ -40,7 +40,7 @@ export default class PostSection extends Component {
     e.preventDefault();
 
     try{
-      let res = await PostsApi.create(this.state);
+      let res = await PostsApi._create(this.state);
       let resJson = await res.json();
 
       window.location = "/posts/" + resJson;

@@ -1,14 +1,17 @@
 import Api from './Api';
 
 var PostsApi = {
-  index: function() {
-    return Api('/posts', {method: 'GET'});
+  _index: function(page=1) {
+    return Api('/posts/page/' + page, {method: 'GET'});
   },
 
-  create: function(post) {
+  _get: function(postId) {
+    return Api('/posts/' + postId, {method: 'GET'});
+  },
+
+  _create: function(post) {
     return Api('/posts', {method: 'POST', body: JSON.stringify(post)});
   }
-
 };
 
 export default PostsApi;

@@ -7,36 +7,66 @@ import PostBox from './PostBox';
 export default class PostSection extends Component {
   constructor(props) {
     super(props);
-    this.state = {posts: [], currentPost: ''};
+    this.state = {posts: [], page: '', lastPage: true};
     this._handleEnter = this._handleEnter.bind(this);
   }
 
   _handleEnter(postId){
-    pubsub.publish('view-post', postId);
-  }
-
-  componentDidMount(){
-    pubsub
-    .subscribe('view-post', (msg, data)=>{
-      this.setState({currentPost: data});
-    });
+    pubsub.publish('show-comments-for-post', postId);
   }
 
   async componentWillMount(){
-    if(this.props.post){
+    if(this.props.postId){
 
-      let post = JSON.parse(this.props.post)
-      this.setState({posts: this.state.posts.concat([post])});
-    } else{
       try{
-        let res = await PostsApi.index('/posts', {method: 'GET'});
+        let res = await PostsApi._get(this.props.postId);
         let resJson = await res.json();
 
-        this.setState({posts: resJson});
+        this.setState({
+          posts: this.state.posts.concat(resJson.post)
+        });
 
       } catch(error){
         console.log(error);
       }
+
+    } else{
+
+      try{
+        let res = await PostsApi._index();
+        let resJson = await res.json();
+
+        console.log(resJson);
+
+        this.setState({
+          posts: resJson.posts,
+          lastPage: resJson.lastPage,
+          page: 2
+        });
+
+      } catch(error){
+        console.log(error);
+      }
+    }
+  }
+
+  async paginatePosts(e){
+    if(e) e.preventDefault();
+
+    try{
+      let res = await PostsApi._index(this.state.page);
+      let resJson = await res.json();
+
+      console.log(resJson);
+
+      this.setState({
+        posts: this.state.posts.concat(resJson.posts),
+        lastPage: resJson.lastPage,
+        page: 1 + this.state.page
+      });
+
+    } catch(error){
+      console.log(error);
     }
   }
 
@@ -52,13 +82,33 @@ export default class PostSection extends Component {
                 bottomOffset="45%"
                 onEnter={()=> {this._handleEnter(post.id)}}>
                 <div>
-                  <PostBox post={post} currentPost={this.state.currentPost}/>
+                  <PostBox post={post}/>
                 </div>
               </Waypoint>
             );
           })
         }
+
+        {
+          !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null
+        }
       </box>
     );
   }
 }
+
+
+// {
+//   !this.state.lastPage ?
+//   (
+//     <div className="row justify-content-center pb-5">
+//       <div className="col w-500 p-0 text-center">
+//         <button className="btn btn-primary" onClick={(e) => this.paginatePosts(e)}>
+//           Ver mais
+//         </button>
+//       </div>
+//       <div className="col w-150 p-0 ml-3"></div>
+//     </div>
+//   )
+//   : null
+// }
