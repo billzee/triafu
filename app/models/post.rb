@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   has_many :comments
   has_one :media
 
-  paginates_per 1
+  paginates_per 2
 
   def vote type
     self[type] = self[type] + 1

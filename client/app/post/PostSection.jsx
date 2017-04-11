@@ -7,7 +7,7 @@ import PostBox from './PostBox';
 export default class PostSection extends Component {
   constructor(props) {
     super(props);
-    this.state = {posts: [], page: '', lastPage: true};
+    this.state = {posts: [], postId: props.postId, page: '', lastPage: true};
     this._handleEnter = this._handleEnter.bind(this);
   }
 
@@ -16,14 +16,16 @@ export default class PostSection extends Component {
   }
 
   async componentWillMount(){
-    if(this.props.postId){
+    if(this.state.postId){
 
       try{
-        let res = await PostsApi._get(this.props.postId);
+        let res = await PostsApi._get(this.state.postId);
         let resJson = await res.json();
 
         this.setState({
-          posts: this.state.posts.concat(resJson.post)
+          posts: this.state.posts.concat(resJson.post),
+          lastPage: true,
+          page: 1
         });
 
       } catch(error){
@@ -35,8 +37,6 @@ export default class PostSection extends Component {
       try{
         let res = await PostsApi._index();
         let resJson = await res.json();
-
-        console.log(resJson);
 
         this.setState({
           posts: resJson.posts,
@@ -54,10 +54,10 @@ export default class PostSection extends Component {
     if(e) e.preventDefault();
 
     try{
+      if(this.props.postId) this.setState({postId: ''});
+
       let res = await PostsApi._index(this.state.page);
       let resJson = await res.json();
-
-      console.log(resJson);
 
       this.setState({
         posts: this.state.posts.concat(resJson.posts),
@@ -78,8 +78,8 @@ export default class PostSection extends Component {
             return(
               <Waypoint
                 key={post.id}
-                topOffset="45%"
-                bottomOffset="45%"
+                topOffset="48%"
+                bottomOffset="48%"
                 onEnter={()=> {this._handleEnter(post.id)}}>
                 <div>
                   <PostBox post={post}/>
@@ -90,25 +90,25 @@ export default class PostSection extends Component {
         }
 
         {
+          this.state.postId ?
+          (
+            <div className="row justify-content-center pb-5">
+              <div className="col w-500 p-0 text-center">
+                <button className="btn btn-primary" onClick={(e) => this.paginatePosts(e)}>
+                  Ver mais
+                </button>
+              </div>
+              <div className="col w-150 p-0 ml-3"></div>
+            </div>
+          )
+          : null
+        }
+
+        {
           !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null
         }
+
       </box>
     );
   }
 }
-
-
-// {
-//   !this.state.lastPage ?
-//   (
-//     <div className="row justify-content-center pb-5">
-//       <div className="col w-500 p-0 text-center">
-//         <button className="btn btn-primary" onClick={(e) => this.paginatePosts(e)}>
-//           Ver mais
-//         </button>
-//       </div>
-//       <div className="col w-150 p-0 ml-3"></div>
-//     </div>
-//   )
-//   : null
-// }
