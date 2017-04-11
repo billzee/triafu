@@ -1,14 +1,12 @@
 class CommentsController < ApplicationController
 
   def index
-    c = paginated_comments
-    @paginated_comments = {comments: c, total_pages: c.total_pages, total_count: c.total_count}
+    @paginated_comments = paginated_comments
   end
 
   def create
     if Comment.create comment_params
-      c = paginated_comments
-      @paginated_comments = {comments: c, total_pages: c.total_pages, total_count: c.total_count}
+      @paginated_comments = paginated_comments
       render action: "index"
     end
   end

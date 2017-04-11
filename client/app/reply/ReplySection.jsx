@@ -9,24 +9,26 @@ import RepliesApi from '../api/RepliesApi';
 export default class ReplySection extends Component {
   constructor(props) {
     super();
-    this.state = {replies: props.replies, page: 2, totalPages: null, commentId: props.commentId};
+    this.state = {replies: props.replies, page: 1, lastPage: false};
   }
 
-  async getReplies(e){
+  async paginateReplies(e){
     if(e) e.preventDefault();
 
     try{
-      let res = await RepliesApi._get(this.state.commentId, this.state.page);
+      let res = await RepliesApi._get(this.props.commentId, this.state.page);
       let resJson = await res.json();
 
-      if(this.state.replies.length > 0){
+      if(this.state.page === 1){
         this.setState({replies: this.state.replies.concat(resJson.replies)});
       } else{
         this.setState({replies: resJson.replies});
       }
 
-      this.setState({totalPages: resJson.totalPages});
-      this.setState({page: 1 + this.state.page});
+      this.setState({
+        lastPage: resJson.last_page,
+        page: 1 + this.state.page
+      });
     } catch(error){
       console.log(error);
     }
@@ -34,9 +36,11 @@ export default class ReplySection extends Component {
 
   componentDidMount(){
     pubsub
-    .subscribe('replies', (msg, data)=>{
-      this.setState({replies: data.replies});
-      this.setState({totalPages: data.totalPages});
+    .subscribe('submitted-reply', (msg, data)=>{
+      this.setState({
+        replies: data.replies,
+        lastPage: data.lastPage
+      });
     });
   }
 
@@ -66,7 +70,7 @@ export default class ReplySection extends Component {
                   <div className="row">
                     <div className="col text-right">
                       <small>
-                        <a href="#" onClick={(e) => this.getReplies(e)}>
+                        <a href="#" onClick={(e) => this.paginateReplies(e)}>
                           Carregar mais respostas
                         </a>
                       </small>

@@ -22,7 +22,7 @@ export default class ReplyForm extends Component {
       let resJson = await res.json();
 
       this.setState({text: ''});
-      pubsub.publish('replies', resJson);
+      pubsub.publish('submitted-reply', resJson);
     } catch(error){
       console.log(error);
     }

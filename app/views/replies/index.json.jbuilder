@@ -1,2 +1,3 @@
-json.replies @paginated_replies[:replies]
-json.total_pages @paginated_replies[:total_pages]
+json.replies @paginated_replies
+json.last_page @paginated_replies.last_page?
+json.total_count @paginated_replies.total_count

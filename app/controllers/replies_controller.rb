@@ -1,24 +1,22 @@
 class RepliesController < ApplicationController
 
   def index
-    r = paginated_replies
-    @paginated_replies = {replies: r, total_pages: r.total_pages}
+    @paginated_replies = paginated_replies
   end
 
   def create
     if Reply.create reply_params
-      r = paginated_replies
-      @paginated_replies = {replies: r, total_pages: r.total_pages}
+      @paginated_replies = paginated_replies
       render action: "index"
     end
   end
 
   private
 
-  def paginated_replies page=1, per=3
+  def paginated_replies page=1
     r = Reply.all_from_comment params[:comment_id]
     page = params[:page] unless params[:page] == nil
-    r = r.page(page).per(per)
+    r = r.page(page)
   end
 
   def reply_params
