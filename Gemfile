@@ -55,5 +55,6 @@ gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem "kaminari"
 gem "jbuilder"
+gem 'devise'
 
 gem 'mini_racer', platforms: :ruby
