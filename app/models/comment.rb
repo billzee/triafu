@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
 
   validates_presence_of :post_id
 
-  has_many :replies, -> { limit 3 }, foreign_key: :reply_to
+  has_many :replies, foreign_key: :reply_to
 
   paginates_per 9
 

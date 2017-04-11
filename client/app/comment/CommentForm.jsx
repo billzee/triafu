@@ -21,7 +21,7 @@ export default class CommentForm extends Component {
       let resJson = await res.json();
 
       this.setState({text: ''});
-      pubsub.publish('comments', resJson);
+      pubsub.publish('submitted-comment', resJson);
     } catch(error){
       console.log(error);
     }

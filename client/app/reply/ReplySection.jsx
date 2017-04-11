@@ -20,13 +20,13 @@ export default class ReplySection extends Component {
       let resJson = await res.json();
 
       if(this.state.page === 1){
-        this.setState({replies: this.state.replies.concat(resJson.replies)});
-      } else{
         this.setState({replies: resJson.replies});
+      } else{
+        this.setState({replies: this.state.replies.concat(resJson.replies)});
       }
 
       this.setState({
-        lastPage: resJson.last_page,
+        lastPage: resJson.lastPage,
         page: 1 + this.state.page
       });
     } catch(error){
@@ -64,8 +64,7 @@ export default class ReplySection extends Component {
                 }
               </ul>
               {
-                (this.state.replies.length > 2 && !this.state.totalPages) ||
-                (this.state.page < this.state.totalPages) ?
+                this.props.hasMoreReplies && !this.state.lastPage ?
                 (
                   <div className="row">
                     <div className="col text-right">

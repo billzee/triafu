@@ -13,7 +13,7 @@ import CommentsApi from '../api/CommentsApi';
 export default class CommentSection extends Component {
   constructor() {
     super();
-    this.state = {comments: [], postId: '', page: '', totalPages: '', totalCount: ''};
+    this.state = {comments: [], postId: '', page: '', totalCount: '', lastPage: true};
   }
 
   async getComments(e){
@@ -24,11 +24,10 @@ export default class CommentSection extends Component {
       this.setState({
         comments: resJson.comments,
         totalCount: resJson.totalCount,
-        totalPages: resJson.totalPages,
+        lastPage: resJson.lastPage,
         page: 2
       });
 
-      console.log(this.state.totalPages, this.state.page);
     } catch(error){
       console.log(error);
     }
@@ -44,9 +43,10 @@ export default class CommentSection extends Component {
       this.setState({
         comments: this.state.comments.concat(resJson.comments),
         totalCount: resJson.totalCount,
-        totalPages: resJson.totalPages,
+        lastPage: resJson.lastPage,
         page: 1 + this.state.page
       });
+
     } catch(error){
       console.log(error);
     }
@@ -62,10 +62,10 @@ export default class CommentSection extends Component {
 
   componentDidMount(){
     pubsub
-    .subscribe('comments', (msg, data)=>{
+    .subscribe('submitted-comment', (msg, data)=>{
       this.setState({
         comments: data.comments,
-        totalPages: data.totalPages,
+        lastPage: data.lastPage,
         totalCount: data.totalCount
       });
 
@@ -81,13 +81,14 @@ export default class CommentSection extends Component {
 
         <div className="row panel pt-2 comment-middle">
           <div className="col-12">
+
             <ul className="list-unstyled">
               {
                 this.state.comments.map((comment, key)=>{
                   return(
                     <li key={comment.id}>
                       <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
-                      <ReplySection commentId={comment.id} replies={comment.replies} />
+                      <ReplySection commentId={comment.id} replies={comment.replies} hasMoreReplies={comment.hasMoreReplies}/>
                       {
                         this.state.comments.length - 1 !== key ?
                         (<hr className="bgm-white" />)
@@ -98,8 +99,9 @@ export default class CommentSection extends Component {
                 })
               }
             </ul>
+
             {
-              this.state.page <= this.state.totalPages ?
+              !this.state.lastPage ?
               (
                 <div className="row">
                   <div className="col text-right">
