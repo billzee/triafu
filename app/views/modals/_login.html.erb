@@ -4,47 +4,48 @@
       <div class="modal-header">
         <h1 class="modal-title">Entre</h1>
       </div>
-      <form method="post">
-      <div class="modal-body">
 
-        <p class="text-muted text-center">usando as redes sociais</p>
+      <%= form_for(:user, url: session_path(:user)) do |f| %>
+        <div class="modal-body">
+          <p class="text-muted text-center">Usando as redes sociais</p>
 
-        <ul class="list-unstyled list-inline text-center pb-2">
-          <li class="list-inline-item">
-            <button class="btn btn-facebook">
-              <i class="fa fa-facebook-f fa-1x"></i>
-              <span class="ml-1">Facebook</span>
-            </button>
-          </li>
-          <li class="list-inline-item">
-            <button class="btn btn-google">
-              <i class="fa fa-google-plus fa-1x"></i>
-              <span class="ml-1">Google</span>
-            </button>
-          </li>
-        </ul>
+          <ul class="list-unstyled list-inline text-center pb-2">
+            <li class="list-inline-item">
+              <button class="btn btn-facebook">
+                <i class="fa fa-facebook-f fa-1x"></i>
+                <span class="ml-1">Facebook</span>
+              </button>
+            </li>
+            <li class="list-inline-item">
+              <button class="btn btn-google">
+                <i class="fa fa-google-plus fa-1x"></i>
+                <span class="ml-1">Google</span>
+              </button>
+            </li>
+          </ul>
 
-        <hr/>
+          <hr/>
 
-        <p class="text-muted text-center">usando seu e-mail de cadastro</p>
+          <p class="text-muted text-center">Usando seu e-mail de cadastro</p>
+          <div class="form-group">
+            <label class="form-control-label">e-mail</label>
+            <%= f.email_field :email, class: "form-control", autofocus: true %>
+          </div>
 
-        <div class="form-group">
-          <label class="form-control-label">e-mail</label>
-          <input type="text" class="form-control">
+          <div class="form-group">
+            <label class="form-control-label">senha</label>
+            <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+            <a href="#" class="float-right">Esqueceu a senha?</a>
+          </div>
+
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label">senha</label>
-          <input type="password" class="form-control">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <%= f.submit "Entrar", class: "btn btn-success" %>
         </div>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Entrar</button>
-      </div>
-      </form>
+      <% end %>
+      
     </div>
   </div>
 </div>

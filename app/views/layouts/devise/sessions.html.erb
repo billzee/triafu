@@ -13,13 +13,34 @@
   </head>
 
   <body>
-    
+
     <%= render "layouts/navbar" %>
 
-    <%= yield %>
+    <div class="container">
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+      <div class="row justify-content-center">
+        <%= yield %>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-6">
+
+          <% if alert %>
+            <div class="alert alert-danger" role="alert">
+              <%= alert %>
+            </div>
+          <% end %>
+
+          <% if notice %>
+            <div class="alert alert-info" role="alert">
+              <%= notice %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+
+    </div>
 
     <%= render "modals/login" %>
     <%= render "modals/signup" %>
