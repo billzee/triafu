@@ -15,32 +15,12 @@
   <body>
 
     <%= render "layouts/navbar" %>
+    aqui e mobile jow
 
-    <div class="container">
+    <%= yield %>
 
-      <div class="row justify-content-center mt-4">
-        <div class="col-md-8 col-sm">
-
-          <% if alert %>
-          <div class="alert alert-danger" role="alert">
-            <%= alert %>
-          </div>
-          <% end %>
-
-          <% if notice %>
-          <div class="alert alert-info" role="alert">
-            <%= notice %>
-          </div>
-          <% end %>
-
-        </div>
-      </div>
-
-      <div class="row justify-content-center">
-        <%= yield %>
-      </div>
-
-    </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
     <%= render "modals/login" %>
     <%= render "modals/signup" %>
