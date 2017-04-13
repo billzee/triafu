@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  
+
   concern :paginatable do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
 
   shallow do
-    resources :posts, concerns: :paginatable, only: [:index, :create, :show]do
+    resources :posts, concerns: :paginatable, only: [:index, :create, :show] do
       # get :vote
 
       resources :comments, concerns: :paginatable, only: [:index, :create] do

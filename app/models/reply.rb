@@ -1,7 +1,9 @@
 class Reply < ApplicationRecord
   default_scope { where("reply_to IS NOT NULL") }
   self.table_name = 'comments'
+  
   belongs_to :comment
+  belongs_to :user
 
   validates_presence_of :reply_to
 

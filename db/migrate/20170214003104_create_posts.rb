@@ -8,6 +8,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.integer :negative_count
 
       t.integer :category_id
+      t.integer :user_id
 
       t.timestamps
     end

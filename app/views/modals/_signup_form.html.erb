@@ -3,11 +3,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title">Criar Conta</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
 
-      <%= form_for(User.new, url: user_registration_path) do |f| %>
-
-        <div class="modal-body">
+      <div class="modal-body">
+        <%= form_for(User.new, url: user_registration_path) do |f| %>
           <div class="form-group">
             <label class="form-control-label">Nome Completo</label>
             <%= f.text_field :full_name, class: "form-control", autofocus: true %>
@@ -22,14 +24,17 @@
             <label class="form-control-label">Senha</label>
             <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
           </div>
-        </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <%= f.submit "Criar", class: "btn btn-success" %>
-        </div>
+          <%= f.submit "Criar", class: "btn btn-success float-right" %>
+        <% end %>
+      </div>
 
-      <% end %>
+      <div class="bt-modal-footer p-2">
+        <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#m_signup">Voltar</a>
+        <span class="text-muted float-right">
+          Já tem uma conta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#m_login">Entre</a>
+        </span>
+      </div>
 
     </div>
   </div>

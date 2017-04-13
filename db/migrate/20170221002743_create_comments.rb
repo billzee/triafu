@@ -4,8 +4,10 @@ class CreateComments < ActiveRecord::Migration[5.0]
       t.text :text
       t.integer :upvotes
       t.integer :downvotes
+
       t.integer :reply_to
       t.integer :post_id
+      t.integer :user_id
 
       t.timestamps
     end

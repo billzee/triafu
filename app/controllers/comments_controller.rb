@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_action :authenticate_user!, :except => :index
+
   def index
     @paginated_comments = paginated_comments
   end

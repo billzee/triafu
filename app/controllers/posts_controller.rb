@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_action :authenticate_user!, :except => [:show, :index]
+
   def index
     @paginated_posts = paginated_posts
   end
@@ -40,7 +42,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit :title, :original
+    params.require(:post).permit(:title, :original).merge(user_id: current_user.id)
   end
 
   def media_params

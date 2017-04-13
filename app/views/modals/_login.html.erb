@@ -1,32 +1,37 @@
 <div class="modal" id="m_login" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
+
       <div class="modal-header">
-        <h1 class="modal-title">Entre</h1>
+        <h1 class="modal-title">Entrar</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
 
-      <%= form_for(:user, url: session_path(:user)) do |f| %>
-        <div class="modal-body">
-          <p class="text-muted text-center">Usando as redes sociais</p>
+      <div class="modal-body">
+        <p class="text-muted text-center">Usando uma rede social</p>
 
-          <ul class="list-unstyled list-inline text-center pb-2">
-            <li class="list-inline-item">
-              <button class="btn btn-facebook">
-                <i class="fa fa-facebook-f fa-1x"></i>
-                <span class="ml-1">Facebook</span>
-              </button>
-            </li>
-            <li class="list-inline-item">
-              <button class="btn btn-google">
-                <i class="fa fa-google-plus fa-1x"></i>
-                <span class="ml-1">Google</span>
-              </button>
-            </li>
-          </ul>
+        <ul class="list-unstyled list-inline text-center pb-3">
+          <li class="list-inline-item">
+            <button class="btn btn-facebook">
+              <i class="fa fa-facebook-f fa-1x"></i>
+              <span class="ml-1">Facebook</span>
+            </button>
+          </li>
+          <li class="list-inline-item">
+            <button class="btn btn-google">
+              <i class="fa fa-google-plus fa-1x"></i>
+              <span class="ml-1">Google</span>
+            </button>
+          </li>
+        </ul>
 
-          <hr/>
+        <hr class="or text-muted"/>
 
-          <p class="text-muted text-center">Usando seu e-mail de cadastro</p>
+        <p class="text-muted text-center pt-3">Usando seu e-mail de cadastro</p>
+
+        <%= form_for(:user, url: session_path(:user)) do |f| %>
           <div class="form-group">
             <label class="form-control-label">e-mail</label>
             <%= f.email_field :email, class: "form-control", autofocus: true %>
@@ -38,14 +43,19 @@
             <a href="#" class="float-right">Esqueceu a senha?</a>
           </div>
 
-        </div>
+          <br />
+          
+          <%= f.submit "Entrar", class: "btn btn-block btn-success" %>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <%= f.submit "Entrar", class: "btn btn-success" %>
-        </div>
-      <% end %>
-      
+        <% end %>
+      </div>
+
+      <div class="modal-footer p-2">
+        <span class="text-muted">
+          Ainda não tem uma conta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#m_signup">Crie uma</a>
+        </span>
+      </div>
+
     </div>
   </div>
 </div>

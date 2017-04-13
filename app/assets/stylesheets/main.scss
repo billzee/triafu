@@ -149,3 +149,29 @@ h5 {
 .white {
   background-color: white;
 }
+
+hr.or:before {
+  content: '';
+  display: block;
+  height: 1px;
+}
+
+hr.or:after {
+  content: 'ou';
+  display:block;
+  text-align:center;
+  background-color: white;
+  width:60px;
+  margin-top:-10px;
+  position:absolute;
+  left:50%;
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+  transform: translate(-50%);
+}
+
+.bt-modal-footer {
+  border-top: 1px solid #eceeef;
+}

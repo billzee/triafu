@@ -20,6 +20,6 @@ class RepliesController < ApplicationController
   end
 
   def reply_params
-    params.require(:reply).permit(:text).merge(reply_to: params[:comment_id])
+    params.require(:reply).permit(:text).merge(reply_to: params[:comment_id], user: current_user)
   end
 end
