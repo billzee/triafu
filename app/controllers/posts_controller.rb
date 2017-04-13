@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
 
-before_filter :check_for_mobile
-
-before_filter :prepare_for_mobile
+  before_filter :check_for_mobile
 
   before_action :authenticate_user!, :except => [:show, :index]
 

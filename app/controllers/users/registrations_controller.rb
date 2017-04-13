@@ -9,8 +9,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    
     super
+
+    p devise_parameter_sanitizer
   end
 
   # GET /resource/edit
