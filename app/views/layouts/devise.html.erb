@@ -18,19 +18,25 @@
 
     <div class="container">
 
-      <div class="row justify-content-center mt-4">
+      <div class="row justify-content-center">
         <div class="col-md-8 col-sm">
 
+          <% if devise_error_messages? %>
+            <div class="alert alert-danger" role="alert">
+              <%= devise_error_messages! %>
+            </div>
+          <% end %>
+
           <% if alert %>
-          <div class="alert alert-danger" role="alert">
-            <%= alert %>
-          </div>
+            <div class="alert alert-danger" role="alert">
+              <%= alert %>
+            </div>
           <% end %>
 
           <% if notice %>
-          <div class="alert alert-info" role="alert">
-            <%= notice %>
-          </div>
+            <div class="alert alert-info" role="alert">
+              <%= notice %>
+            </div>
           <% end %>
 
         </div>

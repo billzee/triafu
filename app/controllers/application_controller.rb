@@ -18,5 +18,7 @@ class ApplicationController < ActionController::Base
       (request.user_agent =~ /Mobile|webOS/) && (request.user_agent !~ /iPad/)
     end
   end
+
   helper_method :mobile_device?
+
 end

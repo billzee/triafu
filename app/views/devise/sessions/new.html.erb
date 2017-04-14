@@ -2,6 +2,8 @@
 
   <h1>Entrar</h1>
 
+  <hr>
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-group">
       <label class="form-control-label">e-mail</label>
@@ -19,7 +21,7 @@
         <%= f.label :remember_me %>
       </div>
     <% end -%> -->
-    
+
     <%= f.submit "Entrar", class: "btn btn-success float-right" %>
   <% end %>
 
