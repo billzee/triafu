@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:text).merge(post_id: params[:post_id])
+    params.require(:comment).permit(:text).merge(post_id: params[:post_id]).merge(user_id: current_user.id)
   end
 
   def reply_params

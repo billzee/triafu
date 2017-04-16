@@ -39,7 +39,7 @@ export default class CommentOrReplyBox extends Component {
             <img src="/assets/bidu.jpg" width={this.props.photoSize} className="rounded-circle" />
           </div>
           <div className="col pt-1">
-            <strong>Guilherme Zordan </strong>
+            <strong>{this.props.commentOrReply.user.username} </strong>
             <small className="text-muted">
               <Moment fromNow>{this.props.commentOrReply.created_at}</Moment>
             </small>

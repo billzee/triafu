@@ -1,0 +1,74 @@
+<div class="row header bg-inverse no-gutters">
+  <%= link_to root_path, class: "logo" do %>
+    <%= image_tag "triafu.svg", height: 32%>
+  <% end %>
+
+  <div class="col">
+    <ul class="list-inline list-unstyled mb-0 pt-3">
+      <li class="list-inline-item header-item active">
+        <a href="#" class="header-link">Top</a>
+      </li>
+      <li class="list-inline-item header-item">
+        <a href="#" class="header-link">Novos</a>
+      </li>
+      <li class="list-inline-item dropdown header-item">
+        <a href="#" class="dropdown-toggle header-link" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tudo
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Ver<img src="/assets/funny.svg" width="35px" class="mr-2 ml-2" />1º</a>
+          <a class="dropdown-item" href="#">Ver<img src="/assets/brain.svg" width="35px" class="mr-2 ml-2" />1º</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col text-right">
+
+    <ul class="list-inline list-unstyled mb-0 pt-2">
+
+      <li class="list-inline-item header-item">
+        <% if !user_signed_in? %>
+          <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#m_login">
+            <i class="fa fa-plus"></i> Publicar
+          </button>
+        <% else %>
+          <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#m_new_post">
+            <i class="fa fa-plus"></i> Publicar
+          </button>
+        <% end %>
+      </li>
+
+      <% if !user_signed_in? %>
+        <li class="list-inline-item header-item">
+          <button class="btn btn-primary" data-toggle="modal" data-target="#m_signup">
+            Criar Conta
+          </button>
+        </li>
+
+        <li class="list-inline-item header-item">
+          <a href="#" class="header-link" data-toggle="modal" data-target="#m_login">
+            Entrar
+          </a>
+        </li>
+      <% end %>
+
+    </ul>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="profile-actions header-item">
+
+      <a href="#" class="dropdown-toggle header-link" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-user-circle fa-2x"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdown02">
+        <a class="dropdown-item" href="#"></a>
+        <%= link_to('Editar perfil', edit_user_registration_path, class: "dropdown-item") %>
+        <%= link_to('Sair', destroy_user_session_path, :method => :delete, class: "dropdown-item") %>
+      </div>
+
+    </div>
+  <% end %>
+
+</div>

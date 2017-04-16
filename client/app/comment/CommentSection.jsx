@@ -21,6 +21,8 @@ export default class CommentSection extends Component {
       let res = await CommentsApi._get(this.state.postId);
       let resJson = await res.json();
 
+      console.log(resJson);
+
       this.setState({
         comments: resJson.comments,
         totalCount: resJson.totalCount,
@@ -39,6 +41,8 @@ export default class CommentSection extends Component {
     try{
       let res = await CommentsApi._get(this.state.postId, this.state.page);
       let resJson = await res.json();
+
+      console.log(resJson);
 
       this.setState({
         comments: this.state.comments.concat(resJson.comments),

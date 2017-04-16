@@ -36,4 +36,9 @@ class User < ApplicationRecord
     true
   end
 
+  protected
+
+  def confirmation_required?
+    false
+  end
 end
