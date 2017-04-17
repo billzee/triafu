@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export default class TextArea extends Component {
   constructor(){
@@ -7,8 +8,8 @@ export default class TextArea extends Component {
 
   render() {
     return (
-      <box>
-        <textarea {...this.props} className="form-control w-100 mb-2"></textarea>
+      <box className="w-100">
+        <TextareaAutosize {...this.props} className="form-control w-100"></TextareaAutosize>
       </box>
     );
   }

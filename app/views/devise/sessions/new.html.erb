@@ -5,6 +5,7 @@
   <hr>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
     <div class="form-group">
       <label class="form-control-label">e-mail</label>
       <%= f.email_field :email, class: "form-control", autofocus: true %>

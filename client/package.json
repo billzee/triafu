@@ -39,6 +39,7 @@
     "react-intl": "^2.2.3",
     "react-moment": "^0.2.2",
     "react-on-rails": "6.8.2",
+    "react-textarea-autosize": "^4.0.5",
     "react-waypoint": "^5.2.0",
     "tether": "^1.4.0",
     "webpack": "^2.3.1"

@@ -57,8 +57,7 @@ export default class PostBox extends Component {
                       copyBtn.tooltip({trigger: 'manual'});
                       copyBtn.tooltip('show');
                       setTimeout(()=>{ copyBtn.tooltip('hide'); }, 3000);
-                    }}
-                  >
+                    }}>
                     <button className="btn btn-sm btn-success" data-toggle={this.state.post.id} data-placement="bottom" data-title="Copiado!">
                       <i className="fa fa-clipboard fa-1x"></i>
                       <span className="ml-1">Copiar Link</span>

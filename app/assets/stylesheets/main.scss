@@ -67,12 +67,16 @@ h5 {
   .col {
     height: 100%;
     padding: 0;
+    &:first-of-type {
+      border-left: 1px solid $flag-yellow;
+    }
   }
 
   .logo {
     padding: 0.5em;
-    background: white;
+    background: $light-gray;
     width: 9em;
+    border-right: 4px solid $flag-green;
   }
 
   .profile-actions {
