@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 
 import helper from '../components/Helper'
-import TextArea from '../components/TextArea'
+import TextAreaAutosize from '../components/TextAreaAutosize'
 
 import CommentsApi from '../api/CommentsApi';
 
@@ -35,12 +35,12 @@ export default class CommentForm extends Component {
 
             <div className="input-group">
               <span className="input-group-btn">
-                <button className="btn btn-sm btn-secondary">
+                <button type="button" className="btn btn-sm btn-secondary">
                   <i className="fa fa-smile-o"/>
                 </button>
               </span>
 
-              <TextArea value={this.state.text}
+              <TextAreaAutosize value={this.state.text}
                 onChange={helper.handleChange.bind(this, 'text')}
                 style={{maxHeight: 60}}
                 placeholder="escreva um comentário" />

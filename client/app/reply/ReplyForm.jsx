@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import helper from '../components/Helper'
 import pubsub from 'pubsub-js'
 
-import TextArea from '../components/TextArea'
+import TextAreaAutosize from '../components/TextAreaAutosize'
 import RepliesApi from '../api/RepliesApi';
 
 export default class ReplyForm extends Component {
@@ -39,13 +39,13 @@ export default class ReplyForm extends Component {
             </button>
           </span>
 
-          <TextArea value={this.state.text}
+          <TextAreaAutosize value={this.state.text}
             onChange={helper.handleChange.bind(this, 'text')}
             style={{maxHeight: 100}}
             placeholder="escreva uma resposta" />
 
           <span className="input-group-btn">
-            <input type="submit" className="btn btn-sm btn-success" value="Comentar"></input>
+            <input type="submit" className="btn btn-sm btn-success" value="Responder"></input>
           </span>
         </div>
 

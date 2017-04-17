@@ -13,7 +13,9 @@ import CommentsApi from '../api/CommentsApi';
 export default class CommentSection extends Component {
   constructor(props) {
     super(props);
-    this.state = {comments: [], postId: props.postId, page: '', totalCount: '', lastPage: true};
+    this.state = {comments: [], postAuthor: props.postAuthor, postId: props.postId, page: '', totalCount: '', lastPage: true};
+
+    console.log(this.state);
   }
 
   async getComments(e){
@@ -92,7 +94,8 @@ export default class CommentSection extends Component {
                     this.state.comments.map((comment, key)=>{
                       return(
                         <li key={comment.id}>
-                          <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} commentId={comment.id} postId={this.props.postId} />
+                          <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment}
+                          commentId={comment.id} postId={this.props.postId} postAuthor={this.state.postAuthor}/>
                           <ReplySection commentId={comment.id} replies={comment.replies} hasMoreReplies={comment.hasMoreReplies}/>
                           {
                             this.state.comments.length - 1 !== key ?

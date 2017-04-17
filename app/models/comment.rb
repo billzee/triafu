@@ -1,9 +1,8 @@
 class Comment < ApplicationRecord
-  default_scope { where(reply_to: nil) }
-
   belongs_to :post
   belongs_to :user
-  has_many :replies, foreign_key: :reply_to
+
+  has_many :replies
 
   validates_presence_of :post_id
 

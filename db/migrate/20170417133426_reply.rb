@@ -1,11 +1,11 @@
-class CreateComments < ActiveRecord::Migration[5.0]
+class Reply < ActiveRecord::Migration[5.0]
   def change
-    create_table :comments do |t|
+    create_table :replies do |t|
       t.text :text
       t.integer :upvotes
       t.integer :downvotes
 
-      t.integer :post_id
+      t.integer :comment_id
       t.integer :user_id
 
       t.timestamps

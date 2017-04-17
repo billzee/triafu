@@ -39,9 +39,21 @@ export default class CommentOrReplyBox extends Component {
             <img src="/assets/bidu.jpg" width={this.props.photoSize} className="rounded-circle" />
           </div>
           <div className="col pt-1">
-            <strong>{this.props.commentOrReply.user.username} </strong>
+            <strong>
+              {this.props.commentOrReply.user.username}
+
+              {
+                this.props.commentOrReply.user.id === this.props.postAuthor ?
+                (
+                  <span className="text-success">
+                    &nbsp;autor
+                  </span>
+                )
+                : null
+              }
+            </strong>
             <small className="text-muted">
-              <Moment fromNow>{this.props.commentOrReply.created_at}</Moment>
+              &nbsp;<Moment fromNow>{this.props.commentOrReply.created_at}</Moment>
             </small>
             <br/>
             {
