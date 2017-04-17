@@ -18,11 +18,15 @@ export default class ReplyForm extends Component {
 
     try{
       let res = await RepliesApi._create(this.props.commentId, this.state);
-
       let resJson = await res.json();
 
-      this.setState({text: ''});
-      pubsub.publish('submitted-reply', resJson);
+      if(resJson.errors){
+        this.setState({errors: resJson.errors});
+      }else {
+        this.setState({text: ''});
+        pubsub.publish('submitted-reply', resJson);
+      }
+
     } catch(error){
       console.log(error);
     }
@@ -32,22 +36,25 @@ export default class ReplyForm extends Component {
     return (
       <form onSubmit={this.reply} method="post">
 
-        <div className="input-group">
+        <div className={"input-group " + (this.state.errors ? "has-danger" : "")}>
           <span className="input-group-btn">
-            <button className="btn btn-sm btn-secondary">
+            <button type="button" className="btn btn-sm btn-secondary">
               <i className="fa fa-smile-o"/>
             </button>
           </span>
 
-          <TextAreaAutosize value={this.state.text}
+          <TextAreaAutosize
+            value={this.state.text}
             onChange={helper.handleChange.bind(this, 'text')}
-            style={{maxHeight: 100}}
+            style={{maxHeight: 50}}
             placeholder="escreva uma resposta" />
 
           <span className="input-group-btn">
             <input type="submit" className="btn btn-sm btn-success" value="Responder"></input>
           </span>
         </div>
+
+        <small className="form-control-feedback text-danger">{this.state.errors ? this.state.errors.text[0] : null}</small>
 
       </form>
     );

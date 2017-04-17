@@ -7,7 +7,7 @@ var Helper = {
   maxLengthForRelease: 100,
 
   handleChange: function(input, e){
-    var field = {};
+    var field = {errors: null};
     field[input] = e.target.value;
     this.setState(field);
   }

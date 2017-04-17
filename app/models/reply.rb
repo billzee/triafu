@@ -4,6 +4,8 @@ class Reply < ApplicationRecord
 
   validates_presence_of :comment_id
 
+  validates :text, presence: true
+
   paginates_per 9
 
   def self.all_from_comment comment_id

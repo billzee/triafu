@@ -25,11 +25,22 @@ pt-BR:
       user:
         one: "Usuário"
         other: "Usuários"
+      post:
+        one: "Publicação"
+        other: "Publicações"
+      comment:
+        one: "Comentário"
+        other: "Comentários"
+      reply:
+        one: "Resposta"
+        other: "Resposta"
     attributes:
       user:
         full_name: "Nome Completo"
         email: "e-mail"
-        biography: "Biographie"
+        username: "Nome de Usuário"
+      comment:
+        text: "comentário"
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

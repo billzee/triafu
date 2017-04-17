@@ -6,6 +6,8 @@ class Comment < ApplicationRecord
 
   validates_presence_of :post_id
 
+  validates :text, presence: true
+
   paginates_per 9
 
   def self.all_from_post post_id

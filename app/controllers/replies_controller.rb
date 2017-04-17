@@ -5,9 +5,12 @@ class RepliesController < ApplicationController
   end
 
   def create
-    if Reply.create reply_params
+    @reply = Reply.new reply_params
+    if @reply.save
       @paginated_replies = paginated_replies
       render action: "index"
+    else
+      render :json => { :errors => @reply.errors }
     end
   end
 

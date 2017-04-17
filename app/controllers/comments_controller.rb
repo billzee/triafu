@@ -7,9 +7,12 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if Comment.create comment_params
+    @comment = Comment.new comment_params
+    if @comment.save
       @paginated_comments = paginated_comments
       render action: "index"
+    else
+      render :json => { :errors => @comment.errors }
     end
   end
 
