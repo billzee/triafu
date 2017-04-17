@@ -6,7 +6,7 @@ export default class CommentHeader extends Component {
       <div className="row comment-top bb-white">
         <div className="col">
           <strong>
-            {this.props.totalCount || 0} comentários
+            {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}
           </strong>
         </div>
       </div>

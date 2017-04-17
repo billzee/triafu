@@ -53,7 +53,7 @@ export default class CommentOrReplyBox extends Component {
               }
             </strong>
             <small className="text-muted">
-              &nbsp;<Moment fromNow>{this.props.commentOrReply.created_at}</Moment>
+              &nbsp;<Moment fromNow>{this.props.commentOrReply.createdAt}</Moment>
             </small>
             <br/>
             {

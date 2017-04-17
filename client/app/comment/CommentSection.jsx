@@ -14,8 +14,6 @@ export default class CommentSection extends Component {
   constructor(props) {
     super(props);
     this.state = {comments: [], postAuthor: props.postAuthor, postId: props.postId, page: '', totalCount: '', lastPage: true};
-
-    console.log(this.state);
   }
 
   async getComments(e){
