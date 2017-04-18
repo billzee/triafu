@@ -4,8 +4,8 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable
 
-  validates :full_name, length: { :minimum => 4, :maximum => 32 }
-  validates :username, uniqueness: true, length: { :minimum => 4, :maximum => 16 }
+  validates :full_name, presence: true, length: { :minimum => 4, :maximum => 32 }
+  validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 16 }
 
   has_many :comments
   has_many :replies

@@ -18,9 +18,6 @@
 
     <div class="form-group">
       <label class="form-control-label">Senha</label>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
       <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
     </div>
 

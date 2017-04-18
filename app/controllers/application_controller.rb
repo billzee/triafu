@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def mobile_device?
-    p request.user_agent, "aqui"
     if session[:mobile_override]
       session[:mobile_override] == "1"
     else

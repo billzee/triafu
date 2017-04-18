@@ -2,13 +2,14 @@ module DeviseHelper
   def devise_error_messages!
     return "" unless devise_error_messages?
 
-    messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
+    messages = resource.errors.details.keys.map { |attr| content_tag(:li, resource.errors.full_messages_for(attr).first) }.join
+
     sentence = I18n.t("errors.messages.not_saved",
                       :count => resource.errors.count,
                       :resource => resource.class.model_name.human.downcase)
 
     html = <<-HTML
-      <ul class="mb-0">#{messages}</ul>
+      <ul class="mb-0 list-unstyled">#{messages}</ul>
     HTML
 
     html.html_safe
