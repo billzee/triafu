@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations'
   }
 
+  as :user do
+    get 'users/edit/:section', to: 'users/registrations#edit', as: :edit_user_section
+  end
+
   concern :paginatable do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end

@@ -40,11 +40,11 @@
           <div class="form-group">
             <label class="form-control-label">senha</label>
             <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
-            <a href="#" class="float-right">Esqueceu a senha?</a>
+            <%= link_to('Esqueceu a senha?', new_user_password_path, class: "float-right") %>
           </div>
 
           <br />
-          
+
           <%= f.submit "Entrar", class: "btn btn-block btn-success" %>
 
         <% end %>

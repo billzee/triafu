@@ -26,7 +26,7 @@ pt-BR:
       locked: A sua conta está bloqueada.
       not_found_in_database: Email ou senha inválidos.
       timeout: A sua sessão expirou, por favor, faça login novamente para continuar.
-      unauthenticated: Para continuar, faça login ou registre-se.
+      unauthenticated: Para continuar, entre ou crie uma conta.
       unconfirmed: Antes de continuar, confirme a sua conta.
     mailer:
       confirmation_instructions:
@@ -91,8 +91,8 @@ pt-BR:
       already_signed_out: Logout efetuado com sucesso.
       new:
         sign_in: Login
-      signed_in: Login efetuado com sucesso.
-      signed_out: Logout efetuado com sucesso.
+      signed_in: Você entrou. Seja bem-vindo!
+      signed_out: Você saiu. Volte sempre!
     shared:
       links:
         back: Voltar

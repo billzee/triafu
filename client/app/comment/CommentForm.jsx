@@ -9,7 +9,7 @@ import CommentsApi from '../api/CommentsApi';
 export default class CommentForm extends Component {
   constructor() {
     super();
-    this.state = {text: '', errors: null};
+    this.state = {text: '', errors: null, authError: null};
     this.comment = this.comment.bind(this);
   }
 
@@ -22,8 +22,9 @@ export default class CommentForm extends Component {
 
       console.log(resJson);
 
-      if(resJson.errors){
+      if(resJson.errors || resJson.error){
         this.setState({errors: resJson.errors});
+        this.setState({authError: resJson.error});
       }else {
         this.setState({text: ''});
         pubsub.publish('submitted-comment', resJson);
@@ -40,7 +41,7 @@ export default class CommentForm extends Component {
         <div className="col p-2 pt-0">
           <form onSubmit={this.comment} method="post" className="form">
 
-            <div className={"input-group " + (this.state.errors ? "has-danger" : "")}>
+            <div className={"input-group " + (this.state.errors || this.state.authError ? "has-danger" : "")}>
               <span className="input-group-btn">
                 <button type="button" className="btn btn-sm btn-secondary">
                   <i className="fa fa-smile-o"/>
@@ -59,6 +60,7 @@ export default class CommentForm extends Component {
             </div>
 
             <small className="form-control-feedback text-danger">{this.state.errors ? this.state.errors.text[0] : null}</small>
+            <small className="form-control-feedback text-danger">{this.state.authError ? this.state.authError : null}</small>
 
           </form>
         </div>

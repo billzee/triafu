@@ -1,0 +1,31 @@
+<%= render "section_select" %>
+
+<div class="col-8">
+  <h1>Editar Perfil</h1>
+
+  <hr>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="form-group">
+      <label class="form-control-label">Nome de Usuário</label>
+      <%= f.text_field :username, class: "form-control", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Nome Completo</label>
+      <%= f.text_field :full_name, class: "form-control", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">e-mail</label>
+      <%= f.email_field :email, class: "form-control", autofocus: true %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <%= f.submit "Salvar", class: "btn btn-success float-right" %>
+  <% end %>
+
+</div>
