@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_filter :check_for_mobile
 
   def check_for_mobile
     session[:mobile_override] = params[:mobile] if params[:mobile]
@@ -11,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def mobile_device?
+    p request.user_agent, "aqui"
     if session[:mobile_override]
       session[:mobile_override] == "1"
     else
@@ -19,6 +21,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :mobile_device?
-
+  # helper_method :mobile_device?
 end

@@ -44,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:section] == "password"
       render "edit_password"
     else
-      render "edit_information"
+      render "edit_profile"
     end
   end
 

@@ -1,4 +1,6 @@
 class RepliesController < ApplicationController
+  
+  before_action :authenticate_user!, :except => :index
 
   def index
     @paginated_replies = paginated_replies

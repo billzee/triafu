@@ -1,8 +1,8 @@
-<div class="col-2">
+<div class="hidden-md-down col-2 pt-3">
   <ul class="list-unstyled">
     <li class="mb-3">
       <h3>
-        <%= link_to "Informações", edit_user_registration_path %>
+        <%= link_to "Perfil", edit_user_registration_path %>
       </h3>
     </li>
     <li>
@@ -11,4 +11,20 @@
       </h3>
     </li>
   </ul>
+</div>
+
+<div class="hidden-sm-up col">
+  <ul class="list-unstyled list-inline">
+    <li class="list-inline-item">
+      <h3>
+        <%= link_to "Perfil", edit_user_registration_path %>
+      </h3>
+    </li>
+    <li class="list-inline-item">
+      <h3>
+        <%= link_to "Senha", edit_user_section_path(:password) %>
+      </h3>
+    </li>
+  </ul>
+  <hr/>
 </div>

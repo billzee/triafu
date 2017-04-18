@@ -14,27 +14,39 @@
 
   <body>
 
-    <% if alert || notice %>
-      <div class="row communications">
-        <div class="col text-center">
+    <%= render "layouts/header" %>
+
+    <div class="container">
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-sm">
+
+          <% if devise_error_messages? %>
+            <div class="alert alert-danger" role="alert">
+              <%= devise_error_messages! %>
+            </div>
+          <% end %>
+
           <% if alert %>
-            <div class="alert alert-danger mb-0 p-1">
+            <div class="alert alert-danger" role="alert">
               <%= alert %>
             </div>
           <% end %>
 
           <% if notice %>
-            <div class="alert alert-info mb-0 p-1">
+            <div class="alert alert-info" role="alert">
               <%= notice %>
             </div>
           <% end %>
+
         </div>
       </div>
-    <% end %>
 
-    <%= render "layouts/header" %>
+      <div class="row justify-content-center">
+        <%= yield %>
+      </div>
 
-    <%= yield %>
+    </div>
 
     <%= render "modals/login" %>
     <%= render "modals/signup" %>
