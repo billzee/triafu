@@ -5,7 +5,7 @@ pt-BR:
         current_password: Senha atual
         email: Email
         password: Senha
-        password_confirmation: Confirme sua senha
+        password_confirmation: Confirmação da senha
         remember_me: Lembre-se de mim
         reset_password_token: Resetar token de senha
         unlock_token: Token de desbloqueio
@@ -110,6 +110,7 @@ pt-BR:
       unlocked: A sua conta foi desbloqueada com sucesso. Você está autenticado.
   errors:
     messages:
+      confirmation: não é igual a %{attribute}
       already_confirmed: já foi confirmado
       confirmation_period_expired: "É necessário ser confirmado dentro do período %{period}, por favor requisite um novo usuário."
       expired: expirou, por favor solicite uma nova

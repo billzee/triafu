@@ -55,14 +55,18 @@ export default class PostSection extends Component {
       <form onSubmit={this.publish} method="post">
         <div className="modal-body">
           <div className="row">
-            <div width="135px" height="260px" className="rounded dropzone new_media" id="new_media"></div>
 
-            <div className="col">
+            <div className="col-12">
+              <div className="dropzone new_media" id="new_media" />
+            </div>
+
+            <div className="col-12">
               <small className="font-weight-bold">Pense em um título massa para o seu post!</small>
               <div className="form-group">
-                <TextArea value={this.state.title}
+                <input value={this.state.title}
                 onChange={helper.handleChange.bind(this, 'title')}
-                placeholder="Título" rows="6"/>
+                placeholder="Título"
+                className="form-control"></input>
               </div>
 
               <small className="font-weight-bold">URL do autor original (se houver)</small>
@@ -73,6 +77,7 @@ export default class PostSection extends Component {
                 className="form-control"></input>
               </div>
             </div>
+
           </div>
         </div>
 
