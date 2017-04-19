@@ -1,6 +1,6 @@
 <div class="row header bg-inverse no-gutters">
   <%= link_to root_path, class: "logo" do %>
-    <%= image_tag "triafu.svg", height: 32%>
+    <%= image_tag "triafu3.svg", height: 32%>
   <% end %>
 
   <div class="col">
@@ -53,7 +53,7 @@
         <i class="fa fa-user-circle fa-2x"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-left mr-2" aria-labelledby="dropdown02">
-        <div class="dropdown-header"><%= current_user.username %></div>
+        <div class="dropdown-header text-center"><%= current_user.username %></div>
         <div class="dropdown-divider"></div>
         <%= link_to('Editar perfil', edit_user_registration_path, class: "dropdown-item") %>
         <%= link_to('Sair', destroy_user_session_path, :method => :delete, class: "dropdown-item") %>

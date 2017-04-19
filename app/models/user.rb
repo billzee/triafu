@@ -4,22 +4,24 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable
 
+  before_update :username_is_being_changed
+
   validates :full_name, presence: true, length: { :minimum => 4, :maximum => 32 }
   validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 16 }
+
+  validate :username_cannot_be_changed_again
 
   has_many :comments
   has_many :replies
   has_many :posts
 
   def generate_username!
-    p "generating username"
     username = full_name.delete(' ')[0..14]
 
     self.username = username.downcase
   end
 
   def generate_secure_username!
-    p "generating secure username"
     username = full_name.delete(' ')[0..14]
     random_number = SecureRandom.random_number(100).to_s
     username = username[0..11] + random_number
@@ -28,7 +30,6 @@ class User < ApplicationRecord
   end
 
   def generate_generic_username!
-    p "generating generic username"
     username = SecureRandom.hex(4)
 
     self.username = username.downcase
@@ -36,12 +37,16 @@ class User < ApplicationRecord
 
   private
 
-  def self.valid_attribute?(attr, value)
-    mock = self.new(attr => value)
-    unless mock.valid?
-      return mock.errors.has_key?(attr)
+  def username_cannot_be_changed_again
+    if username_changed && username != username_was
+      errors.add(:username, "já foi alterado uma vez e não pode ser alterado novamente")
     end
-    true
+  end
+
+  def username_is_being_changed
+    if username != username_was
+      self.username_changed = true
+    end
   end
 
   protected

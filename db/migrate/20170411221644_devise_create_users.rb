@@ -5,8 +5,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
+      ## Triafu's fields
       t.string :username
       t.string :full_name
+      t.boolean :username_changed, default: false
 
       ## Recoverable
       t.string   :reset_password_token
