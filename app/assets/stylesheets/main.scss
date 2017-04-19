@@ -3,10 +3,11 @@
 @import "variables";
 
 * {
-  font-family: 'Droid Sans', sans-serif;
+  font-family: "Droid Sans", "Helvetica", sans-serif;
   font-style: normal;
   letter-spacing: normal;
   box-sizing: border-box;
+  text-rendering: optimizelegibility;
 }
 
 html, body {
@@ -64,6 +65,13 @@ h5 {
 
 .container {
   padding-top: 5em;
+}
+
+.communications {
+  height: 2em;
+  .alert {
+    border-radius: 0;
+  }
 }
 
 .panel-container {
