@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import PostsApi from '../api/PostsApi';
 import helper from  '../components/Helper';
-import TextArea from  '../components/TextArea';
 
 export default class PostSection extends Component {
   constructor() {
@@ -48,9 +47,10 @@ export default class PostSection extends Component {
       let res = await PostsApi._create(this.state);
       let resJson = await res.json();
 
-      window.location = "/posts/" + resJson;
+      console.log(resJson);
+
+      // window.location = "/posts/" + resJson;
     } catch(error){
-      window.location.reload();
       console.log(error);
     }
   }
@@ -66,7 +66,7 @@ export default class PostSection extends Component {
             </div>
 
             <div className="col-sm-12 col-md-10 offset-md-1">
-              <small className="font-weight-bold">Pense em um título massa para o seu post:</small>
+              <small className="font-weight-bold">Crie um título massa para o seu post:</small>
               <div className="form-group">
                 <input value={this.state.title}
                 onChange={helper.handleChange.bind(this, 'title')}
@@ -74,7 +74,7 @@ export default class PostSection extends Component {
                 className="form-control"></input>
               </div>
 
-              <small className="font-weight-bold">URL do autor original (se houver)</small>
+              <small className="font-weight-bold">URL do autor original (se existir)</small>
               <div className="form-group">
                 <input value={this.state.original}
                 onChange={helper.handleChange.bind(this, 'original')}

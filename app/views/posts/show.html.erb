@@ -1,4 +1,4 @@
-<div class="row panel-container">
-  <%= react_component("PostSection", props: { postId: @post.id }, html_options: {class: 'col posts'}) %>
-  <%= react_component("CommentSection", props: { postId: @post.id, postAuthor: @post.user_id }, html_options: {class: 'col-3 bgm-gray'}) %>
+<div class="col posts">
+  <%= react_component("PostSection", props: { postId: @post.id }, prerender: true) %>
 </div>
+<%= react_component("CommentSection", props: { postId: @post.id, postAuthor: @post.user_id }, html_options: {class: "col-xl-3 col-lg-4 bgm-gray"}) %>

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  
+
   before_action :authenticate_user!, :except => [:show, :index]
 
   def index
@@ -15,15 +15,24 @@ class PostsController < ApplicationController
   end
 
   def create
-    if @@media.save
-      post = Post.new post_params
-      post.media = @@media
-      if post.save
-        respond_to do |format|
-          format.html {redirect_to post}
-          format.json {render json: post.id, status: :ok}
+    @post = Post.new post_params
+
+    unless defined?(@@media).nil?
+      if @media.save
+        @post.media = @@media
+        if @post.save
+          respond_to do |format|
+            format.html {redirect_to @post}
+            format.json {render json: @post.id, status: :ok}
+          end
+        else
+          render :json => { :errors => @post.errors }
         end
+      else
+        render :json => { :errors => @media.errors }
       end
+    else
+      render :json => { :errors => {media: "não pode ficar em branco"} }
     end
   end
 

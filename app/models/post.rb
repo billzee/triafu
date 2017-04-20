@@ -1,10 +1,12 @@
 class Post < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
+  
   validates_presence_of :title
+  validates_presence_of :media
 
   belongs_to :category
   belongs_to :user
-  
+
   has_many :comments
   has_one :media
 
