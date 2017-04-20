@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
 
   as :user do
-    get 'users/edit/:section', to: 'users/registrations#edit', as: :edit_user_section
+    get 'users/edit/password', to: 'users/registrations#edit_password', as: :edit_user_registration_password
   end
 
   concern :paginatable do

@@ -42,12 +42,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    p resource.errors
-    if params[:section] == "password"
-      render :edit_password
-    else
-      render :edit
-    end
+  end
+
+  def edit_password
+    @user = current_user
   end
 
   # PUT /resource
