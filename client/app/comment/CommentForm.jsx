@@ -3,13 +3,14 @@ import pubsub from 'pubsub-js'
 
 import helper from '../components/Helper'
 import TextAreaAutosize from '../components/TextAreaAutosize'
+import ErrorMessage from '../components/ErrorMessage'
 
 import CommentsApi from '../api/CommentsApi';
 
 export default class CommentForm extends Component {
   constructor() {
     super();
-    this.state = {text: '', errors: null, authError: null};
+    this.state = {text: '', errors: {}};
     this.comment = this.comment.bind(this);
   }
 
@@ -22,9 +23,8 @@ export default class CommentForm extends Component {
 
       console.log(resJson);
 
-      if(resJson.errors || resJson.error){
+      if(resJson.errors){
         this.setState({errors: resJson.errors});
-        this.setState({authError: resJson.error});
       }else {
         this.setState({text: ''});
         pubsub.publish('submitted-comment', resJson);
@@ -41,7 +41,7 @@ export default class CommentForm extends Component {
         <div className="col p-2 pt-0">
           <form onSubmit={this.comment} method="post" className="form">
 
-            <div className={"input-group " + (this.state.errors || this.state.authError ? "has-danger" : "")}>
+            <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
               <span className="input-group-btn">
                 <button type="button" className="btn btn-sm btn-secondary">
                   <i className="fa fa-smile-o"/>
@@ -59,8 +59,7 @@ export default class CommentForm extends Component {
               </span>
             </div>
 
-            <small className="form-control-feedback text-danger">{this.state.errors ? this.state.errors.text[0] : null}</small>
-            <small className="form-control-feedback text-danger">{this.state.authError ? this.state.authError : null}</small>
+            <ErrorMessage message={this.state.errors.text} />
 
           </form>
         </div>

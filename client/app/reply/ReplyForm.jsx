@@ -4,12 +4,14 @@ import helper from '../components/Helper'
 import pubsub from 'pubsub-js'
 
 import TextAreaAutosize from '../components/TextAreaAutosize'
+import ErrorMessage from '../components/ErrorMessage'
+
 import RepliesApi from '../api/RepliesApi';
 
 export default class ReplyForm extends Component {
   constructor(){
     super();
-    this.state = {text: ''};
+    this.state = {text: '', errors: {}};
     this.reply = this.reply.bind(this);
   }
 
@@ -23,6 +25,7 @@ export default class ReplyForm extends Component {
       if(resJson.errors){
         this.setState({errors: resJson.errors});
       }else {
+        console.log('teste');
         this.setState({text: ''});
         pubsub.publish('submitted-reply', resJson);
       }
@@ -36,7 +39,7 @@ export default class ReplyForm extends Component {
     return (
       <form onSubmit={this.reply} method="post">
 
-        <div className={"input-group " + (this.state.errors ? "has-danger" : "")}>
+        <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
           <span className="input-group-btn">
             <button type="button" className="btn btn-sm btn-secondary">
               <i className="fa fa-smile-o"/>
@@ -54,7 +57,7 @@ export default class ReplyForm extends Component {
           </span>
         </div>
 
-        <small className="form-control-feedback text-danger">{this.state.errors ? this.state.errors.text[0] : null}</small>
+        <ErrorMessage message={this.state.errors.text} />
 
       </form>
     );

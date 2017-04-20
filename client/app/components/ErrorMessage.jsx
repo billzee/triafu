@@ -7,9 +7,7 @@ export default class ErrorMessage extends Component {
 
   render() {
     return (
-      <box>
-        <small className="form-control-feedback text-danger">{this.state.errors ? this.state.errors.text[0] : null}</small>
-      </box>
+      <small className="text-danger">{this.props.message}</small>
     );
   }
 }

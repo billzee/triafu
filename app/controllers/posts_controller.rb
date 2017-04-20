@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     @post = Post.new post_params
 
     unless defined?(@@media).nil?
-      if @media.save
+      if @@media.save
         @post.media = @@media
         if @post.save
           respond_to do |format|

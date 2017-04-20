@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import PostsApi from '../api/PostsApi';
 import helper from  '../components/Helper';
 
+import ErrorMessage from  '../components/ErrorMessage';
+
 export default class PostSection extends Component {
   constructor() {
     super();
-    this.state = {title: '', original: ''};
+    this.state = {title: '', original: '', errors: {}};
     this.publish = this.publish.bind(this);
     Dropzone.autoDiscover = false;
   }
@@ -49,6 +51,10 @@ export default class PostSection extends Component {
 
       console.log(resJson);
 
+      if(resJson.errors){
+        this.setState({errors: resJson.errors});
+      }
+
       // window.location = "/posts/" + resJson;
     } catch(error){
       console.log(error);
@@ -62,24 +68,27 @@ export default class PostSection extends Component {
           <div className="row">
 
             <div className="col-sm-12 col-md-10 offset-md-1 mb-4">
-              <div className="dropzone new_media" id="new_media" />
+              <div className={"dropzone new_media " + (this.state.errors.hasOwnProperty('media') ? "has-danger" : "")} id="new_media" />
+              <ErrorMessage message={this.state.errors.media} />
             </div>
 
             <div className="col-sm-12 col-md-10 offset-md-1">
               <small className="font-weight-bold">Crie um título massa para o seu post:</small>
-              <div className="form-group">
+              <div className={"form-group " + (this.state.errors.hasOwnProperty('title') ? "has-danger" : "")}>
                 <input value={this.state.title}
                 onChange={helper.handleChange.bind(this, 'title')}
                 placeholder="Título"
                 className="form-control"></input>
+                <ErrorMessage message={this.state.errors.title} />
               </div>
 
               <small className="font-weight-bold">URL do autor original (se existir)</small>
-              <div className="form-group">
+              <div className={"form-group " + (this.state.errors.hasOwnProperty('original') ? "has-danger" : "")}>
                 <input value={this.state.original}
                 onChange={helper.handleChange.bind(this, 'original')}
                 placeholder="http://"
                 className="form-control"></input>
+                <ErrorMessage message={this.state.errors.original} />
               </div>
             </div>
 
