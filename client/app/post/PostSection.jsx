@@ -94,8 +94,8 @@ export default class PostSection extends Component {
           (
             <div className="row justify-content-center pb-5">
               <div className="col w-500 p-0 text-center">
-                <button className="btn btn-primary" onClick={(e) => this.paginatePosts(e)}>
-                  Ver mais
+                <button className="btn btn-block btn-primary" onClick={(e) => this.paginatePosts(e)}>
+                  Carregar mais publicações
                 </button>
               </div>
               <div className="col w-150 p-0 ml-3"></div>

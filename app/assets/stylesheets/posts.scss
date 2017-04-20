@@ -49,18 +49,18 @@
 }
 
 .new_media.dropzone {
-
-  border: 0.4em dashed $purple;
+  height: 200px;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  border: 2px dashed $dark-gray;
   .dz-message * {
-    font-size: 14px;
     font-weight: bold;
     color: $purple;
   }
 
   .dz-preview {
-    height: 140px;
-    width: 120px;
-    margin: 0 !important;
+    margin-top: 30px;
     .dz-image {
       // width: 200px;
       // height: 200px;

@@ -13,6 +13,11 @@ export default class PostSection extends Component {
   }
 
   componentDidMount(){
+    var dropzoneDescription = '<i class="fa fa-file-image-o fa-4x"></i><br/>'+
+    '<button type="button" class="btn btn-success text-white mt-3 mb-2">imagem ou vídeo</button><br/>'+
+    '<small>.jpg .png .gif</small><br/>'+
+    '<small>.mpg .mp4 .avi</small>'
+
   	var dropzone = new Dropzone
   	(
   		"#new_media",
@@ -22,12 +27,12 @@ export default class PostSection extends Component {
   				'X-CSRF-Token': ReactOnRails.authenticityToken()
   			},
 
-  			dictDefaultMessage: "Clique ou arraste <br/> (.jpg .gif .png)",
+  			dictDefaultMessage: dropzoneDescription,
   			maxFilesize: 1,
   			paramName: "media[image]",
   			maxFiles: 1,
   			addRemoveLinks: true,
-  			dictRemoveFile: 'Remover',
+  			dictRemoveFile: 'Escolher outra',
   			clickable: true,
   			method: 'post',
   		  url: '/post/upload_media',
@@ -56,12 +61,12 @@ export default class PostSection extends Component {
         <div className="modal-body">
           <div className="row">
 
-            <div className="col-12">
+            <div className="col-sm-12 col-md-10 offset-md-1 mb-4">
               <div className="dropzone new_media" id="new_media" />
             </div>
 
-            <div className="col-12">
-              <small className="font-weight-bold">Pense em um título massa para o seu post!</small>
+            <div className="col-sm-12 col-md-10 offset-md-1">
+              <small className="font-weight-bold">Pense em um título massa para o seu post:</small>
               <div className="form-group">
                 <input value={this.state.title}
                 onChange={helper.handleChange.bind(this, 'title')}
