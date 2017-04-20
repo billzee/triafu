@@ -57,16 +57,14 @@ export default class CommentSection extends Component {
   }
 
   componentWillMount(){
-    pubsub
-    .subscribe('show-comments-for-post', (msg, data)=>{
+    pubsub.subscribe('show-comments-for-post', (msg, data)=>{
       this.setState({postId: data});
       this.getComments();
     });
   }
 
   componentDidMount(){
-    pubsub
-    .subscribe('submitted-comment', (msg, data)=>{
+    pubsub.subscribe('submitted-comment', (msg, data)=>{
       this.setState({
         comments: data.comments,
         lastPage: data.lastPage,

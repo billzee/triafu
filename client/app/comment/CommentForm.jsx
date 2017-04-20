@@ -24,6 +24,7 @@ export default class CommentForm extends Component {
       console.log(resJson);
 
       if(resJson.errors){
+        helper.authErrorDispatcher(resJson.errors);
         this.setState({errors: resJson.errors});
       }else {
         this.setState({text: ''});

@@ -1,4 +1,4 @@
-<div class="modal" id="m_login" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal" id="m_login" ref="m_login" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
@@ -10,6 +10,8 @@
       </div>
 
       <div class="modal-body">
+        <%= react_component("Login") %>
+
         <p class="text-muted text-center">Usando uma rede social</p>
 
         <ul class="list-unstyled list-inline text-center pb-3">

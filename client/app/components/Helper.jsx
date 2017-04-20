@@ -1,3 +1,5 @@
+import pubsub from 'pubsub-js'
+
 var Helper = {
 
   commentPhotoSize: "48px",
@@ -19,6 +21,13 @@ var Helper = {
       }
     }
     return false;
+  },
+
+  authErrorDispatcher: function(errors) {
+    if(errors.auth){
+      pubsub.publish('auth-error', errors.auth);
+      $('#m_login').modal('show');
+    }
   }
 };
 

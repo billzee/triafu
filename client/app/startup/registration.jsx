@@ -6,6 +6,8 @@ import PostBox from '../post/PostBox';
 
 import CommentSection from '../comment/CommentSection';
 
+import Login from '../sessions/Login';
+
 var moment = require('moment');
 moment.locale('pt-BR');
 
@@ -13,5 +15,6 @@ ReactOnRails.register({
   PostSection,
   PostForm,
   PostBox,
-  CommentSection
+  CommentSection,
+  Login
 });
