@@ -53,9 +53,9 @@
   padding-top: 0;
   padding-bottom: 0;
   text-align: center;
-  border: 3px dashed $dark-gray;
+  border: 4px dashed $dark-gray;
   &.has-danger {
-    border: 3px dashed red;
+    border: 4px dashed red;
   }
   .dz-message * {
     font-weight: bold;
@@ -64,16 +64,8 @@
 
   .dz-preview {
     margin-top: 30px;
-    .dz-image {
-      // width: 200px;
-      // height: 200px;
-    }
     .dz-details {
-      .dz-filename {
-        span {
-          display: none;
-        }
-      }
+      display: none;
     }
   }
 }

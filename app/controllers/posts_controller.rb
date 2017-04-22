@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @paginated_posts = paginated_posts
+    @@media = nil
   end
 
   def show
@@ -14,10 +15,15 @@ class PostsController < ApplicationController
     @@media = Media.new media_params
   end
 
+  def remove_media
+    p "removendo media"
+    @@media = nil
+  end
+
   def create
     @post = Post.new post_params
 
-    unless defined?(@@media).nil?
+    if @@media
       if @@media.save
         @post.media = @@media
         if @post.save

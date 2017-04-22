@@ -24,7 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
-  match 'post/upload_media' => 'posts#upload_media', :via => :post
+  post 'post/upload_media' => 'posts#upload_media'
+  get 'post/remove_media' => 'posts#remove_media'
 
   root :to => "posts#index"
 end

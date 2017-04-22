@@ -11,6 +11,10 @@ var PostsApi = {
 
   _create: function(post) {
     return Api('/posts', {method: 'POST', body: JSON.stringify(post)});
+  },
+
+  _remove_media: function(post) {
+    return Api('/post/remove_media', {method: 'GET'});
   }
 };
 

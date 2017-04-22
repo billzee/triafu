@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import PostsApi from '../api/PostsApi';
 import helper from  '../components/Helper';
 
+import PostDropzone from  './PostDropzone';
+
 import ErrorMessage from  '../components/ErrorMessage';
 
 export default class PostSection extends Component {
@@ -10,36 +12,6 @@ export default class PostSection extends Component {
     super();
     this.state = {title: '', original: '', errors: {}};
     this.publish = this.publish.bind(this);
-    Dropzone.autoDiscover = false;
-  }
-
-  componentDidMount(){
-    var dropzoneDescription = '<i class="fa fa-file-image-o fa-4x"></i><br/>'+
-    '<button type="button" class="btn btn-success text-white mt-3 mb-2">imagem ou vídeo</button><br/>'+
-    '<small>.jpg .png .gif</small><br/>'+
-    '<small>.mpg .mp4 .avi</small>'
-
-  	var dropzone = new Dropzone
-  	(
-  		"#new_media",
-  		{
-  			headers:
-  			{
-  				'X-CSRF-Token': ReactOnRails.authenticityToken()
-  			},
-
-  			dictDefaultMessage: dropzoneDescription,
-  			maxFilesize: 1,
-  			paramName: "media[image]",
-  			maxFiles: 1,
-  			addRemoveLinks: true,
-  			dictRemoveFile: 'Escolher outra',
-  			clickable: true,
-  			method: 'post',
-  		  url: '/post/upload_media',
-  			uploadMultiple: false
-  		}
-  	);
   }
 
   async publish(e){
@@ -68,7 +40,7 @@ export default class PostSection extends Component {
           <div className="row">
 
             <div className="col-sm-12 col-md-10 offset-md-1 mb-4">
-              <div className={"dropzone new_media " + (this.state.errors.hasOwnProperty('media') ? "has-danger" : "")} id="new_media" />
+              <PostDropzone className={"dropzone new_media " + (this.state.errors.hasOwnProperty('media') ? "has-danger" : "")} id="new_media" />
               <ErrorMessage message={this.state.errors.media} />
             </div>
 
