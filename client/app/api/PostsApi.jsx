@@ -13,8 +13,8 @@ var PostsApi = {
     return Api('/posts', {method: 'POST', body: JSON.stringify(post)});
   },
 
-  _vote: function(postId) {
-    return Api('/posts/' + postId + '/vote', {method: 'POST'});
+  _vote: function(postId, vote) {
+    return Api('/posts/' + postId + '/vote', {method: 'POST', body: JSON.stringify({post_vote: vote})});
   },
 
   _remove_media: function() {

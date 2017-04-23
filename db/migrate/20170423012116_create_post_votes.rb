@@ -4,7 +4,7 @@ class CreatePostVotes < ActiveRecord::Migration[5.0]
       t.integer :post_id
       t.integer :user_id
 
-      t.integer :vote_type
+      t.integer :vote
 
       t.timestamps
     end

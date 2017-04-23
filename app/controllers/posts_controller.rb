@@ -42,8 +42,12 @@ class PostsController < ApplicationController
   end
 
   def vote
-    post = Post.find(params[:post_id])
-    PostVote.create(user_id: current_user.id, post_id: params[:post_id], vote_type: :funny)
+    @post_vote = PostVote.new vote_params
+    if @post_vote.save
+      render :json => { :vote => @post_vote.vote }
+    else
+      render :json => { :errors => @post_vote.errors }
+    end
   end
 
   private
@@ -52,6 +56,10 @@ class PostsController < ApplicationController
     posts = Post.all
     page = params[:page] unless params[:page] == nil
     posts = posts.page(page)
+  end
+
+  def vote_params
+    params.require(:post_vote).permit(:vote).merge(user_id: current_user.id, post_id: params[:post_id])
   end
 
   def post_params

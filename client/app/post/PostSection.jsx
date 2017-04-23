@@ -7,12 +7,19 @@ import PostBox from './PostBox';
 export default class PostSection extends Component {
   constructor(props) {
     super(props);
-    this.state = {posts: [], postId: props.postId, page: '', lastPage: true};
+    this.state = {
+      posts: [],
+      postId: props.postId,
+      currentPost: props.postId,
+      page: '',
+      lastPage: true
+    };
     this._handleEnter = this._handleEnter.bind(this);
   }
 
   _handleEnter(postId){
     pubsub.publish('show-comments-for-post', postId);
+    this.setState({currentPost: postId});
   }
 
   async componentWillMount(){
@@ -84,7 +91,7 @@ export default class PostSection extends Component {
                 bottomOffset="48%"
                 onEnter={()=> {this._handleEnter(post.id)}}>
                 <div>
-                  <PostBox post={post}/>
+                  <PostBox post={post} currentPost={this.state.currentPost} />
                 </div>
               </Waypoint>
             );
