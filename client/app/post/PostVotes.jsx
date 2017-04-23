@@ -8,11 +8,16 @@ export default class PostBox extends Component {
   constructor(props) {
     super();
     this.state = {
-      post: props.post,
       funnyCount: props.post.funnyCount,
       smartCount: props.post.smartCount,
       negativeCount: props.post.negativeCount
     };
+  }
+
+  componentDidMount(){
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip({delay: {show: 800}})
+    })
   }
 
   async vote(e, vote){
@@ -21,7 +26,7 @@ export default class PostBox extends Component {
     let postVote = {vote: vote};
 
     try{
-      let res = await PostsApi._vote(this.state.post.id, postVote);
+      let res = await PostsApi._vote(this.props.post.id, postVote);
       let resJson = await res.json();
 
       console.log(resJson);
@@ -51,19 +56,22 @@ export default class PostBox extends Component {
         <div className="col-8">
           <ul className="list-unstyled bgm-gray p-3 rounded">
             <li className="text-center">
-              <a onClick={(e) => this.vote(e, 'funny')} href="#">
-                <img src="/assets/funny.svg" width="35px" />
-              </a>
+              <button type="button" className={"btn btn-vote " + (this.props.post.userVote === 'funny' ? "voted" : "")}
+              onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="left" data-title="Engraçado">
+                <img src="/assets/funny.svg" width="35px" height="35px" />
+              </button>
             </li>
             <li className="mt-3 text-center">
-              <a onClick={(e) => this.vote(e, 'smart')} href="#">
-                <img src="/assets/brain.svg" width="35px"/>
-              </a>
+              <button type="button" className={"btn btn-vote " + (this.props.post.userVote === 'smart' ? "voted" : "")}
+              onClick={(e) => this.vote(e, 'smart')} data-toggle="tooltip" data-placement="left" data-title="Interessante">
+                <img src="/assets/brain.svg" width="35px" height="35px"/>
+              </button>
             </li>
-            <li className="mt-4 text-center">
-              <a onClick={(e) => this.vote(e, 'negative')} href="#">
-                <img src="/assets/downvote.svg" width="30px" />
-              </a>
+            <li className="mt-3 text-center">
+              <button type="button" className={"btn btn-vote " + (this.props.post.userVote === 'negative' ? "voted" : "")}
+              onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="left" data-title="Negativo">
+                <img src="/assets/downvote.svg" width="35px" height="35px" />
+              </button>
             </li>
           </ul>
         </div>

@@ -14,18 +14,18 @@ class Post < ApplicationRecord
   paginates_per 2
 
   def funny_count
-    self.post_votes.where(vote: :funny).size
+    post_votes.where(vote: :funny).size
   end
 
   def smart_count
-    self.post_votes.where(vote: :smart).size
+    post_votes.where(vote: :smart).size
   end
 
   def negative_count
-    self.post_votes.where(vote: :negative).size
+    post_votes.where(vote: :negative).size
   end
 
-  def user_voted user_id
-    post_votes.where(user_id: user_id, post_id: id)
+  def user_vote user_id
+    post_votes.find_by(user_id: user_id).vote
   end
 end

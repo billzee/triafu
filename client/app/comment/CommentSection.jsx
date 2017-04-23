@@ -21,8 +21,6 @@ export default class CommentSection extends Component {
       let res = await CommentsApi._get(this.state.postId);
       let resJson = await res.json();
 
-      console.log(resJson);
-
       this.setState({
         comments: resJson.comments,
         totalCount: resJson.totalCount,
@@ -92,7 +90,7 @@ export default class CommentSection extends Component {
                         <li key={comment.id}>
                           <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment}
                           commentId={comment.id} postId={this.props.postId} postAuthor={this.state.postAuthor}/>
-                          
+
                           <ReplySection commentId={comment.id} replies={comment.replies} hasMoreReplies={comment.hasMoreReplies}/>
                           {
                             this.state.comments.length - 1 !== key ?

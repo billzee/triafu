@@ -6,6 +6,8 @@ json.posts @paginated_posts do |post|
   json.smart_count post.smart_count
   json.negative_count post.negative_count
 
+  json.user_vote post.user_vote current_user.id
+
   json.media post.media
   json.created_at post.created_at
 
