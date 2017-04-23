@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   shallow do
     resources :posts, concerns: :paginatable, only: [:index, :create, :show] do
-      # get :vote
+      post :vote
 
       resources :comments, concerns: :paginatable, only: [:index, :create] do
         resources :replies, concerns: :paginatable, only: [:index, :create]

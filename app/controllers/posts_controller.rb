@@ -16,7 +16,6 @@ class PostsController < ApplicationController
   end
 
   def remove_media
-    p "removendo media"
     @@media = nil
   end
 
@@ -44,8 +43,7 @@ class PostsController < ApplicationController
 
   def vote
     post = Post.find(params[:post_id])
-    post.vote params[:type]
-    redirect_to posts_path
+    PostVote.create(user_id: current_user.id, post_id: params[:post_id], vote_type: :funny)
   end
 
   private

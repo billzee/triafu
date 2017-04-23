@@ -1,5 +1,13 @@
 json.posts @paginated_posts do |post|
-  json.merge! post.attributes
+  json.id post.id
+  json.title post.title
+
+  json.funny_count post.funny_count
+  json.smart_count post.smart_count
+  json.negative_count post.negative_count
+
+  json.media post.media
+  json.created_at post.created_at
 
   json.media post.media
 end

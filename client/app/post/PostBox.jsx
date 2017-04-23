@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment'
-import CopyToClipboard from 'react-copy-to-clipboard';
 import pubsub from 'pubsub-js'
+
+import PostShareLinks from './PostShareLinks';
 
 import PostsApi from '../api/PostsApi';
 
 export default class PostBox extends Component {
   constructor(props) {
     super();
-    this.state = {post: props.post, postUrl: ''};
+    this.state = {post: props.post};
+
+    console.log(this.state);
   }
 
-  componentDidMount(){
-    let postUrl = window.location.host + '/posts/' + this.state.post.id;
-    this.setState({postUrl: postUrl});
+  async vote(e){
+    if(e) e.preventDefault();
+
+    try{
+      let res = await PostsApi._vote(this.state.post.id);
+      let resJson = await res.json();
+
+      console.log(resJson);
+
+    } catch(error){
+      console.log(error);
+    }
   }
 
   render(){
@@ -47,74 +59,43 @@ export default class PostBox extends Component {
                 }
               </h3>
             </div>
-            <div className="col-7 text-right">
-              <ul className="list-unstyled list-inline">
-                <li className="list-inline-item">
-                  <CopyToClipboard
-                    text={this.state.postUrl}
-                    onCopy={() => {
-                      let copyBtn = $('[data-toggle='+this.state.post.id+']');
-                      copyBtn.tooltip({trigger: 'manual'});
-                      copyBtn.tooltip('show');
-                      setTimeout(()=>{ copyBtn.tooltip('hide'); }, 3000);
-                    }}>
-                    <button className="btn btn-sm btn-success" data-toggle={this.state.post.id} data-placement="bottom" data-title="Copiado!">
-                      <i className="fa fa-clipboard fa-1x"></i>
-                      <span className="ml-1">Copiar Link</span>
-                    </button>
-                  </CopyToClipboard>
-                </li>
-                <li className="list-inline-item">
-                  <button className="btn btn-sm btn-facebook">
-                    <i className="fa fa-facebook-f fa-1x"></i>
-                    <span className="ml-1">Facebook</span>
-                  </button>
-                </li>
-                <li className="list-inline-item">
-                  <button className="btn btn-sm btn-twitter">
-                    <i className="fa fa-twitter fa-1x"></i>
-                    <span className="ml-1">Twitter</span>
-                  </button>
-                </li>
-              </ul>
-            </div>
+            <PostShareLinks post={this.state.post} />
           </div>
 
           <hr className="mt-2" />
         </div>
 
         <div className="col w-150 p-0 ml-3">
+          <div className="row no-gutters p-fixed">
+            <div className="col-8">
+              <ul className="list-unstyled bgm-gray p-3 rounded">
+                <li className="text-center">
+                  <a onClick={(e) => this.vote(e)} href="#"><img src="/assets/funny.svg" width="35px" /></a>
+                </li>
+                <li className="mt-3 text-center">
+                  <a href="#"><img src="/assets/brain.svg" width="35px"/></a>
+                </li>
+                <li className="mt-4 text-center">
+                  <a href="#"><img src="/assets/downvote.svg" width="35px" /></a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-4">
+              <ul className="list-unstyled p-3">
+                <li className="h-35">
+                  {this.state.post.funnyCount}
+                </li>
+                <li className="mt-3 h-35">
+                  {this.state.post.smartCount}
+                </li>
+                <li className="mt-3 h-35">
+                  {this.state.post.negativeCount}
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
-
-// <div className="row no-gutters p-fixed">
-// <div className="col-8">
-// <ul className="list-unstyled bgm-gray p-3 rounded">
-// <li className="text-center">
-// <a href="#"><img src="/assets/funny.svg" width="35px" /></a>
-// </li>
-// <li className="mt-3 text-center">
-// <a href="#"><img src="/assets/brain.svg" width="35px"/></a>
-// </li>
-// <li className="mt-4 text-center">
-// <a href="#"><img src="/assets/downvote.svg" width="35px" /></a>
-// </li>
-// </ul>
-// </div>
-// <div className="col-4">
-// <ul className="list-unstyled p-3">
-// <li className="h-35">
-// 33
-// </li>
-// <li className="mt-3 h-35">
-// 10
-// </li>
-// <li className="mt-3 h-35">
-// 2
-// </li>
-// </ul>
-// </div>
-// </div>
