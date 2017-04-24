@@ -46,6 +46,9 @@ class PostsController < ApplicationController
 
     if post_vote
       post_vote.vote = vote_params[:vote]
+      if !post_vote.vote_changed?
+        render :json => {} and return
+      end
     else
       post_vote = PostVote.new vote_params
     end

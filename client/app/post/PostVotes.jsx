@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Moment from 'react-moment'
 import pubsub from 'pubsub-js'
+import helper from '../components/Helper'
 
 import PostsApi from '../api/PostsApi';
 
@@ -17,7 +17,7 @@ export default class PostBox extends Component {
 
   componentDidMount(){
     $(function () {
-      $('[data-toggle="tooltip"]').tooltip({delay: {show: 800}})
+      $('[data-toggle="tooltip"]').tooltip({delay: {show: 1600}})
     })
   }
 
@@ -30,33 +30,40 @@ export default class PostBox extends Component {
       let res = await PostsApi._vote(this.props.post.id, postVote);
       let resJson = await res.json();
 
-      if(resJson.vote !== this.state.userVote){
-        switch(this.state.userVote) {
-        case 'funny':
-            this.setState({funnyCount: this.state.funnyCount - 1});
-            break;
-        case 'smart':
-            this.setState({smartCount: this.state.smartCount - 1});
-            break;
-        case 'negative':
-            this.setState({negativeCount: this.state.negativeCount - 1});
-            break;
-        }
-      }
+      console.log(resJson);
 
-      if(resJson.vote){
-        this.setState({userVote: resJson.vote});
+      if(resJson.errors){
+        helper.authErrorDispatcher(resJson.errors);
+      } else{
 
-        switch(resJson.vote) {
-        case 'funny':
-            this.setState({funnyCount: this.state.funnyCount + 1});
-            break;
-        case 'smart':
-            this.setState({smartCount: this.state.smartCount + 1});
-            break;
-        case 'negative':
-            this.setState({negativeCount: this.state.negativeCount + 1});
-            break;
+        if(resJson.vote){
+          if(resJson.vote !== this.state.userVote){
+            switch(this.state.userVote) {
+            case 'funny':
+                this.setState({funnyCount: this.state.funnyCount - 1});
+                break;
+            case 'smart':
+                this.setState({smartCount: this.state.smartCount - 1});
+                break;
+            case 'negative':
+                this.setState({negativeCount: this.state.negativeCount - 1});
+                break;
+            }
+          }
+
+          this.setState({userVote: resJson.vote});
+
+          switch(resJson.vote) {
+          case 'funny':
+              this.setState({funnyCount: this.state.funnyCount + 1});
+              break;
+          case 'smart':
+              this.setState({smartCount: this.state.smartCount + 1});
+              break;
+          case 'negative':
+              this.setState({negativeCount: this.state.negativeCount + 1});
+              break;
+          }
         }
       }
 

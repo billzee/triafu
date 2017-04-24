@@ -26,6 +26,6 @@ class Post < ApplicationRecord
   end
 
   def user_vote user_id
-    post_votes.find_by(user_id: user_id).vote
+    post_votes.find_by(user_id: user_id) ? post_votes.find_by(user_id: user_id).vote : nil
   end
 end
