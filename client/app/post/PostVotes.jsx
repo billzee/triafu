@@ -8,6 +8,7 @@ export default class PostBox extends Component {
   constructor(props) {
     super();
     this.state = {
+      userVote: props.post.userVote,
       funnyCount: props.post.funnyCount,
       smartCount: props.post.smartCount,
       negativeCount: props.post.negativeCount
@@ -29,9 +30,23 @@ export default class PostBox extends Component {
       let res = await PostsApi._vote(this.props.post.id, postVote);
       let resJson = await res.json();
 
-      console.log(resJson);
+      if(resJson.vote !== this.state.userVote){
+        switch(this.state.userVote) {
+        case 'funny':
+            this.setState({funnyCount: this.state.funnyCount - 1});
+            break;
+        case 'smart':
+            this.setState({smartCount: this.state.smartCount - 1});
+            break;
+        case 'negative':
+            this.setState({negativeCount: this.state.negativeCount - 1});
+            break;
+        }
+      }
 
       if(resJson.vote){
+        this.setState({userVote: resJson.vote});
+
         switch(resJson.vote) {
         case 'funny':
             this.setState({funnyCount: this.state.funnyCount + 1});
@@ -56,22 +71,22 @@ export default class PostBox extends Component {
         <div className="col-8">
           <ul className="list-unstyled bgm-gray p-3 rounded">
             <li className="text-center">
-              <button type="button" className={"btn btn-vote " + (this.props.post.userVote === 'funny' ? "voted" : "")}
+              <a className={"vote-link " + (this.state.userVote === 'funny' ? "voted" : "")} href="#"
               onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="left" data-title="Engraçado">
                 <img src="/assets/funny.svg" width="35px" height="35px" />
-              </button>
+              </a>
             </li>
             <li className="mt-3 text-center">
-              <button type="button" className={"btn btn-vote " + (this.props.post.userVote === 'smart' ? "voted" : "")}
+              <a className={"vote-link " + (this.state.userVote === 'smart' ? "voted" : "")} href="#"
               onClick={(e) => this.vote(e, 'smart')} data-toggle="tooltip" data-placement="left" data-title="Interessante">
                 <img src="/assets/brain.svg" width="35px" height="35px"/>
-              </button>
+              </a>
             </li>
             <li className="mt-3 text-center">
-              <button type="button" className={"btn btn-vote " + (this.props.post.userVote === 'negative' ? "voted" : "")}
+              <a className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href="#"
               onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="left" data-title="Negativo">
                 <img src="/assets/downvote.svg" width="35px" height="35px" />
-              </button>
+              </a>
             </li>
           </ul>
         </div>

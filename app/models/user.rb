@@ -38,13 +38,13 @@ class User < ApplicationRecord
   private
 
   def username_cannot_be_changed_again
-    if username_changed && username != username_was
+    if username_changed && username_changed?
       errors.add(:username, "já foi alterado uma vez e não pode ser alterado novamente")
     end
   end
 
   def username_is_being_changed
-    if username != username_was
+    if username_changed?
       self.username_changed = true
     end
   end

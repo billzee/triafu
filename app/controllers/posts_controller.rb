@@ -42,11 +42,18 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @post_vote = PostVote.new vote_params
-    if @post_vote.save
-      render :json => { :vote => @post_vote.vote }
+    post_vote = PostVote.find_by(user_id: current_user.id, post_id: params[:post_id])
+
+    if post_vote
+      post_vote.vote = vote_params[:vote]
     else
-      render :json => { :errors => @post_vote.errors }
+      post_vote = PostVote.new vote_params
+    end
+
+    if post_vote.save
+      render :json => { :vote => post_vote.vote }
+    else
+      render :json => { :errors => post_vote.errors }
     end
   end
 
