@@ -54,7 +54,7 @@ export default class PostBox extends Component {
           <div className="row no-gutters mt-1">
             <div className="col">
               <small className="text-muted">
-                9986 pontos &bull; publicado <Moment fromNow>{this.state.post.created_at}</Moment>
+                {this.state.post.points || 0} {this.state.post.points === 1 ? "ponto" : "pontos"} &bull; publicado <Moment fromNow>{this.state.post.created_at}</Moment>
                 <span className="float-right">Compartilhar</span>
               </small>
             </div>

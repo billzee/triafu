@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 import helper from '../components/Helper'
 
-import PostsApi from '../api/PostsApi';
+import PostVotesApi from '../api/PostVotesApi';
 
 export default class PostBox extends Component {
   constructor(props) {
@@ -15,22 +15,46 @@ export default class PostBox extends Component {
     };
   }
 
-  componentDidMount(){
+  setupVote(vote){
+    this.setState({userVote: vote});
+
+    switch(vote) {
+    case 'funny':
+        this.setState({funnyCount: this.state.funnyCount + 1});
+        break;
+    case 'smart':
+        this.setState({smartCount: this.state.smartCount + 1});
+        break;
+    case 'negative':
+        this.setState({negativeCount: this.state.negativeCount + 1});
+        break;
+    }
+  }
+
+  async componentDidMount(){
     $(function () {
-      $('[data-toggle="tooltip"]').tooltip({delay: {show: 1600}})
-    })
+      $('[data-toggle="tooltip"]').tooltip({delay: {show: 1200}});
+    });
+
+    try{
+      let res = await PostVotesApi._index(this.props.post.id);
+      let resJson = await res.json();
+
+      if (resJson.vote) this.setupVote(resJson.vote);
+    } catch(error){
+      console.log(error);
+    }
   }
 
   async vote(e, vote){
     if(e) e.preventDefault();
+    if (vote === this.state.userVote) return;
 
     let postVote = {vote: vote};
 
     try{
-      let res = await PostsApi._vote(this.props.post.id, postVote);
+      let res = await PostVotesApi._create(this.props.post.id, postVote);
       let resJson = await res.json();
-
-      console.log(resJson);
 
       if(resJson.errors){
         helper.authErrorDispatcher(resJson.errors);
@@ -51,19 +75,7 @@ export default class PostBox extends Component {
             }
           }
 
-          this.setState({userVote: resJson.vote});
-
-          switch(resJson.vote) {
-          case 'funny':
-              this.setState({funnyCount: this.state.funnyCount + 1});
-              break;
-          case 'smart':
-              this.setState({smartCount: this.state.smartCount + 1});
-              break;
-          case 'negative':
-              this.setState({negativeCount: this.state.negativeCount + 1});
-              break;
-          }
+          this.setupVote(resJson.vote);
         }
       }
 

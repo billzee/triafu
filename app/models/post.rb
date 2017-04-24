@@ -13,6 +13,10 @@ class Post < ApplicationRecord
 
   paginates_per 2
 
+  def points
+    funny_count + smart_count - negative_count
+  end
+
   def funny_count
     post_votes.where(vote: :funny).size
   end
