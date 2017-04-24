@@ -74,9 +74,9 @@ export default class PostBox extends Component {
 
   render(){
     return (
-      <div className="row no-gutters p-fixed">
+      <div className="row no-gutters">
         <div className="col-8">
-          <ul className="list-unstyled bgm-gray p-3 rounded">
+          <ul className="list-unstyled mb-0 bgm-gray p-3 rounded">
             <li className="text-center">
               <a className={"vote-link " + (this.state.userVote === 'funny' ? "voted" : "")} href="#"
               onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="left" data-title="Engraçado">
@@ -98,14 +98,14 @@ export default class PostBox extends Component {
           </ul>
         </div>
         <div className="col-4">
-          <ul className="list-unstyled p-3">
-            <li className="h-35">
+          <ul className="list-unstyled mb-0 pl-3 pt-3 pb-3">
+            <li className="h-35 mt-2 text-success">
               {this.state.funnyCount}
             </li>
-            <li className="mt-3 h-35">
+            <li className="mt-3 h-35 text-success">
               {this.state.smartCount}
             </li>
-            <li className="mt-3 h-35">
+            <li className="mt-3 h-35 text-danger">
               {this.state.negativeCount}
             </li>
           </ul>

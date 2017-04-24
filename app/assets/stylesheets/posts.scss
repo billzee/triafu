@@ -14,11 +14,6 @@
   -ms-overflow-style: none;
 }
 
-.w-500{
-  width: 500px;
-  max-width: 500px;
-}
-
 .col-500{
   width: 500px !important;
   max-width: 500px !important;
@@ -31,12 +26,12 @@
 
 .p-fixed {
   position: fixed;
-  top: 15%;
+  top: 35%;
 }
 
-.w-150{
-  width: 150px !important;
-  max-width: 150px !important;
+.col-100{
+  width: 100px !important;
+  max-width: 100px !important;
 }
 
 .waypoint-anchor {
@@ -68,6 +63,10 @@
       display: none;
     }
   }
+}
+
+.h-35 {
+  height: 35px;
 }
 
 .vote-link {

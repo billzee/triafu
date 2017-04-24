@@ -46,7 +46,7 @@ export default class PostBox extends Component {
   render(){
     return (
       <div className="row justify-content-center mb-5 mt-4">
-        <div className="col w-500 p-0">
+        <div className="col-500 p-0">
           <h1>{this.state.post.title}</h1>
 
           <img src={this.state.post.media.image.url} className="post-image" />
@@ -80,7 +80,7 @@ export default class PostBox extends Component {
           <hr className="mt-2" />
         </div>
 
-        <div className="col w-150 p-0 ml-3">
+        <div className="col-100 p-0 ml-3 align-self-center">
           {
             this.state.post.id === this.props.currentPost ?
             (
