@@ -46,48 +46,45 @@ export default class PostBox extends Component {
   render(){
     return (
       <div className="row justify-content-center mb-5 mt-4">
-        <div className="col-500 p-0">
-          <h1>{this.state.post.title}</h1>
-
-          <img src={this.state.post.media.image.url} className="post-image" />
-
-          <div className="row no-gutters mt-1">
-            <div className="col">
-              <small className="text-muted">
-                {this.state.post.points || 0} {this.state.post.points === 1 ? "ponto" : "pontos"} &bull; publicado <Moment fromNow>{this.state.post.created_at}</Moment>
-                <span className="float-right">Compartilhar</span>
-              </small>
-            </div>
-          </div>
+        <div className="col-700">
+          <h1 className="col-550">{this.state.post.title}</h1>
 
           <div className="row no-gutters">
-            <div className="col">
-              <h3 className="mt-1">
-                {
-                  this.state.post.original ?
-                  (
-                    <a href={"//"+this.state.post.original} target="_blank">
-                      Link do autor original
-                    </a>
-                  )
-                  : null
-                }
-              </h3>
+            <div className="col-550 p-0">
+              <img src={this.state.post.media.image.url} className="post-image" />
             </div>
-            <PostShareLinks post={this.state.post} />
+
+            <div className="col-100 p-0 ml-3 align-self-center">
+              {
+                this.state.post.id === this.props.currentPost ?
+                (
+                  <PostVotes post={this.state.post}/>
+                )
+                : null
+              }
+            </div>
           </div>
 
-          <hr className="mt-2" />
-        </div>
+          <div className="col-550">
+            <div className="row">
+              <div className="col-6">
+                <small className="text-muted">
+                  {this.state.post.points || 0} {this.state.post.points === 1 ? "ponto" : "pontos"} <br/>
+                  publicado <Moment fromNow>{this.state.post.createdAt}</Moment>
+                </small>
+              </div>
+              <div className="col-6 mt-2">
+                <PostShareLinks post={this.state.post} />
+              </div>
+            </div>
 
-        <div className="col-100 p-0 ml-3 align-self-center">
-          {
-            this.state.post.id === this.props.currentPost ?
-            (
-              <PostVotes post={this.state.post}/>
-            )
-            : null
-          }
+            <h3 className="text-center">
+              { this.state.post.original ? (<a href={"//"+this.state.post.original} target="_blank">Link do autor original</a>) : null }
+            </h3>
+
+            <hr className="mt-2" />
+          </div>
+
         </div>
       </div>
     );

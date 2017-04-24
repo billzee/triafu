@@ -14,8 +14,7 @@ export default class PostShareLinks extends Component {
 
   render(){
     return (
-      <div className="col-7 text-right">
-        <ul className="list-unstyled list-inline">
+        <ul className="list-unstyled list-inline text-right mb-0">
           <li className="list-inline-item">
             <CopyToClipboard
               text={this.state.postUrl}
@@ -44,7 +43,6 @@ export default class PostShareLinks extends Component {
             </button>
           </li>
         </ul>
-      </div>
     );
   }
 }

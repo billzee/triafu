@@ -13,9 +13,8 @@ json.posts @paginated_posts do |post|
   end
 
   json.media post.media
+  
   json.created_at post.created_at
-
-  json.media post.media
 end
 
 json.last_page @paginated_posts.last_page?

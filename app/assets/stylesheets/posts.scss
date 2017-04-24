@@ -14,24 +14,29 @@
   -ms-overflow-style: none;
 }
 
-.col-500{
-  width: 500px !important;
-  max-width: 500px !important;
+.col-700{
+  width: 700px !important;
+  max-width: 700px !important;
+}
+
+.col-550{
+  width: 550px !important;
+  max-width: 550px !important;
+}
+
+.col-100{
+  width: 100px !important;
+  max-width: 100px !important;
 }
 
 .post-image {
-  width: 500px;
+  width: 550px;
   min-height: 350px;
 }
 
 .p-fixed {
   position: fixed;
   top: 35%;
-}
-
-.col-100{
-  width: 100px !important;
-  max-width: 100px !important;
 }
 
 .waypoint-anchor {
