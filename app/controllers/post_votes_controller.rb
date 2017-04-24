@@ -1,5 +1,6 @@
 class PostVotesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :user_logged_in?, only: :index
+  before_action :authenticate_user!, only: :create
 
   def index
     post_vote = PostVote.find_by(user_id: current_user.id, post_id: params[:post_id])
@@ -26,6 +27,10 @@ class PostVotesController < ApplicationController
   end
 
   private
+
+  def user_logged_in?
+    render :json => {} unless current_user
+  end
 
   def vote_params
     params.require(:post_vote).permit(:vote).merge(user_id: current_user.id, post_id: params[:post_id])

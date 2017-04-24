@@ -56,11 +56,15 @@ export default class PostBox extends Component {
       let res = await PostVotesApi._create(this.props.post.id, postVote);
       let resJson = await res.json();
 
+      console.log(resJson);
+
       if(resJson.errors){
         helper.authErrorDispatcher(resJson.errors);
       } else{
 
         if(resJson.vote){
+          this.setupVote(resJson.vote);
+
           if(resJson.vote !== this.state.userVote){
             switch(this.state.userVote) {
             case 'funny':
@@ -74,8 +78,6 @@ export default class PostBox extends Component {
                 break;
             }
           }
-
-          this.setupVote(resJson.vote);
         }
       }
 

@@ -20,5 +20,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  helper_method :user_logged_in?
   # helper_method :mobile_device?
 end
