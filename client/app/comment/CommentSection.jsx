@@ -90,11 +90,7 @@ export default class CommentSection extends Component {
                           commentId={comment.id} postId={this.props.postId} postAuthor={this.state.postAuthor}/>
 
                           <ReplySection commentId={comment.id} replies={comment.replies} hasMoreReplies={comment.hasMoreReplies}/>
-                          {
-                            this.state.comments.length - 1 !== key ?
-                            (<hr className="bgm-white" />)
-                            : null
-                          }
+                          { this.state.comments.length - 1 !== key ? (<hr className="bgm-white" />) : null }
                         </li>
                       );
                     })

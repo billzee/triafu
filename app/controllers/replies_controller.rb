@@ -9,7 +9,7 @@ class RepliesController < ApplicationController
     @reply = Reply.new reply_params
     if @reply.save
       @paginated_replies = paginated_replies
-      render action: "index"
+      render action: :index
     else
       render :json => { :errors => @reply.errors }
     end
@@ -20,7 +20,7 @@ class RepliesController < ApplicationController
   def paginated_replies page=1
     r = Reply.all_from_comment params[:comment_id]
     page = params[:page] unless params[:page] == nil
-    r = r.page(page)
+    r = {replies: r.page(page), comment_id: params[:comment_id].to_i}
   end
 
   def reply_params

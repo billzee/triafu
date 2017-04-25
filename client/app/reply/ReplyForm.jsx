@@ -26,10 +26,8 @@ export default class ReplyForm extends Component {
         helper.authErrorDispatcher(resJson.errors);
         this.setState({errors: resJson.errors});
       } else{
-        console.log(resJson);
         this.setState({text: ''});
         pubsub.publish('submitted-reply', resJson);
-
       }
 
     } catch(error){

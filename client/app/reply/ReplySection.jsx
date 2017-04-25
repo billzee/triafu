@@ -37,10 +37,12 @@ export default class ReplySection extends Component {
   componentDidMount(){
     pubsub
     .subscribe('submitted-reply', (msg, data)=>{
-      this.setState({
-        replies: data.replies,
-        lastPage: data.lastPage
-      });
+      if(data.commentId === this.props.commentId){
+        this.setState({
+          replies: data.replies,
+          lastPage: data.lastPage
+        });
+      }
     });
   }
 

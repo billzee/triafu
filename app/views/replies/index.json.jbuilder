@@ -1,6 +1,7 @@
-json.comments @paginated_replies do |reply|
+json.replies @paginated_replies[:replies] do |reply|
   json.id reply.id
   json.text reply.text
+
   json.created_at reply.created_at
 
   json.user do
@@ -9,4 +10,5 @@ json.comments @paginated_replies do |reply|
   end
 end
 
-json.last_page @paginated_replies.last_page?
+json.comment_id @paginated_replies[:comment_id]
+json.last_page @paginated_replies[:replies].last_page?
