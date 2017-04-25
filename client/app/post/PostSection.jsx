@@ -17,8 +17,8 @@ export default class PostSection extends Component {
     this._handleEnter = this._handleEnter.bind(this);
   }
 
-  _handleEnter(postId){
-    pubsub.publish('show-comments-for-post', postId);
+  _handleEnter(postId, postAuthor){
+    pubsub.publish('show-comments-for-post', {postId: postId, postAuthor: postAuthor});
     this.setState({currentPost: postId});
   }
 
@@ -28,6 +28,8 @@ export default class PostSection extends Component {
       try{
         let res = await PostsApi._get(this.state.postId);
         let resJson = await res.json();
+
+        console.log(resJson);
 
         this.setState({
           posts: this.state.posts.concat(resJson.post),
@@ -89,7 +91,7 @@ export default class PostSection extends Component {
                 key={post.id}
                 topOffset="48%"
                 bottomOffset="48%"
-                onEnter={()=> {this._handleEnter(post.id)}}>
+                onEnter={()=> {this._handleEnter(post.id, post.userId)}}>
                 <div>
                   <PostBox post={post} currentPost={this.state.currentPost} />
                 </div>
@@ -102,20 +104,19 @@ export default class PostSection extends Component {
           this.state.postId ?
           (
             <div className="row justify-content-center pb-5">
-              <div className="col w-500 p-0 text-center">
-                <button className="btn btn-block btn-primary" onClick={(e) => this.paginatePosts(e)}>
-                  Carregar mais publicações
-                </button>
+              <div className="col-700">
+                <div className="col-550">
+                  <button className="btn btn-block btn-primary" onClick={(e) => this.paginatePosts(e)}>
+                    Carregar mais publicações
+                  </button>
+                </div>
               </div>
-              <div className="col w-150 p-0 ml-3"></div>
             </div>
           )
           : null
         }
 
-        {
-          !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null
-        }
+        { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null }
 
       </box>
     );

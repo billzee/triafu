@@ -1,4 +1,4 @@
 <div class="col posts">
   <%= react_component("PostSection", props: { postId: @post.id }, prerender: true) %>
 </div>
-<%= react_component("CommentSection", props: { postId: @post.id, postAuthor: @post.user_id }, html_options: {class: "col-xl-3 col-lg-4 bgm-gray"}) %>
+<%= react_component("CommentSection", props: { postId: @post.id, userId: @post.user_id }, html_options: {class: "col-xl-3 col-lg-4 bgm-gray"}) %>

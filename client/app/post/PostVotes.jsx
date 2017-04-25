@@ -4,7 +4,7 @@ import helper from '../components/Helper'
 
 import PostVotesApi from '../api/PostVotesApi';
 
-export default class PostBox extends Component {
+export default class PostVotes extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -15,35 +15,33 @@ export default class PostBox extends Component {
     };
   }
 
-  setupVote(vote){
+  updateUserVote(vote){
+    if(vote !== this.state.userVote){
+      switch(this.state.userVote) {
+      case 'funny':
+          this.setState({funnyCount: this.state.funnyCount - 1});
+          break;
+      case 'smart':
+          this.setState({smartCount: this.state.smartCount - 1});
+          break;
+      case 'negative':
+          this.setState({negativeCount: this.state.negativeCount - 1});
+          break;
+      }
+      switch(vote) {
+      case 'funny':
+          this.setState({funnyCount: this.state.funnyCount + 1});
+          break;
+      case 'smart':
+          this.setState({smartCount: this.state.smartCount + 1});
+          break;
+      case 'negative':
+          this.setState({negativeCount: this.state.negativeCount + 1});
+          break;
+      }
+    }
+
     this.setState({userVote: vote});
-
-    switch(vote) {
-    case 'funny':
-        this.setState({funnyCount: this.state.funnyCount + 1});
-        break;
-    case 'smart':
-        this.setState({smartCount: this.state.smartCount + 1});
-        break;
-    case 'negative':
-        this.setState({negativeCount: this.state.negativeCount + 1});
-        break;
-    }
-  }
-
-  async componentDidMount(){
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip({delay: {show: 1200}});
-    });
-
-    try{
-      let res = await PostVotesApi._index(this.props.post.id);
-      let resJson = await res.json();
-
-      if (resJson.vote) this.setupVote(resJson.vote);
-    } catch(error){
-      console.log(error);
-    }
   }
 
   async vote(e, vote){
@@ -56,34 +54,32 @@ export default class PostBox extends Component {
       let res = await PostVotesApi._create(this.props.post.id, postVote);
       let resJson = await res.json();
 
-      console.log(resJson);
-
-      if(resJson.errors){
+      if (resJson.vote){
+        this.updateUserVote(resJson.vote);
+      } else if (resJson.errors){
         helper.authErrorDispatcher(resJson.errors);
-      } else{
-
-        if(resJson.vote){
-          this.setupVote(resJson.vote);
-
-          if(resJson.vote !== this.state.userVote){
-            switch(this.state.userVote) {
-            case 'funny':
-                this.setState({funnyCount: this.state.funnyCount - 1});
-                break;
-            case 'smart':
-                this.setState({smartCount: this.state.smartCount - 1});
-                break;
-            case 'negative':
-                this.setState({negativeCount: this.state.negativeCount - 1});
-                break;
-            }
-          }
-        }
       }
 
     } catch(error){
       console.log(error);
     }
+  }
+
+  async componentWillMount(){
+    try{
+      let res = await PostVotesApi._index(this.props.post.id);
+      let resJson = await res.json();
+
+      if (resJson.vote) this.updateUserVote(resJson.vote);
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+  componentDidMount(){
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip({delay: {show: 1200}});
+    });
   }
 
   render(){

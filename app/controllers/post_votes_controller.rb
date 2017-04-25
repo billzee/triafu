@@ -4,7 +4,11 @@ class PostVotesController < ApplicationController
 
   def index
     post_vote = PostVote.find_by(user_id: current_user.id, post_id: params[:post_id])
-    render :json => { :vote => post_vote.vote } unless !post_vote
+    if post_vote
+      render :json => { :vote => post_vote.vote }
+    else
+      render :json => {}
+    end
   end
 
   def create

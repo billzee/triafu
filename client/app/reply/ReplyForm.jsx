@@ -23,11 +23,13 @@ export default class ReplyForm extends Component {
       let resJson = await res.json();
 
       if(resJson.errors){
+        helper.authErrorDispatcher(resJson.errors);
         this.setState({errors: resJson.errors});
-      }else {
-        console.log('teste');
+      } else{
+        console.log(resJson);
         this.setState({text: ''});
         pubsub.publish('submitted-reply', resJson);
+
       }
 
     } catch(error){
@@ -37,9 +39,9 @@ export default class ReplyForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.reply} method="post">
+      <form onSubmit={this.reply} method="post" className="mb-2">
 
-        <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
+        <div className={"input-group" + (this.state.errors.hasOwnProperty('text') ? " has-danger" : "")}>
           <span className="input-group-btn">
             <button type="button" className="btn btn-sm btn-secondary">
               <i className="fa fa-smile-o"/>

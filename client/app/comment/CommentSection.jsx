@@ -13,7 +13,7 @@ import CommentsApi from '../api/CommentsApi';
 export default class CommentSection extends Component {
   constructor(props) {
     super(props);
-    this.state = {comments: [], postAuthor: props.postAuthor, postId: props.postId, page: '', totalCount: '', lastPage: true};
+    this.state = {comments: [], postAuthor: props.userId, postId: props.postId, page: '', totalCount: '', lastPage: true};
   }
 
   async getComments(e){
@@ -40,8 +40,6 @@ export default class CommentSection extends Component {
       let res = await CommentsApi._get(this.state.postId, this.state.page);
       let resJson = await res.json();
 
-      console.log(resJson);
-
       this.setState({
         comments: this.state.comments.concat(resJson.comments),
         totalCount: resJson.totalCount,
@@ -56,7 +54,7 @@ export default class CommentSection extends Component {
 
   componentWillMount(){
     pubsub.subscribe('show-comments-for-post', (msg, data)=>{
-      this.setState({postId: data});
+      this.setState({postId: data.postId, postAuthor: data.postAuthor});
       this.getComments();
     });
   }

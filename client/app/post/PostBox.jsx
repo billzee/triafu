@@ -48,6 +48,16 @@ export default class PostBox extends Component {
       <div className="row justify-content-center mb-5 mt-4">
         <div className="col-700">
           <h1 className="col-550">{this.state.post.title}</h1>
+            { this.state.post.original ?
+              (
+                <h4>
+                  <a href={"//"+this.state.post.original} target="_blank">
+                    Link do autor original
+                  </a>
+                </h4>
+              )
+              : null
+            }
 
           <div className="row no-gutters">
             <div className="col-550 p-0">
@@ -77,10 +87,6 @@ export default class PostBox extends Component {
                 <PostShareLinks post={this.state.post} />
               </div>
             </div>
-
-            <h3 className="text-center">
-              { this.state.post.original ? (<a href={"//"+this.state.post.original} target="_blank">Link do autor original</a>) : null }
-            </h3>
 
             <hr className="mt-2" />
           </div>
