@@ -78,8 +78,8 @@ export default class CommentOrReplyBox extends Component {
               }
               <div className="row">
                 <div className="col-8 text-left">
-                  <i className="fa fa-arrow-up mr-2"></i>
-                  <i className="fa fa-arrow-down mr-2"></i>
+                  <i className="fa fa-arrow-up mr-2" onClick={() => this.upvote()}></i>
+                  <i className="fa fa-arrow-down mr-2" onClick={() => this.downvote()}></i>
                   {
                     this.state.showReplyFormTo === this.props.commentOrReply.id ?
                     (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :

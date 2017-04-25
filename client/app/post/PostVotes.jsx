@@ -41,6 +41,13 @@ export default class PostVotes extends Component {
           this.setState({negativeCount: this.state.negativeCount + 1});
           pubsub.publish('dim-points', this.props.post.id);
           break;
+      case null:
+          if (this.state.userVote !== 'negative'){
+            pubsub.publish('dim-points', this.props.post.id);
+          } else{
+            pubsub.publish('add-points', this.props.post.id);
+          }
+          break;
       }
     }
 
@@ -49,15 +56,14 @@ export default class PostVotes extends Component {
 
   async vote(e, vote){
     if(e) e.preventDefault();
-    if (vote === this.state.userVote) return;
 
-    let postVote = {vote: vote};
+    let postVote = vote === this.state.userVote ? {vote: null} : {vote: vote};
 
     try{
       let res = await PostVotesApi._create(this.props.post.id, postVote);
       let resJson = await res.json();
 
-      if (resJson.vote){
+      if (resJson.vote || resJson.vote === null){
         this.updateUserVote(resJson.vote);
       } else if (resJson.errors){
         helper.authErrorDispatcher(resJson.errors);

@@ -19,7 +19,12 @@ Rails.application.routes.draw do
       resources :post_votes, only: [:index, :create]
 
       resources :comments, concerns: :paginatable, only: [:index, :create] do
-        resources :replies, concerns: :paginatable, only: [:index, :create]
+        resources :comment_votes, only: [:index, :create]
+
+        resources :replies, concerns: :paginatable, only: [:index, :create] do
+          resources :reply_votes, only: [:index, :create]
+        end
+
       end
     end
   end
