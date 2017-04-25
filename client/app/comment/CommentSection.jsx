@@ -89,7 +89,8 @@ export default class CommentSection extends Component {
                           <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment}
                           commentId={comment.id} postId={this.props.postId} postAuthor={this.state.postAuthor}/>
 
-                          <ReplySection commentId={comment.id} replies={comment.replies} hasMoreReplies={comment.hasMoreReplies}/>
+                          <ReplySection commentId={comment.id} replies={comment.replies}
+                          hasMoreReplies={comment.hasMoreReplies} postAuthor={this.state.postAuthor}/>
                           { this.state.comments.length - 1 !== key ? (<hr className="bgm-white" />) : null }
                         </li>
                       );

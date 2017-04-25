@@ -31,12 +31,15 @@ export default class PostVotes extends Component {
       switch(vote) {
       case 'funny':
           this.setState({funnyCount: this.state.funnyCount + 1});
+          if(this.state.userVote !== 'smart') pubsub.publish('add-points', this.props.post.id);
           break;
       case 'smart':
           this.setState({smartCount: this.state.smartCount + 1});
+          if(this.state.userVote !== 'funny') pubsub.publish('add-points', this.props.post.id);
           break;
       case 'negative':
           this.setState({negativeCount: this.state.negativeCount + 1});
+          pubsub.publish('dim-points', this.props.post.id);
           break;
       }
     }

@@ -10,7 +10,16 @@ import PostsApi from '../api/PostsApi';
 export default class PostBox extends Component {
   constructor(props) {
     super();
-    this.state = {post: props.post};
+    this.state = {post: props.post, points: props.post.points};
+  }
+
+  componentDidMount(){
+    pubsub.subscribe('add-points', (msg, postId)=>{
+      if(this.state.post.id === postId) this.setState({points: this.state.points + 1});
+    });
+    pubsub.subscribe('dim-points', (msg, postId)=>{
+      if(this.state.post.id === postId) this.setState({points: this.state.points - 1});
+    });
   }
 
   async vote(e, vote){
@@ -79,7 +88,7 @@ export default class PostBox extends Component {
             <div className="row">
               <div className="col-6">
                 <small className="text-muted">
-                  {this.state.post.points || 0} {this.state.post.points === 1 ? "ponto" : "pontos"} <br/>
+                  {this.state.points || 0} {this.state.points === 1 ? "ponto" : "pontos"} <br/>
                   publicado <Moment fromNow>{this.state.post.createdAt}</Moment>
                 </small>
               </div>

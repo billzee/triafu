@@ -59,7 +59,8 @@ export default class ReplySection extends Component {
                   this.state.replies.map((reply)=>{
                     return(
                       <li key={reply.id}>
-                        <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize} commentOrReply={reply} />
+                        <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize}
+                        commentOrReply={reply} postAuthor={this.props.postAuthor} />
                       </li>
                     );
                   })
