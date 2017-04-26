@@ -5,7 +5,7 @@ import PostsApi from '../api/PostsApi';
 import PostBox from './PostBox';
 
 export default class PostSection extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       posts: [],

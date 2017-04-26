@@ -1,3 +1,3 @@
-// function toggle(id) {
+// function toggle(id){
 //   $("#" + id).toggle();
 // }

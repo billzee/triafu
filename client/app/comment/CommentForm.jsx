@@ -8,7 +8,7 @@ import ErrorMessage from '../components/ErrorMessage'
 import CommentsApi from '../api/CommentsApi';
 
 export default class CommentForm extends Component {
-  constructor() {
+  constructor(){
     super();
     this.state = {text: '', errors: {}};
     this.comment = this.comment.bind(this);

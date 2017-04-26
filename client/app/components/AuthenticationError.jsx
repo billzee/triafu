@@ -9,7 +9,7 @@ export default class AuthenticationError extends Component {
     if(this.props.message)
   }
 
-  render() {
+  render(){
     return (
       <small className="text-danger">{this.props.message}</small>
     );

@@ -1,6 +1,6 @@
 import ReactOnRails from 'react-on-rails';
 
-export default function Api(url, options={}) {
+export default function Api(url, options={}){
   options = {
       // your default options
       headers: {
@@ -13,7 +13,7 @@ export default function Api(url, options={}) {
       ...options,
   };
 
-  if(options.params) {
+  if(options.params){
     url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(options.params);
     delete options.params;
   }
@@ -21,6 +21,6 @@ export default function Api(url, options={}) {
   return fetch(url, options);
 }
 
-function queryParams(params) {
+function queryParams(params){
   return Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
 }

@@ -7,7 +7,7 @@ import CommentOrReplyBox from '../comment/CommentOrReplyBox'
 import RepliesApi from '../api/RepliesApi';
 
 export default class ReplySection extends Component {
-  constructor(props) {
+  constructor(props){
     super();
     this.state = {replies: props.replies, page: 1, lastPage: false};
   }

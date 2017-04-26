@@ -8,7 +8,7 @@ import PostDropzone from  './PostDropzone';
 import ErrorMessage from  '../components/ErrorMessage';
 
 export default class PostSection extends Component {
-  constructor() {
+  constructor(){
     super();
     this.state = {title: '', original: '', errors: {}};
     this.publish = this.publish.bind(this);

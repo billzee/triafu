@@ -35,7 +35,7 @@ export default class ReplyForm extends Component {
     }
   }
 
-  render() {
+  render(){
     return (
       <form onSubmit={this.reply} method="post" className="mb-2">
 

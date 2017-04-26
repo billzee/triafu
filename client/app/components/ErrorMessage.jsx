@@ -5,7 +5,7 @@ export default class ErrorMessage extends Component {
     super();
   }
 
-  render() {
+  render(){
     return (
       <small className="text-danger">{this.props.message}</small>
     );

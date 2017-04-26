@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 
 export default class Login extends Component {
-  constructor() {
+  constructor(){
     super();
     this.state = {error: ''};
   }

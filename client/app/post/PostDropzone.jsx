@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PostsApi from '../api/PostsApi';
 
 export default class PostDropzone extends Component {
-  constructor() {
+  constructor(){
     super();
     Dropzone.autoDiscover = false;
   }
@@ -34,9 +34,9 @@ export default class PostDropzone extends Component {
   				'X-CSRF-Token': ReactOnRails.authenticityToken()
   			},
 
-        init: function() {
+        init: function(){
           this.on("addedfile", function(){
-            if (this.files[1]!=null){
+            if(this.files[1]!=null){
               this.removeFile(this.files[0]);
             }
           });

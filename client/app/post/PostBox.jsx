@@ -8,7 +8,7 @@ import PostVoteBox from './PostVoteBox';
 import PostsApi from '../api/PostsApi';
 
 export default class PostBox extends Component {
-  constructor(props) {
+  constructor(props){
     super();
     this.state = {post: props.post, points: props.post.points};
   }
@@ -34,7 +34,7 @@ export default class PostBox extends Component {
       console.log(resJson);
 
       if(resJson.vote){
-        switch(resJson.vote) {
+        switch(resJson.vote){
         case 'funny':
             this.setState({funnyCount: this.state.funnyCount + 1});
             break;

@@ -29,12 +29,12 @@ export default class CommentOrReplyBox extends Component {
     this.setState(({showReplyFormTo: commentId}));
   }
 
-  toggleReleaseText(e, commentId) {
+  toggleReleaseText(e, commentId){
     e.preventDefault();
     this.setState(({release: commentId}));
   }
 
-  render() {
+  render(){
     return (
       <box>
         <div className="row">

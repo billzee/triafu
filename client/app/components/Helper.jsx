@@ -14,20 +14,24 @@ var Helper = {
     this.setState(field);
   },
 
-  hasProperty: function(obj) {
-    for(var prop in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+  hasProperty: function(obj){
+    for(var prop in obj){
+      if(Object.prototype.hasOwnProperty.call(obj, prop)){
         return true;
       }
     }
     return false;
   },
 
-  authErrorDispatcher: function(errors) {
+  authErrorDispatcher: function(errors){
     if(errors.auth){
       pubsub.publish('auth-error', errors.auth);
       $('#m_login').modal('show');
     }
+  },
+
+  pluralize: function(val, str){
+    return (val === 1 || val === -1) ? str : str + "s";
   }
 };
 

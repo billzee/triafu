@@ -5,7 +5,7 @@ import helper from '../components/Helper'
 import VoteApi from '../api/VoteApi';
 
 export default class PostVoteBox extends Component {
-  constructor(props) {
+  constructor(props){
     super();
     this.state = {
       userVote: props.post.userVote,
@@ -15,55 +15,65 @@ export default class PostVoteBox extends Component {
     };
   }
 
-  updateUserVote(vote){
-    if(vote !== this.state.userVote){
-      switch(this.state.userVote) {
-      case 'funny':
+  updateUserVote(newVote){
+    if(newVote !== this.state.userVote){
+      switch(this.state.userVote){
+        case 'funny':
           this.setState({funnyCount: this.state.funnyCount - 1});
           break;
-      case 'smart':
+        case 'smart':
           this.setState({smartCount: this.state.smartCount - 1});
           break;
-      case 'negative':
+        case 'negative':
           this.setState({negativeCount: this.state.negativeCount - 1});
           break;
       }
-      switch(vote) {
-      case 'funny':
+
+      switch(newVote){
+        case 'funny':
           this.setState({funnyCount: this.state.funnyCount + 1});
-          if(this.state.userVote !== 'smart') pubsub.publish('add-point', this.props.post.id);
           break;
-      case 'smart':
+        case 'smart':
           this.setState({smartCount: this.state.smartCount + 1});
-          if(this.state.userVote !== 'funny') pubsub.publish('add-point', this.props.post.id);
           break;
-      case 'negative':
+        case 'negative':
           this.setState({negativeCount: this.state.negativeCount + 1});
-          pubsub.publish('dim-point', this.props.post.id);
-          break;
-      case null:
-          if (this.state.userVote !== 'negative'){
-            pubsub.publish('dim-point', this.props.post.id);
-          } else{
-            pubsub.publish('add-point', this.props.post.id);
-          }
           break;
       }
     }
 
-    this.setState({userVote: vote});
+    this.setState({userVote: newVote});
   }
 
   async vote(e, vote){
     if(e) e.preventDefault();
 
-    let postVote = vote === this.state.userVote ? {vote: null} : {vote: vote};
+    let postVote = (vote === this.state.userVote) ? {vote: null} : {vote: vote};
 
     try{
       let res = await VoteApi._post_create(this.props.post.id, postVote);
       let resJson = await res.json();
 
       if (resJson.hasOwnProperty('vote')){
+        switch(resJson.vote){
+          case 'funny':
+            if(this.state.userVote !== 'smart') pubsub.publish('add-point', this.props.post.id);
+            break;
+          case 'smart':
+            if(this.state.userVote !== 'funny') pubsub.publish('add-point', this.props.post.id);
+            break;
+          case 'negative':
+            pubsub.publish('dim-point', this.props.post.id);
+            break;
+          case null:
+            if (this.state.userVote !== 'negative'){
+              pubsub.publish('dim-point', this.props.post.id);
+            } else{
+              pubsub.publish('add-point', this.props.post.id);
+            }
+            break;
+        }
+
         this.updateUserVote(resJson.vote);
       } else if (resJson.errors){
         helper.authErrorDispatcher(resJson.errors);
@@ -86,7 +96,7 @@ export default class PostVoteBox extends Component {
   }
 
   componentDidMount(){
-    $(function () {
+    $(function (){
       $('[data-toggle="tooltip"]').tooltip({delay: {show: 1200}});
     });
   }

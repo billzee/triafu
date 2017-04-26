@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 export default class PostShareLinks extends Component {
-  constructor(props) {
+  constructor(props){
     super();
     this.state = {postUrl: ''};
   }
