@@ -22,7 +22,7 @@ var VoteApi = {
   },
 
   _reply_create: function(commentId, vote){
-    return Api('/replies/' + commentId + '/reply_vote', {method: 'POST', body: JSON.stringify({comment_vote: vote})});
+    return Api('/replies/' + commentId + '/reply_vote', {method: 'POST', body: JSON.stringify({reply_vote: vote})});
   }
 };
 

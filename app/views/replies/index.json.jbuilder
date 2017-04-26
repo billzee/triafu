@@ -3,7 +3,6 @@ json.replies @paginated_replies[:replies] do |reply|
   json.text reply.text
 
   json.created_at reply.created_at
-
   json.points reply.points
 
   json.user do

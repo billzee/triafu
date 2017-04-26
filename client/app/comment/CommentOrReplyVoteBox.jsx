@@ -37,10 +37,15 @@ export default class CommentOrReplyVoteBox extends Component {
 
   async vote(vote){
     try{
-      let commentOrReplyVote = (vote === this.state.userVote) ? {vote: null} : {vote: vote};
+      if(this.props.isComment){
+        var commentVote = (vote === this.state.userVote) ? {vote: null} : {vote: vote};
+        var res = await VoteApi._comment_create(this.props.commentOrReply.id, commentVote);
+      } else if(this.props.isReply){
+        var replyVote = (vote === this.state.userVote) ? {vote: null} : {vote: vote};
+        var res = await VoteApi._reply_create(this.props.commentOrReply.id, replyVote);
+      } else{return;}
 
-      let res = await VoteApi._comment_create(this.props.commentOrReply.id, commentOrReplyVote);
-      let resJson = await res.json();
+      var resJson = await res.json();
 
       console.log(resJson);
 
@@ -57,7 +62,12 @@ export default class CommentOrReplyVoteBox extends Component {
 
   async componentWillMount(){
     try{
-      let res = await VoteApi._comment_index(this.props.commentOrReply.id);
+      if(this.props.isComment){
+        var res = await VoteApi._comment_index(this.props.commentOrReply.id);
+      } else if(this.props.isReply){
+        var res = await VoteApi._reply_index(this.props.commentOrReply.id);
+      } else{return;}
+
       let resJson = await res.json();
 
       if(resJson.hasOwnProperty('vote')) this.setState({userVote: resJson.vote});
