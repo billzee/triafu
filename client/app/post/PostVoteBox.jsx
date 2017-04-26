@@ -31,21 +31,21 @@ export default class PostVoteBox extends Component {
       switch(vote) {
       case 'funny':
           this.setState({funnyCount: this.state.funnyCount + 1});
-          if(this.state.userVote !== 'smart') pubsub.publish('add-points', this.props.post.id);
+          if(this.state.userVote !== 'smart') pubsub.publish('add-point', this.props.post.id);
           break;
       case 'smart':
           this.setState({smartCount: this.state.smartCount + 1});
-          if(this.state.userVote !== 'funny') pubsub.publish('add-points', this.props.post.id);
+          if(this.state.userVote !== 'funny') pubsub.publish('add-point', this.props.post.id);
           break;
       case 'negative':
           this.setState({negativeCount: this.state.negativeCount + 1});
-          pubsub.publish('dim-points', this.props.post.id);
+          pubsub.publish('dim-point', this.props.post.id);
           break;
       case null:
           if (this.state.userVote !== 'negative'){
-            pubsub.publish('dim-points', this.props.post.id);
+            pubsub.publish('dim-point', this.props.post.id);
           } else{
-            pubsub.publish('add-points', this.props.post.id);
+            pubsub.publish('add-point', this.props.post.id);
           }
           break;
       }
@@ -111,7 +111,7 @@ export default class PostVoteBox extends Component {
             <li className="mt-3 text-center">
               <a className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href="#"
               onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="left" data-title="Negativo">
-                <img src="/assets/downvote.svg" width="35px" height="35px" />
+                <img src="/assets/downvote.svg" width="30px" height="30px" />
               </a>
             </li>
           </ul>

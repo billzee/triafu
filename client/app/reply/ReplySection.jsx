@@ -60,7 +60,7 @@ export default class ReplySection extends Component {
                     return(
                       <li key={reply.id}>
                         <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize}
-                        commentOrReply={reply} postAuthor={this.props.postAuthor} />
+                        commentOrReply={reply} postAuthor={this.props.postAuthor} isReply="true"/>
                       </li>
                     );
                   })

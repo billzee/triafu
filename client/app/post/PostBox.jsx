@@ -14,10 +14,10 @@ export default class PostBox extends Component {
   }
 
   componentDidMount(){
-    pubsub.subscribe('add-points', (msg, postId)=>{
+    pubsub.subscribe('add-point', (msg, postId)=>{
       if(this.state.post.id === postId) this.setState({points: this.state.points + 1});
     });
-    pubsub.subscribe('dim-points', (msg, postId)=>{
+    pubsub.subscribe('dim-point', (msg, postId)=>{
       if(this.state.post.id === postId) this.setState({points: this.state.points - 1});
     });
   }
@@ -89,7 +89,7 @@ export default class PostBox extends Component {
               <div className="col-6">
                 <small className="text-muted">
                   {this.state.points || 0} {this.state.points === 1 ? "ponto" : "pontos"} <br/>
-                  publicado <Moment fromNow>{this.state.post.createdAt}</Moment>
+                  Publicado <Moment fromNow>{this.state.post.createdAt}</Moment>
                 </small>
               </div>
               <div className="col-6 mt-2">

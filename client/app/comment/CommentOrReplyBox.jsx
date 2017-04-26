@@ -9,11 +9,13 @@ import ReplyForm from '../reply/ReplyForm';
 import CommentOrReplyVoteBox from './CommentOrReplyVoteBox';
 
 export default class CommentOrReplyBox extends Component {
-  constructor(){
+  constructor(props){
     super();
-    this.state = {showReplyFormTo: null, release: null};
-    this.toggleReleaseText = this.toggleReleaseText.bind(this);
-    this.toggleReply = this.toggleReply.bind(this);
+    this.state = {
+      showReplyFormTo: null,
+      release: null,
+      isComment: (props.isComment || false),
+      isReply: (props.isReply || false)};
   }
 
   componentDidMount(){
@@ -42,20 +44,9 @@ export default class CommentOrReplyBox extends Component {
           <div className="col pt-1">
             <strong>
               {this.props.commentOrReply.user.username}
-
-              {
-                this.props.commentOrReply.user.id === this.props.postAuthor ?
-                (
-                  <span className="text-success">
-                    &nbsp;autor
-                  </span>
-                )
-                : null
-              }
+              {this.props.commentOrReply.user.id === this.props.postAuthor ? (<span className="text-success">&nbsp;autor</span>) : null}
             </strong>
-            <small className="text-muted">
-              &nbsp;<Moment fromNow>{this.props.commentOrReply.createdAt}</Moment>
-            </small>
+            <small className="text-muted">&nbsp;<Moment fromNow>{this.props.commentOrReply.createdAt}</Moment></small>
             <br/>
             {
               this.props.commentOrReply.text.length <= helper.maxLengthForRelease ?
@@ -64,60 +55,61 @@ export default class CommentOrReplyBox extends Component {
                     {this.props.commentOrReply.text}
                   </span>
                 )
+              : this.state.release === this.props.commentOrReply.id ?
+                (
+                  <span className="comment-text">
+                    {this.props.commentOrReply.text}
+                  </span>
+                )
               :
-                this.state.release === this.props.commentOrReply.id ?
-                  (
-                    <span className="comment-text">
-                      {this.props.commentOrReply.text}
-                    </span>
-                  )
-                :
-                  (
-                    <span className="comment-text">
-                      {this.props.commentOrReply.text.substring(0,helper.maxLengthForRelease)}...
-                    </span>
-                  )
-              }
-              <div className="row">
-                <div className="col-8 text-left">
-                  <CommentOrReplyVoteBox commentOrReply={this.props.commentOrReply} />
-                  {
-                    this.state.showReplyFormTo === this.props.commentOrReply.id ?
-                    (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :
-                    (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}><small>Responder</small></a>)
-                  }
-                </div>
-
-                <div className="col-4 text-right">
-                  {
-                    this.props.commentOrReply.text.length > helper.maxLengthForRelease ?
-                      this.state.release === this.props.commentOrReply.id ?
-                        (
-                          <a href="#" className="float-right"
-                          onClick={(e) => this.toggleReleaseText(e, null)}>
-                            <small>Recolher</small>
-                          </a>
-                        )
-                      :
-                        (
-                          <a href="#" className="float-right"
-                          onClick={(e) => this.toggleReleaseText(e, this.props.commentOrReply.id)}>
-                            <small>Ler mais</small>
-                          </a>
-                        )
-                    : null
-                  }
-                </div>
+                (
+                  <span className="comment-text">
+                    {this.props.commentOrReply.text.substring(0,helper.maxLengthForRelease)}...
+                  </span>
+                )
+            }
+            <div className="row">
+              <div className="col-8 text-left">
+                <CommentOrReplyVoteBox commentOrReply={this.props.commentOrReply} isComment={this.state.isComment} isReply={this.state.isReply} />
+                {
+                  this.state.showReplyFormTo === this.props.commentOrReply.id ?
+                  (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :
+                  (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}><small>Responder</small></a>)
+                }
               </div>
+
+              <div className="col-4 text-right">
+                {
+                  this.props.commentOrReply.text.length > helper.maxLengthForRelease ?
+                    this.state.release === this.props.commentOrReply.id ?
+                      (
+                        <a href="#" className="float-right"
+                        onClick={(e) => this.toggleReleaseText(e, null)}>
+                          <small>Recolher</small>
+                        </a>
+                      )
+                    :
+                      (
+                        <a href="#" className="float-right"
+                        onClick={(e) => this.toggleReleaseText(e, this.props.commentOrReply.id)}>
+                          <small>Ler mais</small>
+                        </a>
+                      )
+                  : null
+                }
+              </div>
+            </div>
           </div>
         </div>
         {
           this.state.showReplyFormTo === this.props.commentOrReply.id ?
+          (
             <div className="row">
               <div className="col">
                 <ReplyForm commentId={this.props.commentId} />
               </div>
             </div>
+          )
           : null
         }
       </box>

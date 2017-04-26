@@ -11,12 +11,12 @@ import ReplySection from '../reply/ReplySection'
 import CommentsApi from '../api/CommentsApi';
 
 export default class CommentSection extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props){
+    super();
     this.state = {comments: [], postAuthor: props.userId, postId: props.postId, page: '', totalCount: '', lastPage: true};
   }
 
-  async getComments(e){
+  async getComments(){
     try{
       let res = await CommentsApi._get(this.state.postId);
       let resJson = await res.json();
@@ -86,12 +86,13 @@ export default class CommentSection extends Component {
                     this.state.comments.map((comment, key)=>{
                       return(
                         <li key={comment.id}>
-                          <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment}
-                          commentId={comment.id} postId={this.props.postId} postAuthor={this.state.postAuthor}/>
+                          <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} isComment="true"
+                          commentId={comment.id} postId={this.state.postId} postAuthor={this.state.postAuthor}/>
 
                           <ReplySection commentId={comment.id} replies={comment.replies}
                           hasMoreReplies={comment.hasMoreReplies} postAuthor={this.state.postAuthor}/>
-                          { this.state.comments.length - 1 !== key ? (<hr className="bgm-white" />) : null }
+
+                          {this.state.comments.length - 1 !== key ? (<hr className="bgm-white" />) : null}
                         </li>
                       );
                     })

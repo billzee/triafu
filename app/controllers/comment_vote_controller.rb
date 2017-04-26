@@ -3,7 +3,7 @@ class CommentVoteController < ApplicationController
   before_action :authenticate_user!, only: :create
 
   def index
-    comment_vote = CommentVote.find_by(user_id: current_user.id, post_id: params[:post_id])
+    comment_vote = CommentVote.find_by(user_id: current_user.id, comment_id: params[:comment_id])
     if comment_vote
       render :json => { :vote => comment_vote.vote }
     else
@@ -12,7 +12,7 @@ class CommentVoteController < ApplicationController
   end
 
   def create
-    comment_vote = CommentVote.find_by(user_id: current_user.id, post_id: params[:post_id])
+    comment_vote = CommentVote.find_by(user_id: current_user.id, comment_id: params[:comment_id])
 
     if comment_vote
       comment_vote.vote = vote_params[:vote]
