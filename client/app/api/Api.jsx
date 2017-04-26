@@ -2,7 +2,6 @@ import ReactOnRails from 'react-on-rails';
 
 export default function Api(url, options={}){
   options = {
-      // your default options
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',

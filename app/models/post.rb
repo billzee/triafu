@@ -3,6 +3,7 @@ class Post < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :media
+  validates :original, :format => URI::regexp(%w(http https))
 
   belongs_to :category
   belongs_to :user

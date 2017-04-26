@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
 import PostsApi from '../api/PostsApi';
+
 import helper from  '../components/Helper';
 
-import PostDropzone from  './PostDropzone';
+// import PostDropzone from  './PostDropzone';
+
+import Dropzone from 'react-dropzone'
 
 import ErrorMessage from  '../components/ErrorMessage';
 
@@ -33,6 +36,28 @@ export default class PostSection extends Component {
     }
   }
 
+  async onDrop(files) {
+    console.log("droppou");
+    //   this.setState({
+    //    files
+    //  });
+
+    try{
+      let res = await PostsApi._upload_media(files[0]);
+      let resJson = await res.json();
+
+      console.log(resJson);
+
+      if(resJson.errors){
+        this.setState({errors: resJson.errors});
+      }
+
+      // window.location = "/posts/" + resJson;
+    } catch(error){
+      console.log(error);
+    }
+  }
+
   render(){
     return (
       <form onSubmit={this.publish} method="post">
@@ -40,7 +65,9 @@ export default class PostSection extends Component {
           <div className="row">
 
             <div className="col-sm-12 col-md-10 offset-md-1 mb-4">
-              <PostDropzone className={"dropzone new_media " + (this.state.errors.hasOwnProperty('media') ? "has-danger" : "")} id="new_media" />
+              <Dropzone onDrop={this.onDrop.bind(this)}>
+                <p>Try dropping some files here, or click to select files to upload.</p>
+              </Dropzone>
               <ErrorMessage message={this.state.errors.media} />
             </div>
 

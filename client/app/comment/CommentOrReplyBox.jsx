@@ -89,12 +89,12 @@ export default class CommentOrReplyBox extends Component {
             }
             <div className="row">
               <div className="col text-left">
-                <CommentOrReplyVoteBox commentOrReply={this.props.commentOrReply} isComment={this.state.isComment} isReply={this.state.isReply} />
                 {
                   this.state.showReplyFormTo === this.props.commentOrReply.id ?
                   (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :
                   (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}><small>Responder</small></a>)
                 }
+                <CommentOrReplyVoteBox commentOrReply={this.props.commentOrReply} isComment={this.state.isComment} isReply={this.state.isReply} />
               </div>
             </div>
           </div>
