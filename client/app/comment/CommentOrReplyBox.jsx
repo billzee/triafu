@@ -6,6 +6,8 @@ import helper from '../components/Helper';
 
 import ReplyForm from '../reply/ReplyForm';
 
+import CommentOrReplyVoteBox from './CommentOrReplyVoteBox';
+
 export default class CommentOrReplyBox extends Component {
   constructor(){
     super();
@@ -78,14 +80,14 @@ export default class CommentOrReplyBox extends Component {
               }
               <div className="row">
                 <div className="col-8 text-left">
-                  <i className="fa fa-arrow-up mr-2" onClick={() => this.upvote()}></i>
-                  <i className="fa fa-arrow-down mr-2" onClick={() => this.downvote()}></i>
+                  <CommentOrReplyVoteBox commentOrReply={this.props.commentOrReply} />
                   {
                     this.state.showReplyFormTo === this.props.commentOrReply.id ?
                     (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :
                     (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}><small>Responder</small></a>)
                   }
                 </div>
+
                 <div className="col-4 text-right">
                   {
                     this.props.commentOrReply.text.length > helper.maxLengthForRelease ?
