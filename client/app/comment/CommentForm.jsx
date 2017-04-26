@@ -11,7 +11,6 @@ export default class CommentForm extends Component {
   constructor(){
     super();
     this.state = {text: '', errors: {}};
-    this.comment = this.comment.bind(this);
   }
 
   async comment(e){
@@ -38,7 +37,7 @@ export default class CommentForm extends Component {
     return(
       <div className="row bt-white pt-0 comment-bottom">
         <div className="col p-2 pt-0">
-          <form onSubmit={this.comment} method="post" className="form">
+          <form onSubmit={(e) => this.comment(e)} method="post" className="form">
 
             <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
               <span className="input-group-btn">

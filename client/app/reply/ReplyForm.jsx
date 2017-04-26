@@ -12,7 +12,6 @@ export default class ReplyForm extends Component {
   constructor(){
     super();
     this.state = {text: '', errors: {}};
-    this.reply = this.reply.bind(this);
   }
 
   async reply(e){
@@ -37,7 +36,7 @@ export default class ReplyForm extends Component {
 
   render(){
     return (
-      <form onSubmit={this.reply} method="post" className="mb-2">
+      <form onSubmit={(e) => this.reply(e)} method="post" className="mb-2">
 
         <div className={"input-group" + (this.state.errors.hasOwnProperty('text') ? " has-danger" : "")}>
           <span className="input-group-btn">

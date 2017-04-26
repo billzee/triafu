@@ -17,18 +17,18 @@ export default class CommentOrReplyVoteBox extends Component {
     if(newVote !== this.state.userVote){
       switch(newVote){
         case true:
-            this.setState({points: this.state.points + 1});
-            break;
+          this.setState({points: this.state.points + 1});
+          break;
         case false:
-            this.setState({points: this.state.points - 1});
-            break;
+          this.setState({points: this.state.points - 1});
+          break;
         case null:
-            if(this.state.userVote === true){
-              this.setState({points: this.state.points - 1});
-            } else if(this.state.userVote === false){
-              this.setState({points: this.state.points + 1});
-            }
-            break;
+          if(this.state.userVote === true){
+            this.setState({points: this.state.points - 1});
+          } else if(this.state.userVote === false){
+            this.setState({points: this.state.points + 1});
+          }
+          break;
       }
     }
 

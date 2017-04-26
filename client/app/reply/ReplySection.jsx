@@ -43,6 +43,8 @@ export default class ReplySection extends Component {
           lastPage: data.lastPage
         });
       }
+      
+      pubsub.publish('clear-comments-state', null);
     });
   }
 
