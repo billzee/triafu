@@ -3,7 +3,7 @@ class Post < ApplicationRecord
 
   validates_presence_of :title
   validates_presence_of :media
-  validates :original, :format => URI::regexp(%w(http https))
+  validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
 
   belongs_to :category
   belongs_to :user

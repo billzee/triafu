@@ -13,7 +13,7 @@ import ErrorMessage from  '../components/ErrorMessage';
 export default class PostSection extends Component {
   constructor(){
     super();
-    this.state = {title: '', original: '', errors: {}};
+    this.state = {title: '', original: '', preview: '', errors: {}};
     this.publish = this.publish.bind(this);
   }
 
@@ -37,10 +37,6 @@ export default class PostSection extends Component {
   }
 
   async onDrop(files) {
-    console.log("droppou");
-    //   this.setState({
-    //    files
-    //  });
 
     try{
       let res = await PostsApi._upload_media(files[0]);
@@ -50,9 +46,10 @@ export default class PostSection extends Component {
 
       if(resJson.errors){
         this.setState({errors: resJson.errors});
+      } else{
+        this.setState({preview: files[0].preview});
       }
 
-      // window.location = "/posts/" + resJson;
     } catch(error){
       console.log(error);
     }
@@ -67,6 +64,7 @@ export default class PostSection extends Component {
             <div className="col-sm-12 col-md-10 offset-md-1 mb-4">
               <Dropzone onDrop={this.onDrop.bind(this)}>
                 <p>Try dropping some files here, or click to select files to upload.</p>
+                <img src={this.state.preview} className="rounded-circle" />
               </Dropzone>
               <ErrorMessage message={this.state.errors.media} />
             </div>

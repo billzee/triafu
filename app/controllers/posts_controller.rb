@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   def upload_media
     p params
     @@media = Media.new media_params
-    p @@media
+    render :json => {}
   end
 
   def remove_media
