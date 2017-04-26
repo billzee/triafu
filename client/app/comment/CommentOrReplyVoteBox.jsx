@@ -26,12 +26,23 @@ export default class CommentOrReplyVoteBox extends Component {
 
       console.log(resJson);
 
-      // if (resJson.vote || resJson.vote === null){
-      //   this.updateUserVote(resJson.vote);
-      // } else if (resJson.errors){
-      //   helper.authErrorDispatcher(resJson.errors);
-      // }
+      if (resJson.hasOwnProperty('vote')){
+        this.setState({userVote: resJson.vote});
+      } else if (resJson.errors){
+        helper.authErrorDispatcher(resJson.errors);
+      }
 
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+  async componentWillMount(){
+    try{
+      let res = await VoteApi._comment_index(this.props.commentOrReply.id);
+      let resJson = await res.json();
+
+      if(resJson.hasOwnProperty('vote')) this.setState({userVote: resJson.vote});
     } catch(error){
       console.log(error);
     }
@@ -40,8 +51,8 @@ export default class CommentOrReplyVoteBox extends Component {
   render() {
     return (
       <box>
-        <i className="fa fa-arrow-up mr-2 href" onClick={() => this.vote(true)}></i>
-        <i className="fa fa-arrow-down mr-2 href" onClick={() => this.vote(false)}></i>
+        <i className={"fa fa-arrow-up mr-2 href " + (this.state.userVote === true ? "text-success" : "")} onClick={() => this.vote(true)}></i>
+        <i className={"fa fa-arrow-down mr-2 href " + (this.state.userVote === false ? "text-danger" : "")} onClick={() => this.vote(false)}></i>
       </box>
     );
   }

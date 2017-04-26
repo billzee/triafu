@@ -63,7 +63,7 @@ export default class PostVoteBox extends Component {
       let res = await VoteApi._post_create(this.props.post.id, postVote);
       let resJson = await res.json();
 
-      if (resJson.vote || resJson.vote === null){
+      if (resJson.hasOwnProperty('vote')){
         this.updateUserVote(resJson.vote);
       } else if (resJson.errors){
         helper.authErrorDispatcher(resJson.errors);
@@ -79,7 +79,7 @@ export default class PostVoteBox extends Component {
       let res = await VoteApi._post_index(this.props.post.id);
       let resJson = await res.json();
 
-      if (resJson.vote) this.updateUserVote(resJson.vote);
+      if(resJson.hasOwnProperty('vote')) this.updateUserVote(resJson.vote);
     } catch(error){
       console.log(error);
     }
