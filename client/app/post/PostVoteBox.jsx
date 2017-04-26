@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 import helper from '../components/Helper'
 
-import PostVotesApi from '../api/PostVotesApi';
+import PostVoteApi from '../api/PostVoteApi';
 
-export default class PostVotes extends Component {
+export default class PostVoteBox extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -60,7 +60,7 @@ export default class PostVotes extends Component {
     let postVote = vote === this.state.userVote ? {vote: null} : {vote: vote};
 
     try{
-      let res = await PostVotesApi._create(this.props.post.id, postVote);
+      let res = await PostVoteApi._create(this.props.post.id, postVote);
       let resJson = await res.json();
 
       if (resJson.vote || resJson.vote === null){
@@ -76,7 +76,7 @@ export default class PostVotes extends Component {
 
   async componentWillMount(){
     try{
-      let res = await PostVotesApi._index(this.props.post.id);
+      let res = await PostVoteApi._index(this.props.post.id);
       let resJson = await res.json();
 
       if (resJson.vote) this.updateUserVote(resJson.vote);

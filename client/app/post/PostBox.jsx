@@ -3,7 +3,7 @@ import Moment from 'react-moment'
 import pubsub from 'pubsub-js'
 
 import PostShareLinks from './PostShareLinks';
-import PostVotes from './PostVotes';
+import PostVoteBox from './PostVoteBox';
 
 import PostsApi from '../api/PostsApi';
 
@@ -77,7 +77,7 @@ export default class PostBox extends Component {
               {
                 this.state.post.id === this.props.currentPost ?
                 (
-                  <PostVotes post={this.state.post}/>
+                  <PostVoteBox post={this.state.post}/>
                 )
                 : null
               }

@@ -1,4 +1,4 @@
-class CommentVotesController < ApplicationController
+class CommentVoteController < ApplicationController
   before_action :user_logged_in?, only: :index
   before_action :authenticate_user!, only: :create
 
