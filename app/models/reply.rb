@@ -3,6 +3,7 @@ class Reply < ApplicationRecord
   belongs_to :user
 
   validates_presence_of :comment_id
+    has_many :reply_votes
 
   validates :text, presence: true
 
@@ -10,5 +11,17 @@ class Reply < ApplicationRecord
 
   def self.all_from_comment comment_id
     where(comment_id: comment_id)
+  end
+
+  def points
+    upvote_count - downvote_count
+  end
+
+  def downvote_count
+    reply_votes.where(vote: false).size
+  end
+
+  def upvote_count
+    reply_votes.where(vote: true).size
   end
 end

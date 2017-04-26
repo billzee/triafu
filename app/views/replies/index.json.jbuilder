@@ -4,6 +4,8 @@ json.replies @paginated_replies[:replies] do |reply|
 
   json.created_at reply.created_at
 
+  json.points reply.points
+
   json.user do
     json.id reply.user.id
     json.username reply.user.username

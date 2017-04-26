@@ -12,6 +12,8 @@ json.comments @paginated_comments do |comment|
     json.text reply.text
     json.created_at reply.created_at
 
+    json.points reply.points
+
     json.user do
       json.id reply.user.id
       json.username reply.user.username
