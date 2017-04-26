@@ -11,13 +11,13 @@ class PostsController < ApplicationController
   end
 
   def upload_media
-    p params
     @@media = Media.new media_params
     render :json => {}
   end
 
   def remove_media
     @@media = nil
+    render :json => {}
   end
 
   def create

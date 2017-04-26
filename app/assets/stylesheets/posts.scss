@@ -39,33 +39,29 @@
   top: 35%;
 }
 
-.waypoint-anchor {
-  width: 1px;
-  position: absolute;
-  background: red;
-  height: 10px;
-  top: 45%;
-  left: 50%;
-}
-
-.new_media.dropzone {
+.post-dropzone {
+  cursor: pointer;
   height: 200px;
-  padding-top: 0;
-  padding-bottom: 0;
-  text-align: center;
+  color: $dark-gray;
   border: 4px dashed $dark-gray;
+  background: $light-gray;
+
   &.has-danger {
     border: 4px dashed red;
   }
-  .dz-message * {
-    font-weight: bold;
-    color: $purple;
-  }
 
-  .dz-preview {
-    margin-top: 30px;
-    .dz-details {
-      display: none;
+  .row{
+    .col-170{
+      width: 170px;
+      
+      img{
+        position: relative;
+        height: 150px;
+        width: 150px
+      }
+    }
+    .col-fa{
+      width: 30px;
     }
   }
 }

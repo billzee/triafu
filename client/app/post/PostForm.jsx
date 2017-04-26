@@ -13,7 +13,7 @@ import ErrorMessage from  '../components/ErrorMessage';
 export default class PostSection extends Component {
   constructor(){
     super();
-    this.state = {title: '', original: '', preview: '', errors: {}};
+    this.state = {title: '', original: '', preview: null, errors: {}};
     this.publish = this.publish.bind(this);
   }
 
@@ -37,7 +37,6 @@ export default class PostSection extends Component {
   }
 
   async onDrop(files) {
-
     try{
       let res = await PostsApi._upload_media(files[0]);
       let resJson = await res.json();
@@ -55,6 +54,27 @@ export default class PostSection extends Component {
     }
   }
 
+  async removeFile(e) {
+    if(e) e.preventDefault();
+
+    try{
+      let res = await PostsApi._remove_media();
+      let resJson = await res.json();
+
+      console.log(resJson);
+
+      if(resJson.errors){
+        this.setState({errors: resJson.errors});
+      } else{
+        this.setState({preview: null});
+      }
+
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+
   render(){
     return (
       <form onSubmit={this.publish} method="post">
@@ -62,9 +82,29 @@ export default class PostSection extends Component {
           <div className="row">
 
             <div className="col-sm-12 col-md-10 offset-md-1 mb-4">
-              <Dropzone onDrop={this.onDrop.bind(this)}>
-                <p>Try dropping some files here, or click to select files to upload.</p>
-                <img src={this.state.preview} className="rounded-circle" />
+                <Dropzone onDrop={this.onDrop.bind(this)} style={null} className="post-dropzone text-center p-4">
+                {
+                  this.state.preview ?
+                  (
+                    <div className="row justify-content-center">
+                      <div className="col-170">
+                        <img src={this.state.preview} className="rounded"/>
+                      </div>
+                      <div className="col-fa align-self-center text-center"
+                      onClick={(e) => this.removeFile(e)}>
+                        <i className="fa fa-trash fa-2x text-danger float-right"></i>
+                      </div>
+                    </div>
+                  )
+                  :
+                  (
+                    <div className="mt-2">
+                      <i className="fa fa-file-image-o fa-4x text-purle"></i><br/>
+                      <button type="button" className="btn btn-success text-white mt-3 mb-2">imagem ou vídeo</button><br/>
+                      <small>Clique, toque ou arraste.</small>
+                    </div>
+                  )
+                }
               </Dropzone>
               <ErrorMessage message={this.state.errors.media} />
             </div>
