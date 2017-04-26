@@ -28,7 +28,7 @@ export default class CommentOrReplyVoteBox extends Component {
 
       if (resJson.hasOwnProperty('vote')){
         this.setState({userVote: resJson.vote});
-      } else if (resJson.errors){
+      } else if (resJson.errors){oca
         helper.authErrorDispatcher(resJson.errors);
       }
 
@@ -53,6 +53,7 @@ export default class CommentOrReplyVoteBox extends Component {
       <box>
         <i className={"fa fa-arrow-up mr-2 href " + (this.state.userVote === true ? "text-success" : "")} onClick={() => this.vote(true)}></i>
         <i className={"fa fa-arrow-down mr-2 href " + (this.state.userVote === false ? "text-danger" : "")} onClick={() => this.vote(false)}></i>
+        <span className="text-muted">&nbsp;{this.state.points || 0} pontos&nbsp;</span>
       </box>
     );
   }

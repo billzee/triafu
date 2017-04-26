@@ -3,6 +3,8 @@ json.comments @paginated_comments do |comment|
   json.text comment.text
   json.created_at comment.created_at
 
+  json.points comment.points
+
   json.has_more_replies comment.replies.size > 2 ? true : false
 
   json.replies comment.replies.limit(2) do |reply|

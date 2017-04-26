@@ -41,7 +41,7 @@ export default class CommentOrReplyBox extends Component {
           <div width={this.props.photoSize} className="ml-3">
             <img src="/assets/bidu.jpg" width={this.props.photoSize} className="rounded-circle" />
           </div>
-          <div className="col pt-1">
+          <div className="col pt-1 break-all">
             <strong>
               {this.props.commentOrReply.user.username}
               {this.props.commentOrReply.user.id === this.props.postAuthor ? (<span className="text-success">&nbsp;autor</span>) : null}

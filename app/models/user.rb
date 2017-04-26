@@ -6,7 +6,7 @@ class User < ApplicationRecord
   before_update :username_is_being_changed
 
   validates :full_name, presence: true, length: { :minimum => 4, :maximum => 32 }
-  validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 16 }
+  validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 14 }
 
   validate :username_cannot_be_changed_again
 
