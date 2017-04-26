@@ -66,10 +66,10 @@ export default class PostVoteBox extends Component {
             pubsub.publish('dim-point', this.props.post.id);
             break;
           case null:
-            if (this.state.userVote !== 'negative'){
-              pubsub.publish('dim-point', this.props.post.id);
-            } else{
+            if (this.state.userVote === 'negative'){
               pubsub.publish('add-point', this.props.post.id);
+            } else{
+              pubsub.publish('dim-point', this.props.post.id);
             }
             break;
         }

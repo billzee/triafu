@@ -7,20 +7,20 @@ import VoteApi from '../api/VoteApi';
 export default class CommentOrReplyVoteBox extends Component {
   constructor(props){
     super();
-    this.state = {
-      userVote: props.commentOrReply.userVote,
-      points: props.commentOrReply.points
-    };
+    this.state = {userVote: props.commentOrReply.userVote, points: props.commentOrReply.points};
   }
 
   updateUserVote(newVote){
     if(newVote !== this.state.userVote){
+      let points;
       switch(newVote){
         case true:
-          this.setState({points: this.state.points + 1});
+          points = this.state.userVote === false ? 2 : 1
+          this.setState({points: this.state.points + points});
           break;
         case false:
-          this.setState({points: this.state.points - 1});
+          points = this.state.userVote === true ? 2 : 1
+          this.setState({points: this.state.points - points});
           break;
         case null:
           if(this.state.userVote === true){

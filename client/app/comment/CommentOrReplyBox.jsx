@@ -68,34 +68,32 @@ export default class CommentOrReplyBox extends Component {
                   </span>
                 )
             }
+            <br/>
+            {
+              this.props.commentOrReply.text.length > helper.maxLengthForRelease ?
+                this.state.release === this.props.commentOrReply.id ?
+                  (
+                    <a href="#" className="float-right"
+                    onClick={(e) => this.toggleReleaseText(e, null)}>
+                      <small>Recolher</small>
+                    </a>
+                  )
+                :
+                  (
+                    <a href="#" className="float-right"
+                    onClick={(e) => this.toggleReleaseText(e, this.props.commentOrReply.id)}>
+                      <small>Ler mais</small>
+                    </a>
+                  )
+              : null
+            }
             <div className="row">
-              <div className="col-8 text-left">
+              <div className="col text-left">
                 <CommentOrReplyVoteBox commentOrReply={this.props.commentOrReply} isComment={this.state.isComment} isReply={this.state.isReply} />
                 {
                   this.state.showReplyFormTo === this.props.commentOrReply.id ?
                   (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :
                   (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}><small>Responder</small></a>)
-                }
-              </div>
-
-              <div className="col-4 text-right">
-                {
-                  this.props.commentOrReply.text.length > helper.maxLengthForRelease ?
-                    this.state.release === this.props.commentOrReply.id ?
-                      (
-                        <a href="#" className="float-right"
-                        onClick={(e) => this.toggleReleaseText(e, null)}>
-                          <small>Recolher</small>
-                        </a>
-                      )
-                    :
-                      (
-                        <a href="#" className="float-right"
-                        onClick={(e) => this.toggleReleaseText(e, this.props.commentOrReply.id)}>
-                          <small>Ler mais</small>
-                        </a>
-                      )
-                  : null
                 }
               </div>
             </div>
