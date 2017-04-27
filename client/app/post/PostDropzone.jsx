@@ -62,7 +62,7 @@ export default class PostDropzone extends Component {
               <div className="col-30 align-self-center">
                 {
                   this.state.loading === true ?
-                  (<i class="fa fa-refresh fa-spin fa-2x text-info"></i>)
+                  (<i className="fa fa-refresh fa-spin fa-2x text-info"></i>)
                   : this.state.loading === false ?
                   (<i className="fa fa-check-square fa-2x text-success"></i>)
                   : null
