@@ -12,6 +12,5 @@
  *
  *= require_tree .
  *= require_self
- *= require font-awesome
- *= require dropzone
+ *= require font-awesome/scss/font-awesome.scss
  */

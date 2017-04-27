@@ -10,5 +10,8 @@
     "postinstall": "cd client && yarn install",
     "s": "foreman start -f Procfile.dev",
     "test": "rspec"
+  },
+  "dependencies": {
+    "tether": "^1.4.0"
   }
 }
