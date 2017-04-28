@@ -55,5 +55,6 @@ gem "mini_magick"
 gem "kaminari"
 gem "jbuilder"
 gem 'devise'
+gem 'file_validators'
 
 gem 'mini_racer', platforms: :ruby

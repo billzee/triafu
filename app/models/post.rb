@@ -8,10 +8,13 @@ class Post < ApplicationRecord
   validates_presence_of :video, :unless => :image?
 
   validates_processing_of :image
-  validate :check_image_dimensions
+  validates_integrity_of :image
 
   validates_presence_of :title
   validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
+
+  validates :image, file_size: { less_than_or_equal_to: 100.kilobytes },
+    file_content_type: { allow: ['image/jpeg', 'image/png'] }
 
   belongs_to :category
   belongs_to :user
@@ -41,13 +44,13 @@ class Post < ApplicationRecord
     post_votes.find_by(user_id: user_id) ? post_votes.find_by(user_id: user_id).vote : nil
   end
 
-  def check_image_dimensions
-    p "validando?"
-    ::Rails.logger.info "Avatar upload dimensions: #{self.image_upload_width}x#{self.image_upload_height}"
-    errors.add :image, "Dimensions of uploaded image should be not less than 150x150 pixels." if self.image_upload_width < 150 || image_upload_height < 150
-  end
-
-  def uploading?
-    image_upload_width.present? && image_upload_height.present?
-  end
+  def image=(obj)
+     super(obj)
+     # Put your callbacks here, e.g.
+     p obj.error, " objeto"
+     p image.error, " image"
+    #  p self.error, " self"
+    #  errors.add :image, "Dimensions of uploaded image should be not less than 150x150 pixels." if image.image_upload_width > 150 || image_upload_height > 150
+     p self.errors
+   end
 end
