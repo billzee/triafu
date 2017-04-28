@@ -15,22 +15,41 @@ export default class PostDropzone extends Component {
       loading: true
     });
 
-    PostsApi._upload_media(files[0]).then(function(response) {
+    PostsApi._upload_media(files[0])
+    .then(function(response) {
       var reader = response.body.getReader();
       var bytesReceived = 0;
 
-      reader.read().then(function processResult(result) {
+      reader.read()
+      .then(function processResult(result) {
+        console.log(result);
         if (result.done) {
           console.log("Fetch complete");
           return;
         }
-        console.log(result);
         bytesReceived += result.value.length;
-        console.log(`Received ${bytesReceived} bytes of data so far, total: ${files[0].size}`);
+        var size = humanFileSize(files[0].size, true);
+        console.log("Received " + bytesReceived + " bytes of data so far, total:" + size);
 
         return reader.read().then(processResult);
       });
     });
+
+    function humanFileSize(bytes, si) {
+      var thresh = si ? 1000 : 1024;
+      if(Math.abs(bytes) < thresh) {
+          return bytes + ' B';
+      }
+      var units = si
+          ? ['kB','MB','GB','TB','PB','EB','ZB','YB']
+          : ['KiB','MiB','GiB','TiB','PiB','EiB','ZiB','YiB'];
+      var u = -1;
+      do {
+          bytes /= thresh;
+          ++u;
+      } while(Math.abs(bytes) >= thresh && u < units.length - 1);
+      return bytes.toFixed(1)+' '+units[u];
+    }
   }
 
   async removeFile(e) {
@@ -60,7 +79,7 @@ export default class PostDropzone extends Component {
           this.state.preview ?
           (
             <div className="row justify-content-center">
-              <div className="col-30 align-self-center">
+              <div className="col-30 align-self-center mr-1">
                 {
                   this.state.loading === true ?
                   (

@@ -30,7 +30,7 @@ class PostsController < ApplicationController
         if @post.save
           respond_to do |format|
             format.html {redirect_to @post}
-            format.json {render json: @post.id, status: :ok}
+            format.json {render json: @post.id}
           end
         else
           render :json => { :errors => @post.errors }

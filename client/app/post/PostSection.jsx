@@ -18,7 +18,7 @@ export default class PostSection extends Component {
   }
 
   _handleEnter(postId, postAuthor){
-    pubsub.publish('show-comments-for-post', {postId: postId, postAuthor: postAuthor});
+    pubsub.publish('watch-post', {postId: postId, postAuthor: postAuthor});
     this.setState({currentPost: postId});
   }
 

@@ -9,48 +9,7 @@
         </button>
       </div>
 
-      <div class="modal-body">
-        <%= react_component("Login") %>
-
-        <p class="text-muted text-center">Usando uma rede social</p>
-
-        <ul class="list-unstyled list-inline text-center pb-3">
-          <li class="list-inline-item">
-            <button class="btn btn-facebook">
-              <i class="fa fa-facebook-f fa-1x"></i>
-              <span class="ml-1">Facebook</span>
-            </button>
-          </li>
-          <li class="list-inline-item">
-            <button class="btn btn-google">
-              <i class="fa fa-google-plus fa-1x"></i>
-              <span class="ml-1">Google</span>
-            </button>
-          </li>
-        </ul>
-
-        <hr class="or text-muted"/>
-
-        <p class="text-muted text-center pt-3">Usando seu e-mail de cadastro</p>
-
-        <%= form_for(:user, url: session_path(:user)) do |f| %>
-          <div class="form-group">
-            <label class="form-control-label">e-mail</label>
-            <%= f.email_field :email, class: "form-control", autofocus: true %>
-          </div>
-
-          <div class="form-group">
-            <label class="form-control-label">senha</label>
-            <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
-            <%= link_to('Esqueceu a senha?', new_user_password_path, class: "float-right") %>
-          </div>
-
-          <br />
-
-          <%= f.submit "Entrar", class: "btn btn-block btn-success" %>
-
-        <% end %>
-      </div>
+      <%= react_component("LoginForm") %>
 
       <div class="modal-footer p-2">
         <span class="text-muted">

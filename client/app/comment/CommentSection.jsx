@@ -55,7 +55,7 @@ export default class CommentSection extends Component {
   }
 
   componentWillMount(){
-    pubsub.subscribe('show-comments-for-post', (msg, data)=>{
+    pubsub.subscribe('watch-post', (msg, data)=>{
       this.setState({postId: data.postId, postAuthor: data.postAuthor});
       this.getComments();
     });

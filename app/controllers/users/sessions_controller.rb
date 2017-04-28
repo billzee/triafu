@@ -7,8 +7,24 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
+  def create
+    self.resource = warden.authenticate!(auth_options)
+    set_flash_message!(:notice, :signed_in)
+    sign_in(resource_name, resource)
+    yield resource if block_given?
+
+    respond_to do |format|
+      format.html {respond_with resource, location: after_sign_in_path_for(resource)}
+      format.json {render json: resource.errors ? resource.errors : resource}
+    end
+  end
+
+  # def create_json
+  #   self.resource = warden.authenticate!(auth_options)
+  #   set_flash_message!(:notice, :signed_in)
+  #   sign_in(resource_name, resource)
+  #   yield resource if block_given?
+  #   render json
   # end
 
   # DELETE /resource/sign_out
