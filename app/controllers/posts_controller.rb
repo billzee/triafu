@@ -12,7 +12,12 @@ class PostsController < ApplicationController
 
   def upload_media
     @@new_post = Post.new post_image_params
-    render :json => {}
+    if @@new_post.valid?
+      render :json => {}
+    else
+      render :json => {errors: @@new_post.errors}
+    end
+
   end
 
   def remove_media

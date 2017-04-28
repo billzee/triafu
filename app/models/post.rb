@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   validates_presence_of :title
   validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
 
-  validates :image, file_size: { less_than_or_equal_to: 100.kilobytes },
+  validates :image, file_size: { less_than_or_equal_to: 5.kilobytes },
     file_content_type: { allow: ['image/jpeg', 'image/png'] }
 
   belongs_to :category
@@ -46,11 +46,5 @@ class Post < ApplicationRecord
 
   def image=(obj)
      super(obj)
-     # Put your callbacks here, e.g.
-     p obj.error, " objeto"
-     p image.error, " image"
-    #  p self.error, " self"
-    #  errors.add :image, "Dimensions of uploaded image should be not less than 150x150 pixels." if image.image_upload_width > 150 || image_upload_height > 150
-     p self.errors
    end
 end

@@ -11,30 +11,27 @@ export default class PostDropzone extends Component {
     this.state = {preview: null, loading: null, errors: props.errors};
   }
 
-  onDrop(files) {
+  async onDrop(files) {
     this.setState({
       preview: {backgroundImage: "url('" + files[0].preview + "')"},
       loading: true
     });
 
-    PostsApi._upload_media(files[0])
-    .then(function(response) {
-      var reader = response.body.getReader();
-      var bytesReceived = 0;
+    try{
+      let res = await PostsApi._upload_media(files[0]);
+      let resJson = await res.json();
 
-      reader.read()
-      .then(function processResult(result) {
-        console.log(result);
-        if (result.done) {
-          console.log("Fetch complete");
-          return;
-        }
-        bytesReceived += result.value.length;
-        console.log("Received " + bytesReceived + " bytes of data so far");
+      console.log(resJson);
 
-        return reader.read().then(processResult);
-      });
-    });
+      if(resJson.errors){
+        this.setState({errors: resJson.errors});
+      } else{
+        // this.setState({preview: null, loading: null});
+      }
+
+    } catch(error){
+      console.log(error);
+    }
   }
 
   async removeFile(e) {
