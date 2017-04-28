@@ -20,7 +20,7 @@ var PostsApi = {
 
   _upload_media: function(file){
     let formData = new FormData();
-    formData.append('media[image]', file);
+    formData.append('post[image]', file);
     console.log(file);
     return MediaApi('/post/upload_media', {body: formData});
   },

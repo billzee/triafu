@@ -3,6 +3,8 @@ class CreatePosts < ActiveRecord::Migration[5.0]
     create_table :posts do |t|
       t.string :title
       t.string :original
+      t.string :image
+      t.string :video
 
       t.integer :category_id
       t.integer :user_id

@@ -39,13 +39,6 @@ ActiveRecord::Schema.define(version: 20170423012118) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "medias", force: :cascade do |t|
-    t.string   "image"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "post_votes", force: :cascade do |t|
     t.integer  "post_id"
     t.integer  "user_id"
@@ -57,6 +50,8 @@ ActiveRecord::Schema.define(version: 20170423012118) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "original"
+    t.string   "image"
+    t.string   "video"
     t.integer  "category_id"
     t.integer  "user_id"
     t.datetime "created_at",  null: false

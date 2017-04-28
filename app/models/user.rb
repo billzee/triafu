@@ -16,15 +16,14 @@ class User < ApplicationRecord
   has_many :post_votes
 
   def generate_username!
-    username = full_name.delete(' ')[0..14]
+    username = full_name.delete(' ')[0..13]
 
     self.username = username.downcase
   end
 
   def generate_secure_username!
-    username = full_name.delete(' ')[0..14]
     random_number = SecureRandom.random_number(100).to_s
-    username = username[0..11] + random_number
+    username = full_name.delete(' ')[0..11] + random_number
 
     self.username = username.downcase
   end

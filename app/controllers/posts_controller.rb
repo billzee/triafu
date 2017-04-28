@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index]
+  @@new_post = nil
 
   def index
     @paginated_posts = paginated_posts
-    @@media = nil
   end
 
   def show
@@ -11,35 +11,25 @@ class PostsController < ApplicationController
   end
 
   def upload_media
-    p @@media
-    @@media = Media.new media_params
+    @@new_post = Post.new post_image_params
     render :json => {}
   end
 
   def remove_media
-    @@media = nil
+    @@new_post = nil
     render :json => {}
   end
 
   def create
-    @post = Post.new post_params
+    @@new_post.update post_params
 
-    if @@media
-      if @@media.save
-        @post.media = @@media
-        if @post.save
-          respond_to do |format|
-            format.html {redirect_to @post}
-            format.json {render json: @post.id}
-          end
-        else
-          render :json => { :errors => @post.errors }
-        end
-      else
-        render :json => { :errors => @media.errors }
+    if @@new_post.save
+      respond_to do |format|
+        format.html {redirect_to @@new_post}
+        format.json {render json: @@new_post.id}
       end
     else
-      render :json => { :errors => {media: "não pode ficar em branco"} }
+      render :json => { :errors => @@new_post.errors }
     end
   end
 
@@ -59,7 +49,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :original).merge(user_id: current_user.id)
   end
 
-  def media_params
-    params.require(:media).permit :image
+  def post_image_params
+    params.require(:post).permit :image
   end
 end

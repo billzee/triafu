@@ -41,8 +41,7 @@ export default class PostSection extends Component {
           <div className="row">
 
             <div className="col-sm-12 col-md-10 offset-md-1 mb-3">
-              <PostDropzone />
-              <ErrorMessage message={this.state.errors.media} />
+              <PostDropzone errors={this.state.errors}/>
             </div>
 
             <div className="col-sm-12 col-md-10 offset-md-1">
@@ -56,7 +55,7 @@ export default class PostSection extends Component {
               </div>
 
               <small className="font-weight-bold">link do autor original (se existir)</small>
-              <div className={"form-group " + (this.state.errors.hasOwnProperty('original') ? "has-danger" : "")}>
+              <div className={"form-group mb-0 " + (this.state.errors.hasOwnProperty('original') ? "has-danger" : "")}>
                 <input value={this.state.original}
                 onChange={helper.handleChange.bind(this, 'original')}
                 placeholder="http://"
