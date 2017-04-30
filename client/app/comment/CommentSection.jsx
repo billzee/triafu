@@ -63,13 +63,11 @@ export default class CommentSection extends Component {
     pubsub.subscribe('submitted-comment', (msg, comment)=>{
       let newComments = this.state.comments.slice();
       newComments.unshift(comment);
-      
+
       this.setState({
         comments: newComments,
         totalCount: this.state.totalCount + 1
       });
-
-      console.log(this.state.comments);
 
       pubsub.publish('clear-comments-state', null);
     });
