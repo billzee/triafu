@@ -6,7 +6,7 @@ var PostsApi = {
     return Api('/posts/page/' + page, {method: 'GET'});
   },
 
-  _get: function(postId){
+  _show: function(postId){
     return Api('/posts/' + postId, {method: 'GET'});
   },
 

@@ -35,15 +35,14 @@ export default class ReplySection extends Component {
   }
 
   componentDidMount(){
-    pubsub
-    .subscribe('submitted-reply', (msg, data)=>{
+    pubsub.subscribe('submitted-reply', (msg, data)=>{
       if(data.commentId === this.props.commentId){
         this.setState({
           replies: data.replies,
           lastPage: data.lastPage
         });
       }
-      
+
       pubsub.publish('clear-comments-state', null);
     });
   }
@@ -61,7 +60,7 @@ export default class ReplySection extends Component {
                   this.state.replies.map((reply)=>{
                     return(
                       <li key={reply.id}>
-                        <CommentOrReplyBox commentId={this.state.commentId} photoSize={helper.replyPhotoSize}
+                        <CommentOrReplyBox commentId={this.props.commentId} photoSize={helper.replyPhotoSize}
                         commentOrReply={reply} postAuthor={this.props.postAuthor} isReply="true"/>
                       </li>
                     );

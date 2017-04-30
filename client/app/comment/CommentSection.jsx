@@ -13,15 +13,13 @@ import CommentsApi from '../api/CommentsApi';
 export default class CommentSection extends Component {
   constructor(props){
     super();
-    this.state = {comments: [], postAuthor: props.userId, postId: props.postId, page: '', totalCount: '', lastPage: true};
+    this.state = {comments: [], postAuthor: props.userId, postId: props.postId, page: '', totalCount: 0, lastPage: true};
   }
 
   async getComments(){
     try{
       let res = await CommentsApi._get(this.state.postId);
       let resJson = await res.json();
-
-      console.log(resJson);
 
       this.setState({
         comments: resJson.comments,
@@ -62,12 +60,16 @@ export default class CommentSection extends Component {
   }
 
   componentDidMount(){
-    pubsub.subscribe('submitted-comment', (msg, data)=>{
+    pubsub.subscribe('submitted-comment', (msg, comment)=>{
+      let newComments = this.state.comments.slice();
+      newComments.unshift(comment);
+      
       this.setState({
-        comments: data.comments,
-        lastPage: data.lastPage,
-        totalCount: data.totalCount
+        comments: newComments,
+        totalCount: this.state.totalCount + 1
       });
+
+      console.log(this.state.comments);
 
       pubsub.publish('clear-comments-state', null);
     });
@@ -91,8 +93,8 @@ export default class CommentSection extends Component {
                           <CommentOrReplyBox photoSize={helper.commentPhotoSize} commentOrReply={comment} isComment="true"
                           commentId={comment.id} postId={this.state.postId} postAuthor={this.state.postAuthor}/>
 
-                          <ReplySection commentId={comment.id} replies={comment.replies}
-                          hasMoreReplies={comment.hasMoreReplies} postAuthor={this.state.postAuthor}/>
+                          <ReplySection commentId={comment.id} replies={comment.replies || []}
+                          hasMoreReplies={comment.hasMoreReplies || false} postAuthor={this.state.postAuthor}/>
 
                           {this.state.comments.length - 1 !== key ? (<hr className="bgm-white" />) : null}
                         </li>

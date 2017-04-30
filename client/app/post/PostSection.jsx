@@ -26,7 +26,7 @@ export default class PostSection extends Component {
     if(this.state.postId){
 
       try{
-        let res = await PostsApi._get(this.state.postId);
+        let res = await PostsApi._show(this.state.postId);
         let resJson = await res.json();
 
         this.setState({
@@ -46,7 +46,7 @@ export default class PostSection extends Component {
         let resJson = await res.json();
 
         this.setState({
-          posts: resJson.posts,
+          posts: this.state.posts.concat(resJson.posts),
           lastPage: resJson.lastPage,
           page: 2
         });
@@ -61,7 +61,7 @@ export default class PostSection extends Component {
     if(e) e.preventDefault();
 
     try{
-      if(this.props.postId) this.setState({postId: ''});
+      if(this.state.postId) this.setState({postId: null});
 
       let res = await PostsApi._index(this.state.page);
       let resJson = await res.json();
@@ -84,7 +84,7 @@ export default class PostSection extends Component {
           this.state.posts.map((post)=>{
             return(
               <Waypoint
-                key={post.id}
+                key={this.state.postId === post.id ? 999 : post.id}
                 topOffset="48%"
                 bottomOffset="48%"
                 onEnter={()=> {this._handleEnter(post.id, post.userId)}}>
@@ -102,7 +102,7 @@ export default class PostSection extends Component {
             <div className="row justify-content-center pb-5">
               <div className="col-700">
                 <div className="col-550">
-                  <button className="btn btn-block btn-primary" onClick={(e) => this.paginatePosts(e)}>
+                  <button type="button" className="btn btn-block btn-primary" onClick={(e) => this.paginatePosts(e)}>
                     Carregar mais publicações
                   </button>
                 </div>
