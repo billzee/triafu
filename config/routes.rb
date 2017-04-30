@@ -30,8 +30,8 @@ Rails.application.routes.draw do
     end
   end
 
-  post 'post/upload_media' => 'posts#upload_media'
-  get 'post/remove_media' => 'posts#remove_media'
+  post 'post/upload_file' => 'posts#upload_file'
+  get 'post/remove_file' => 'posts#remove_file'
 
   root :to => "posts#index"
 end

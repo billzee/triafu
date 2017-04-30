@@ -18,7 +18,7 @@ export default class PostDropzone extends Component {
     });
 
     try{
-      let res = await PostsApi._upload_media(files[0]);
+      let res = await PostsApi._upload_file(files[0]);
       let resJson = await res.json();
 
       console.log(resJson);
@@ -38,7 +38,7 @@ export default class PostDropzone extends Component {
     if(e) e.preventDefault();
 
     try{
-      let res = await PostsApi._remove_media();
+      let res = await PostsApi._remove_file();
       let resJson = await res.json();
 
       console.log(resJson);
@@ -58,7 +58,7 @@ export default class PostDropzone extends Component {
     return (
       <box>
         <Dropzone onDrop={this.onDrop.bind(this)} style={null}
-        className={"post-dropzone text-center p-4 " + (this.state.errors.hasOwnProperty('image') ? "has-danger" : "")}>
+        className={"post-dropzone text-center p-4 " + (this.state.errors.hasOwnProperty('file') ? "has-danger" : "")}>
           {
             this.state.preview ?
             (
@@ -95,7 +95,7 @@ export default class PostDropzone extends Component {
             )
           }
         </Dropzone>
-        <ErrorMessage message={this.state.errors.media} />
+        <ErrorMessage message={this.state.errors.file} />
       </box>
     );
   }

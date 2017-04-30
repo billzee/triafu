@@ -1,5 +1,5 @@
 import Api from './Api';
-import MediaApi from './MediaApi';
+import FileApi from './FileApi';
 
 var PostsApi = {
   _index: function(page=1){
@@ -18,15 +18,15 @@ var PostsApi = {
     return Api('/posts/' + postId + '/vote', {method: 'POST', body: JSON.stringify({post_vote: vote})});
   },
 
-  _upload_media: function(file){
+  _upload_file: function(file){
     let formData = new FormData();
-    formData.append('post[image]', file);
+    formData.append('post[file]', file);
     console.log(file);
-    return MediaApi('/post/upload_media', {body: formData});
+    return FileApi('/post/upload_file', {body: formData});
   },
 
-  _remove_media: function(){
-    return Api('/post/remove_media', {method: 'GET'});
+  _remove_file: function(){
+    return Api('/post/remove_file', {method: 'GET'});
   }
 };
 

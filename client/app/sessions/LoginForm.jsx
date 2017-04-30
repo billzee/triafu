@@ -94,7 +94,7 @@ export default class Login extends Component {
             onChange={helper.handleChange.bind(this, 'password')}
             value={this.state.password}></input>
 
-            <a href="" className="float-right">Esqueceu a senha?</a>
+            <a href="/users/password/new" className="float-right">Esqueceu a senha?</a>
           </div>
 
           <br />

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index]
-  @@new_post = Post.new
+  @@new_post = nil
 
   def index
     @paginated_posts = paginated_posts
@@ -10,17 +10,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def upload_media
-    @@new_post = Post.new post_image_params
-    if @@new_post.valid?
-      render :json => {}
-    else
+  def upload_file
+    @@new_post = Post.new post_file_params
+    if @@new_post.invalid? && @@new_post.errors.include?(:file)
       render :json => {errors: @@new_post.errors}
+    else
+      render :json => {}
     end
 
   end
 
-  def remove_media
+  def remove_file
     @@new_post.image = nil
     render :json => {}
   end
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :original).merge(user_id: current_user.id)
   end
 
-  def post_image_params
-    params.require(:post).permit :image
+  def post_file_params
+    params.require(:post).permit :file
   end
 end
