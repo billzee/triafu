@@ -57,19 +57,31 @@ export default class PostVoteBox extends Component {
       if (resJson.hasOwnProperty('vote')){
         switch(resJson.vote){
           case 'funny':
-            if(this.state.userVote !== 'smart') pubsub.publish('add-point', this.props.post.id);
+            if(this.state.userVote === 'negative'){
+              pubsub.publish('add-points', {postId: this.props.post.id, points: 2});
+            }else if(this.state.userVote !== 'smart'){
+              pubsub.publish('add-points', {postId: this.props.post.id, points: 1});
+            }
             break;
           case 'smart':
-            if(this.state.userVote !== 'funny') pubsub.publish('add-point', this.props.post.id);
+            if(this.state.userVote === 'negative'){
+              pubsub.publish('add-points', {postId: this.props.post.id, points: 2});
+            }else if(this.state.userVote !== 'funny'){
+              pubsub.publish('add-points', {postId: this.props.post.id, points: 1});
+            }
             break;
           case 'negative':
-            pubsub.publish('dim-point', this.props.post.id);
+            if(this.state.userVote === 'funny' || this.state.userVote === 'smart'){
+              pubsub.publish('dim-points', {postId: this.props.post.id, points: 2});
+            }else{
+              pubsub.publish('dim-points', {postId: this.props.post.id, points: 1});
+            }
             break;
           case null:
             if (this.state.userVote === 'negative'){
-              pubsub.publish('add-point', this.props.post.id);
+              pubsub.publish('add-points', {postId: this.props.post.id, points: 1});
             } else{
-              pubsub.publish('dim-point', this.props.post.id);
+              pubsub.publish('dim-points', {postId: this.props.post.id, points: 1});
             }
             break;
         }

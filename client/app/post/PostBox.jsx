@@ -14,11 +14,11 @@ export default class PostBox extends Component {
   }
 
   componentDidMount(){
-    pubsub.subscribe('add-point', (msg, postId)=>{
-      if(this.state.post.id === postId) this.setState({points: this.state.points + 1});
+    pubsub.subscribe('add-points', (msg, data)=>{
+      if(this.state.post.id === data.postId) this.setState({points: this.state.points + data.points});
     });
-    pubsub.subscribe('dim-point', (msg, postId)=>{
-      if(this.state.post.id === postId) this.setState({points: this.state.points - 1});
+    pubsub.subscribe('dim-points', (msg, data)=>{
+      if(this.state.post.id === data.postId) this.setState({points: this.state.points - data.points});
     });
   }
 
