@@ -23,30 +23,35 @@ pt-BR:
   activerecord:
     models:
       user:
-        one: "Usuário"
-        other: "Usuários"
+        one: Usuário
+        other: Usuários
       post:
-        one: "Publicação"
-        other: "Publicações"
+        one: Publicação
+        other: Publicações
       comment:
-        one: "Comentário"
-        other: "Comentários"
+        one: Comentário
+        other: Comentários
       reply:
-        one: "Resposta"
-        other: "Resposta"
+        one: Resposta
+        other: Resposta
     attributes:
       user:
-        full_name: "Nome Completo"
-        email: "e-mail"
-        username: "Nome de Usuário"
+        full_name: Nome Completo
+        email: e-mail
+        username: Nome de Usuário
       comment:
-        text: "comentário"
+        text: comentário
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+      models:
+        post:
+          attributes:
+            file_size_is_less_than_or_equal_to: Tamanho inválido
+
   date:
     abbr_day_names:
     - Dom

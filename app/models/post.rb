@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  attr_accessor :image_upload_width, :image_upload_height, :file
+  attr_accessor :file, :image_upload_width, :image_upload_height
 
   mount_uploader :image, ImageUploader
   mount_uploader :video, VideoUploader
@@ -13,14 +13,18 @@ class Post < ApplicationRecord
   validates_presence_of :title
   validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
 
-  validates :image,
+  validates :file,
   file_size: {
     greater_than_or_equal_to: 20.kilobytes,
-    less_than_or_equal_to: 5.megabytes
-  },
+    less_than_or_equal_to: 10.megabytes
+  }
+
+  validates :image,
   file_content_type: {
     allow: ['image/jpeg', 'image/png']
   }
+
+  validate :permit_image_or_video
 
   belongs_to :category
   belongs_to :user
@@ -30,14 +34,14 @@ class Post < ApplicationRecord
 
   paginates_per 2
 
-  after_initialize do
+  def permit_image_or_video
     if file
       if file.content_type.start_with?('image')
         self.image = file
       elsif file.content_type.start_with?('video')
         self.video = file
       else
-        errors.add(:file, "fomarto não-suportado")
+        errors.add(:file, "formato não-suportado")
       end
     end
   end

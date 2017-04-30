@@ -1,12 +1,15 @@
 import pubsub from 'pubsub-js'
 
 var Helper = {
-
   commentPhotoSize: "48px",
 
   replyPhotoSize: "38px",
 
   maxLengthForRelease: 100,
+
+  maxFileSize: 10000000,
+
+  minFileSize: 20000,
 
   handleChange: function(input, e){
     var field = {errors: {}};

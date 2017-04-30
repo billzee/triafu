@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import PostsApi from '../api/PostsApi';
 import Dropzone from 'react-dropzone'
 
+import helper from  '../components/Helper';
+
 import ErrorMessage from  '../components/ErrorMessage';
 
 export default class PostDropzone extends Component {
@@ -12,25 +14,35 @@ export default class PostDropzone extends Component {
   }
 
   async onDrop(files) {
-    this.setState({
-      preview: {backgroundImage: "url('" + files[0].preview + "')"},
-      loading: true
-    });
+    let fileSize = files[0].size;
 
-    try{
-      let res = await PostsApi._upload_file(files[0]);
-      let resJson = await res.json();
+    console.log(fileSize, " ", helper.maxFileSize, " ",  helper.minFileSize);
 
-      console.log(resJson);
+    if(fileSize < helper.maxFileSize && fileSize > helper.minFileSize){
+      this.setState({
+        preview: {backgroundImage: "url('" + files[0].preview + "')"},
+        errors: {},
+        loading: true
+      });
 
-      if(resJson.errors){
-        this.setState({errors: resJson.errors});
-      } else{
-        // this.setState({preview: null, loading: null});
+      try{
+        let res = await PostsApi._upload_file(files[0]);
+        let resJson = await res.json();
+
+        console.log(resJson);
+
+        if(resJson.errors){
+          this.setState({errors: resJson.errors, loading: false});
+        } else{
+          this.setState({loading: false});
+        }
+
+      } catch(error){
+        console.log(error);
       }
 
-    } catch(error){
-      console.log(error);
+    } else{
+      this.setState({errors: {file: "O arquivo deve pesar entre 20KB e 10MB"}, loading: false});
     }
   }
 
@@ -73,7 +85,9 @@ export default class PostDropzone extends Component {
                       </div>
                     )
                     : this.state.loading === false ?
-                    (<i className="fa fa-check-square fa-2x text-success"></i>)
+                      this.state.errors.hasOwnProperty('file') ?
+                        (<i className="fa fa-exclamation-triangle fa-2x text-danger"></i>)
+                      : (<i className="fa fa-check-square fa-2x text-success"></i>)
                     : null
                   }
                 </div>
