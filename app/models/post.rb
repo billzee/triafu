@@ -4,9 +4,6 @@ class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   mount_uploader :video, VideoUploader
 
-  validates_presence_of :image, :unless => :video?
-  validates_presence_of :video, :unless => :image?
-
   validates_processing_of :image
   validates_integrity_of :image
 
@@ -14,6 +11,7 @@ class Post < ApplicationRecord
   validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
 
   validates :file,
+  presence: true,
   file_size: {
     greater_than_or_equal_to: 20.kilobytes,
     less_than_or_equal_to: 10.megabytes
@@ -44,6 +42,11 @@ class Post < ApplicationRecord
         errors.add(:file, "formato não-suportado")
       end
     end
+  end
+
+  def destroy_file?
+    self.image = self.video = self.file = nil
+    return true
   end
 
   def points

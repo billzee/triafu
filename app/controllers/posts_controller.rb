@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   def upload_file
     @@new_post = Post.new post_file_params
     if @@new_post.invalid? && @@new_post.errors.include?(:file)
-      render :json => {errors: @@new_post.errors}
+      render :json => {errors: @@new_post.errors[:file]}
     else
       render :json => {}
     end
@@ -21,12 +21,19 @@ class PostsController < ApplicationController
   end
 
   def remove_file
-    @@new_post.image = nil
-    render :json => {}
+    if @@new_post.destroy_file?
+      render :json => {}
+    else
+      render :json => {errors: @@new_post.errors[:file]}
+    end
   end
 
   def create
-    @@new_post.update post_params
+    if @@new_post
+      @@new_post.update post_params
+    else
+      @@new_post = Post.new post_params
+    end
 
     if @@new_post.save
       respond_to do |format|

@@ -10,7 +10,6 @@
   overflow: auto;
   height: 100%;
   -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
 }
 
 .col-700{
@@ -39,7 +38,6 @@
 }
 
 .post-dropzone {
-  cursor: pointer;
   height: 200px;
   color: $dark-gray;
   border: 4px dashed $dark-gray;

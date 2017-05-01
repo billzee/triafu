@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import pubsub from 'pubsub-js'
 
 import PostsApi from '../api/PostsApi';
 
@@ -25,6 +26,7 @@ export default class PostSection extends Component {
 
       if(resJson.errors){
         this.setState({errors: resJson.errors});
+        if(resJson.errors.file) pubsub.publish('file-errors', resJson.errors.file)
       } else{
         window.location = "/posts/" + resJson;
       }

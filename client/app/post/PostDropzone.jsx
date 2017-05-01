@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import pubsub from 'pubsub-js'
 
 import PostsApi from '../api/PostsApi';
 import Dropzone from 'react-dropzone'
@@ -10,18 +11,16 @@ import ErrorMessage from  '../components/ErrorMessage';
 export default class PostDropzone extends Component {
   constructor(props){
     super();
-    this.state = {preview: null, loading: null, errors: props.errors};
+    this.state = {preview: null, loading: null, fileErrors: []};
   }
 
   async onDrop(files) {
     let fileSize = files[0].size;
 
-    console.log(fileSize, " ", helper.maxFileSize, " ",  helper.minFileSize);
-
     if(fileSize < helper.maxFileSize && fileSize > helper.minFileSize){
       this.setState({
         preview: {backgroundImage: "url('" + files[0].preview + "')"},
-        errors: {},
+        fileErrors: [],
         loading: true
       });
 
@@ -32,7 +31,7 @@ export default class PostDropzone extends Component {
         console.log(resJson);
 
         if(resJson.errors){
-          this.setState({errors: resJson.errors, loading: false});
+          this.setState({fileErrors: resJson.errors, loading: false});
         } else{
           this.setState({loading: false});
         }
@@ -42,7 +41,7 @@ export default class PostDropzone extends Component {
       }
 
     } else{
-      this.setState({errors: {file: "O arquivo deve pesar entre 20KB e 10MB"}, loading: false});
+      this.setState({fileErrors: [file: "O arquivo deve pesar entre 20KB e 10MB"], loading: false});
     }
   }
 
@@ -56,7 +55,7 @@ export default class PostDropzone extends Component {
       console.log(resJson);
 
       if(resJson.errors){
-        this.setState({errors: resJson.errors});
+        this.setState({fileErrors: resJson.errors, loading: null});
       } else{
         this.setState({preview: null, loading: null});
       }
@@ -66,11 +65,18 @@ export default class PostDropzone extends Component {
     }
   }
 
+  componentDidMount(){
+    pubsub.subscribe('file-errors', (msg, errors)=>{
+      this.setState({fileErrors: errors});
+    });
+  }
+
   render(){
+    let dropzoneRef;
     return (
       <box>
-        <Dropzone onDrop={this.onDrop.bind(this)} style={null}
-        className={"post-dropzone text-center p-4 " + (this.state.errors.hasOwnProperty('file') ? "has-danger" : "")}>
+        <Dropzone onDrop={this.onDrop.bind(this)} style={null} ref={(node) => { dropzoneRef = node; }} disableClick={true}
+        className={"post-dropzone text-center p-4 " + (this.state.fileErrors.length > 0 ? "has-danger" : "")}>
           {
             this.state.preview ?
             (
@@ -85,7 +91,7 @@ export default class PostDropzone extends Component {
                       </div>
                     )
                     : this.state.loading === false ?
-                      this.state.errors.hasOwnProperty('file') ?
+                      this.state.fileErrors.length > 0 ?
                         (<i className="fa fa-exclamation-triangle fa-2x text-danger"></i>)
                       : (<i className="fa fa-check-square fa-2x text-success"></i>)
                     : null
@@ -94,8 +100,9 @@ export default class PostDropzone extends Component {
                 <div className="col-150 text-center">
                   <div style={this.state.preview} className="preview rounded m-0"/>
                 </div>
-                <div className="col-30 align-self-center" onClick={(e) => this.removeFile(e)}>
-                  <i className="fa fa-trash fa-2x text-danger"></i>
+                <div className="col-30 align-self-center">
+                  <i className="fa fa-trash fa-2x text-danger href"
+                  onClick={(e) => this.removeFile(e)}></i>
                 </div>
               </div>
             )
@@ -103,13 +110,14 @@ export default class PostDropzone extends Component {
             (
               <div className="mt-2">
                 <i className="fa fa-file-image-o fa-4x text-purple"></i><br/>
-                <button type="button" className="btn btn-success text-white mt-3 mb-2">imagem ou vídeo</button><br/>
+                <button type="button" type="button" onClick={() => { dropzoneRef.open() }}
+                className="btn btn-success text-white mt-3 mb-2">imagem ou vídeo</button><br/>
                 <small><strong className="text-purple">Clique, toque ou arraste</strong></small>
               </div>
             )
           }
         </Dropzone>
-        <ErrorMessage message={this.state.errors.file} />
+        <ErrorMessage message={this.state.fileErrors} />
       </box>
     );
   }
