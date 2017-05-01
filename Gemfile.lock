@@ -54,9 +54,11 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    carrierwave-video (0.5.6)
+    carrierwave-ffmpeg (1.0.0)
       carrierwave
       streamio-ffmpeg
+    carrierwave-video-thumbnailer (0.1.4)
+      carrierwave
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     devise (4.2.1)
@@ -203,7 +205,8 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha6)
   byebug
   carrierwave (~> 1.0)
-  carrierwave-video
+  carrierwave-ffmpeg
+  carrierwave-video-thumbnailer
   devise
   file_validators
   jbuilder

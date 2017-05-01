@@ -51,7 +51,8 @@ gem 'pg'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem "react_on_rails", "~> 6"
 gem 'carrierwave', '~> 1.0'
-gem 'carrierwave-video'
+gem 'carrierwave-ffmpeg'
+gem 'carrierwave-video-thumbnailer'
 gem "mini_magick"
 gem "kaminari"
 gem "jbuilder"

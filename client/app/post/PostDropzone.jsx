@@ -11,18 +11,31 @@ import ErrorMessage from  '../components/ErrorMessage';
 export default class PostDropzone extends Component {
   constructor(props){
     super();
-    this.state = {preview: null, loading: null, fileErrors: []};
+    this.state = {imagePreview: null, videoPreview: null, loading: null, fileErrors: []};
   }
 
   async onDrop(files) {
     let fileSize = files[0].size;
+    let fileType = files[0].type;
+    let filePreview = files[0].preview;
 
     if(fileSize < helper.maxFileSize && fileSize > helper.minFileSize){
-      this.setState({
-        preview: {backgroundImage: "url('" + files[0].preview + "')"},
-        fileErrors: [],
-        loading: true
-      });
+      this.setState({fileErrors: [], loading: true});
+
+      if(fileType.startsWith('video')){
+        console.log('video??????');
+        this.setState({
+          videoPreview: filePreview
+        });
+      } else if(fileType.startsWith('image')){
+        this.setState({
+          imagePreview: {backgroundImage: "url('" + filePreview + "')"}
+        });
+      } else{
+        this.setState({
+          imagePreview: {backgroundImage: "url('/assets/file_error.svg')"}
+        });
+      }
 
       try{
         let res = await PostsApi._upload_file(files[0]);
@@ -41,7 +54,7 @@ export default class PostDropzone extends Component {
       }
 
     } else{
-      this.setState({fileErrors: [file: "O arquivo deve pesar entre 20KB e 10MB"], loading: false});
+      this.setState({fileErrors: ["O arquivo deve pesar entre 20KB e 10MB"], loading: false});
     }
   }
 
@@ -57,7 +70,7 @@ export default class PostDropzone extends Component {
       if(resJson.errors){
         this.setState({fileErrors: resJson.errors, loading: null});
       } else{
-        this.setState({preview: null, loading: null});
+        this.setState({imagePreview: null, videoPreview: null, loading: null});
       }
 
     } catch(error){
@@ -78,7 +91,7 @@ export default class PostDropzone extends Component {
         <Dropzone onDrop={this.onDrop.bind(this)} style={null} ref={(node) => { dropzoneRef = node; }} disableClick={true}
         className={"post-dropzone text-center p-4 " + (this.state.fileErrors.length > 0 ? "has-danger" : "")}>
           {
-            this.state.preview ?
+            (this.state.imagePreview || this.state.videoPreview) ?
             (
               <div className="row justify-content-center">
                 <div className="col-30 align-self-center mr-1">
@@ -98,7 +111,17 @@ export default class PostDropzone extends Component {
                   }
                 </div>
                 <div className="col-150 text-center">
-                  <div style={this.state.preview} className="preview rounded m-0"/>
+                  {
+                    this.state.imagePreview ?
+                    (<div style={this.state.imagePreview} className="image-preview rounded m-0"/>)
+                    : this.state.videoPreview ?
+                    (
+                      <video width="150" autoPlay loop>
+                      Your browser does not support HTML5 video.
+                        <source src={this.state.videoPreview}/>
+                      </video>
+                    ) : null
+                  }
                 </div>
                 <div className="col-30 align-self-center">
                   <i className="fa fa-trash fa-2x text-danger href"

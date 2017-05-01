@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index]
-  @@new_post = nil
+  @@new_post
 
   def index
     @paginated_posts = paginated_posts
@@ -17,7 +17,6 @@ class PostsController < ApplicationController
     else
       render :json => {}
     end
-
   end
 
   def remove_file

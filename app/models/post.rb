@@ -38,10 +38,15 @@ class Post < ApplicationRecord
         self.image = file
       elsif file.content_type.start_with?('video')
         self.video = file
+        p self.video
       else
         errors.add(:file, "formato não-suportado")
       end
     end
+  end
+
+  def set_success(format, opts)
+    self.success = true
   end
 
   def destroy_file?
