@@ -1,14 +1,15 @@
 class Post < ApplicationRecord
-  attr_accessor :file, :image_upload_width, :image_upload_height
+  attr_accessor :file, :media, :image_upload_width, :image_upload_height
+
+  validates_presence_of :title
+
+  validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
 
   mount_uploader :image, ImageUploader
   mount_uploader :video, VideoUploader
 
-  validates_processing_of :image
-  validates_integrity_of :image
-
-  validates_presence_of :title
-  validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
+  validates_processing_of :image, :video
+  validates_integrity_of :image, :video
 
   validates :file,
   presence: true,
@@ -22,7 +23,12 @@ class Post < ApplicationRecord
     allow: ['image/jpeg', 'image/png']
   }
 
-  validate :permit_image_or_video
+  # validates :video,
+  # file_size: {
+  #   greater_than_or_equal_to: 50.megabytes
+  # }
+
+  validate :file_to_image_or_video
 
   belongs_to :category
   belongs_to :user
@@ -32,21 +38,8 @@ class Post < ApplicationRecord
 
   paginates_per 2
 
-  def permit_image_or_video
-    if file
-      if file.content_type.start_with?('image')
-        self.image = file
-      elsif file.content_type.start_with?('video')
-        self.video = file
-        p self.video
-      else
-        errors.add(:file, "formato não-suportado")
-      end
-    end
-  end
-
-  def set_success(format, opts)
-    self.success = true
+  def media
+    if self.image then return self.image else return self.video end
   end
 
   def destroy_file?
@@ -74,7 +67,17 @@ class Post < ApplicationRecord
     post_votes.find_by(user_id: user_id) ? post_votes.find_by(user_id: user_id).vote : nil
   end
 
-  def image=(obj)
-    super(obj)
+  private
+  
+  def file_to_image_or_video
+    if file
+      if file.content_type.start_with?('image')
+        self.image = file
+      elsif file.content_type.start_with?('video')
+        self.video = file
+      else
+        errors.add(:file, "formato não-suportado")
+      end
+    end
   end
 end

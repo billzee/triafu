@@ -13,6 +13,10 @@ class PostsController < ApplicationController
   def upload_file
     @@new_post = Post.new post_file_params
     if @@new_post.invalid? && @@new_post.errors.include?(:file)
+      # errors = @@new_post.errors.include?(:file) ? @@new_post.errors[:file] : []
+
+      # if @@new_post.errors.include?(:image) then errors[:file].merge!(@@new_post.errors[:image]) end
+      # if @@new_post.errors.include?(:video) then errors[:file].merge!(@@new_post.errors[:video]) end
       render :json => {errors: @@new_post.errors[:file]}
     else
       render :json => {}

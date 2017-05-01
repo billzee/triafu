@@ -45,6 +45,8 @@ export default class PostSection extends Component {
         let res = await PostsApi._index();
         let resJson = await res.json();
 
+        console.log(resJson.posts);
+
         this.setState({
           posts: this.state.posts.concat(resJson.posts),
           lastPage: resJson.lastPage,

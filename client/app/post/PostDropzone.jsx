@@ -23,10 +23,7 @@ export default class PostDropzone extends Component {
       this.setState({fileErrors: [], loading: true});
 
       if(fileType.startsWith('video')){
-        console.log('video??????');
-        this.setState({
-          videoPreview: filePreview
-        });
+        this.setState({videoPreview: filePreview});
       } else if(fileType.startsWith('image')){
         this.setState({
           imagePreview: {backgroundImage: "url('" + filePreview + "')"}
@@ -92,52 +89,44 @@ export default class PostDropzone extends Component {
         className={"post-dropzone text-center p-4 " + (this.state.fileErrors.length > 0 ? "has-danger" : "")}>
           {
             (this.state.imagePreview || this.state.videoPreview) ?
-            (
-              <div className="row justify-content-center">
-                <div className="col-30 align-self-center mr-1">
-                  {
-                    this.state.loading === true ?
-                    (
-                      <div className="text-info">
-                        <i className="fa fa-refresh fa-spin fa-2x"></i>
-                        <small>{this.state.progress}</small>
-                      </div>
-                    )
-                    : this.state.loading === false ?
-                      this.state.fileErrors.length > 0 ?
-                        (<i className="fa fa-exclamation-triangle fa-2x text-danger"></i>)
-                      : (<i className="fa fa-check-square fa-2x text-success"></i>)
-                    : null
-                  }
+              (
+                <div className="row justify-content-center">
+                  <div className="col-30 align-self-center mr-1">
+                    {
+                      this.state.loading === true ?
+                        (<div className="text-info"><i className="fa fa-refresh fa-spin fa-2x"></i></div>)
+                      : this.state.loading === false ?
+                        this.state.fileErrors.length > 0 ?
+                          (<i className="fa fa-exclamation-triangle fa-2x text-danger"></i>)
+                        :
+                          (<i className="fa fa-check-square fa-2x text-success"></i>)
+                      : null
+                    }
+                  </div>
+                  <div className="col-150 text-center">
+                    {
+                      this.state.imagePreview ?
+                        (<div style={this.state.imagePreview} className="image-preview rounded m-0"/>)
+                      : this.state.videoPreview ?
+                        (<video width="150" height="150" autoPlay loop><source src={this.state.videoPreview}/></video>)
+                      : null
+                    }
+                  </div>
+                  <div className="col-30 align-self-center">
+                    <i className="fa fa-trash fa-2x text-danger href"
+                    onClick={(e) => this.removeFile(e)}></i>
+                  </div>
                 </div>
-                <div className="col-150 text-center">
-                  {
-                    this.state.imagePreview ?
-                    (<div style={this.state.imagePreview} className="image-preview rounded m-0"/>)
-                    : this.state.videoPreview ?
-                    (
-                      <video width="150" autoPlay loop>
-                      Your browser does not support HTML5 video.
-                        <source src={this.state.videoPreview}/>
-                      </video>
-                    ) : null
-                  }
-                </div>
-                <div className="col-30 align-self-center">
-                  <i className="fa fa-trash fa-2x text-danger href"
-                  onClick={(e) => this.removeFile(e)}></i>
-                </div>
-              </div>
-            )
+              )
             :
-            (
-              <div className="mt-2">
-                <i className="fa fa-file-image-o fa-4x text-purple"></i><br/>
-                <button type="button" type="button" onClick={() => { dropzoneRef.open() }}
-                className="btn btn-success text-white mt-3 mb-2">imagem ou vídeo</button><br/>
-                <small><strong className="text-purple">Clique, toque ou arraste</strong></small>
-              </div>
-            )
+              (
+                <div className="mt-2">
+                  <i className="fa fa-file-image-o fa-4x text-purple"></i><br/>
+                  <button type="button" type="button" onClick={() => { dropzoneRef.open() }}
+                  className="btn btn-success text-white mt-3 mb-2">imagem ou vídeo</button><br/>
+                  <small><strong className="text-purple">Clique, toque ou arraste</strong></small>
+                </div>
+              )
           }
         </Dropzone>
         <ErrorMessage message={this.state.fileErrors} />

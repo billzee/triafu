@@ -14,7 +14,7 @@ json.post do
     json.user_vote @post.user_vote current_user.id
   end
 
-  json.image @post.image
+  json.media @post.media
 
   json.created_at @post.created_at
 end

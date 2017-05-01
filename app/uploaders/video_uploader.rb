@@ -1,14 +1,18 @@
 class VideoUploader < CarrierWave::Uploader::Base
     # include CarrierWave::FFmpeg
-    include CarrierWave::Video::Thumbnailer
+    include CarrierWave::MiniMagick
 
-    RESOLUTIONS = [
-        { version: :p360, resolution: '640x360'},
-        { version: :p240, resolution: '427x240'}
-      ]
+    # RESOLUTIONS = [
+    #     { version: :p360, resolution: '640x360'},
+    #     { version: :p240, resolution: '427x240'}
+    #   ]
 
     # Choose what kind of storage to use for this uploader:
     storage :file
+
+    def store_dir
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
 
     # Override the directory where uploaded files will be stored.
     # This is a sensible default for uploaders that are meant to be mounted:
@@ -61,7 +65,7 @@ class VideoUploader < CarrierWave::Uploader::Base
     #     end
     #   end
     # end
-    
+
     # RESOLUTIONS.each do |resolution|
     #   define_method("bigger_than_#{resolution[:resolution]}?") do |argument|
     #     movie(argument.path).resolution > resolution[:resolution] ? true : false
@@ -70,17 +74,6 @@ class VideoUploader < CarrierWave::Uploader::Base
 
     # Add a white list of extensions which are allowed to be uploaded.
     def extension_white_list
-      %w(mp4 mov avi mkv 3gp mpg mpeg)
-    end
-
-    version :thumb do
-      process thumbnail: [{quality: 8, size: 150, square: true, strip: true, logger: Rails.logger}]
-      def full_filename for_file
-        png_name for_file, version_name
-      end
-    end
-
-    def png_name for_file, version_name
-      %Q{#{version_name}_#{for_file.chomp(File.extname(for_file))}.png}
+      %w(mp4 mov avi mkv 3gp mpg mpeg gif)
     end
 end

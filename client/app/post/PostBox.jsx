@@ -3,6 +3,7 @@ import Moment from 'react-moment'
 import pubsub from 'pubsub-js'
 
 import PostShareLinks from './PostShareLinks';
+import PostMedia from './PostMedia';
 import PostVoteBox from './PostVoteBox';
 
 import PostsApi from '../api/PostsApi';
@@ -14,6 +15,7 @@ export default class PostBox extends Component {
   }
 
   componentDidMount(){
+    console.log(this.state.post);
     pubsub.subscribe('add-points', (msg, data)=>{
       if(this.state.post.id === data.postId) this.setState({points: this.state.points + data.points});
     });
@@ -70,7 +72,7 @@ export default class PostBox extends Component {
 
           <div className="row no-gutters">
             <div className="col-550 p-0">
-              <img src={this.state.post.image.url} className="post-image" />
+              <PostMedia media={this.state.post.media} />
             </div>
 
             <div className="col-100 p-0 ml-3 align-self-center">
