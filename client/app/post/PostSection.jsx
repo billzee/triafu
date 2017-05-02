@@ -87,8 +87,8 @@ export default class PostSection extends Component {
             return(
               <Waypoint
                 key={this.state.postId === post.id ? 999 : post.id}
-                topOffset="48%"
-                bottomOffset="48%"
+                topOffset="49%"
+                bottomOffset="49%"
                 onEnter={()=> {this._handleEnter(post.id, post.userId)}}>
                 <div>
                   <PostBox post={post} currentPost={this.state.currentPost} />

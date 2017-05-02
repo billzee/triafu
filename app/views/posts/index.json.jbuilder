@@ -15,7 +15,6 @@ json.posts @paginated_posts do |post|
   end
 
   json.image post.image
-
   json.video post.video
 
   json.created_at post.created_at

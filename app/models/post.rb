@@ -38,12 +38,6 @@ class Post < ApplicationRecord
 
   paginates_per 2
 
-  # def media
-  #   p self.video.file
-  #   p image
-  #   if self.image then p "ibagens????" else p "entrou no video????"  end
-  # end
-
   def destroy_file?
     self.image = self.video = self.file = nil
     return true
