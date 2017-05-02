@@ -57,8 +57,6 @@ GEM
     carrierwave-ffmpeg (1.0.0)
       carrierwave
       streamio-ffmpeg
-    carrierwave-video-thumbnailer (0.1.4)
-      carrierwave
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     devise (4.2.1)
@@ -206,7 +204,6 @@ DEPENDENCIES
   byebug
   carrierwave (~> 1.0)
   carrierwave-ffmpeg
-  carrierwave-video-thumbnailer
   devise
   file_validators
   jbuilder

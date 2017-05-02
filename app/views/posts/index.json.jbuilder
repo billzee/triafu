@@ -14,7 +14,9 @@ json.posts @paginated_posts do |post|
     json.user_vote post.user_vote current_user.id
   end
 
-  json.media post.media
+  json.image post.image
+
+  json.video post.video
 
   json.created_at post.created_at
 end

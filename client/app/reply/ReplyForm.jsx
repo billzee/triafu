@@ -11,11 +11,14 @@ import RepliesApi from '../api/RepliesApi';
 export default class ReplyForm extends Component {
   constructor(){
     super();
-    this.state = {text: '', errors: {}};
+    this.state = {text: '', loading: false, errors: {}};
   }
 
   async reply(e){
     e.preventDefault();
+
+    if(this.state.loading) return;
+    this.setState({loading: true});
 
     try{
       let res = await RepliesApi._create(this.props.commentId, this.state);
@@ -32,6 +35,8 @@ export default class ReplyForm extends Component {
     } catch(error){
       console.log(error);
     }
+
+    this.setState({loading: false});
   }
 
   render(){
@@ -52,7 +57,7 @@ export default class ReplyForm extends Component {
             placeholder="escreva uma resposta" />
 
           <span className="input-group-btn">
-            <input type="submit" className="btn btn-sm btn-success" value="Responder"></input>
+            <input type="submit" disabled={this.state.loading} className="btn btn-sm btn-success" value="Responder"></input>
           </span>
         </div>
 

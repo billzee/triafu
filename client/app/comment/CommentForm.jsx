@@ -10,11 +10,14 @@ import CommentsApi from '../api/CommentsApi';
 export default class CommentForm extends Component {
   constructor(){
     super();
-    this.state = {text: '', errors: {}};
+    this.state = {text: '', loading: false, errors: {}};
   }
 
   async comment(e){
     e.preventDefault();
+
+    if(this.state.loading) return;
+    this.setState({loading: true});
 
     try{
       let res = await CommentsApi._create(this.props.postId, this.state);
@@ -29,10 +32,11 @@ export default class CommentForm extends Component {
         this.setState({text: ''});
         pubsub.publish('submitted-comment', resJson.comment);
       }
-
     } catch(error){
       console.log(error);
     }
+
+    this.setState({loading: false});
   }
 
   render(){
@@ -55,12 +59,11 @@ export default class CommentForm extends Component {
                 placeholder="escreva um comentário" />
 
               <span className="input-group-btn">
-                <input type="submit" className="btn btn-sm btn-success" value="Comentar"></input>
+                <input type="submit" disabled={this.state.loading} className="btn btn-sm btn-success" value="Comentar"></input>
               </span>
             </div>
 
             <ErrorMessage message={this.state.errors.text} />
-
           </form>
         </div>
       </div>

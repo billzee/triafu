@@ -38,9 +38,11 @@ class Post < ApplicationRecord
 
   paginates_per 2
 
-  def media
-    if self.image then return self.image else return self.video end
-  end
+  # def media
+  #   p self.video.file
+  #   p image
+  #   if self.image then p "ibagens????" else p "entrou no video????"  end
+  # end
 
   def destroy_file?
     self.image = self.video = self.file = nil
@@ -68,7 +70,7 @@ class Post < ApplicationRecord
   end
 
   private
-  
+
   def file_to_image_or_video
     if file
       if file.content_type.start_with?('image')
