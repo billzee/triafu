@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 
-
 export default class PostBox extends Component {
   constructor(props){
     super();

@@ -6,6 +6,8 @@ import PostShareLinks from './PostShareLinks';
 import PostMedia from './PostMedia';
 import PostVoteBox from './PostVoteBox';
 
+import helper from '../components/Helper'
+
 import PostsApi from '../api/PostsApi';
 
 export default class PostBox extends Component {
@@ -90,7 +92,7 @@ export default class PostBox extends Component {
             <div className="row">
               <div className="col-6">
                 <small className="text-muted">
-                  {this.state.points || 0} {this.state.points === 1 ? "ponto" : "pontos"} <br/>
+                  {this.state.points || 0} {helper.pluralize(this.state.points, "ponto")}<br/>
                   Publicado <Moment fromNow>{this.state.post.createdAt}</Moment>
                 </small>
               </div>

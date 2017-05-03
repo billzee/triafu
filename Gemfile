@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -49,13 +49,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Triafu's gems
 gem 'pg'
 gem 'bootstrap', '~> 4.0.0.alpha6'
-gem "react_on_rails", "~> 6"
+gem "react_on_rails", "~> 7"
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-ffmpeg'
 gem "mini_magick"
 gem "kaminari"
 gem "jbuilder"
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
+gem 'erubis'
 gem 'file_validators'
 
 gem 'mini_racer', platforms: :ruby
