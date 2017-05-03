@@ -1,4 +1,5 @@
 import ReactOnRails from 'react-on-rails';
+import moment from 'moment'
 
 import PostSection from '../post/PostSection';
 import PostForm from '../post/PostForm';
@@ -8,8 +9,7 @@ import CommentSection from '../comment/CommentSection';
 
 import LoginForm from '../sessions/LoginForm';
 
-// var moment = require('moment');
-// moment.locale('pt-BR');
+moment.locale('pt-BR');
 
 ReactOnRails.register({
   PostSection,

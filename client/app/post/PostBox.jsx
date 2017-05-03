@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import Moment from 'react-moment'
 import pubsub from 'pubsub-js'
+
+import moment from 'moment'
 
 import PostShareLinks from './PostShareLinks';
 import PostMedia from './PostMedia';
@@ -17,7 +18,6 @@ export default class PostBox extends Component {
   }
 
   componentDidMount(){
-    console.log(this.state.post);
     pubsub.subscribe('add-points', (msg, data)=>{
       if(this.state.post.id === data.postId) this.setState({points: this.state.points + data.points});
     });
@@ -93,9 +93,7 @@ export default class PostBox extends Component {
               <div className="col-6">
                 <small className="text-muted">
                   {this.state.points || 0} {helper.pluralize(this.state.points, "ponto")}<br/>
-                  {
-                    // Publicado <Moment fromNow>{this.state.post.createdAt}</Moment>
-                  }
+                    Publicado { moment(this.state.post.createdAt).fromNow() }
                 </small>
               </div>
               <div className="col-6 mt-2">

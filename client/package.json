@@ -34,7 +34,6 @@
     "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.5.4",
     "react-dropzone": "^3.13.1",
-    "react-moment": "^0.2.2",
     "react-on-rails": "7.0.4",
     "react-textarea-autosize": "^4.3.0",
     "react-waypoint": "^6.0.0",
