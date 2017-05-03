@@ -94,7 +94,7 @@ export default class PostDropzone extends Component {
                   <div className="col-30 align-self-center mr-1">
                     {
                       this.state.loading === true ?
-                        (<div className="text-info"><i className="fa fa-refresh fa-spin fa-2x"></i></div>)
+                        (<div className="text-purple"><i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i></div>)
                       : this.state.loading === false ?
                         this.state.fileErrors.length > 0 ?
                           (<i className="fa fa-exclamation-triangle fa-2x text-danger"></i>)

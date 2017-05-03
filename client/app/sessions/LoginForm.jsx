@@ -14,7 +14,7 @@ export default class Login extends Component {
 
   componentDidMount(){
     pubsub.subscribe('auth-error', (msg, data)=>{
-      this.setState({error: data});
+      this.setState({errors: data});
     });
 
     pubsub.subscribe('watch-post', (msg, data)=>{
@@ -22,7 +22,7 @@ export default class Login extends Component {
     });
 
     $('#m_login').on('hidden.bs.modal', ()=> {
-      this.setState({error: ''});
+      this.setState({errors: ''});
     });
   }
 

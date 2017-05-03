@@ -15,7 +15,6 @@ export default class CommentForm extends Component {
 
   async comment(e){
     e.preventDefault();
-
     if(this.state.loading) return;
     this.setState({loading: true});
 
