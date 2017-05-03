@@ -5,12 +5,23 @@ import pubsub from 'pubsub-js'
 export default class PostBox extends Component {
   constructor(props){
     super();
-    this.state = {imageUrl: props.imageUrl || null, videoUrl: props.videoUrl || null};
+    this.state = {
+      imageUrl: (props.imageUrl || null),
+      videoUrl: (props.videoUrl || null)
+    };
     console.log(this.state);
   }
 
   componentDidMount(){
-    // console.log(this.props.media);
+    pubsub.subscribe('watch-post', (msg, data)=>{
+      if(data.postId === this.props.postId){
+        this.video.play();
+      } else if(!this.video.paused){
+        this.video.pause();
+        this.video.currentTime = 0;
+      }
+    });
+    console.log(this.props.postId);
   }
 
   render(){
@@ -23,7 +34,9 @@ export default class PostBox extends Component {
           )
           : this.state.videoUrl ?
           (
-            <video autoPlay className="post-media">
+            <video loop className="post-media"
+            ref={(video) => { this.video = video; }}
+            onClick={()=> this.video.paused ? this.video.play() : this.video.pause()}>
               <source src={this.state.videoUrl}/>
             </video>
           )
