@@ -8,8 +8,8 @@ import CommentSection from '../comment/CommentSection';
 
 import LoginForm from '../sessions/LoginForm';
 
-var moment = require('moment');
-moment.locale('pt-BR');
+// var moment = require('moment');
+// moment.locale('pt-BR');
 
 ReactOnRails.register({
   PostSection,

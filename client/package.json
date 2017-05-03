@@ -1,10 +1,10 @@
 {
-  "name": "triafu-client",
+  "name": "react-webpack-rails-tutorial",
   "version": "0.0.1",
   "private": true,
   "engines": {
-    "node": "7.6.0",
-    "npm": "4.4.4"
+    "node": "6.9.0",
+    "npm": "4.1.1"
   },
   "scripts": {
     "build:test": "webpack --config webpack.config.js",
@@ -16,32 +16,29 @@
     "client/node_modules"
   ],
   "dependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-core": "^6.23.1",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
     "babel-loader": "^6.3.2",
     "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "babel-preset-react-native": "^1.9.1",
-    "babel-preset-stage-2": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-runtime": "^6.23.0",
     "es5-shim": "^4.5.9",
     "expose-loader": "^0.7.3",
     "imports-loader": "^0.7.1",
-    "intl": "^1.2.5",
     "moment": "^2.18.1",
-    "moment-timezone": "^0.5.11",
+    "moment-timezone": "^0.5.13",
     "pubsub-js": "^1.5.6",
-    "react": "^15.4.2",
-    "react-copy-to-clipboard": "^4.2.3",
-    "react-dom": "^15.4.2",
+    "react": "^15.5.4",
+    "react-copy-to-clipboard": "^5.0.0",
+    "react-dom": "^15.5.4",
     "react-dropzone": "^3.13.1",
-    "react-intl": "^2.2.3",
     "react-moment": "^0.2.2",
     "react-on-rails": "7.0.4",
-    "react-textarea-autosize": "^4.0.5",
-    "react-waypoint": "^5.2.0",
-    "webpack": "^2.3.1"
+    "react-textarea-autosize": "^4.3.0",
+    "react-waypoint": "^6.0.0",
+    "webpack": "^2.3.3"
   },
   "devDependencies": {}
 }

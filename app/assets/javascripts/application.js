@@ -1,4 +1,6 @@
 //= require webpack-bundle
+
+//= require webpack-bundle
 //= require tether
 
 // This is a manifest file that'll be compiled into application.js, which will include all the files

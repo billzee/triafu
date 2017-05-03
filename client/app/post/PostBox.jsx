@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Moment from 'react-moment'
+// import Moment from 'react-moment'
 import pubsub from 'pubsub-js'
 
 import PostShareLinks from './PostShareLinks';
@@ -93,7 +93,9 @@ export default class PostBox extends Component {
               <div className="col-6">
                 <small className="text-muted">
                   {this.state.points || 0} {helper.pluralize(this.state.points, "ponto")}<br/>
-                  Publicado <Moment fromNow>{this.state.post.createdAt}</Moment>
+                  {
+                    // Publicado <Moment fromNow>{this.state.post.createdAt}</Moment>
+                  }
                 </small>
               </div>
               <div className="col-6 mt-2">

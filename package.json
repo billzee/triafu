@@ -1,10 +1,10 @@
 {
-  "name": "triafu",
+  "name": "react-webpack-rails-tutorial",
   "version": "0.0.1",
   "private": true,
   "engines": {
-    "node": "7.6.0",
-    "npm": "4.4.4"
+    "node": "6.9.0",
+    "npm": "4.1.1"
   },
   "scripts": {
     "postinstall": "cd client && yarn install",
