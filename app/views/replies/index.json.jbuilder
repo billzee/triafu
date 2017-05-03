@@ -14,7 +14,7 @@ end
 json.comment_id @paginated_replies[:comment_id]
 
 if @paginated_replies[:replies].size > 0
-  json.last_page @paginated_comments.last_page?
+  json.last_page @paginated_replies[:replies].last_page?
 else
   json.last_page true
 end

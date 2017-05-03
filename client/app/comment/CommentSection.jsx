@@ -84,6 +84,7 @@ export default class CommentSection extends Component {
         totalCount: this.state.totalCount + 1
       });
 
+      this.commentScroll.scrollTop = 0;
       pubsub.publish('clear-comments-state', null);
     });
   }
@@ -93,7 +94,7 @@ export default class CommentSection extends Component {
       <box>
         <CommentHeader totalCount={this.state.totalCount} />
 
-        <div className="row panel pt-2 comment-middle">
+        <div className="row panel pt-2 comment-middle" ref={(div) => {this.commentScroll = div}}>
           {
             this.state.comments.length > 0 ?
               (

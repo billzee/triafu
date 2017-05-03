@@ -12,7 +12,7 @@ class Comment < ApplicationRecord
   paginates_per 9
 
   def self.all_from_post post_id
-    where(post_id: post_id).order(created_at: :desc)
+    where(post_id: post_id).order(created_at: :asc).sort_by(&:points).reverse
   end
 
   def points
