@@ -12,4 +12,9 @@ json.replies @paginated_replies[:replies] do |reply|
 end
 
 json.comment_id @paginated_replies[:comment_id]
-json.last_page @paginated_replies[:replies].last_page?
+
+if @paginated_replies[:replies].size > 0
+  json.last_page @paginated_comments.last_page?
+else
+  json.last_page true
+end

@@ -26,5 +26,5 @@ json.comments @paginated_comments do |comment|
   end
 end
 
-json.last_page @paginated_comments.last_page?
+if @paginated_comments.size > 0 then json.last_page @paginated_comments.last_page? else json.last_page true end
 json.total_count @paginated_comments.total_count
