@@ -111,7 +111,7 @@ export default class PostDropzone extends Component {
                       this.state.imagePreview ?
                         (<div style={this.state.imagePreview} className="image-preview rounded m-0"/>)
                       : this.state.videoPreview ?
-                        (<video width="150" height="150" autoPlay loop><source src={this.state.videoPreview}/></video>)
+                        (<div className="thumb-video"><video autoPlay loop><source src={this.state.videoPreview}/></video></div>)
                       : null
                     }
                   </div>

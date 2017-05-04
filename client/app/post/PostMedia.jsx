@@ -40,28 +40,26 @@ export default class PostBox extends Component {
     return (
       this.state.imageUrl ?
       (
-        <img src={this.state.imageUrl} className="post-media"/>
+        <img src={this.state.imageUrl} className="post-image"/>
       )
       : this.state.videoUrl ?
       (
-      <div className="post-media">
-      {
-        this.state.paused ?
-        (
-          <div className="play-icon text-center rounded-circle pl-2 pt-3"
-          onClick={()=> this.controlManually()}>
-            <i className="fa fa-play fa-3x"/>
-          </div>
-        ) : null
-      }
-
+      <div className="post-video">
+        {
+          this.state.paused ?
+          (
+            <div className="play-icon text-center rounded-circle pl-2 pt-3"
+            onClick={()=> this.controlManually()}>
+              <i className="fa fa-play fa-3x"/>
+            </div>
+          ) : null
+        }
         <video loop ref={(video) => {this.video = video}} onClick={()=> this.controlManually()}>
           <source src={this.state.videoUrl}/>
         </video>
       </div>
       )
       : null
-
     );
   }
 }
