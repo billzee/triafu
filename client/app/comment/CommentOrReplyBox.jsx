@@ -15,7 +15,8 @@ export default class CommentOrReplyBox extends Component {
       showReplyFormTo: null,
       release: null,
       isComment: (props.isComment || false),
-      isReply: (props.isReply || false)};
+      isReply: (props.isReply || false)
+    };
   }
 
   componentDidMount(){

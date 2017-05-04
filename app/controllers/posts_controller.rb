@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index]
-  @@new_post
+  @@new_post = nil
 
   def index
     @paginated_posts = paginated_posts
@@ -12,12 +12,21 @@ class PostsController < ApplicationController
 
   def upload_file
     @@new_post = Post.new post_file_params
-    if @@new_post.invalid? && @@new_post.errors.include?(:file)
-      # errors = @@new_post.errors.include?(:file) ? @@new_post.errors[:file] : []
+    if @@new_post.invalid?
+      errors = nil
+      if @@new_post.errors.include?(:file)
+        errors = @@new_post.errors[:file]
+      elsif @@new_post.errors.include?(:image)
+        errors = @@new_post.errors[:image]
+      elsif @@new_post.errors.include?(:video)
+        errors = @@new_post.errors[:video]
+      end
 
-      # if @@new_post.errors.include?(:image) then errors[:file].merge!(@@new_post.errors[:image]) end
-      # if @@new_post.errors.include?(:video) then errors[:file].merge!(@@new_post.errors[:video]) end
-      render :json => {errors: @@new_post.errors[:file]}
+      if errors
+        render :json => {errors: errors}
+      else
+        render :json => {}
+      end
     else
       render :json => {}
     end
@@ -39,10 +48,8 @@ class PostsController < ApplicationController
     end
 
     if @@new_post.save
-      respond_to do |format|
-        format.html {redirect_to @@new_post}
-        format.json {render json: @@new_post.id}
-      end
+      render :json => @@new_post.id
+      @@new_post = nil
     else
       render :json => { :errors => @@new_post.errors }
     end
@@ -54,10 +61,6 @@ class PostsController < ApplicationController
     posts = Post.all
     page = params[:page] unless params[:page] == nil
     posts = posts.page(page)
-  end
-
-  def vote_params
-    params.require(:post_vote).permit(:vote).merge(user_id: current_user.id, post_id: params[:post_id])
   end
 
   def post_params

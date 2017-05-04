@@ -63,17 +63,20 @@ class Post < ApplicationRecord
     post_votes.find_by(user_id: user_id) ? post_votes.find_by(user_id: user_id).vote : nil
   end
 
-  private
+  protected
 
   def file_to_image_or_video
-    if file
-      if file.content_type.start_with?('image')
-        self.image = file
-      elsif file.content_type.start_with?('video')
-        self.video = file
-      else
-        errors.add(:file, "formato não-suportado")
+    if self.video.file.nil? && self.image.file.nil?
+      if file
+        if (file.content_type == 'image/gif' || file.content_type.start_with?('video'))
+          self.video = file
+        elsif file.content_type.start_with?('image')
+          self.image = file
+        else
+          errors.add(:file, "formato não-suportado")
+        end
       end
     end
   end
+
 end

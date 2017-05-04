@@ -13,14 +13,8 @@ class VideoUploader < CarrierWave::Uploader::Base
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
 
-    # Override the directory where uploaded files will be stored.
-    # This is a sensible default for uploaders that are meant to be mounted:
-    # def store_dir
-    #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    # end
-    #
     before :store, :remember_cache_id
-    after :store, :delete_tmp_dir
+    # after :store, :delete_tmp_dir
 
     # store! nil's the cache_id after it finishes so we need to remember it for deletion
     def remember_cache_id(new_file)

@@ -28,6 +28,9 @@ export default class PostDropzone extends Component {
         this.setState({
           imagePreview: {backgroundImage: "url('" + filePreview + "')"}
         });
+        if(fileType === 'image/gif'){
+          console.log(files[0]);
+        }
       } else{
         this.setState({
           imagePreview: {backgroundImage: "url('/assets/file_error.svg')"}

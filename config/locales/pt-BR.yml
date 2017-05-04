@@ -50,8 +50,8 @@ pt-BR:
       models:
         post:
           attributes:
-            file_size_is_less_than_or_equal_to: Tamanho inválido
-
+            file:
+              blank: escolha uma imagem ou um vídeo
   date:
     abbr_day_names:
     - Dom
