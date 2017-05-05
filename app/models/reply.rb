@@ -10,7 +10,7 @@ class Reply < ApplicationRecord
   paginates_per 9
 
   def self.all_from_comment comment_id
-    where(comment_id: comment_id)
+    where(comment_id: comment_id).order(created_at: :asc).sort_by(&:points).reverse
   end
 
   def points

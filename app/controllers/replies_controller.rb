@@ -1,5 +1,6 @@
 class RepliesController < ApplicationController
   before_action :authenticate_user!, :except => :index
+  PAGINATES_PER = 9
 
   def index
     @paginated_replies = paginated_replies
@@ -19,7 +20,7 @@ class RepliesController < ApplicationController
   def paginated_replies page=1
     r = Reply.all_from_comment params[:comment_id]
     page = params[:page] unless params[:page] == nil
-    r = {replies: r.page(page), comment_id: params[:comment_id].to_i}
+    r = {replies: Kaminari.paginate_array(r).page(page).per(PAGINATES_PER), comment_id: params[:comment_id].to_i}
   end
 
   def reply_params

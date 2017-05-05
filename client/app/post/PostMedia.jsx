@@ -38,9 +38,9 @@ export default class PostBox extends Component {
 
   render(){
     return (
-      this.state.imageUrl ?
+      this.state.image ?
       (
-        <img src={this.state.imageUrl} className="post-image"/>
+        <img src={this.state.image.url} className="post-image"/>
       )
       : this.state.video ?
       (

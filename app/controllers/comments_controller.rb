@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, :except => :index
-
   PAGINATES_PER = 9
 
   def index

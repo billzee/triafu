@@ -2,6 +2,7 @@ class VideoUploader < CarrierWave::Uploader::Base
     include CarrierWave::FFmpeg
 
     MAX_RESOLUTION = '640x360'
+    bigger = false
 
     # Choose what kind of storage to use for this uploader:
     storage :file
@@ -10,14 +11,32 @@ class VideoUploader < CarrierWave::Uploader::Base
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
 
-    after :store, :unlink_original
+    before :store, :remember_cache_id
+    after :store, :delete_tmp_dir
+    after :cache, :bigger_than_max_resolution?
+
+    def bigger_than_max_resolution?(file)
+      p "vai checar se e maior"
+      bigger = movie(file.path).resolution > MAX_RESOLUTION ? true : false
+    end
 
     def unlink_original(file)
-      File.delete if version_name.blank?
+      return unless delete_original_file
+      file.delete if version_name.blank?
+    end
+
+    def remember_cache_id(new_file)
+      @cache_id_was = cache_id
+    end
+
+    def delete_tmp_dir(new_file)
+      if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
+        FileUtils.rm_rf(File.join(root, cache_dir, @cache_id_was))
+      end
     end
 
     version :mp4 do
-      if :bigger_than_max_resolution?
+      if bigger
         process encode: [:mp4, resolution: MAX_RESOLUTION]
       else
         process encode: [:mp4]
@@ -29,7 +48,7 @@ class VideoUploader < CarrierWave::Uploader::Base
     end
 
     version :webm do
-      if :bigger_than_max_resolution?
+      if bigger
         process encode: [:webm, resolution: MAX_RESOLUTION]
       else
         process encode: [:webm]
@@ -42,14 +61,6 @@ class VideoUploader < CarrierWave::Uploader::Base
 
     def extension_white_list
       %w(mp4 mov avi mkv 3gp mpg mpeg gif)
-    end
-
-    protected
-
-    def bigger_than_max_resolution?(file)
-      p "to no metodo"
-      p file
-      movie(file.path).resolution > MAX_RESOLUTION ? true : false
     end
 
 end

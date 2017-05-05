@@ -82,7 +82,6 @@ export default class PostSection extends Component {
         </div>
 
         <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <input type="submit" className="btn btn-success" disabled={this.state.loading} value="Publicar"></input>
         </div>
       </form>
