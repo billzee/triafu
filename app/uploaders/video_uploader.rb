@@ -1,11 +1,7 @@
 class VideoUploader < CarrierWave::Uploader::Base
     include CarrierWave::FFmpeg
 
-    RESOLUTIONS =
-    [
-      {version: :p360, resolution: '640x360'},
-      {version: :p240, resolution: '427x240'}
-    ]
+    MAX_RESOLUTION = '640x360'
 
     # Choose what kind of storage to use for this uploader:
     storage :file
@@ -14,60 +10,46 @@ class VideoUploader < CarrierWave::Uploader::Base
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
 
-    before :store, :remember_cache_id
-    after :store, :delete_tmp_dir
+    after :store, :unlink_original
 
-    # store! nil's the cache_id after it finishes so we need to remember it for deletion
-    def remember_cache_id(new_file)
-      @cache_id_was = cache_id
-    end
-
-    def delete_tmp_dir(new_file)
-      if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
-        FileUtils.rm_rf(File.join(root, cache_dir, @cache_id_was))
-      end
+    def unlink_original(file)
+      File.delete if version_name.blank?
     end
 
     version :mp4 do
-      process encode: [:mp4]
+      if :bigger_than_max_resolution?
+        process encode: [:mp4, resolution: MAX_RESOLUTION]
+      else
+        process encode: [:mp4]
+      end
 
       def full_filename(for_file)
         super.chomp(File.extname(super)) + '.mp4'
       end
-
-      RESOLUTIONS.each do |resolution|
-        version resolution[:version], if: "bigger_than_#{resolution[:resolution]}?".to_sym
-
-        version resolution[:version] do
-          process encode: [:mp4, resolution: resolution[:resolution]]
-        end
-      end
     end
 
     version :webm do
-      process encode: [:webm]
+      if :bigger_than_max_resolution?
+        process encode: [:webm, resolution: MAX_RESOLUTION]
+      else
+        process encode: [:webm]
+      end
 
       def full_filename(for_file)
         super.chomp(File.extname(super)) + '.webm'
       end
-
-      RESOLUTIONS.each do |resolution|
-        version resolution[:version], if: "bigger_than_#{resolution[:resolution]}?".to_sym
-
-        version resolution[:version] do
-          process encode: [:webm, resolution: resolution[:resolution]]
-        end
-      end
     end
 
-    RESOLUTIONS.each do |resolution|
-      define_method("bigger_than_#{resolution[:resolution]}?") do |argument|
-        movie(argument.path).resolution > resolution[:resolution] ? true : false
-      end
-    end
-
-    # Add a white list of extensions which are allowed to be uploaded.
     def extension_white_list
       %w(mp4 mov avi mkv 3gp mpg mpeg gif)
     end
+
+    protected
+
+    def bigger_than_max_resolution?(file)
+      p "to no metodo"
+      p file
+      movie(file.path).resolution > MAX_RESOLUTION ? true : false
+    end
+
 end

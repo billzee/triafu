@@ -8,10 +8,15 @@ import helper from  '../components/Helper';
 
 import ErrorMessage from  '../components/ErrorMessage';
 
-export default class PostDropzone extends Component {
+export default class PostFile extends Component {
   constructor(props){
     super();
-    this.state = {imagePreview: null, videoPreview: null, loading: null, fileErrors: []};
+    this.state = {
+      imagePreview: null,
+      videoPreview: null,
+      loading: null,
+      fileErrors: []
+    };
   }
 
   async onDrop(files) {
@@ -19,8 +24,10 @@ export default class PostDropzone extends Component {
     let fileType = files[0].type;
     let filePreview = files[0].preview;
 
+    this.setState({fileErrors: [], loading: true});
+    pubsub.publish('file-loading', true);
+
     if(fileSize < helper.maxFileSize && fileSize > helper.minFileSize){
-      this.setState({fileErrors: [], loading: true});
 
       if(fileType.startsWith('video')){
         this.setState({videoPreview: filePreview});
@@ -28,9 +35,6 @@ export default class PostDropzone extends Component {
         this.setState({
           imagePreview: {backgroundImage: "url('" + filePreview + "')"}
         });
-        if(fileType === 'image/gif'){
-          console.log(files[0]);
-        }
       } else{
         this.setState({
           imagePreview: {backgroundImage: "url('/assets/file_error.svg')"}
@@ -44,9 +48,7 @@ export default class PostDropzone extends Component {
         console.log(resJson);
 
         if(resJson.errors){
-          this.setState({fileErrors: resJson.errors, loading: false});
-        } else{
-          this.setState({loading: false});
+          this.setState({fileErrors: resJson.errors});
         }
 
       } catch(error){
@@ -54,33 +56,45 @@ export default class PostDropzone extends Component {
       }
 
     } else{
-      this.setState({fileErrors: ["O arquivo deve pesar entre 20KB e 10MB"], loading: false});
+      this.setState({fileErrors: ["O arquivo deve pesar entre 20KB e 10MB"]});
     }
+
+    this.setState({loading: false});
+    pubsub.publish('file-loading', false);
   }
 
   async removeFile(e) {
     if(e) e.preventDefault();
+    this.setState({fileErrors: [], loading: true});
+    pubsub.publish('file-loading', true);
 
     try{
+      console.log('vai remover file');
       let res = await PostsApi._remove_file();
       let resJson = await res.json();
 
       console.log(resJson);
 
       if(resJson.errors){
-        this.setState({fileErrors: resJson.errors, loading: null});
+        this.setState({fileErrors: resJson.errors});
       } else{
-        this.setState({imagePreview: null, videoPreview: null, loading: null});
+        this.setState({imagePreview: null, videoPreview: null});
       }
 
     } catch(error){
       console.log(error);
     }
+
+    this.setState({loading: null});
+    pubsub.publish('file-loading', false);
   }
 
   componentDidMount(){
     pubsub.subscribe('file-errors', (msg, errors)=>{
       this.setState({fileErrors: errors});
+    });
+    pubsub.subscribe('remove-file', (msg, errors)=>{
+      this.removeFile();
     });
   }
 
@@ -116,8 +130,11 @@ export default class PostDropzone extends Component {
                     }
                   </div>
                   <div className="col-30 align-self-center">
-                    <i className="fa fa-trash fa-2x text-danger href"
-                    onClick={(e) => this.removeFile(e)}></i>
+                    {
+                      !this.state.loading ?
+                      (<i className="fa fa-trash fa-2x text-danger href" onClick={(e) => this.removeFile(e)}></i>)
+                      : null
+                    }
                   </div>
                 </div>
               )

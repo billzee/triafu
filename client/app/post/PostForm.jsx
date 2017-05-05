@@ -4,14 +4,20 @@ import pubsub from 'pubsub-js'
 import PostsApi from '../api/PostsApi';
 
 import helper from  '../components/Helper';
-import PostDropzone from  './PostDropzone';
+import PostFile from  './PostFile';
 
 import ErrorMessage from  '../components/ErrorMessage';
 
 export default class PostSection extends Component {
   constructor(){
     super();
-    this.state = {title: '', original: '', preview: null, errors: {}};
+    this.state = {
+      title: '',
+      original: '',
+      preview: null,
+      loading: false,
+      errors: {}
+    };
     this.publish = this.publish.bind(this);
   }
 
@@ -36,6 +42,12 @@ export default class PostSection extends Component {
     }
   }
 
+  componentDidMount(){
+    pubsub.subscribe('file-loading', (msg, data)=>{
+      this.setState({loading: data});
+    });
+  }
+
   render(){
     return (
       <form onSubmit={this.publish} method="post">
@@ -43,7 +55,7 @@ export default class PostSection extends Component {
           <div className="row">
 
             <div className="col-sm-12 col-md-10 offset-md-1 mb-3">
-              <PostDropzone errors={this.state.errors}/>
+              <PostFile errors={this.state.errors}/>
             </div>
 
             <div className="col-sm-12 col-md-10 offset-md-1">
@@ -71,7 +83,7 @@ export default class PostSection extends Component {
 
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <input type="submit" className="btn btn-success" value="Publicar"></input>
+          <input type="submit" className="btn btn-success" disabled={this.state.loading} value="Publicar"></input>
         </div>
       </form>
     );

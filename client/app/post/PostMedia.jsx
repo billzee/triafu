@@ -5,14 +5,14 @@ export default class PostBox extends Component {
   constructor(props){
     super();
     this.state = {
-      imageUrl: (props.imageUrl || null),
-      videoUrl: (props.videoUrl || null),
+      image: (props.image || null),
+      video: (props.video || null),
       paused: true
     };
   }
 
   componentDidMount(){
-    if(this.state.videoUrl){
+    if(this.state.video){
       pubsub.subscribe('watch-post', (msg, data)=>{
         if(data.postId === this.props.postId){
           this.video.play();
@@ -42,7 +42,7 @@ export default class PostBox extends Component {
       (
         <img src={this.state.imageUrl} className="post-image"/>
       )
-      : this.state.videoUrl ?
+      : this.state.video ?
       (
       <div className="post-video">
         {
@@ -55,7 +55,8 @@ export default class PostBox extends Component {
           ) : null
         }
         <video loop ref={(video) => {this.video = video}} onClick={()=> this.controlManually()}>
-          <source src={this.state.videoUrl}/>
+          <source src={this.state.video.webm.url} type="video/webm"/>
+          <source src={this.state.video.mp4.url} type="video/mp4"/>
         </video>
       </div>
       )

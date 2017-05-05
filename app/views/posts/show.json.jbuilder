@@ -14,8 +14,8 @@ json.post do
     json.user_vote @post.user_vote current_user.id
   end
 
-  json.image @post.image
-  json.video @post.video
+  if @post.image.file then json.image @post.image end
+  if @post.video.file then json.video @post.video.versions end
 
   json.created_at @post.created_at
 end

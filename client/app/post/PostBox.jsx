@@ -74,7 +74,10 @@ export default class PostBox extends Component {
 
           <div className="row no-gutters">
             <div className="col-550 p-0">
-              <PostMedia imageUrl={this.state.post.image.url} videoUrl={this.state.post.video.url} postId={this.state.post.id} />
+              <PostMedia
+              image={this.state.post.image}
+              video={this.state.post.video}
+              postId={this.state.post.id} />
             </div>
 
             <div className="col-100 p-0 ml-3 align-self-center">
