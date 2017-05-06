@@ -48,12 +48,10 @@ class VideoUploader < CarrierWave::Uploader::Base
   end
 
   def bigger_than_max_resolution?(file)
-    p "video com resolução maior"
     movie(file.path).resolution > MAX_RESOLUTION ? true : false
   end
 
   def smaller_than_max_resolution?(file)
-    p "video com resolução menor"
     movie(file.path).resolution <= MAX_RESOLUTION ? true : false
   end
 
