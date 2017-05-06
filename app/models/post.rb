@@ -8,9 +8,6 @@ class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   mount_uploader :video, VideoUploader
 
-  validates_processing_of :image, :video
-  validates_integrity_of :image, :video
-
   validates :file,
   presence: true,
   file_size: {
