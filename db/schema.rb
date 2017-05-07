@@ -15,12 +15,6 @@ ActiveRecord::Schema.define(version: 20170423012118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", id: :serial, force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comment_votes", id: :serial, force: :cascade do |t|
     t.integer "comment_id"
     t.integer "user_id"
@@ -52,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170423012118) do
     t.string "original"
     t.string "image"
     t.string "video"
-    t.integer "category_id"
+    t.integer "category", default: 1
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

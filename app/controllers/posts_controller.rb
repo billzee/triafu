@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index]
-  PAGINATES_PER = 2
   @@new_post = nil
 
   def index
@@ -54,7 +53,7 @@ class PostsController < ApplicationController
   private
 
   def paginated_posts
-    posts = Post.all_from_category params[:category_id]
+    posts = Post.all_from_category params[:category]
     page = params[:page] ? params[:page] : 1
     posts = posts.page(page)
   end

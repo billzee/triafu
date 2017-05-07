@@ -39,9 +39,9 @@ export default class PostSection extends Component {
     }
   }
 
-  async index(categoryId=1){
+  async index(category="top"){
     try{
-      let res = await PostsApi._index(categoryId);
+      let res = await PostsApi._index(category);
       let resJson = await res.json();
 
       console.log(resJson.posts);
@@ -66,8 +66,8 @@ export default class PostSection extends Component {
   }
 
   componentDidMount(){
-    pubsub.subscribe('category', (msg, categoryId)=>{
-      this.index(categoryId);
+    pubsub.subscribe('category', (msg, category)=>{
+      this.index(category);
     });
   }
 

@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   attr_accessor :file, :media, :image_upload_width, :image_upload_height
+  enum category: [ :top, :newcomer ]
 
   validates_presence_of :title
 
@@ -26,8 +27,6 @@ class Post < ApplicationRecord
   # }
 
   validate :file_to_image_or_video
-
-  belongs_to :category
   belongs_to :user
 
   has_many :comments
@@ -35,7 +34,7 @@ class Post < ApplicationRecord
 
   paginates_per 9
 
-  def self.ranked_currents_from_category category_id=1, rank
+  def self.ranked_currents_from_category category=:top, rank
     posts = []
     number_of_hours = 20
 
@@ -49,8 +48,8 @@ class Post < ApplicationRecord
     end
   end
 
-  def self.all_from_category category_id=1
-    where(category_id: category_id).order(created_at: :desc)
+  def self.all_from_category category=:top
+    where(category: category).order(updated_at: :desc)
   end
 
   def destroy_file?

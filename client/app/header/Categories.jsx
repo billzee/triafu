@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 
 export default class Categories extends Component {
+  constructor(){
+    super();
+    this.state = {selected: "top"};
+  }
+
   changeCategory(e, category){
     e.preventDefault();
+    this.setState({selected: category});
     pubsub.publish('category', category);
   }
 
@@ -12,12 +18,12 @@ export default class Categories extends Component {
       <div className="col pt-3">
         <ul className="list-inline list-unstyled mb-0">
           <li className="list-inline-item header-item active">
-            <a href className="header-link"
-            onClick={(e) => this.changeCategory(e, 1)}>Top</a>
+            <a href className={"header-link " + (this.state.selected === 'top' ? "active" : "")}
+            onClick={(e) => this.changeCategory(e, "top")}>Top</a>
           </li>
           <li className="list-inline-item header-item">
-            <a href className="header-link"
-            onClick={(e) => this.changeCategory(e, 2)}>Novos</a>
+            <a href className={"header-link " + (this.state.selected === 'newcomer' ? "active" : "")}
+            onClick={(e) => this.changeCategory(e, "newcomer")}>Novas</a>
           </li>
           <li className="list-inline-item dropdown header-item">
             <a href="#" className="dropdown-toggle header-link" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -2,9 +2,8 @@ import Api from './Api';
 import FileApi from './FileApi';
 
 var PostsApi = {
-  _index: function(categoryId=1, page=1){
-    console.log(categoryId, " categoriaaa");
-    return Api('/posts/page/' + page + '?category_id=' + categoryId, {method: 'GET'});
+  _index: function(category="top", page=1){
+    return Api('/posts/page/' + page + '?category=' + category, {method: 'GET'});
   },
 
   _show: function(postId){
