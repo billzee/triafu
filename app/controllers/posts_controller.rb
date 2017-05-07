@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index]
+  PAGINATES_PER = 2
   @@new_post = nil
 
   def index
@@ -13,16 +14,9 @@ class PostsController < ApplicationController
   def upload_file
     @@new_post = Post.new post_file_params
     if @@new_post.invalid?
-      errors = nil
-      if @@new_post.errors.include?(:file)
-        errors = @@new_post.errors[:file]
-      elsif @@new_post.errors.include?(:image)
-        errors = @@new_post.errors[:image]
-      elsif @@new_post.errors.include?(:video)
-        errors = @@new_post.errors[:video]
-      end
+      @@new_post.errors[:file] = resolve_file_errors @@new_post.errors
 
-      if errors
+      if @@new_post.errors[:file]
         render :json => {errors: errors}
       else
         render :json => {}
@@ -51,16 +45,30 @@ class PostsController < ApplicationController
       render :json => @@new_post.id
       @@new_post = nil
     else
+      @@new_post.errors[:file] = resolve_file_errors @@new_post.errors
+
       render :json => { :errors => @@new_post.errors }
     end
   end
 
   private
 
-  def paginated_posts page=1
-    posts = Post.all
-    page = params[:page] unless params[:page] == nil
+  def paginated_posts
+    posts = Post.all_from_category params[:category_id]
+    page = params[:page] ? params[:page] : 1
     posts = posts.page(page)
+  end
+
+  def resolve_file_errors errors
+    if errors.include?(:file)
+      return errors[:file]
+    elsif errors.include?(:image)
+      return errors[:image]
+    elsif errors.include?(:video)
+      return errors[:video]
+    else
+      return nil
+    end
   end
 
   def post_params

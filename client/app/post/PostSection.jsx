@@ -6,7 +6,7 @@ import PostBox from './PostBox';
 
 export default class PostSection extends Component {
   constructor(props){
-    super(props);
+    super();
     this.state = {
       posts: [],
       postId: props.postId,
@@ -14,6 +14,7 @@ export default class PostSection extends Component {
       page: '',
       lastPage: true
     };
+
     this._handleEnter = this._handleEnter.bind(this);
   }
 
@@ -22,41 +23,52 @@ export default class PostSection extends Component {
     this.setState({currentPost: postId});
   }
 
-  async componentWillMount(){
-    if(this.state.postId){
+  async show(){
+    try{
+      let res = await PostsApi._show(this.state.postId);
+      let resJson = await res.json();
 
-      try{
-        let res = await PostsApi._show(this.state.postId);
-        let resJson = await res.json();
+      this.setState({
+        posts: this.state.posts.concat(resJson.post),
+        lastPage: true,
+        page: 1
+      });
 
-        this.setState({
-          posts: this.state.posts.concat(resJson.post),
-          lastPage: true,
-          page: 1
-        });
-
-      } catch(error){
-        console.log(error);
-      }
-
-    } else{
-
-      try{
-        let res = await PostsApi._index();
-        let resJson = await res.json();
-
-        console.log(resJson.posts);
-
-        this.setState({
-          posts: this.state.posts.concat(resJson.posts),
-          lastPage: resJson.lastPage,
-          page: 2
-        });
-
-      } catch(error){
-        console.log(error);
-      }
+    } catch(error){
+      console.log(error);
     }
+  }
+
+  async index(categoryId=1){
+    try{
+      let res = await PostsApi._index(categoryId);
+      let resJson = await res.json();
+
+      console.log(resJson.posts);
+
+      this.setState({
+        posts: resJson.posts,
+        lastPage: resJson.lastPage,
+        page: 2
+      });
+
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+  componentWillMount(){
+    if(this.state.postId){
+      this.show();
+    } else{
+      this.index();
+    }
+  }
+
+  componentDidMount(){
+    pubsub.subscribe('category', (msg, categoryId)=>{
+      this.index(categoryId);
+    });
   }
 
   async paginatePosts(e){

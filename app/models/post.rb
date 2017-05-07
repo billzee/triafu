@@ -33,32 +33,32 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :post_votes
 
-  paginates_per 2
+  paginates_per 9
 
-  def self.ranked_currents_from_category category_id=1
-    where(category_id: category_id).order(created_at: :asc).sort_by(&:points).reverse
-  end
-
-  def self.funny_currents_from_category category_id=1
-    where(category_id: category_id).order(created_at: :asc).sort_by(&:funny_count).reverse
-  end
-
-  def self.smart_currents_from_category category_id=1
-    today = Date.current
+  def self.ranked_currents_from_category category_id=1, rank
     posts = []
     number_of_hours = 20
 
-    while posts.size == 0 do
-      p number_of_hours, "horas"
-      posts = where('created_at > ?', (number_of_hours).minutes.ago)
-      number_of_hours = number_of_hours + 20
+    if rank
+      while posts.size == 0 do
+        posts = where('created_at > ?', (number_of_hours).minutes.ago)
+        number_of_hours = number_of_hours + 20
+      end
+
+      posts.order(created_at: :asc).sort_by(&(rank)).reverse
     end
-    posts.order(created_at: :asc).sort_by(&:smart_count).reverse
+  end
+
+  def self.all_from_category category_id=1
+    where(category_id: category_id).order(created_at: :desc)
   end
 
   def destroy_file?
-    self.image = self.video = self.file = nil
-    return true
+    if self.image = self.video = self.file = nil
+      return true
+    else
+      return false
+    end
   end
 
   def points

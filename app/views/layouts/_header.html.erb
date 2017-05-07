@@ -3,25 +3,7 @@
     <%= image_tag "triafu3.svg", height: 32%>
   <% end %>
 
-  <div class="col pt-3">
-    <ul class="list-inline list-unstyled mb-0">
-      <li class="list-inline-item header-item active">
-        <a href="#" class="header-link">Top</a>
-      </li>
-      <li class="list-inline-item header-item">
-        <a href="#" class="header-link">Novos</a>
-      </li>
-      <li class="list-inline-item dropdown header-item">
-        <a href="#" class="dropdown-toggle header-link" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Tudo
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Ver<img src="/assets/funny.svg" width="35px" class="mr-2 ml-2" />1º</a>
-          <a class="dropdown-item" href="#">Ver<img src="/assets/brain.svg" width="35px" class="mr-2 ml-2" />1º</a>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <%= react_component("Categories", prerender: true) %>
 
   <div class="col pt-2 text-right">
 

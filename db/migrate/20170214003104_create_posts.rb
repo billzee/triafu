@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.string :image
       t.string :video
 
-      t.integer :category_id
+      t.integer :category_id, default: 2
       t.integer :user_id
 
       t.timestamps

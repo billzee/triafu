@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   end
 
   shallow do
-    resources :posts, concerns: :paginatable, only: [:index, :create, :show] do
+
+    resources :posts, concerns: :paginatable, only: [:index, :create, :show], path_names: { index: 'new/:id' } do
       resources :post_vote, only: [:index, :create]
 
       resources :comments, concerns: :paginatable, only: [:index, :create] do
@@ -26,9 +27,9 @@ Rails.application.routes.draw do
         resources :replies, concerns: :paginatable, only: [:index, :create] do
           resources :reply_vote, only: [:index, :create]
         end
-
       end
     end
+
   end
 
   post 'post/upload_file' => 'posts#upload_file'

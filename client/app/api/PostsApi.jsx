@@ -2,8 +2,9 @@ import Api from './Api';
 import FileApi from './FileApi';
 
 var PostsApi = {
-  _index: function(page=1){
-    return Api('/posts/page/' + page, {method: 'GET'});
+  _index: function(categoryId=1, page=1){
+    console.log(categoryId, " categoriaaa");
+    return Api('/posts/page/' + page + '?category_id=' + categoryId, {method: 'GET'});
   },
 
   _show: function(postId){
@@ -21,7 +22,6 @@ var PostsApi = {
   _upload_file: function(file){
     let formData = new FormData();
     formData.append('post[file]', file);
-    console.log(file);
     return FileApi('/post/upload_file', {body: formData});
   },
 
