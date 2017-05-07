@@ -20,4 +20,4 @@ json.posts @paginated_posts do |post|
   json.created_at post.created_at
 end
 
-json.last_page @paginated_posts.last_page?
+if @paginated_posts.size > 0 then json.last_page @paginated_posts.last_page? else json.last_page true end

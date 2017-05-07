@@ -73,6 +73,7 @@ export default class PostSection extends Component {
 
   async paginatePosts(e){
     if(e) e.preventDefault();
+    console.log('caindo na paginacao?');
 
     try{
       if(this.state.postId) this.setState({postId: null});

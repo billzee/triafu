@@ -9,11 +9,13 @@ export default class PostBox extends Component {
       video: (props.video || null),
       paused: true
     };
+
+    this.video = null;
   }
 
   componentDidMount(){
-    if(this.state.video){
-      pubsub.subscribe('watch-post', (msg, data)=>{
+    pubsub.subscribe('watch-post', (msg, data)=>{
+      if(this.video !== null){
         if(data.postId === this.props.postId){
           this.video.play();
           this.setState({paused: false});
@@ -22,17 +24,19 @@ export default class PostBox extends Component {
           this.video.currentTime = 0;
           this.setState({paused: true});
         }
-      });
-    }
+      }
+    });
   }
 
   controlManually(){
-    if (this.video.paused){
-      this.video.play()
-      this.setState({paused: false});
-    } else{
-      this.video.pause()
-      this.setState({paused: true});
+    if(this.video){
+      if(this.video.paused){
+        this.video.play();
+        this.setState({paused: false});
+      } else{
+        this.video.pause();
+        this.setState({paused: true});
+      }
     }
   }
 
