@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 
 import SessionsApi from '../api/SessionsApi';
+import SocialLogin from './SocialLogin';
 
 import helper from '../components/Helper'
 
@@ -60,21 +61,7 @@ export default class Login extends Component {
         }
 
         <p className="text-muted text-center">Usando uma rede social</p>
-
-        <ul className="list-unstyled list-inline text-center pb-3">
-          <li className="list-inline-item">
-            <button className="btn btn-facebook">
-              <i className="fa fa-facebook-f fa-1x"></i>
-              <span className="ml-1">Facebook</span>
-            </button>
-          </li>
-          <li className="list-inline-item">
-            <button className="btn btn-google">
-              <i className="fa fa-google-plus fa-1x"></i>
-              <span className="ml-1">Google</span>
-            </button>
-          </li>
-        </ul>
+        <SocialLogin />
 
         <hr className="or text-muted"/>
 

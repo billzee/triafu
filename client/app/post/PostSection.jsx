@@ -55,8 +55,6 @@ export default class PostSection extends Component {
         )
       }
 
-      console.log(sortedPosts);
-
       this.setState({
         posts: (sortedPosts || resJson.posts),
         lastPage: resJson.lastPage,
