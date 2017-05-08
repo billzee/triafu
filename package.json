@@ -8,6 +8,7 @@
   },
   "scripts": {
     "postinstall": "cd client && yarn install",
+    "start": "foreman start -f Procfile.prod",
     "s": "foreman start -f Procfile.dev",
     "test": "rspec"
   },
