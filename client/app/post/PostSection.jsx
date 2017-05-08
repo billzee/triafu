@@ -12,7 +12,7 @@ export default class PostSection extends Component {
       postId: props.postId,
       currentPost: props.postId,
       sortBy: '',
-      page: '',
+      page: 1,
       lastPage: true
     };
 
@@ -43,10 +43,8 @@ export default class PostSection extends Component {
 
   async _index(category="top"){
     try{
-      let res = await PostsApi._index(category);
+      let res = await PostsApi._index(null, category);
       let resJson = await res.json();
-
-      console.log(resJson.posts);
 
       var sortedPosts;
       if(this.state.sortBy){
@@ -57,12 +55,41 @@ export default class PostSection extends Component {
         )
       }
 
-      console.log(sortedPosts, " sorted postssss");
+      console.log(sortedPosts);
 
       this.setState({
         posts: (sortedPosts || resJson.posts),
         lastPage: resJson.lastPage,
         page: 2
+      });
+
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+  async paginatePosts(e){
+    if(e) e.preventDefault();
+
+    try{
+      if(this.state.postId) this.setState({postId: null});
+
+      let res = await PostsApi._index(this.state.page, null);
+      let resJson = await res.json();
+
+      var sortedPosts;
+      if(this.state.sortBy){
+        sortedPosts = resJson.posts.sort(
+          function(a, b){
+            return b[this.state.sortBy] - a[this.state.sortBy];
+          }.bind(this)
+        )
+      }
+
+      this.setState({
+        posts: this.state.posts.concat(sortedPosts || resJson.posts),
+        lastPage: resJson.lastPage,
+        page: 1 + this.state.page
       });
 
     } catch(error){
@@ -80,33 +107,22 @@ export default class PostSection extends Component {
 
   componentDidMount(){
     pubsub.subscribe('category', (msg, category)=>{
-      this.index(category);
+      this._index(category);
     });
     pubsub.subscribe('sort-by', (msg, sortBy)=>{
       this.setState({sortBy: sortBy});
-      this._index();
+      if(this.state.posts.length > 0){
+        let sortedPosts = this.state.posts.sort(
+          function(a, b){
+            return b[this.state.sortBy] - a[this.state.sortBy];
+          }.bind(this)
+        )
+
+        console.log(sortedPosts);
+
+        this.setState({posts: sortedPosts})
+      }
     });
-  }
-
-  async paginatePosts(e){
-    if(e) e.preventDefault();
-    console.log('caindo na paginacao?');
-
-    try{
-      if(this.state.postId) this.setState({postId: null});
-
-      let res = await PostsApi._index(this.state.page);
-      let resJson = await res.json();
-
-      this.setState({
-        posts: this.state.posts.concat(resJson.posts),
-        lastPage: resJson.lastPage,
-        page: 1 + this.state.page
-      });
-
-    } catch(error){
-      console.log(error);
-    }
   }
 
   render(){

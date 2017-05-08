@@ -51,15 +51,30 @@ export default class Categories extends Component {
               )
             }
             <div className="dropdown-menu">
-              <a className="dropdown-item" href onClick={(e) => this.sortBy(e, "funnyCount")}>
-                Ver<img src="/assets/funny.svg" width="35px" className="mr-2 ml-2" />1º
-              </a>
-              <a className="dropdown-item" href onClick={(e) => this.sortBy(e, "smartCount")}>
-                Ver<img src="/assets/brain.svg" width="35px" className="mr-2 ml-2" />1º
-              </a>
-              <a className="dropdown-item" href onClick={(e) => this.sortBy(e, "")}>
-                Ver Tudo
-              </a>
+              {
+                this.state.sortBy !== "funnyCount" ?
+                (
+                  <a className="dropdown-item" href onClick={(e) => this.sortBy(e, "funnyCount")}>
+                    Ver<img src="/assets/funny.svg" width="35px" className="mr-2 ml-2" />1º
+                  </a>
+                ) : null
+              }
+              {
+                this.state.sortBy !== "smartCount" ?
+                (
+                  <a className="dropdown-item" href onClick={(e) => this.sortBy(e, "smartCount")}>
+                    Ver<img src="/assets/brain.svg" width="35px" className="mr-2 ml-2" />1º
+                  </a>
+                ) : null
+              }
+              {
+                this.state.sortBy !== "" ?
+                (
+                  <a className="dropdown-item" href onClick={(e) => this.sortBy(e, "")}>
+                    Ver Tudo
+                  </a>
+                ) : null
+              }
             </div>
           </li>
         </ul>
