@@ -11,11 +11,13 @@ export default class PostSection extends Component {
       posts: [],
       postId: props.postId,
       currentPost: props.postId,
+      sortBy: '',
       page: '',
       lastPage: true
     };
 
     this._handleEnter = this._handleEnter.bind(this);
+    this._index = this._index.bind(this);
   }
 
   _handleEnter(postId, postAuthor){
@@ -39,15 +41,26 @@ export default class PostSection extends Component {
     }
   }
 
-  async index(category="top"){
+  async _index(category="top"){
     try{
       let res = await PostsApi._index(category);
       let resJson = await res.json();
 
       console.log(resJson.posts);
 
+      var sortedPosts;
+      if(this.state.sortBy){
+        sortedPosts = resJson.posts.sort(
+          function(a, b){
+            return b[this.state.sortBy] - a[this.state.sortBy];
+          }.bind(this)
+        )
+      }
+
+      console.log(sortedPosts, " sorted postssss");
+
       this.setState({
-        posts: resJson.posts,
+        posts: (sortedPosts || resJson.posts),
         lastPage: resJson.lastPage,
         page: 2
       });
@@ -61,13 +74,17 @@ export default class PostSection extends Component {
     if(this.state.postId){
       this.show();
     } else{
-      this.index();
+      this._index();
     }
   }
 
   componentDidMount(){
     pubsub.subscribe('category', (msg, category)=>{
       this.index(category);
+    });
+    pubsub.subscribe('sort-by', (msg, sortBy)=>{
+      this.setState({sortBy: sortBy});
+      this._index();
     });
   }
 
