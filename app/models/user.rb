@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable,
-  :omniauthable, :omniauth_providers => [:facebook]
+  :omniauthable, :omniauth_providers => [:facebook, :google]
 
   attr_accessor :login
 
@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true, length: { :minimum => 4, :maximum => 32 }
   validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 14 }
+
+  validates_format_of :username, with: /^[a-z0-9_\.]*$/, :multiline => true
 
   validate :username_cannot_be_changed_again
   validate :username_cannot_be_an_email
@@ -24,43 +26,57 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["omniauth_data"].merge(session["omniauth_data"]["extra"]["raw_info"])
+      if session["omniauth_data"]
+        data = session["omniauth_data"].merge(session["omniauth_data"]["extra"]["raw_info"])
         user.full_name = data["name"]
         user.email = data["email"]
-        user.uid = data["uid"]
-        user.provider = data["provider"]
+
+        if data["provider"] == 'facebook'
+          user.facebook_uid = data["uid"]
+        elsif data["provider"] == 'google'
+          user.google_uid = data["uid"]
+        end
+
       end
     end
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    if auth.provider == 'facebook'
+      omniauth_uid = :facebook_uid
+    elsif auth.provider == 'google'
+      omniauth_uid = :google_uid
+    end
+
+    where("#{omniauth_uid}": auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.full_name = auth.info.name   # assuming the user model has a name
-      user.avatar = auth.info.image # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
+      user.full_name = auth.info.name
+      user.avatar = auth.info.image
+
+      user.generate_username!
+      if user.invalid? && user.errors.include?(:username)
+        user.generate_secure_username!
+      end
+
+      p user.errors
+
+      user.skip_confirmation!
     end
   end
 
   def generate_username!
     username = full_name.delete(' ')[0..13]
-
     self.username = username.downcase
   end
 
   def generate_secure_username!
     random_number = SecureRandom.random_number(100).to_s
     username = full_name.delete(' ')[0..11] + random_number
-
     self.username = username.downcase
   end
 
   def generate_generic_username!
     username = SecureRandom.hex(4)
-
     self.username = username.downcase
   end
 
@@ -85,6 +101,15 @@ class User < ApplicationRecord
   end
 
   protected
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
+  end
 
   def confirmation_required?
     false

@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 20170423012118) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "provider"
-    t.string "uid"
+    t.string "facebook_uid"
+    t.string "google_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

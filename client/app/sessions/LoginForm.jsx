@@ -9,7 +9,7 @@ import helper from '../components/Helper'
 export default class Login extends Component {
   constructor(){
     super();
-    this.state = {email: '', password: '', postId: '', errors: {}};
+    this.state = {login: '', password: '', postId: '', errors: {}};
     this.login = this.login.bind(this);
   }
 
@@ -70,9 +70,9 @@ export default class Login extends Component {
         <form onSubmit={this.login} method="post">
           <div className="form-group">
             <label className="form-control-label">e-mail</label>
-            <input type="email" className="form-control" autoFocus="true"
-            onChange={helper.handleChange.bind(this, 'email')}
-            value={this.state.email}></input>
+            <input className="form-control" autoFocus="true"
+            onChange={helper.handleChange.bind(this, 'login')}
+            value={this.state.login}></input>
           </div>
 
           <div className="form-group">
