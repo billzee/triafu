@@ -34,15 +34,16 @@ export default class Login extends Component {
   }
 
   facebookLogin(){
-    if(!this.state.fbConnected){
-      FB.login(function(res) {
-        if (res.status === 'connected') this.setState({fbConnected: true});
-      }.bind(this));
-    } else{
-      FB.api('/me', function(res) {
-        console.log(res);
-      }.bind(this));
-    }
+    window.location = "/users/auth/facebook";
+    // if(!this.state.fbConnected){
+    //   FB.login(function(res) {
+    //     if (res.status === 'connected') this.setState({fbConnected: true});
+    //   }.bind(this));
+    // } else{
+    //   FB.api('/me', function(res) {
+    //     console.log(res);
+    //   }.bind(this));
+    // }
   }
 
   render(){

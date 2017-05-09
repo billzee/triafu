@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable,
+  :omniauthable, :omniauth_providers => [:facebook]
+
+  attr_accessor :login
 
   before_update :username_is_being_changed
 
@@ -9,11 +12,38 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 14 }
 
   validate :username_cannot_be_changed_again
+  validate :username_cannot_be_an_email
 
   has_many :comments
   has_many :replies
   has_many :posts
+
   has_many :post_votes
+  has_many :comment_votes
+  has_many :reply_votes
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["omniauth_data"].merge(session["omniauth_data"]["extra"]["raw_info"])
+        user.full_name = data["name"]
+        user.email = data["email"]
+        user.uid = data["uid"]
+        user.provider = data["provider"]
+      end
+    end
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.full_name = auth.info.name   # assuming the user model has a name
+      user.avatar = auth.info.image # assuming the user model has an image
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
+  end
 
   def generate_username!
     username = full_name.delete(' ')[0..13]
@@ -35,6 +65,12 @@ class User < ApplicationRecord
   end
 
   private
+
+  def username_cannot_be_an_email
+    if username && username.match(Devise::email_regexp)
+      errors.add(:username, "não pode ser um endereço de e-mail")
+    end
+  end
 
   def username_cannot_be_changed_again
     if username_changed && username_changed?

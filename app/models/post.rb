@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   attr_accessor :file, :media, :image_upload_width, :image_upload_height
-  enum category: [ :top, :newcomer ]
+  enum category: [ :newcomer, :top ]
 
   validates_presence_of :title
 

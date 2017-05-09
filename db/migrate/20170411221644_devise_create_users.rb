@@ -8,6 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       ## Triafu's fields
       t.string :username
       t.string :full_name
+      t.string :avatar
       t.boolean :username_changed, default: false
 
       ## Recoverable
@@ -29,6 +30,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email # Only if using reconfirmable
+
+      ## Omniauth
+      t.string :provider
+      t.string :uid
 
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts

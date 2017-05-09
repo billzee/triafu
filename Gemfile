@@ -58,5 +58,6 @@ gem "jbuilder"
 gem 'devise', github: 'plataformatec/devise'
 gem 'erubis'
 gem 'file_validators'
+gem 'omniauth-facebook'
 
 gem 'mini_racer', platforms: :ruby

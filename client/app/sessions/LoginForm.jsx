@@ -52,12 +52,12 @@ export default class Login extends Component {
   render(){
     return(
       <div className="modal-body">
-        { this.state.errors.hasOwnProperty('auth')  ?
+        { this.state.errors.hasOwnProperty('auth') ?
           (
             <div className="alert alert-danger">
               <small>{this.state.errors.auth}</small>
             </div>
-          ): null
+          ) : null
         }
 
         <p className="text-muted text-center">Usando uma rede social</p>
