@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
       ## Omniauth
       t.string :facebook_uid
-      t.string :google_uid
+      t.string :google_oauth2_uid
 
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
@@ -45,6 +45,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
     add_index :users, :email,                unique: true
     add_index :users, :username,             unique: true
+    add_index :users, :facebook_uid,         unique: true
+    add_index :users, :google_oauth2_uid,    unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true

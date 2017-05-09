@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable,
-  :omniauthable, :omniauth_providers => [:facebook, :google]
+  :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   attr_accessor :login
 
@@ -26,17 +26,17 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if session["omniauth_data"]
-        data = session["omniauth_data"].merge(session["omniauth_data"]["extra"]["raw_info"])
-        user.full_name = data["name"]
-        user.email = data["email"]
+      if data = session["omniauth_data"]
 
         if data["provider"] == 'facebook'
           user.facebook_uid = data["uid"]
-        elsif data["provider"] == 'google'
-          user.google_uid = data["uid"]
+        elsif data["provider"] == 'google_oauth2'
+          user.google_oauth2_uid = data["uid"]
         end
 
+        info = data["info"]
+        user.full_name = info["name"]
+        user.email = info["email"]
       end
     end
   end
@@ -44,21 +44,20 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     if auth.provider == 'facebook'
       omniauth_uid = :facebook_uid
-    elsif auth.provider == 'google'
-      omniauth_uid = :google_uid
+    elsif auth.provider == 'google_oauth2'
+      omniauth_uid = :google_oauth2_uid
     end
 
     where("#{omniauth_uid}": auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.full_name = auth.info.name
       user.avatar = auth.info.image
+      user.password = Devise.friendly_token[0,20]
 
       user.generate_username!
       if user.invalid? && user.errors.include?(:username)
         user.generate_secure_username!
       end
-
-      p user.errors
 
       user.skip_confirmation!
     end

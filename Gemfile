@@ -57,7 +57,8 @@ gem "kaminari"
 gem "jbuilder"
 gem 'devise', github: 'plataformatec/devise'
 gem 'erubis'
-gem 'file_validators'
 gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+gem 'file_validators'
 
 gem 'mini_racer', platforms: :ruby

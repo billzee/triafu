@@ -41,7 +41,7 @@ export default class Login extends Component {
       } else if(this.state.postId){
         window.location = "/posts/" + this.state.postId;
       } else{
-        window.location.reload;
+        window.location.reload();
       }
 
     } catch(error){
@@ -65,11 +65,11 @@ export default class Login extends Component {
 
         <hr className="or text-muted"/>
 
-        <p className="text-muted text-center pt-3">Usando seu e-mail de cadastro</p>
+        <p className="text-muted text-center pt-3">Usando seu e-mail ou nome de usuário</p>
 
         <form onSubmit={this.login} method="post">
           <div className="form-group">
-            <label className="form-control-label">e-mail</label>
+            <label className="form-control-label">e-mail/nome de usuário</label>
             <input className="form-control" autoFocus="true"
             onChange={helper.handleChange.bind(this, 'login')}
             value={this.state.login}></input>
@@ -81,7 +81,7 @@ export default class Login extends Component {
             onChange={helper.handleChange.bind(this, 'password')}
             value={this.state.password}></input>
 
-            <a href="/users/password/new" className="float-right">Esqueceu a senha?</a>
+            <a href="/users/password/new" className="float-right">esqueceu/não tem senha?</a>
           </div>
 
           <br />

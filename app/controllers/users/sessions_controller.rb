@@ -13,9 +13,11 @@ class Users::SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     yield resource if block_given?
 
+    p resource.errors, " resourcesssss"
     respond_to do |format|
       format.html {respond_with resource, location: after_sign_in_path_for(resource)}
-      format.json {render json: resource.errors ? resource.errors : resource}
+
+      format.json {render json: resource.invalid? ? resource.errors : resource}
     end
   end
 
