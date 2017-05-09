@@ -35,6 +35,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :facebook_uid
       t.string :google_oauth2_uid
 
+      t.string :facebook_image
+      t.string :google_image
+
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both

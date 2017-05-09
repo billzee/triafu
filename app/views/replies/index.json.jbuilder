@@ -8,6 +8,7 @@ json.replies @paginated_replies[:replies] do |reply|
   json.user do
     json.id reply.user.id
     json.username reply.user.username
+    json.avatar reply.user.avatar
   end
 end
 

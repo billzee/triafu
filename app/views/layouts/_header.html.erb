@@ -32,7 +32,8 @@
   <% if user_signed_in? %>
     <div class="profile-actions header-item">
       <a href="#" class="dropdown-toggle header-link" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-user-circle fa-2x"></i>
+        <!-- <i class="fa fa-user-circle fa-2x"></i> -->
+        <%= image_tag(current_user.image, class: "rounded-circle") %>
       </a>
       <div class="dropdown-menu dropdown-menu-left mr-2" aria-labelledby="dropdown02">
         <div class="dropdown-header text-center"><%= current_user.username %></div>

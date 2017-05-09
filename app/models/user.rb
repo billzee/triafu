@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   attr_accessor :login
 
+  mount_uploader :avatar, AvatarUploader
+
   before_update :username_is_being_changed
 
   validates :full_name, presence: true, length: { :minimum => 4, :maximum => 32 }
@@ -24,19 +26,30 @@ class User < ApplicationRecord
   has_many :comment_votes
   has_many :reply_votes
 
+  def image
+    if self.facebook_image || self.google_image
+      self.facebook_image || self.google_image
+    else
+      self.avatar
+    end
+  end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["omniauth_data"]
+        info = data["info"]
+
+        user.full_name = info["name"]
+        user.email = info["email"]
 
         if data["provider"] == 'facebook'
           user.facebook_uid = data["uid"]
+          user.facebook_image = info.image
         elsif data["provider"] == 'google_oauth2'
           user.google_oauth2_uid = data["uid"]
+          user.google_image = info.image
         end
 
-        info = data["info"]
-        user.full_name = info["name"]
-        user.email = info["email"]
       end
     end
   end
@@ -44,8 +57,10 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     if auth.provider == 'facebook'
       omniauth_uid = :facebook_uid
+      image = :facebook_image
     elsif auth.provider == 'google_oauth2'
       omniauth_uid = :google_oauth2_uid
+      image = :google_image
     end
 
     where("#{omniauth_uid}": auth.uid).first_or_create do |user|
@@ -53,6 +68,7 @@ class User < ApplicationRecord
       user.full_name = auth.info.name
       user.avatar = auth.info.image
       user.password = Devise.friendly_token[0,20]
+      user[image] = auth.info.image
 
       user.generate_username!
       if user.invalid? && user.errors.include?(:username)

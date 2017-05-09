@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 20170423012118) do
     t.string "unconfirmed_email"
     t.string "facebook_uid"
     t.string "google_oauth2_uid"
+    t.string "facebook_image"
+    t.string "google_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

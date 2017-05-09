@@ -8,5 +8,6 @@ json.comment do
   json.user do
     json.id @comment.user.id
     json.username @comment.user.username
+    json.avatar @comment.user.avatar
   end
 end

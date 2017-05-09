@@ -40,7 +40,7 @@ export default class CommentOrReplyBox extends Component {
       <box>
         <div className="row">
           <div width={this.props.photoSize} className="ml-3">
-            <img src="/assets/bidu.jpg" width={this.props.photoSize} className="rounded-circle" />
+            <img src={this.props.commentOrReply.user.avatar} width={this.props.photoSize} className="rounded-circle" />
           </div>
           <div className="col pt-1 break-all">
             <strong>
