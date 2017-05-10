@@ -9,6 +9,7 @@ import PostBox from '../post/PostBox';
 import CommentSection from '../comment/CommentSection';
 
 import LoginForm from '../devise/LoginForm';
+import CurrentUser from '../devise/CurrentUser';
 import SocialLogin from '../devise/SocialLogin';
 import UserEditForm from '../devise/UserEditForm';
 
@@ -22,5 +23,6 @@ ReactOnRails.register({
   CommentSection,
   LoginForm,
   SocialLogin,
-  UserEditForm
+  UserEditForm,
+  CurrentUser
 });

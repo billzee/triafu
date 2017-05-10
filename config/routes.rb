@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'hello_world', to: 'hello_world#index'
   devise_for :users,
   :controllers  =>
   {
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   }
 
   as :user do
+    get 'current_user', to: 'users/sessions#index'
     get 'users/edit/password', to: 'users/registrations#edit_password', as: :edit_user_registration_password
   end
 

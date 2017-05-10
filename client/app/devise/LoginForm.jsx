@@ -85,8 +85,7 @@ export default class Login extends Component {
             <a href="/users/password/new" className="float-right">esqueceu/não tem senha?</a>
           </div>
 
-          <br />
-
+          <br/>
           <input type="submit" className="btn btn-block btn-success" value="Entrar"></input>
 
         </form>

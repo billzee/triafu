@@ -14,7 +14,7 @@ export default class SocialLogin extends Component {
     var newWindow = window.open(url, title, 'toolbar=0,location=0,menubar=0,scrollbars=0, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
     if (window.focus) {
-        newWindow.focus();
+      newWindow.focus();
     }
   }
 
