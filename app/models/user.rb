@@ -27,7 +27,9 @@ class User < ApplicationRecord
   has_many :reply_votes
 
   def image
-    if self.facebook_image || self.google_image
+    if self.avatar.file
+      self.avatar
+    elsif self.facebook_image || self.google_image
       self.facebook_image || self.google_image
     else
       self.avatar
