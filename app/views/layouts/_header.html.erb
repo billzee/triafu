@@ -29,7 +29,7 @@
 
   </div>
 
-  <!-- <% if user_signed_in? %>
+  <% if user_signed_in? %>
     <div class="profile-actions header-item">
       <a href="#" class="dropdown-toggle header-link" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag(current_user.image, class: "rounded-circle", height: 36) %>
@@ -41,8 +41,8 @@
         <%= link_to('Sair', destroy_user_session_path, :method => :delete, class: "dropdown-item") %>
       </div>
     </div>
-  <% end %> -->
-  
-  <%= react_component("CurrentUser", prerender: true) %>
+  <% end %>
+
+  <!-- <%= react_component("CurrentUser", prerender: true) %> -->
 
 </div>

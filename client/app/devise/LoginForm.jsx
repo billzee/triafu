@@ -31,7 +31,7 @@ export default class Login extends Component {
     if(e) e.preventDefault();
 
     try{
-      let res = await DeviseApi._create(this.state);
+      let res = await DeviseApi._createSession(this.state);
       let resJson = await res.json();
 
       console.log(resJson);

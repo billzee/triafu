@@ -66,7 +66,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      
+
       if params[:user][:section]
         if params[:user][:section] == "password"
           render :edit_password

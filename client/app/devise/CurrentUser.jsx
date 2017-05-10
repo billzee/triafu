@@ -17,8 +17,6 @@ export default class Login extends Component {
       let resJson = await res.json();
 
       this.setState({user: resJson.user});
-
-      console.log(this.state.user.image.url);
     } catch(error){
       console.log(error);
     }
@@ -26,7 +24,6 @@ export default class Login extends Component {
 
   render(){
     return(
-
         <div className="profile-actions header-item">
         <a href="#" className="dropdown-toggle header-link" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img className="rounded-circle" height="36" />

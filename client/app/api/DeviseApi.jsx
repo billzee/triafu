@@ -5,8 +5,12 @@ var DeviseApi = {
     return Api('/current_user', {method: 'GET'});
   },
 
-  _create: function(user){
+  _createSession: function(user){
     return Api('/users/sign_in', {method: 'POST', body: JSON.stringify({user : user})});
+  },
+
+  _updateRegistration: function(user){
+    return Api('/users/', {method: 'PUT', body: JSON.stringify({user : user})});
   }
 };
 

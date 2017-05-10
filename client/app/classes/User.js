@@ -4,7 +4,7 @@ export default class User {
     this._email = user.email;
     this._username = user.username;
     this._fullName = user.fullName;
-    this._usernameChanged = user.usernameChanged;
+    // this._usernameChanged = user.usernameChanged;
 
     Object.freeze(this);
   }
@@ -24,8 +24,8 @@ export default class User {
   get fullName(){
     return this._fullName;
   }
-
-  get usernameChanged(){
-    return this._usernameChanged;
-  }
+  //
+  // get usernameChanged(){
+  //   return this._usernameChanged;
+  // }
 }

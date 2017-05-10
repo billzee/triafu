@@ -11,7 +11,7 @@ import CommentSection from '../comment/CommentSection';
 import LoginForm from '../devise/LoginForm';
 import CurrentUser from '../devise/CurrentUser';
 import SocialLogin from '../devise/SocialLogin';
-import UserEditForm from '../devise/UserEditForm';
+import ChangeUserImage from '../devise/ChangeUserImage';
 
 moment.locale('pt-BR');
 
@@ -23,6 +23,6 @@ ReactOnRails.register({
   CommentSection,
   LoginForm,
   SocialLogin,
-  UserEditForm,
+  ChangeUserImage,
   CurrentUser
 });
