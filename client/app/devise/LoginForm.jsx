@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 
-import SessionsApi from '../api/SessionsApi';
+import DeviseApi from '../api/DeviseApi';
 import SocialLogin from './SocialLogin';
 
 import helper from '../components/Helper'
@@ -31,18 +31,19 @@ export default class Login extends Component {
     if(e) e.preventDefault();
 
     try{
-      let res = await SessionsApi._create(this.state);
+      let res = await DeviseApi._create(this.state);
       let resJson = await res.json();
 
       console.log(resJson);
 
       if(resJson.errors){
         this.setState({errors: resJson.errors});
-      } else if(this.state.postId){
-        window.location = "/posts/" + this.state.postId;
-      } else{
-        window.location.reload();
       }
+      // } else if(this.state.postId){
+      //   window.location = "/posts/" + this.state.postId;
+      // } else{
+      //   window.location.reload();
+      // }
 
     } catch(error){
       console.log(error);

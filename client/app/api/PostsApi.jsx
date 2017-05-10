@@ -5,7 +5,7 @@ var PostsApi = {
   _index: function(p, c){
     let page = p ? p : 1;
     let category = c ? c : "top";
-    console.log('/posts/page/' + page + '?category=' + category);
+    
     return Api('/posts/page/' + page + '?category=' + category, {method: 'GET'});
   },
 

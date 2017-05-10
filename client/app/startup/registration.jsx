@@ -8,8 +8,9 @@ import PostBox from '../post/PostBox';
 
 import CommentSection from '../comment/CommentSection';
 
-import LoginForm from '../sessions/LoginForm';
-import SocialLogin from '../sessions/SocialLogin';
+import LoginForm from '../devise/LoginForm';
+import SocialLogin from '../devise/SocialLogin';
+import UserEditForm from '../devise/UserEditForm';
 
 moment.locale('pt-BR');
 
@@ -20,5 +21,6 @@ ReactOnRails.register({
   PostBox,
   CommentSection,
   LoginForm,
-  SocialLogin
+  SocialLogin,
+  UserEditForm
 });
