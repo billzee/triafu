@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  ENV['FACEBOOK_KEY'] = "1029158590548499"
-  ENV['FACEBOOK_SECRET'] = "baeaff92eafd517b8ed396aa860ba326"
+  ENV['FACEBOOK_KEY'] = "1029068483890843"
+  ENV['FACEBOOK_SECRET'] = "47cc9db12fcd936de7f15e8e5d6fc112"
 
   ENV['GOOGLE_OAUTH2_KEY'] = "970037955727-jdmsea41h87dvn7oqqspjkct0hugguk6.apps.googleusercontent.com"
   ENV['GOOGLE_OAUTH2_SECRET'] = "HiynYuWnv8SLPbUz6C6uRBBV"
