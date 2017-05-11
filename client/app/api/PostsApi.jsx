@@ -5,7 +5,7 @@ var PostsApi = {
   _index: function(p, c){
     let page = p ? p : 1;
     let category = c ? c : "top";
-    
+
     return Api('/posts/page/' + page + '?category=' + category, {method: 'GET'});
   },
 
@@ -24,7 +24,7 @@ var PostsApi = {
   _upload_file: function(file){
     let formData = new FormData();
     formData.append('post[file]', file);
-    return FileApi('/post/upload_file', {body: formData});
+    return FileApi('/post/upload_file', {method: 'POST', body: formData});
   },
 
   _remove_file: function(){

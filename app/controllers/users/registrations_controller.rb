@@ -75,7 +75,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_with resource
       end
     end
+  end
 
+  def update_avatar
+    user = User.find(current_user.id)
+
+    if user.update user_avatar_params
+      render :json => {image: user.image}
+    elsif user.errors[:avatar]
+      render :json => {errors: user.errors[:avatar]}
+    end
   end
 
   # DELETE /resource
@@ -92,7 +101,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -102,6 +111,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :username])
+  end
+
+  def user_avatar_params
+    params.require(:user).permit :avatar
   end
 
   # The path used after sign up.

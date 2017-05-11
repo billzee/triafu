@@ -1,4 +1,5 @@
 import Api from './Api';
+import FileApi from './FileApi';
 
 var DeviseApi = {
   _index: function(user){
@@ -9,8 +10,10 @@ var DeviseApi = {
     return Api('/users/sign_in', {method: 'POST', body: JSON.stringify({user : user})});
   },
 
-  _updateRegistration: function(user){
-    return Api('/users/', {method: 'PUT', body: JSON.stringify({user : user})});
+  _updateUserImage: function(file){
+    let formData = new FormData();
+    formData.append('user[avatar]', file);
+    return FileApi('/user/update_avatar', {method: 'PUT', body: formData});
   }
 };
 

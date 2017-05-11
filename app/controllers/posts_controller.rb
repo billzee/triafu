@@ -12,10 +12,11 @@ class PostsController < ApplicationController
 
   def upload_file
     @@new_post = Post.new post_file_params
-    if @@new_post.invalid?
-      @@new_post.errors[:file] = resolve_file_errors @@new_post.errors
 
-      if @@new_post.errors[:file]
+    if @@new_post.invalid?
+      errors = resolve_file_errors @@new_post.errors
+
+      if errors
         render :json => {errors: errors}
       else
         render :json => {}

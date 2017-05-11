@@ -7,7 +7,6 @@ export default function FileApi(url, options={}){
       },
       credentials: 'same-origin',
       redirect: 'error',
-      method: 'POST',
       cache: false,
       contentType: false,
       processData: false,

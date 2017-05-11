@@ -69,7 +69,6 @@ export default class PostFile extends Component {
     pubsub.publish('file-loading', true);
 
     try{
-      console.log('vai remover file');
       let res = await PostsApi._remove_file();
       let resJson = await res.json();
 
