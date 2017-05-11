@@ -9,15 +9,15 @@ development:
   <<: *default
   database: triafu_dev
 
+beta:
+  <<: *default
+  database: db9m0iahie9fvm
+  username: wfpbtihnazshyo
+  password: 14840b22752864d0b814a797667729c586fb376a1fe7925b2dd7a732e548ae5a
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
   database: triafu_test
-
-production:
-  <<: *default
-  database: db9m0iahie9fvm
-  username: wfpbtihnazshyo
-  password: 14840b22752864d0b814a797667729c586fb376a1fe7925b2dd7a732e548ae5a

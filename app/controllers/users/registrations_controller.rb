@@ -41,8 +41,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  def edit
-  end
+  # def edit
+  # end
 
   def edit_password
     @user = current_user
@@ -84,6 +84,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :json => {image: user.image}
     elsif user.errors[:avatar]
       render :json => {errors: user.errors[:avatar]}
+    else
+      render :json => {}
     end
   end
 
@@ -113,10 +115,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :username])
   end
 
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
   def user_avatar_params
     params.require(:user).permit :avatar
   end
-
+  
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)

@@ -31,10 +31,10 @@
 
   <% if user_signed_in? %>
     <div class="profile-actions header-item">
-      <a href="#" class="dropdown-toggle header-link" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= image_tag(current_user.image, class: "rounded-circle", height: 36) %>
+      <a href="#" class="dropdown-toggle header-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= image_tag(current_user.image, class: "rounded-circle", height: 38, width: 38) %>
       </a>
-      <div class="dropdown-menu dropdown-menu-left mr-2" aria-labelledby="dropdown02">
+      <div class="dropdown-menu dropdown-menu-left mr-2">
         <div class="dropdown-header text-center"><%= current_user.username %></div>
         <div class="dropdown-divider"></div>
         <%= link_to('Editar perfil', edit_user_registration_path, class: "dropdown-item") %>

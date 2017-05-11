@@ -1,5 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  ENV['FACEBOOK_KEY'] = "1029182447212780"
+  ENV['FACEBOOK_SECRET'] = "bd605ca83f4559e6bfce4bb416cd2623"
+
+  ENV['GOOGLE_OAUTH2_KEY'] = "970037955727-rb604a2n487bg3p2bff7d9ispmp5ktl7.apps.googleusercontent.com"
+  ENV['GOOGLE_OAUTH2_SECRET'] = "lgn9EluUvU1WAiq9ahJ0dO0g"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -32,7 +37,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
