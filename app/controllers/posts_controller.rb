@@ -14,10 +14,10 @@ class PostsController < ApplicationController
     @@new_post = Post.new post_file_params
 
     if @@new_post.invalid?
-      errors = resolve_file_errors @@new_post.errors
+      file_errors = resolve_file_errors @@new_post.errors
 
-      if errors
-        render :json => {errors: errors}
+      if file_errors
+        render :json => {errors: file_errors}
       else
         render :json => {}
       end
@@ -45,7 +45,8 @@ class PostsController < ApplicationController
       render :json => @@new_post.id
       @@new_post = nil
     else
-      @@new_post.errors[:file] = resolve_file_errors @@new_post.errors
+      file_errors = resolve_image_or_video @@new_post.errors
+      @@new_post.errors[:file].push(file_errors)
 
       render :json => { :errors => @@new_post.errors }
     end
@@ -59,15 +60,25 @@ class PostsController < ApplicationController
     posts = posts.page(page)
   end
 
+  def resolve_image_or_video errors
+    if errors.include?(:image)
+      errors[:image].first
+    elsif errors.include?(:video)
+      errors[:video].first
+    else
+      nil
+    end
+  end
+
   def resolve_file_errors errors
     if errors.include?(:file)
-      return errors[:file]
+      errors[:file]
     elsif errors.include?(:image)
-      return errors[:image]
+      errors[:image]
     elsif errors.include?(:video)
-      return errors[:video]
+      errors[:video]
     else
-      return nil
+      nil
     end
   end
 

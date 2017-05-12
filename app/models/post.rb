@@ -34,19 +34,19 @@ class Post < ApplicationRecord
 
   paginates_per 2
 
-  def self.ranked_currents_from_category category=:top, rank
-    posts = []
-    number_of_hours = 20
-
-    if rank
-      while posts.size == 0 do
-        posts = where('created_at > ?', (number_of_hours).minutes.ago)
-        number_of_hours = number_of_hours + 20
-      end
-
-      posts.order(created_at: :asc).sort_by(&(rank)).reverse
-    end
-  end
+  # def self.ranked_currents_from_category category=:top, rank
+  #   posts = []
+  #   number_of_hours = 20
+  #
+  #   if rank
+  #     while posts.size == 0 do
+  #       posts = where('created_at > ?', (number_of_hours).minutes.ago)
+  #       number_of_hours = number_of_hours + 20
+  #     end
+  #
+  #     posts.order(created_at: :asc).sort_by(&(rank)).reverse
+  #   end
+  # end
 
   def self.all_from_category category=:top
     where(category: category).order(updated_at: :desc)

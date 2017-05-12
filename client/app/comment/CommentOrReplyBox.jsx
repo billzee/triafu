@@ -69,7 +69,6 @@ export default class CommentOrReplyBox extends Component {
                   </span>
                 )
             }
-            <br/>
             {
               this.props.commentOrReply.text.length > helper.maxLengthForRelease ?
                 this.state.release === this.props.commentOrReply.id ?

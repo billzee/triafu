@@ -38,5 +38,8 @@ Rails.application.routes.draw do
   post 'post/upload_file' => 'posts#upload_file'
   get 'post/remove_file' => 'posts#remove_file'
 
+  get '/top' => 'posts#index'
+  get '/novas' => 'posts#index'
+
   root :to => "posts#index"
 end

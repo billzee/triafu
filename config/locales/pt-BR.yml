@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 pt-BR:
+  errors:
+    messages:
+      mini_magick_processing_error: arquivo não-suportado
   activerecord:
     models:
       user:
@@ -41,6 +44,7 @@ pt-BR:
         text: resposta
     errors:
       messages:
+        mini_magick_processing_error: arquivo não-suportado
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente

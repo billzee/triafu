@@ -14,6 +14,7 @@ export default class PostBox extends Component {
   }
 
   componentDidMount(){
+    console.log(this.state.image);
     pubsub.subscribe('watch-post', (msg, data)=>{
       if(this.video !== null){
         if(data.postId === this.props.postId){
@@ -44,7 +45,7 @@ export default class PostBox extends Component {
     return (
       this.state.image ?
       (
-        <img src={this.state.image.url} className="post-image"/>
+        <img src={this.state.image.jpg.url} className="post-image"/>
       )
       : this.state.video ?
       (
