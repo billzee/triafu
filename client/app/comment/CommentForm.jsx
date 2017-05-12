@@ -62,7 +62,15 @@ export default class CommentForm extends Component {
               </span>
             </div>
 
-            <ErrorMessage message={this.state.errors.text} />
+            <div className="row">
+              <div className="col-9">
+                <ErrorMessage message={this.state.errors.text} />
+              </div>
+              <div className="col-3 text-muted text-right">
+                {500 - this.state.text.length}
+              </div>
+            </div>
+
           </form>
         </div>
       </div>

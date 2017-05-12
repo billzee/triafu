@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
 
   validates_presence_of :post_id
 
-  validates :text, presence: true
+  validates :text, length: { maximum: 500 }, presence: true
 
   paginates_per 9
 

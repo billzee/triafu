@@ -33,14 +33,12 @@ pt-BR:
         other: Comentários
       reply:
         one: Resposta
-        other: Resposta
+        other: Respostas
     attributes:
-      user:
-        full_name: Nome Completo
-        email: e-mail
-        username: Nome de Usuário
       comment:
         text: comentário
+      reply:
+        text: resposta
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
@@ -52,6 +50,16 @@ pt-BR:
           attributes:
             file:
               blank: escolha uma imagem ou um vídeo
+        comment:
+          attributes:
+            text:
+              too_long: é muito longo ( ͡° ͜ʖ ͡°)
+              blank: escreve alguma coisa aí!
+        reply:
+          attributes:
+            text:
+              too_long: é muito longa ( ͡° ͜ʖ ͡°)
+              blank: escreve alguma coisa aí!
   date:
     abbr_day_names:
     - Dom
