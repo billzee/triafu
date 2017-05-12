@@ -73,9 +73,15 @@
 
 .post-dropzone{
   height: 200px;
-  color: $dark-gray;
+  color: $purple;
   border: 4px dashed $dark-gray;
   background: $light-gray;
+
+  &.active{
+    color: $light-gray !important;
+    border: 4px dashed $light-gray;
+    background: $dark-gray;
+  }
 
   &.has-danger {
     border: 4px dashed red;

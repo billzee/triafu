@@ -5,6 +5,11 @@
   border: 4px dashed $dark-gray;
   background: $light-gray;
 
+  &.active{
+    border: 4px dashed $light-gray;
+    background: $dark-gray;
+  }
+
   &.has-danger {
     border: 4px dashed red;
   }

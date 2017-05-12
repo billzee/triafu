@@ -64,7 +64,7 @@ export default class UserImage extends Component {
       <box>
         <h1>Trocar Imagem</h1>
         <hr/>
-        <Dropzone onDrop={this.onDrop.bind(this)} style={null} ref={(node) => { dropzoneRef = node; }} disableClick={true}
+        <Dropzone onDrop={this.onDrop.bind(this)} style={null} ref={(node) => { dropzoneRef = node; }} disableClick={true} activeClassName="active"
         className={"user-image-dropzone text-center p-3 " + (this.state.imageErrors.length > 0 ? "has-danger" : "")}>
 
           <div className="row justify-content-center">

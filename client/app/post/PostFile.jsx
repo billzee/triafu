@@ -102,7 +102,7 @@ export default class PostFile extends Component {
     return (
       <box>
         <Dropzone onDrop={this.onDrop.bind(this)} style={null} ref={(node) => { dropzoneRef = node; }} disableClick={true}
-        className={"post-dropzone text-center p-4 " + (this.state.fileErrors.length > 0 ? "has-danger" : "")}>
+        className={"post-dropzone text-center p-4 " + (this.state.fileErrors.length > 0 ? "has-danger" : "")} activeClassName="active">
           {
             (this.state.imagePreview || this.state.videoPreview) ?
               (
@@ -140,10 +140,10 @@ export default class PostFile extends Component {
             :
               (
                 <div className="mt-2">
-                  <i className="fa fa-file-image-o fa-4x text-purple"></i><br/>
+                  <i className="fa fa-file-image-o fa-4x"></i><br/>
                   <button type="button" type="button" onClick={() => { dropzoneRef.open() }}
                   className="btn btn-success text-white mt-3 mb-2">imagem ou vídeo</button><br/>
-                  <small><strong className="text-purple">Clique, toque ou arraste</strong></small>
+                  <small><strong>Clique, toque ou arraste</strong></small>
                 </div>
               )
           }
