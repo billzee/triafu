@@ -3,10 +3,24 @@
     <%= image_tag "triafu-logo.svg", height: 32%>
   <% end %>
 
-  <%= react_component("Categories", prerender: true) %>
+  <div class="col pt-2">
+    <ul class="list-inline list-unstyled mb-0 mt-15">
+      <li class="list-inline-item header-item active">
+        <%= link_to('Top', top_posts_path, class: "header-link" +
+        if current_page? top_posts_path then " active" else "" end) %>
+      </li>
+      <li class="list-inline-item header-item">
+        <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
+        if current_page? newcomer_posts_path then " active" else "" end) %>
+      </li>
+    </ul>
+  </div>
 
-  <div class="col pt-2 text-right"> 
+  <div class="col pt-2 float-right">
+    <%= react_component("PostSort", prerender: true) %>
+  </div>
 
+  <div class="col pt-2 text-right">
     <% if !user_signed_in? %>
       <button class="btn btn-success mr-2" data-toggle="modal" data-target="#m_login">
         <i class="fa fa-plus"></i> Publicar

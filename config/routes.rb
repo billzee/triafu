@@ -38,8 +38,8 @@ Rails.application.routes.draw do
   post 'post/upload_file' => 'posts#upload_file'
   get 'post/remove_file' => 'posts#remove_file'
 
-  get '/top' => 'posts#index'
-  get '/newcomer' => 'posts#index'
+  get '/top' => 'posts#index', category: "top", as: :top_posts
+  get '/novas' => 'posts#index', category: "newcomer", as: :newcomer_posts
 
   root :to => "posts#index"
 end

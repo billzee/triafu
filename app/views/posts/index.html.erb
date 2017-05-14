@@ -16,6 +16,6 @@
       </div>
     </div>
   <% end %>
-  <%= react_component("PostSection", prerender: true) %>
+  <%= react_component("PostSection", props: { category: params[:category] }, prerender: true) %>
 </div>
 <%= react_component("CommentSection", html_options: {class: "col-xl-3 col-lg-4 bgm-gray"}) %>

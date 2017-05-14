@@ -10,6 +10,8 @@
     height: 100%;
     padding: 0;
     &:first-of-type {
+      width: 15em !important;
+      max-width: 15em !important;
       border-left: 2px solid $flag-yellow;
     }
   }

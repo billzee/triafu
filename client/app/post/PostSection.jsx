@@ -8,8 +8,8 @@ export default class PostSection extends Component {
   constructor(props){
     super();
     this.state = {
-      posts: [],
       postId: props.postId,
+      posts: [],
       currentPost: props.postId,
       sortBy: '',
       page: 1,
@@ -17,7 +17,8 @@ export default class PostSection extends Component {
     };
 
     this._handleEnter = this._handleEnter.bind(this);
-    this._index = this._index.bind(this);
+    this.index = this.index.bind(this);
+    this.show = this.show.bind(this);
   }
 
   _handleEnter(postId, postAuthor){
@@ -41,7 +42,7 @@ export default class PostSection extends Component {
     }
   }
 
-  async _index(category="top"){
+  async index(category=this.props.category || "top"){
     try{
       let res = await PostsApi._index(null, category);
       let resJson = await res.json();
@@ -99,7 +100,7 @@ export default class PostSection extends Component {
     if(this.state.postId){
       this.show();
     } else{
-      this._index();
+      this.index();
     }
   }
 
@@ -115,8 +116,6 @@ export default class PostSection extends Component {
             return b[this.state.sortBy] - a[this.state.sortBy];
           }.bind(this)
         )
-
-        console.log(sortedPosts);
 
         this.setState({posts: sortedPosts})
       }
