@@ -24,8 +24,9 @@ export default class UserImage extends Component {
     try{
       let res = await DeviseApi._index();
       let resJson = await res.json();
+      console.log(resJson);
 
-      this.setState({image: resJson.user.image.url});
+      this.setState({image: resJson.user.image});
 
       console.log(resJson.user.image);
 
@@ -47,7 +48,7 @@ export default class UserImage extends Component {
       if (resJson.errors){
         this.setState({imageErrors: resJson.errors});
       } else{
-        this.setState({image: resJson.image.url});
+        this.setState({image: resJson.image});
         window.location.reload();
       }
 

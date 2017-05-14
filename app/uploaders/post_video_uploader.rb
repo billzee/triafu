@@ -3,7 +3,6 @@ class PostVideoUploader < CarrierWave::Uploader::Base
 
   MAX_RESOLUTION = '640x360'
 
-  # Choose what kind of storage to use for this uploader:
   storage :file
 
   def store_dir
@@ -12,7 +11,14 @@ class PostVideoUploader < CarrierWave::Uploader::Base
 
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
+  after :store, :remove_original_file
   after :cache, :bigger_than_max_resolution?
+
+  def remove_original_file(p)
+    if self.version_name.nil?
+      self.file.delete if self.file.exists?
+    end
+  end
 
   def unlink_original(file)
     return unless delete_original_file

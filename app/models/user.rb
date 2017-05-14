@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable,
   :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
@@ -28,7 +27,7 @@ class User < ApplicationRecord
 
   def image
     if self.avatar.file
-      self.avatar
+      self.avatar.url
     elsif self.facebook_image || self.google_image
       self.facebook_image || self.google_image
     else
@@ -68,7 +67,6 @@ class User < ApplicationRecord
     where("#{omniauth_uid}": auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.full_name = auth.info.name
-      user.avatar = auth.info.image
       user.password = Devise.friendly_token[0,20]
       user[image] = auth.info.image
 

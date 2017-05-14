@@ -27,9 +27,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "fallback/" + [version_name, "triafu-icon-small.png"].compact.join('_')
   end
 
-  def filename
-    super.chomp(File.extname(super)) + '.jpg'
-  end
+  # def filename
+  #   super.chomp(File.extname(super)) + '.jpg'
+  # end
 
   def extension_whitelist
     %w(jpg jpeg gif png)
