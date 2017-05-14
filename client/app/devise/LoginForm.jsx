@@ -61,12 +61,11 @@ export default class Login extends Component {
           ) : null
         }
 
-        <p className="text-muted text-center">Usando uma rede social</p>
         <SocialLogin />
 
-        <hr className="or text-muted"/>
-
-        <p className="text-muted text-center pt-3">Usando seu e-mail ou nome de usuário</p>
+        <p className="text-muted text-center pt-3 pb-2">
+          Usando seu e-mail ou nome de usuário
+        </p>
 
         <form onSubmit={this.login} method="post">
           <div className="form-group">
@@ -82,7 +81,7 @@ export default class Login extends Component {
             onChange={helper.handleChange.bind(this, 'password')}
             value={this.state.password}></input>
 
-            <a href="/users/password/new" className="float-right">esqueceu/não tem senha?</a>
+            <a href="/users/password/new" className="float-right">esqueceu a senha?</a>
           </div>
 
           <br/>

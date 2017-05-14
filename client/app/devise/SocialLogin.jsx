@@ -28,22 +28,26 @@ export default class SocialLogin extends Component {
 
   render(){
     return(
-      <ul className="list-unstyled list-inline text-center pb-3">
-        <li className="list-inline-item">
-          <button className="btn btn-facebook"
-          onClick={()=> this.facebookLogin()}>
-            <i className="fa fa-facebook-f fa-1x"></i>
-            <span className="ml-1">Facebook</span>
-          </button>
-        </li>
-        <li className="list-inline-item">
-          <button className="btn btn-google"
-          onClick={()=> this.googleLogin()}>
-            <i className="fa fa-google-plus fa-1x"></i>
-            <span className="ml-1">Google</span>
-          </button>
-        </li>
-      </ul>
+      <box>
+        <p className="text-muted text-center">Usando uma rede social</p>
+        <ul className="list-unstyled list-inline text-center pb-3">
+          <li className="list-inline-item mr-3">
+            <button className="btn btn-facebook"
+            onClick={()=> this.facebookLogin()}>
+              <i className="fa fa-facebook-f fa-1x"></i>
+              <span className="ml-1">Facebook</span>
+            </button>
+          </li>
+          <li className="list-inline-item">
+            <button className="btn btn-google"
+            onClick={()=> this.googleLogin()}>
+              <i className="fa fa-google-plus fa-1x"></i>
+              <span className="ml-1">Google</span>
+            </button>
+          </li>
+        </ul>
+        <hr className="or text-muted"/>
+      </box>
     );
   }
 }

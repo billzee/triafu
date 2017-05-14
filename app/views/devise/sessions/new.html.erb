@@ -3,19 +3,20 @@
   <h1>Entrar</h1>
   <hr>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= react_component("SocialLogin") %>
 
-    <%= react_component("SocialLogin") %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <p class="text-muted text-center pt-3 pb-2">Usando seu e-mail ou nome de usuário</p>
 
     <div class="form-group">
-      <label class="form-control-label">e-mail</label>
+      <label class="form-control-label">e-mail/nome de usuário</label>
       <%= f.email_field :email, class: "form-control", autofocus: true %>
     </div>
 
     <div class="form-group">
       <label class="form-control-label">senha</label>
       <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
-      <%= link_to('Esqueceu a senha?', new_user_password_path, class: "float-right") %>
+      <%= link_to('esqueceu a senha?', new_user_password_path, class: "float-right") %>
     </div>
 
     <br/>
