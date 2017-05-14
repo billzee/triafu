@@ -9,6 +9,7 @@ export default class Categories extends Component {
 
   changeCategory(e, category){
     e.preventDefault();
+    window.location = "/"+category;
     this.setState({selected: category});
     pubsub.publish('category', category);
   }

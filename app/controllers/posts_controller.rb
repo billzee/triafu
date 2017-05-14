@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     if @@new_post.destroy_file?
       render :json => {}
     else
-      render :json => {errors: @@new_post.errors[:file]}
+      render :json => {errors: {}}
     end
   end
 

@@ -1,13 +1,14 @@
 class Post < ApplicationRecord
-  attr_accessor :file, :media, :image_upload_width, :image_upload_height
+  attr_accessor :file, :file_cache, :media
+
   enum category: [ :newcomer, :top ]
 
   validates_presence_of :title
 
   validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
 
-  mount_uploader :image, ImageUploader
-  mount_uploader :video, VideoUploader
+  mount_uploader :image, PostImageUploader
+  mount_uploader :video, PostVideoUploader
 
   validates :file,
   presence: true,
@@ -34,26 +35,16 @@ class Post < ApplicationRecord
 
   paginates_per 2
 
-  # def self.ranked_currents_from_category category=:top, rank
-  #   posts = []
-  #   number_of_hours = 20
-  #
-  #   if rank
-  #     while posts.size == 0 do
-  #       posts = where('created_at > ?', (number_of_hours).minutes.ago)
-  #       number_of_hours = number_of_hours + 20
-  #     end
-  #
-  #     posts.order(created_at: :asc).sort_by(&(rank)).reverse
-  #   end
-  # end
-
   def self.all_from_category category=:top
     where(category: category).order(updated_at: :desc)
   end
 
   def destroy_file?
-    if self.image = self.video = self.file = nil
+    self.file = self.video = self.image = nil
+
+    if self.video.file == nil &&
+      self.image.file == nil &&
+      self.file == nil
       return true
     else
       return false
@@ -96,4 +87,17 @@ class Post < ApplicationRecord
     end
   end
 
+  # def self.ranked_currents_from_category category=:top, rank
+  #   posts = []
+  #   number_of_hours = 20
+  #
+  #   if rank
+  #     while posts.size == 0 do
+  #       posts = where('created_at > ?', (number_of_hours).minutes.ago)
+  #       number_of_hours = number_of_hours + 20
+  #     end
+  #
+  #     posts.order(created_at: :asc).sort_by(&(rank)).reverse
+  #   end
+  # end
 end

@@ -1,4 +1,4 @@
-class VideoUploader < CarrierWave::Uploader::Base
+class PostVideoUploader < CarrierWave::Uploader::Base
   include CarrierWave::FFmpeg
 
   MAX_RESOLUTION = '640x360'

@@ -75,7 +75,7 @@ export default class PostFile extends Component {
       console.log(resJson);
 
       if(resJson.errors){
-        this.setState({fileErrors: resJson.errors});
+        window.location.reload();
       } else{
         this.setState({imagePreview: null, videoPreview: null});
       }
@@ -130,7 +130,7 @@ export default class PostFile extends Component {
                   </div>
                   <div className="col-30 align-self-center">
                     {
-                      !this.state.loading ?
+                      this.state.loading === false ?
                       (<i className="fa fa-trash fa-2x text-danger href" onClick={(e) => this.removeFile(e)}></i>)
                       : null
                     }
