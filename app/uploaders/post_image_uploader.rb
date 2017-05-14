@@ -9,7 +9,6 @@ class PostImageUploader < CarrierWave::Uploader::Base
   #   end
   # end
 
-  # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
 
@@ -48,7 +47,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   def filename
     super.chomp(File.extname(super)) + '.jpg'
   end
-  
+
   def extension_white_list
     %w(jpg jpeg png bmp tif tiff)
   end

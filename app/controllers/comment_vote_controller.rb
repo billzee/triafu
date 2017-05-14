@@ -3,11 +3,13 @@ class CommentVoteController < ApplicationController
   before_action :authenticate_user!, only: :create
 
   def index
-    comment_vote = CommentVote.find_by(user_id: current_user.id, comment_id: params[:comment_id])
-    if comment_vote
-      render :json => { :vote => comment_vote.vote }
-    else
-      render :json => {}
+    if request.format.json?
+      comment_vote = CommentVote.find_by(user_id: current_user.id, comment_id: params[:comment_id])
+      if comment_vote
+        render :json => { :vote => comment_vote.vote }
+      else
+        render :json => {}
+      end
     end
   end
 

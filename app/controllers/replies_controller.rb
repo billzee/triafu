@@ -3,7 +3,9 @@ class RepliesController < ApplicationController
   PAGINATES_PER = 9
 
   def index
-    @paginated_replies = paginated_replies
+    if request.format.json?
+      @paginated_replies = paginated_replies
+    end
   end
 
   def create

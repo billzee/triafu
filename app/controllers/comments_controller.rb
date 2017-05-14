@@ -3,7 +3,9 @@ class CommentsController < ApplicationController
   PAGINATES_PER = 9
 
   def index
-    @paginated_comments = paginated_comments
+    if request.format.json?
+      @paginated_comments = paginated_comments
+    end
   end
 
   def create

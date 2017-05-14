@@ -3,7 +3,9 @@ class PostsController < ApplicationController
   @@new_post = nil
 
   def index
-    @paginated_posts = paginated_posts
+    if request.format.json?
+      @paginated_posts = paginated_posts
+    end
   end
 
   def show

@@ -3,11 +3,13 @@ class ReplyVoteController < ApplicationController
   before_action :authenticate_user!, only: :create
 
   def index
-    reply_vote = ReplyVote.find_by(user_id: current_user.id, reply_id: params[:reply_id])
-    if reply_vote
-      render :json => { :vote => reply_vote.vote }
-    else
-      render :json => {}
+    if request.format.json?
+      reply_vote = ReplyVote.find_by(user_id: current_user.id, reply_id: params[:reply_id])
+      if reply_vote
+        render :json => { :vote => reply_vote.vote }
+      else
+        render :json => {}
+      end
     end
   end
 

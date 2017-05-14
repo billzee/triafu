@@ -3,11 +3,13 @@ class PostVoteController < ApplicationController
   before_action :authenticate_user!, only: :create
 
   def index
-    post_vote = PostVote.find_by(user_id: current_user.id, post_id: params[:post_id])
-    if post_vote
-      render :json => { :vote => post_vote.vote }
-    else
-      render :json => {}
+    if request.format.json?
+      post_vote = PostVote.find_by(user_id: current_user.id, post_id: params[:post_id])
+      if post_vote
+        render :json => { :vote => post_vote.vote }
+      else
+        render :json => {}
+      end
     end
   end
 
