@@ -14,7 +14,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
-  after :store, :remove_original_file
+
+  process :resize_to_limit => [600, -1]
 
   def remember_cache_id(new_file)
     @cache_id_was = cache_id
@@ -28,16 +29,6 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
-
-  def remove_original_file(p)
-    if self.version_name.nil?
-      self.file.delete if self.file.exists?
-    end
-  end
-
-  version :jpg do
-    process :resize_to_limit => [600, -1]
   end
 
   def default_url

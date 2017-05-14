@@ -47,6 +47,8 @@ export default class PostSection extends Component {
       let res = await PostsApi._index(null, category);
       let resJson = await res.json();
 
+      console.log(resJson);
+
       var sortedPosts;
       if(this.state.sortBy){
         sortedPosts = resJson.posts.sort(
