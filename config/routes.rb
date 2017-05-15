@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'current_user', to: 'users/sessions#index'
     get 'users/edit/password', to: 'users/registrations#edit_password', as: :edit_user_registration_password
     get 'users/edit/image', to: 'users/registrations#edit_image', as: :edit_user_registration_image
+    put 'user/disconnect_social_network', to: 'users/registrations#disconnect_social_network'
     put 'user/update_avatar', to: 'users/registrations#update_avatar'
   end
 

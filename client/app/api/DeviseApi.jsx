@@ -14,7 +14,11 @@ var DeviseApi = {
     let formData = new FormData();
     formData.append('user[avatar]', file);
     return FileApi('/user/update_avatar', {method: 'PUT', body: formData});
-  }
+  },
+
+  _disconnectSocialNetwork: function(network){
+    return Api('/user/disconnect_social_network', {method: 'PUT', body: JSON.stringify({network: network})});
+  },
 };
 
 export default DeviseApi;

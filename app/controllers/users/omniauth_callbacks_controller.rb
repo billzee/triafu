@@ -3,11 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
     if user_signed_in?
-      data = request.env["omniauth.auth"]
-      @user = User.find current_user.id
-      @user.update facebook_uid: data["uid"]
-      @user.save
-      render :index
+      connect_social_network
     else
       sign_in_or_sign_up_user :facebook
     end
@@ -15,11 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     if user_signed_in?
-      data = request.env["omniauth.auth"]
-      @user = User.find current_user.id
-      @user.update google_oauth2_uid: data["uid"]
-      @user.save
-      render :index
+      connect_social_network
     else
       sign_in_or_sign_up_user :google
     end
@@ -47,6 +39,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
 
   protected
+
+  def connect_social_network
+    data = request.env["omniauth.auth"]
+    info = data["info"]
+
+    user = User.find current_user.id
+    if data["provider"] == 'facebook'
+      user.update facebook_uid: data["uid"], facebook_image: info["image"]
+    elsif data["provider"] == 'google_oauth2'
+      user.update google_oauth2_uid: data["uid"], google_image: info["image"]
+    end
+
+    user.save unless !user.changed?
+    render :index
+  end
 
   def sign_in_or_sign_up_user kind
     @user = User.from_omniauth(request.env["omniauth.auth"])

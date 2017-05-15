@@ -45,6 +45,15 @@ export default class SocialConnect extends Component {
     this.popupCenter("/users/auth/google_oauth2", '_blank', 800, 800);
   }
 
+  async disconnect(network){
+    try{
+      let res = await DeviseApi._disconnectSocialNetwork(network);
+      window.location.reload();
+    } catch(error){
+      console.log(error);
+    }
+  }
+
   render(){
     return(
       <ul className="list-unstyled">
@@ -53,19 +62,35 @@ export default class SocialConnect extends Component {
             <div className="col-5 align-self-center text-muted">
               Facebook
             </div>
+
             <div className="col-6">
-              <button className={"btn btn-facebook btn-block" +
-              (this.state.user.facebookConnect ? "" : " disconnected")}
-              onClick={()=> this.facebookConnect()} type="button">
-                <i className="fa fa-facebook-f fa-1x"></i>
-                <span className="ml-3">
-                  {this.state.user.facebookConnect ? ("Desconectar") : ("Conectar")}
-                </span>
-              </button>
-            </div>
-            <div className="col-1 align-self-center text-right">
               {
-                this.state.user.facebookConnect ?
+                this.state.user.facebookConnected ?
+                (
+                  <button className="btn btn-facebook btn-block"
+                  onClick={()=> this.disconnect("facebook")} type="button">
+                    <i className="fa fa-facebook-f fa-1x"></i>
+                    <span className="ml-3">
+                      Desconectar
+                    </span>
+                  </button>
+                )
+                :
+                (
+                  <button className="btn btn-facebook btn-block disconnected"
+                  onClick={()=> this.facebookConnect()} type="button">
+                    <i className="fa fa-facebook-f fa-1x"></i>
+                    <span className="ml-3">
+                      Conectar
+                    </span>
+                  </button>
+                )
+              }
+            </div>
+
+            <div className="col-1 align-self-center text-center">
+              {
+                this.state.user.facebookConnected ?
                   (<i className="fa fa-check text-success"/>)
                 : (<i className="fa fa-times text-danger"/>)
               }
@@ -78,19 +103,35 @@ export default class SocialConnect extends Component {
             <div className="col-5 align-self-center text-muted">
               Google
             </div>
+
             <div className="col-6">
-              <button className={"btn btn-google btn-block" +
-              (this.state.user.googleConnect ? "" : " disconnected")}
-              onClick={()=> this.googleConnect()} type="button">
-                <i className="fa fa-google fa-1x"></i>
-                <span className="ml-3">
-                  {this.state.user.googleConnect ? ("Desconectar") : ("Conectar")}
-                </span>
-              </button>
-            </div>
-            <div className="col-1 align-self-center text-right">
               {
-                this.state.user.googleConnect ?
+                this.state.user.googleConnected ?
+                (
+                  <button className="btn btn-google btn-block"
+                  onClick={()=> this.disconnect("google")} type="button">
+                    <i className="fa fa-google fa-1x"></i>
+                    <span className="ml-3">
+                      Desconectar
+                    </span>
+                  </button>
+                )
+                :
+                (
+                  <button className="btn btn-google btn-block disconnected"
+                  onClick={()=> this.googleConnect()} type="button">
+                    <i className="fa fa-google fa-1x"></i>
+                    <span className="ml-3">
+                      Conectar
+                    </span>
+                  </button>
+                )
+              }
+            </div>
+
+            <div className="col-1 align-self-center text-center">
+              {
+                this.state.user.googleConnected ?
                   (<i className="fa fa-check text-success"/>)
                 : (<i className="fa fa-times text-danger"/>)
               }

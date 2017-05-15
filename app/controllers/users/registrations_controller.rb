@@ -37,12 +37,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
-
   end
 
   # GET /resource/edit
   # def edit
   # end
+
+  def disconnect_social_network
+    if params[:network]
+      user = User.find current_user.id
+
+      if params[:network] == "google"
+        user.google_oauth2_uid = nil
+        user.google_image = nil
+      elsif params[:network] == "facebook"
+        user.facebook_uid = nil
+        user.facebook_image = nil
+      end
+
+      user.save unless !user.changed?
+    end
+
+    render :json => {}
+  end
 
   def edit_password
     @user = current_user
