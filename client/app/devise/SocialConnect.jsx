@@ -47,30 +47,55 @@ export default class SocialConnect extends Component {
 
   render(){
     return(
-      <ul className="list-unstyled list-inline">
-        <li className="list-inline-item mr-4">
-          <button className={"btn btn-facebook" + (this.state.user.facebookConnect ? "" : " disconnected")}
-          onClick={()=> this.facebookConnect()} type="button">
-            <i className="fa fa-facebook-f fa-1x"></i>
-            <span className="ml-1">Facebook</span>
-          </button>
-          {
-            this.state.user.facebookConnect ?
-              (<i className="fa fa-check text-success"/>)
-            : (<i className="fa fa-times text-danger"/>)
-          }
+      <ul className="list-unstyled">
+        <li className="mb-3">
+          <div className="row">
+            <div className="col-5 align-self-center text-muted">
+              Facebook
+            </div>
+            <div className="col-6">
+              <button className={"btn btn-facebook btn-block" +
+              (this.state.user.facebookConnect ? "" : " disconnected")}
+              onClick={()=> this.facebookConnect()} type="button">
+                <i className="fa fa-facebook-f fa-1x"></i>
+                <span className="ml-3">
+                  {this.state.user.facebookConnect ? ("Desconectar") : ("Conectar")}
+                </span>
+              </button>
+            </div>
+            <div className="col-1 align-self-center text-right">
+              {
+                this.state.user.facebookConnect ?
+                  (<i className="fa fa-check text-success"/>)
+                : (<i className="fa fa-times text-danger"/>)
+              }
+            </div>
+          </div>
         </li>
-        <li className="list-inline-item">
-          <button className={"btn btn-google" + (this.state.user.googleConnect ? "" : " disconnected")}
-          onClick={()=> this.googleConnect()} type="button">
-            <i className="fa fa-google-plus fa-1x"></i>
-            <span className="ml-1">Google</span>
-          </button>
-          {
-            this.state.user.googleConnect ?
-              (<i className="fa fa-check text-success"/>)
-            : (<i className="fa fa-times text-danger"/>)
-          }
+
+        <li>
+          <div className="row">
+            <div className="col-5 align-self-center text-muted">
+              Google
+            </div>
+            <div className="col-6">
+              <button className={"btn btn-google btn-block" +
+              (this.state.user.googleConnect ? "" : " disconnected")}
+              onClick={()=> this.googleConnect()} type="button">
+                <i className="fa fa-google fa-1x"></i>
+                <span className="ml-3">
+                  {this.state.user.googleConnect ? ("Desconectar") : ("Conectar")}
+                </span>
+              </button>
+            </div>
+            <div className="col-1 align-self-center text-right">
+              {
+                this.state.user.googleConnect ?
+                  (<i className="fa fa-check text-success"/>)
+                : (<i className="fa fa-times text-danger"/>)
+              }
+            </div>
+          </div>
         </li>
       </ul>
     );

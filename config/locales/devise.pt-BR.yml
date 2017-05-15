@@ -55,7 +55,7 @@ pt-BR:
         subject: Instruções de desbloqueio
     omniauth_callbacks:
       failure: Não foi possível autorizar de uma conta de %{kind} porque "%{reason}".
-      success: oi, %{username} (autenticado via %{kind})
+      success: oi, %{username} - autenticado via %{kind} :)
     passwords:
       edit:
         change_my_password: Alterar minha senha

@@ -45,10 +45,10 @@ class User < ApplicationRecord
 
         if data["provider"] == 'facebook'
           user.facebook_uid = data["uid"]
-          user.facebook_image = info.image
+          user.facebook_image = info["image"]
         elsif data["provider"] == 'google_oauth2'
           user.google_oauth2_uid = data["uid"]
-          user.google_image = info.image
+          user.google_image = info["image"]
         end
 
       end
