@@ -1,14 +1,6 @@
 class PostImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  # before :cache, :capture_size_before_cache # callback, example here: http://goo.gl/9VGHI
-  #
-  # def capture_size_before_cache(new_file)
-  #   if model.image_upload_width.nil? || model.image_upload_height.nil?
-  #     model.image_upload_width, model.image_upload_height = `identify -format "%wx %h" #{new_file.path}`.split(/x/).map { |dim| dim.to_i }
-  #   end
-  # end
-
   storage :file
   # storage :fog
 
@@ -21,6 +13,10 @@ class PostImageUploader < CarrierWave::Uploader::Base
     @cache_id_was = cache_id
   end
 
+  def full_filename(for_file)
+    super.chomp(File.extname(super)) + '.jpg'
+  end
+
   def delete_tmp_dir(new_file)
     if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
       FileUtils.rm_rf(File.join(root, cache_dir, @cache_id_was))
@@ -29,14 +25,6 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
-
-  def default_url
-    "#{model.class.to_s.underscore.downcase}/#{mounted_as}/missing/" + [version_name, 'missing.png'].compact.join('_')
-  end
-
-  def filename
-    super.chomp(File.extname(super)) + '.jpg'
   end
 
   def extension_white_list

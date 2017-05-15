@@ -2,17 +2,32 @@ class PostVideoUploader < CarrierWave::Uploader::Base
   include CarrierWave::FFMPEG
 
   storage :file
+  after :store, :remove_original_file
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def remove_original_file(p)
+    if self.version_name.nil?
+      self.file.delete if self.file.exists?
+    end
+  end
+
   version :mp4 do
     process encode_video: [:mp4]
+
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.mp4'
+    end
   end
 
   version :webm do
     process encode_video: [:webm]
+
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.webm'
+    end
   end
 
   def extension_white_list

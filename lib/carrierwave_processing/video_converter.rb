@@ -16,7 +16,9 @@ module CarrierWave
       current_extenstion = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)
 
-      file.transcode(encoded_file)
+      options = { video_min_bitrate: 600, resolution: '320x240' }
+
+      file.transcode(encoded_file, options) { |progress| model.upload_progress = (progress * 100).round(2) }
 
       # warning: magic!
       # change format for uploaded file name and store file format
