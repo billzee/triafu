@@ -38,12 +38,11 @@ export default class Login extends Component {
 
       if(resJson.errors){
         this.setState({errors: resJson.errors});
+      } else if(this.state.postId){
+        window.location = "/posts/" + this.state.postId;
+      } else{
+        window.location.reload();
       }
-      // } else if(this.state.postId){
-      //   window.location = "/posts/" + this.state.postId;
-      // } else{
-      //   window.location.reload();
-      // }
 
     } catch(error){
       console.log(error);

@@ -31,7 +31,7 @@ class User < ApplicationRecord
     elsif self.facebook_image || self.google_image
       self.facebook_image || self.google_image
     else
-      self.avatar
+      "/assets/" + self.avatar.default_url
     end
   end
 

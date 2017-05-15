@@ -113,12 +113,20 @@ h5 {
   color: #fff;
   background-color: #3b5998;
   border-color: #3b5998;
+
+  &.disconnected{
+    opacity: 0.5;
+  }
 }
 
 .btn-google {
   color: #fff;
   background-color: #d34836;
   border-color: #d34836;
+  
+  &.disconnected{
+    opacity: 0.5;
+  }
 }
 
 .dropdown-right {

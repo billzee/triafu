@@ -33,7 +33,11 @@
       <%= f.email_field :email, class: "form-control" %>
     </div>
 
-    <br>
+    <div class="form-group">
+      <label class="form-control-label">Conectar a uma rede social</label>
+      <%= react_component("SocialConnect", prerender: true) %>
+    </div>
+
     <hr/>
 
     <!-- <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

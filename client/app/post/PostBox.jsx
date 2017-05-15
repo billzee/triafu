@@ -64,7 +64,7 @@ export default class PostBox extends Component {
             { this.state.post.original ?
               (
                 <h4>
-                  <a href={"//"+this.state.post.original} target="_blank">
+                  <a href={"//"+this.state.post.original} target="_blank" content="noindex, nofollow">
                     Link do autor original
                   </a>
                 </h4>

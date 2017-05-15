@@ -7,13 +7,15 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def index
-    @current_user = current_user
+    if request.format.json?
+      @current_user = current_user
+    end
   end
 
   # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
-    set_flash_message!(:notice, :signed_in)
+    set_flash_message!(:notice, :signed_in, username: self.resource.username)
     sign_in(resource_name, resource)
     yield resource if block_given?
     respond_to do |format|

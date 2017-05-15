@@ -19,13 +19,13 @@ export default class PostSort extends Component {
         {
           this.state.sortBy === "funnyCount" ?
           (
-            <a href className="dropdown-toggle header-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="/assets/funny.svg" height="35px" />
+            <a href className="dropdown-toggle header-link p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="/assets/funny.svg" height="35px" /> 1º
             </a>
           ) : this.state.sortBy === "smartCount" ?
           (
             <a href className="dropdown-toggle header-link p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="/assets/brain.svg" height="35px" />
+              <img src="/assets/brain.svg" height="35px" /> 1º
             </a>
           ) :
           (
