@@ -8,7 +8,7 @@ class PostVideoUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
+  
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
   after :store, :remove_original_file

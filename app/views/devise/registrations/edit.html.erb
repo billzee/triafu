@@ -33,17 +33,12 @@
       <%= f.email_field :email, class: "form-control" %>
     </div>
 
-    <!-- <br>
+    <br>
     <hr/>
 
-    <div class="form-group">
-      <label class="form-control-label">Senha Atual (para confirmar as alterações)</label>
-      <%= f.password_field :current_password, class: "form-control", autocomplete: "off" %>
-    </div> -->
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <!-- <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+    <% end %> -->
 
     <%= f.submit "Salvar", class: "btn btn-success float-right" %>
   <% end %>

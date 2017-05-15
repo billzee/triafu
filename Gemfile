@@ -56,9 +56,9 @@ gem "mini_magick"
 gem "kaminari"
 gem "jbuilder"
 gem 'devise', github: 'plataformatec/devise'
-gem 'erubis'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'file_validators'
+gem 'streamio-ffmpeg'
 
 gem 'mini_racer', platforms: :ruby

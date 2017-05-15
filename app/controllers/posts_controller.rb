@@ -48,7 +48,7 @@ class PostsController < ApplicationController
       @@new_post = nil
     else
       file_errors = resolve_image_or_video @@new_post.errors
-      @@new_post.errors[:file].push(file_errors)
+      @@new_post.errors[:file].push(file_errors) unless file_errors.nil?
 
       render :json => { :errors => @@new_post.errors }
     end
