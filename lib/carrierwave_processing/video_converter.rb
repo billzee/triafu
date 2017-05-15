@@ -16,7 +16,7 @@ module CarrierWave
       current_extenstion = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)
 
-      file.transcode(encoded_file) { |progress| puts "#{(progress * 100).round(2)} %" }
+      file.transcode(encoded_file)
 
       # warning: magic!
       # change format for uploaded file name and store file format

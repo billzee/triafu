@@ -8,7 +8,17 @@ class Post < ApplicationRecord
   validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
 
   mount_uploader :image, PostImageUploader
-  mount_uploader :video, PostVideoUploader
+  mount_uploader :video, PostVideoUploader do
+    def url(format = nil)
+      uploaded_path = encode_path(file.path.sub(File.expand_path(root), ''))
+      return uploaded_path if format.nil?
+      files = Dir.entries(File.dirname(file.path))
+      files.each do |f|
+        next unless File.extname(f) == '.' + format.to_s
+        return File.dirname(uploaded_path) + '/' + f
+      end
+    end
+  end
 
   validates :file,
   presence: true,
