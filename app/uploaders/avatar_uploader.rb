@@ -1,13 +1,12 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  storage :file
-  # storage :fog
+  storage :fog
 
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
 
-  process :resize_to_fit => [150, 150]
+  process :efficient_conversion => [150, 150]
 
   def remember_cache_id(new_file)
     @cache_id_was = cache_id
@@ -27,7 +26,30 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "fallback/" + [version_name, "triafu-icon-small.png"].compact.join('_')
   end
 
+  def filename
+    "#{secure_token}.jpg" if original_filename.present?
+  end
+
   def extension_whitelist
     %w(jpg jpeg png)
+  end
+
+  protected
+
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  end
+
+  def efficient_conversion(width, height)
+    manipulate! do |img|
+      img.format("jpg") do |c|
+        c.fuzz        "3%"
+        c.trim
+        c.resize      "#{width}x#{height}"
+      end
+
+      img
+    end
   end
 end
