@@ -42,7 +42,7 @@ export default class PostSection extends Component {
     }
   }
 
-  async index(category=this.props.category || "top"){
+  async index(category=(this.props.category || "top")){
     try{
       let res = await PostsApi._index(null, category);
       let resJson = await res.json();
@@ -64,18 +64,20 @@ export default class PostSection extends Component {
         page: 2
       });
 
+      console.log(this.state.lastPage);
+
     } catch(error){
       console.log(error);
     }
   }
 
-  async paginatePosts(e){
+  async paginatePosts(e, category=(this.props.category || "top")){
     if(e) e.preventDefault();
 
     try{
       if(this.state.postId) this.setState({postId: null});
 
-      let res = await PostsApi._index(this.state.page, null);
+      let res = await PostsApi._index(this.state.page, category);
       let resJson = await res.json();
 
       var sortedPosts;

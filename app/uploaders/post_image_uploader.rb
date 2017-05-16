@@ -7,7 +7,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   before :store, :remember_cache_id
   after :store, :delete_tmp_dir
 
-  process :resize_to_limit => [600, -1]
+  process :efficient_conversion => [600, -1]
 
   def remember_cache_id(new_file)
     @cache_id_was = cache_id
@@ -36,6 +36,19 @@ class PostImageUploader < CarrierWave::Uploader::Base
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  end
+
+  def efficient_conversion(width, height)
+    manipulate! do |img|
+      img.format("jpg") do |c|
+        c.fuzz        "3%"
+        c.trim
+        c.resize      "#{width}x#{height}>"
+        c.resize      "#{width}x#{height}<"
+      end
+
+      img
+    end
   end
 
 end

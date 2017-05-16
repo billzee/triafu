@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 20170423012118) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.string "facebook_uid"
     t.string "google_oauth2_uid"
     t.string "facebook_image"
