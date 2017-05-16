@@ -7,7 +7,6 @@ Rails.application.configure do
   ENV['GOOGLE_OAUTH2_SECRET'] = "HiynYuWnv8SLPbUz6C6uRBBV"
 
   ENV['S3_BUCKET_NAME'] = "triafu-beta"
-  ENV['S3_ASSET_URL'] = "uploads"
 
   ENV['S3_KEY'] = "AKIAJ4MWWZ6DIH2P3LGA"
   ENV['S3_SECRET'] = "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"

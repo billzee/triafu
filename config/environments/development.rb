@@ -6,6 +6,8 @@ Rails.application.configure do
   ENV['GOOGLE_OAUTH2_KEY'] = "970037955727-rb604a2n487bg3p2bff7d9ispmp5ktl7.apps.googleusercontent.com"
   ENV['GOOGLE_OAUTH2_SECRET'] = "lgn9EluUvU1WAiq9ahJ0dO0g"
 
+  ENV['S3_BUCKET_NAME'] = "triafu-development"
+
   ENV['S3_KEY'] = "AKIAJ4MWWZ6DIH2P3LGA"
   ENV['S3_SECRET'] = "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"
 
