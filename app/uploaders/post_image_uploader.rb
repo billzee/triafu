@@ -1,7 +1,7 @@
 class PostImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  storage :file
+  # storage :file
   # storage :fog
 
   before :store, :remember_cache_id
