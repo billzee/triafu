@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable,
   :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
@@ -16,6 +15,9 @@ class User < ApplicationRecord
 
   validate :username_cannot_be_changed_again
   validate :username_cannot_be_an_email
+
+  validates_uniqueness_of :facebook_uid
+  validates_uniqueness_of :google_oauth2_uid
 
   has_many :comments
   has_many :replies

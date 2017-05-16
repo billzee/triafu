@@ -54,7 +54,7 @@ pt-BR:
         message: Sua conta foi bloqueada devido ao excessivo número de tentativas acesso inválidas.
         subject: Instruções de desbloqueio
     omniauth_callbacks:
-      failure: Não foi possível autorizar de uma conta de %{kind} porque "%{reason}".
+      failure: Não foi possível autorizar uma conta do %{kind} porque %{reason}.
       success: oi, %{username} - autenticado via %{kind} :)
     passwords:
       edit:
@@ -83,7 +83,7 @@ pt-BR:
         we_need_your_current_password_to_confirm_your_changes: precisamos da sua senha atual para confirmar suas mudanças
       new:
         sign_up: Inscrever-se
-      signed_up: Bem vindo! Você realizou seu registro com sucesso.
+      signed_up: seja bem-vindo, %{username} :)
       signed_up_but_inactive: Você se inscreveu com sucesso, porém nós não podemos autenticá-lo porque sua conta ainda não foi ativada.
       signed_up_but_locked: Você se inscreveu com sucesso. Porém nós não podemos autenticá-lo porque sua conta está bloqueada.
       signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu e-mail. Por favor, acesse o link para ativar sua conta.

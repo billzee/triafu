@@ -45,13 +45,24 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     info = data["info"]
 
     user = User.find current_user.id
+
     if data["provider"] == 'facebook'
-      user.update facebook_uid: data["uid"], facebook_image: info["image"]
+      user.facebook_uid = data["uid"]
+      user.facebook_image = info["image"]
     elsif data["provider"] == 'google_oauth2'
-      user.update google_oauth2_uid: data["uid"], google_image: info["image"]
+      user.google_oauth2_uid = data["uid"]
+      user.google_image = info["image"]
     end
 
-    user.save unless !user.changed?
+    if user.save
+    elsif user.invalid?
+      if user.errors.include?(:facebook_uid)
+        set_flash_message(:alert, :failure, kind: 'facebook', reason: 'existe outra conta com essa conexão')
+      elsif user.errors.include?(:google_oauth2_uid)
+        set_flash_message(:alert, :failure, kind: 'google', reason: 'existe outra conta com essa conexão')
+      end
+    end
+
     render :index
   end
 
@@ -64,6 +75,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       render :index
     else
       session["omniauth_data"] = request.env["omniauth.auth"].except("extra")
+      render :index
       redirect_to new_user_registration_url
     end
   end
