@@ -51,7 +51,7 @@ gem 'pg'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem "react_on_rails", "~> 7"
 gem 'carrierwave', '~> 1.0'
-gem 'fog'
+gem 'fog-aws'
 gem "mini_magick"
 gem "kaminari"
 gem "jbuilder"
