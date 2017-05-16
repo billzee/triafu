@@ -43,14 +43,6 @@ class User < ApplicationRecord
         user.full_name = info["name"]
         user.email = info["email"]
 
-        if data["provider"] == 'facebook'
-          user.facebook_uid = data["uid"]
-          user.facebook_image = info["image"]
-        elsif data["provider"] == 'google_oauth2'
-          user.google_oauth2_uid = data["uid"]
-          user.google_image = info["image"]
-        end
-
       end
     end
   end

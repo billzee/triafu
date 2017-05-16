@@ -18,7 +18,7 @@
         <% if resource.username_changed %>
           Você já alterou o nome de usuário uma vez.
         <% else %>
-          <strong class="text-warning">Importante:</strong> o nome de usuário só pode ser alterado uma vez.
+          O nome de usuário só pode ser alterado uma vez
         <% end %>
       </small>
     </div>
@@ -31,18 +31,17 @@
     <div class="form-group">
       <label class="form-control-label">e-mail</label>
       <%= f.email_field :email, class: "form-control" %>
+      <% if devise_mapping.confirmable? && resource.confirmed_at == nil %>
+        <small>Aguardando confirmação</small>
+      <% end %>
     </div>
 
     <div class="form-group mt-4">
-      <label class="form-control-label">Conectar nas redes sociais</label>
+      <label class="form-control-label">Conectar redes sociais</label>
       <%= react_component("SocialConnect", prerender: true) %>
     </div>
 
     <hr/>
-
-    <!-- <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %> -->
 
     <%= f.submit "Salvar", class: "btn btn-success float-right" %>
   <% end %>
