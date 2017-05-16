@@ -16,8 +16,8 @@ class User < ApplicationRecord
   validate :username_cannot_be_changed_again
   validate :username_cannot_be_an_email
 
-  validates_uniqueness_of :facebook_uid
-  validates_uniqueness_of :google_oauth2_uid
+  validates_uniqueness_of :facebook_uid, :allow_blank => true, :allow_nil => true
+  validates_uniqueness_of :google_oauth2_uid, :allow_blank => true, :allow_nil => true
 
   has_many :comments
   has_many :replies

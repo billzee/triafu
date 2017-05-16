@@ -55,7 +55,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
         user.facebook_image = nil
       end
 
-      user.save unless !user.changed?
+      if user.save
+        render :json => {}
+      else
+        render :json => {errors: user.errors}
+      end
+
     end
 
     render :json => {}
