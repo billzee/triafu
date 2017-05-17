@@ -8,6 +8,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   process :efficient_conversion => [150, 150]
 
+  version :thumb do
+    process :efficient_conversion => [48, 48]
+  end
+
   def remember_cache_id(new_file)
     @cache_id_was = cache_id
   end
@@ -18,12 +22,15 @@ class AvatarUploader < CarrierWave::Uploader::Base
     end
   end
 
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  def default_url
+    colors = ["red", "yellow", "pink"]
+    backgrounds = ["", "-inverse"]
+
+    "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/assets/#{colors.sample}#{backgrounds.sample}.png"
   end
 
-  def default_url(*args)
-    "fallback/" + [version_name, "triafu-icon-small.png"].compact.join('_')
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def filename

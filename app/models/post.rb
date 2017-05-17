@@ -3,6 +3,8 @@ class Post < ApplicationRecord
 
   enum category: [ :newcomer, :top ]
 
+  before_create :generate_reference_id
+
   validates_presence_of :title
 
   validates :original, :format => URI::regexp(%w(http https)), allow_blank: true
@@ -14,18 +16,18 @@ class Post < ApplicationRecord
   presence: true,
   file_size: {
     greater_than_or_equal_to: 20.kilobytes,
-    less_than_or_equal_to: 10.megabytes
+    less_than_or_equal_to: 20.megabytes
   }
 
   validates :image,
-  file_content_type: {
-    allow: ['image/jpeg', 'image/png']
+  file_size: {
+    less_than_or_equal_to: 8.megabytes
   }
 
-  # validates :video,
-  # file_size: {
-  #   greater_than_or_equal_to: 50.megabytes
-  # }
+  validates :video,
+  file_size: {
+    less_than_or_equal_to: 20.megabytes
+  }
 
   validate :file_to_image_or_video
   belongs_to :user
@@ -87,17 +89,13 @@ class Post < ApplicationRecord
     end
   end
 
-  # def self.ranked_currents_from_category category=:top, rank
-  #   posts = []
-  #   number_of_hours = 20
-  #
-  #   if rank
-  #     while posts.size == 0 do
-  #       posts = where('created_at > ?', (number_of_hours).minutes.ago)
-  #       number_of_hours = number_of_hours + 20
-  #     end
-  #
-  #     posts.order(created_at: :asc).sort_by(&(rank)).reverse
-  #   end
-  # end
+  def generate_reference_id
+    self.reference_id = SecureRandom.hex(4)
+    rescue ActiveRecord::RecordNotUnique => e
+      @token_attempts ||= 0
+      @token_attempts += 1
+      retry if @token_attempts < 3
+      raise e, "Retries exhausted"
+    end
+  end
 end

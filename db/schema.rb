@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170423012118) do
   end
 
   create_table "posts", id: :serial, force: :cascade do |t|
+    t.string "reference_id"
     t.string "title"
     t.string "original"
     t.integer "category", default: 0

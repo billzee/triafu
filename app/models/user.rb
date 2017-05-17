@@ -28,13 +28,20 @@ class User < ApplicationRecord
   has_many :reply_votes
 
   def image
-    if self.avatar.file
-      self.avatar.url
+    if self.avatar
+      self.avatar
     elsif self.facebook_image || self.google_image
       self.facebook_image || self.google_image
     else
-      "/assets/" + self.avatar.default_url
+      self.avatar
     end
+  end
+
+  def generate_avatar
+    colors = ["red", "yellow", "pink"]
+    backgrounds = ["", "-inverse"]
+
+    avatar = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/assets/#{colors.sample}#{backgrounds.sample}.png"
   end
 
   def self.new_with_session(params, session)
