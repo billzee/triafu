@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   before_update :username_is_being_changed
 
+  before_create :generate_default_image
+
   validates :full_name, presence: true, length: { :minimum => 4, :maximum => 32 }
   validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 14 }
 
@@ -33,16 +35,9 @@ class User < ApplicationRecord
     elsif self.facebook_image || self.google_image
       self.facebook_image || self.google_image
     else
-      self.avatar.default_url
+      "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/assets/#{self.default_image}.png"
     end
   end
-
-  # def generate_avatar
-  #   colors = ["red", "yellow", "pink"]
-  #   backgrounds = ["", "-inverse"]
-  #
-  #   avatar = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/assets/#{colors.sample}#{backgrounds.sample}.png"
-  # end
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -117,6 +112,13 @@ class User < ApplicationRecord
   end
 
   protected
+
+  def generate_default_image
+    colors = ["red", "yellow", "pink"]
+    backgrounds = ["", "-inverse"]
+
+    self.default_image = colors.sample + backgrounds.sample
+  end
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

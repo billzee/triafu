@@ -9,6 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :username
       t.string :full_name
       t.string :avatar
+      t.string :default_image
       t.boolean :username_changed, default: false
 
       ## Recoverable

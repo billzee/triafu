@@ -14,9 +14,7 @@ export default class CommentForm extends Component {
   }
 
   isSubmiting(e){
-    if (e.which == 13 && ! e.shiftKey) {
-      this.comment();
-    }
+    if(e.which == 13 && ! e.shiftKey) this.comment();
   }
 
   async comment(e){

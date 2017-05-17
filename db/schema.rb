@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170423012118) do
     t.string "username"
     t.string "full_name"
     t.string "avatar"
+    t.string "default_image"
     t.boolean "username_changed", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
