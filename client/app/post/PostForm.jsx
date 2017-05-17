@@ -22,7 +22,9 @@ export default class PostSection extends Component {
   }
 
   async publish(e){
-    e.preventDefault();
+    if (e) e.preventDefault();
+    if(this.state.loading) return;
+    this.setState({loading: true});
 
     try{
       let res = await PostsApi._create(this.state);
@@ -40,6 +42,8 @@ export default class PostSection extends Component {
     } catch(error){
       console.log(error);
     }
+
+    this.setState({loading: false});
   }
 
   componentDidMount(){
@@ -58,7 +62,7 @@ export default class PostSection extends Component {
               <PostFile errors={this.state.errors}/>
             </div>
 
-            <div className="col-sm-12 col-md-10 offset-md-1">
+            <div className="col-sm-12">
               <small className="font-weight-bold">crie um título massa pro seu post:</small>
               <div className={"form-group " + (this.state.errors.hasOwnProperty('title') ? "has-danger" : "")}>
                 <input value={this.state.title}

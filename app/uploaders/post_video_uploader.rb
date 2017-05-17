@@ -1,7 +1,7 @@
 class PostVideoUploader < CarrierWave::Uploader::Base
   include CarrierWave::FFMPEG
 
-  storage :file
+  storage :fog
   after :store, :remove_original_file
 
   def store_dir
