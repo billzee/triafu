@@ -60,6 +60,7 @@ export default class CommentForm extends Component {
                 value={this.state.text}
                 onChange={helper.handleChange.bind(this, 'text')}
                 style={{maxHeight: 50}}
+                disabled={!this.props.postId}
                 placeholder="escreva um comentário" />
 
               <span className="input-group-btn">
