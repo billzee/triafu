@@ -21,5 +21,3 @@ json.posts @paginated_posts do |post|
 end
 
 if @paginated_posts.size > 0 then json.last_page @paginated_posts.last_page? else json.last_page true end
-
-  p @paginated_posts.last_page?, "last pageeeeeeeeee?"

@@ -13,8 +13,14 @@ export default class CommentForm extends Component {
     this.state = {text: '', loading: false, errors: {}};
   }
 
+  isSubmiting(e){
+    if (e.which == 13 && ! e.shiftKey) {
+      this.comment();
+    }
+  }
+
   async comment(e){
-    e.preventDefault();
+    if (e) e.preventDefault();
     if(this.state.loading) return;
     this.setState({loading: true});
 
@@ -52,13 +58,15 @@ export default class CommentForm extends Component {
               </span>
 
               <TextAreaAutosize
+                onKeyUp={(e) => this.isSubmiting(e)}
                 value={this.state.text}
                 onChange={helper.handleChange.bind(this, 'text')}
                 style={{maxHeight: 50}}
                 placeholder="escreva um comentário" />
 
               <span className="input-group-btn">
-                <input type="submit" disabled={this.state.loading} className="btn btn-sm btn-success" value="Comentar"></input>
+                <button type="submit" disabled={this.state.loading}
+                className="btn btn-sm btn-success">Comentar</button>
               </span>
             </div>
 

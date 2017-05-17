@@ -19,14 +19,34 @@ json.comments @paginated_comments do |comment|
     json.user do
       json.id reply.user.id
       json.username reply.user.username
-      json.image reply.user.image
+
+      if reply.user.avatar.file
+        if reply.user.avatar.versions.include?(:thumb)
+          json.image reply.user.image.thumb.url
+        else
+          json.image reply.user.avatar.url
+        end
+      else
+        json.image reply.user.image
+      end
+
     end
   end
 
   json.user do
     json.id comment.user.id
     json.username comment.user.username
-    json.image comment.user.image
+
+    if comment.user.avatar.file
+      if comment.user.avatar.versions.include?(:thumb)
+        json.image comment.user.image.thumb.url
+      else
+        json.image comment.user.avatar.url
+      end
+    else
+      json.image comment.user.image
+    end
+
   end
 end
 

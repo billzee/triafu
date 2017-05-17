@@ -91,11 +91,6 @@ class Post < ApplicationRecord
 
   def generate_reference_id
     self.reference_id = SecureRandom.hex(4)
-    rescue ActiveRecord::RecordNotUnique => e
-      @token_attempts ||= 0
-      @token_attempts += 1
-      retry if @token_attempts < 3
-      raise e, "Retries exhausted"
-    end
   end
+
 end
