@@ -124,7 +124,7 @@ export default class PostFile extends Component {
                       this.state.imagePreview ?
                         (<div style={this.state.imagePreview} className="image-preview rounded m-0"/>)
                       : this.state.videoPreview ?
-                        (<div className="thumb-video"><video autoPlay loop><source src={this.state.videoPreview}/></video></div>)
+                        (<div className="thumb-video"><video autoPlay loop muted><source src={this.state.videoPreview}/></video></div>)
                       : null
                     }
                   </div>

@@ -58,7 +58,7 @@ export default class PostBox extends Component {
               </div>
             ) : null
           }
-          <video loop ref={(video) => {this.video = video}} onClick={()=> this.controlManually()}>
+          <video loop ref={(video) => {this.video = video}} onClick={()=> this.controlManually()} muted>
             <source src={this.state.video.webm.url} type="video/webm"/>
             <source src={this.state.video.mp4.url} type="video/mp4"/>
           </video>
