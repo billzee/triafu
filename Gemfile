@@ -55,7 +55,7 @@ gem 'fog-aws'
 gem "mini_magick"
 gem "kaminari"
 gem "jbuilder"
-gem 'devise', github: 'plataformatec/devise'
+gem 'devise'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'file_validators'
