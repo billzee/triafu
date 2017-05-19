@@ -18,9 +18,10 @@ module CarrierWave
       current_extenstion = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)
 
-      options = { video_min_bitrate: 200, resolution: '800x480' }
+      options = { audio_channels: 0, video_min_bitrate: 300, resolution: '320x240' }
+      transcoder_options = { preserve_aspect_ratio: :width }
 
-      file.transcode(encoded_file, options)
+      file.transcode(encoded_file, options, transcoder_options)
 
       # warning: magic!
       # change format for uploaded file name and store file format

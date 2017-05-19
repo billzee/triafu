@@ -130,7 +130,7 @@ export default class PostFile extends Component {
                   </div>
                   <div className="col-30 align-self-center">
                     {
-                      this.state.loading === false ?
+                      this.state.loading === false && this.props.disableInputs === false ?
                       (<i className="fa fa-trash fa-2x text-danger href" onClick={(e) => this.removeFile(e)}></i>)
                       : null
                     }

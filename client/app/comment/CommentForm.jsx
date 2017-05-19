@@ -50,7 +50,8 @@ export default class CommentForm extends Component {
 
             <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
               <span className="input-group-btn">
-                <button type="button" className="btn btn-sm btn-secondary">
+                <button type="button" className="btn btn-sm btn-secondary"
+                disabled={this.state.loading || !this.props.postId}>
                   <i className="fa fa-smile-o"/>
                 </button>
               </span>
@@ -60,12 +61,12 @@ export default class CommentForm extends Component {
                 value={this.state.text}
                 onChange={helper.handleChange.bind(this, 'text')}
                 style={{maxHeight: 50}}
-                disabled={!this.props.postId}
+                disabled={this.state.loading || !this.props.postId}
                 placeholder="escreva um comentário" />
 
               <span className="input-group-btn">
-                <button type="submit" disabled={this.state.loading}
-                className="btn btn-sm btn-success">Comentar</button>
+                <button type="submit" className="btn btn-sm btn-success"
+                disabled={this.state.loading || !this.props.postId}>Comentar</button>
               </span>
             </div>
 

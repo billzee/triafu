@@ -11,6 +11,8 @@ Rails.application.configure do
   ENV['S3_KEY'] = "AKIAJ4MWWZ6DIH2P3LGA"
   ENV['S3_SECRET'] = "xA8E5LSL6LrIyLwULTieFbiZKPw/JsRClgHhvFt6"
 
+  ENV['S3_URL'] = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazon.com/"
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

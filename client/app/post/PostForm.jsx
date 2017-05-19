@@ -16,6 +16,8 @@ export default class PostSection extends Component {
       original: '',
       preview: null,
       loading: false,
+      disableInputs: false,
+      submitLabel: 'Publicar',
       errors: {}
     };
     this.publish = this.publish.bind(this);
@@ -25,6 +27,8 @@ export default class PostSection extends Component {
     if (e) e.preventDefault();
     if(this.state.loading) return;
     this.setState({loading: true});
+    this.setState({submitLabel: 'Publicando...'});
+    this.setState({disableInputs: true});
 
     try{
       let res = await PostsApi._create(this.state);
@@ -44,11 +48,18 @@ export default class PostSection extends Component {
     }
 
     this.setState({loading: false});
+    this.setState({submitLabel: 'Publicar'});
+    this.setState({disableInputs: false});
   }
 
   componentDidMount(){
     pubsub.subscribe('file-loading', (msg, data)=>{
       this.setState({loading: data});
+      if (data === true){
+        this.setState({submitLabel: 'Convertendo...'});
+      } else{
+        this.setState({submitLabel: 'Publicar'});
+      }
     });
   }
 
@@ -59,14 +70,15 @@ export default class PostSection extends Component {
           <div className="row">
 
             <div className="col-sm-12 col-md-10 offset-md-1 mb-3">
-              <PostFile errors={this.state.errors}/>
+              <PostFile errors={this.state.errors} disableInputs={this.state.disableInputs}/>
             </div>
 
-            <div className="col-sm-12">
+            <div className="col-sm-12 col-md-10 offset-md-1">
               <small className="font-weight-bold">crie um título massa pro seu post:</small>
               <div className={"form-group " + (this.state.errors.hasOwnProperty('title') ? "has-danger" : "")}>
                 <input value={this.state.title}
                 onChange={helper.handleChange.bind(this, 'title')}
+                disabled={this.state.disableInputs}
                 placeholder="Título"
                 className="form-control"></input>
                 <ErrorMessage message={this.state.errors.title} />
@@ -76,18 +88,22 @@ export default class PostSection extends Component {
               <div className={"form-group mb-0 " + (this.state.errors.hasOwnProperty('original') ? "has-danger" : "")}>
                 <input value={this.state.original}
                 onChange={helper.handleChange.bind(this, 'original')}
+                disabled={this.state.disableInputs}
                 placeholder="http://"
                 className="form-control"></input>
                 <ErrorMessage message={this.state.errors.original} />
               </div>
+
+              <br/>
+
+              <button type="submit" className="btn btn-block btn-success"
+              disabled={this.state.loading}>{this.state.submitLabel}</button>
             </div>
 
           </div>
         </div>
 
-        <div className="modal-footer">
-          <input type="submit" className="btn btn-success" disabled={this.state.loading} value="Publicar"></input>
-        </div>
+
       </form>
     );
   }
