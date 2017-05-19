@@ -1,5 +1,7 @@
 $(function(){
-  setTimeout(function(){
-    $(".communications").slideUp(300);
-  }, 3500);
+  if($(".communications").length){
+    setTimeout(function(){
+      $(".communications").slideUp(400);
+    }, 4000);
+  }
 });
