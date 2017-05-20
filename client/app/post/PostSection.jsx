@@ -64,8 +64,6 @@ export default class PostSection extends Component {
         page: 2
       });
 
-      console.log(this.state.lastPage);
-
     } catch(error){
       console.log(error);
     }

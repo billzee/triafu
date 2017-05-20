@@ -6,13 +6,20 @@
   height: 3.3em;
   padding: 0;
 
+  &.sub{
+    height: 2.3em;
+  }
+
   .col {
     height: 100%;
     padding: 0;
     &:first-of-type {
+      border-left: 2px solid $flag-yellow;
+    }
+    &.categories {
       width: 14em !important;
       max-width: 14em !important;
-      border-left: 2px solid $flag-yellow;
+
     }
   }
 
@@ -50,3 +57,7 @@
     }
   }
 }
+
+// .sub-header {
+//   margin-top: 3.3em;
+// }

@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 
-import moment from 'moment'
-
-import PostShareLinks from './PostShareLinks';
-import PostMedia from './PostMedia';
-import PostVoteBox from './PostVoteBox';
-
-import helper from '../components/Helper'
-
 import PostsApi from '../api/PostsApi';
+import PostBoxViewDesktop from './templates/PostBoxViewDesktop';
 
 export default class PostBox extends Component {
   constructor(props){
@@ -58,56 +51,9 @@ export default class PostBox extends Component {
 
   render(){
     return (
-      <div className="row justify-content-center mb-5 mt-4">
-        <div className="col-700">
-          <h1 className="col-550">{this.state.post.title}</h1>
-            { this.state.post.original ?
-              (
-                <h4>
-                  <a href={"//"+this.state.post.original} target="_blank" content="noindex, nofollow">
-                    link do autor original
-                  </a>
-                </h4>
-              )
-              : null
-            }
-
-          <div className="row no-gutters">
-            <div className="col-550 p-0">
-              <PostMedia
-              image={this.state.post.image}
-              video={this.state.post.video}
-              postId={this.state.post.id} />
-            </div>
-
-            <div className="col-100 p-0 ml-3 align-self-center">
-              {
-                this.state.post.id === this.props.currentPost ?
-                (
-                  <PostVoteBox post={this.state.post}/>
-                )
-                : null
-              }
-            </div>
-          </div>
-
-          <div className="col-550">
-            <div className="row">
-              <div className="col-6">
-                <small className="text-muted">
-                  {this.state.points || 0} {helper.pluralize(this.state.points, "ponto")}<br/>
-                    Publicado { moment(this.state.post.createdAt).fromNow() }
-                </small>
-              </div>
-              <div className="col-6 mt-2">
-                <PostShareLinks post={this.state.post} />
-              </div>
-            </div>
-
-            <hr className="mt-2" />
-          </div>
-
-        </div>
+      <div>
+        <PostBoxViewDesktop post={this.state.post} points={this.state.points}
+        currentPost={this.props.currentPost}/>
       </div>
     );
   }

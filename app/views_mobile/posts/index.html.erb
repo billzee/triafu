@@ -1,0 +1,9 @@
+<div class="col p-0">
+  <%= render "partials/devise_communications" %>
+
+  <div class="col-12 posts">
+    <%= react_component("PostSection", props: { category: params[:category] }, prerender: true) %>
+  </div>
+</div>
+
+<!-- <%= react_component("CommentSection", html_options: {class: "col-xl-3 col-lg-4 bgm-gray"}) %> -->
