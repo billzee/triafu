@@ -5,7 +5,7 @@
 
   <div class="col categories pt-2">
     <ul class="list-inline list-unstyled mb-0 mt-15">
-      <li class="list-inline-item header-item active">
+      <li class="list-inline-item header-item">
         <%= link_to('Top', top_posts_path, class: "header-link" +
         if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
       </li>

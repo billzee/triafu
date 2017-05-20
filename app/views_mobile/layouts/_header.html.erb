@@ -42,22 +42,19 @@
   </div>
 
   <div class="row header sub bg-inverse no-gutters">
-    <div class="col-8 text-center">
-      <ul class="list-inline list-unstyled mb-0 mt-15">
-        <li class="list-inline-item header-item active">
-          <%= link_to('Top', top_posts_path, class: "header-link" +
-          if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
-        </li>
-        <li class="list-inline-item header-item">
-          <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
-          if current_page? newcomer_posts_path then " active" else "" end) %>
-        </li>
-      </ul>
+    <div class="col-2">
+      <%= link_to('Top', top_posts_path, class: "header-link" +
+      if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
     </div>
-
-    <div class="col-4 float-right">
+    <div class="col-2 ">
+      <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
+      if current_page? newcomer_posts_path then " active" else "" end) %>
+    </div>
+    <div class="col-2">
       <%= react_component("PostSort", prerender: true) %>
     </div>
+    </div>
+
   </div>
 
 </div>

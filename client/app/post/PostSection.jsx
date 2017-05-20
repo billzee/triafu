@@ -9,8 +9,9 @@ export default class PostSection extends Component {
     super();
     this.state = {
       postId: props.postId,
-      posts: [],
+      isMobile: (props.isMobile || false),
       currentPost: props.postId,
+      posts: [],
       sortBy: '',
       page: 1,
       lastPage: true
@@ -136,7 +137,9 @@ export default class PostSection extends Component {
                 bottomOffset="49%"
                 onEnter={()=> {this._handleEnter(post.id, post.userId)}}>
                 <div>
-                  <PostBox post={post} currentPost={this.state.currentPost} />
+                  <PostBox post={post}
+                  currentPost={this.state.currentPost}
+                  isMobile={this.state.isMobile} />
                 </div>
               </Waypoint>
             );

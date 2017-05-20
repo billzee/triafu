@@ -49,7 +49,7 @@ export default class PostBoxViewDesktop extends Component {
       Publicado { moment(this.props.post.createdAt).fromNow() }
       </small>
       </div>
-      <div className="col-6 mt-2">
+      <div className="col-6 mt-2 text-right">
       <PostShareLinks post={this.props.post} />
       </div>
       </div>
