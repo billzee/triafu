@@ -1,16 +1,16 @@
 <div class="fixed-top">
-  <div class="row header bg-inverse no-gutters">
+  <div class="row header-mobile bg-inverse no-gutters">
     <%= link_to root_path, class: "logo" do %>
       <%= image_tag "triafu-logo.svg", height: 32%>
     <% end %>
 
-    <div class="col pt-2 text-right">
+    <div class="col pt-15 text-right">
       <% if !user_signed_in? %>
-        <!-- <button class="btn btn-success mr-2" data-toggle="modal" data-target="#m_login">
+        <!-- <button class="btn btn-sm btn-success mr-2" data-toggle="modal" data-target="#m_login">
           <i class="fa fa-plus"></i> Publicar
         </button> -->
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#m_signup">
+        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#m_signup">
           Criar Conta
         </button>
 
@@ -20,7 +20,7 @@
           </a>
         </div>
       <% else %>
-        <button class="btn btn-success mr-2" data-toggle="modal" data-target="#m_new_post">
+        <button class="btn btn-sm btn-success mr-2" data-toggle="modal" data-target="#m_new_post">
           <i class="fa fa-plus"></i> Publicar
         </button>
       <% end %>
@@ -29,7 +29,7 @@
     <% if user_signed_in? %>
       <div class="profile-actions header-item">
         <a href="#" class="dropdown-toggle header-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= image_tag(current_user.image, class: "rounded-circle", height: 38, width: 38) %>
+          <%= image_tag(current_user.image, class: "rounded-circle", height: 32, width: 32) %>
         </a>
         <div class="dropdown-menu dropdown-menu-left mr-2">
           <div class="dropdown-header text-center"><%= current_user.username %></div>
@@ -41,16 +41,16 @@
     <% end %>
   </div>
 
-  <div class="row header sub bg-inverse no-gutters">
-    <div class="col-2">
+  <div class="row header-mobile sub bg-inverse no-gutters justify-content-center">
+    <div class="col-4 header-item pt-2">
       <%= link_to('Top', top_posts_path, class: "header-link" +
       if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
     </div>
-    <div class="col-2 ">
+    <div class="col-4 header-item pt-2">
       <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
       if current_page? newcomer_posts_path then " active" else "" end) %>
     </div>
-    <div class="col-2">
+    <div class="col-4 header-item">
       <%= react_component("PostSort", prerender: true) %>
     </div>
     </div>

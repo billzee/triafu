@@ -7,8 +7,8 @@
   padding: 0;
 
   &.sub{
-    height: 2.3em;
-    display: none;
+    height: 2.5em;
+    visibility: visible;
   }
 
   .col {
@@ -43,6 +43,7 @@
     text-align: center;
 
     a.header-link {
+      text-align: center;
       padding: .5em 1em;
       text-decoration: none;
       color: rgba(255,255,255,.5);
@@ -59,6 +60,61 @@
   }
 }
 
-// .sub-header {
-//   margin-top: 3.3em;
-// }
+.header-mobile {
+  font-weight: bold;
+  width: 100%;
+  height: 2.8em;
+  padding: 0;
+
+  &.sub{
+    border-top: 2px solid white;
+    height: 2.5em;
+    visibility: visible;
+  }
+
+  .col {
+    height: 100%;
+    padding: 0;
+    &:first-of-type {
+      border-left: 2px solid $flag-yellow;
+    }
+    &.categories {
+      width: 14em !important;
+      max-width: 14em !important;
+    }
+  }
+
+  .logo {
+    padding: 0.2em;
+    background: $light-gray;
+    width: 8em;
+    border-right: 4px solid $flag-green;
+  }
+
+  .profile-actions {
+    width: 5em;
+    text-align: center;
+    padding-top: 0.3em;
+  }
+
+  .header-item {
+    height: 100%;
+    text-align: center;
+
+    a.header-link {
+      text-align: center;
+      padding: .5em 1em;
+      text-decoration: none;
+      color: rgba(255,255,255,.5);
+      &:link:hover:visited {
+        color: rgba(255,255,255,.5);
+      }
+      &:hover {
+        color: rgba(255,255,255,1);
+      }
+      &.active {
+        color: rgba(255,255,255,1);
+      }
+    }
+  }
+}
