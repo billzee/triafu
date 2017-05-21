@@ -38,11 +38,10 @@
 
     <div class="form-group mt-4">
       <label class="form-control-label">Conectar redes sociais</label>
-      <%= react_component("SocialConnect") %>
+      <%= react_component("SocialConnect", prerender: true) %>
     </div>
 
     <hr/>
-
     <%= f.submit "Salvar", class: "btn btn-success float-right" %>
   <% end %>
 </div>

@@ -20,7 +20,7 @@ export default class SocialConnect extends Component {
     var top = ((height / 2) - (h / 2)) + dualScreenTop;
     var newWindow = window.open(url, title, 'toolbar=0,location=0,menubar=0,scrollbars=0, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
-    if (window.focus) {
+    if (window.focus){
       newWindow.focus();
     }
   }

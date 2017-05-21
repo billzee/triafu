@@ -37,7 +37,8 @@
     "react-on-rails": "7.0.4",
     "react-textarea-autosize": "^4.3.0",
     "react-waypoint": "^6.0.0",
-    "webpack": "^2.3.3"
+    "webpack": "^2.3.3",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {}
 }
