@@ -59,7 +59,7 @@ export default class SocialConnect extends Component {
       <ul className="list-unstyled">
         <li className="mb-3">
           <div className="row">
-            <div className="col-5 align-self-center text-muted">
+            <div className="col-4 align-self-center text-muted">
               Facebook
             </div>
 
@@ -88,7 +88,7 @@ export default class SocialConnect extends Component {
               }
             </div>
 
-            <div className="col-1 align-self-center text-center">
+            <div className="col-2 align-self-center text-right">
               {
                 this.state.user.facebookConnected ?
                   (<i className="fa fa-check text-success"/>)
@@ -100,7 +100,7 @@ export default class SocialConnect extends Component {
 
         <li>
           <div className="row">
-            <div className="col-5 align-self-center text-muted">
+            <div className="col-4 align-self-center text-muted">
               Google
             </div>
 
@@ -129,7 +129,7 @@ export default class SocialConnect extends Component {
               }
             </div>
 
-            <div className="col-1 align-self-center text-center">
+            <div className="col-2 align-self-center text-right">
               {
                 this.state.user.googleConnected ?
                   (<i className="fa fa-check text-success"/>)
