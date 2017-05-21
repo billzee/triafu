@@ -1,5 +1,6 @@
 import ReactOnRails from 'react-on-rails';
 import moment from 'moment'
+import 'whatwg-fetch'
 
 import PostSort from '../post/PostSort';
 import PostSection from '../post/PostSection';
