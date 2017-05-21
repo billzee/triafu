@@ -4,7 +4,7 @@
       <%= image_tag "triafu-logo.svg", height: 32%>
     <% end %>
 
-    <div class="col pt-15 text-right">
+    <div class="col pt-2 text-right">
       <% if !user_signed_in? %>
         <!-- <button class="btn btn-sm btn-success mr-2" data-toggle="modal" data-target="#m_login">
           <i class="fa fa-plus"></i> Publicar
@@ -54,7 +54,6 @@
       <%= react_component("PostSort", prerender: true) %>
     </div>
     </div>
-
   </div>
 
 </div>
