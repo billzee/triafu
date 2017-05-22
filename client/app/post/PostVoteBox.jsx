@@ -138,7 +138,7 @@ export default class PostVoteBox extends Component {
           <div className="col-4 text-center pt-1">
             <a className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href="#"
             onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="left" data-title="Negativo">
-              <img src="/assets/downvote.svg" width="30px" height="30px" />
+              <img src="/assets/downvote.svg" width="28px" height="28px" />
             </a>
             <span className="ml-2 text-danger">
               {this.state.negativeCount}

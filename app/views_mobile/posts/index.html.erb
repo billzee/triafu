@@ -1,13 +1,9 @@
 <%= render "layouts/sub_header" %>
 
 <div class="row container-mobile">
-  <div class="col posts p-0">
-    <div class="row m-0">
-      <%= render "partials/devise_communications" %>
-      <div class="col-12 p-0">
-        <%= react_component("PostSection", prerender: true,
-        props: { category: params[:category], isMobile: true }) %>
-      </div>
-    </div>
+  <%= render "partials/devise_communications" %>
+  <div class="col-12 p-0 posts">
+    <%= react_component("PostSection", prerender: true,
+    props: { category: params[:category], isMobile: true }) %>
   </div>
 </div>
