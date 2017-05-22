@@ -118,7 +118,7 @@ export default class PostVoteBox extends Component {
       return(
         <div className="row no-gutters bgm-gray p-2 rounded">
           <div className="col-4 text-center">
-            <a className={"vote-link " + (this.state.userVote === 'funny' ? "voted" : "")} href="#"
+            <a className={"vote-link " + (this.state.userVote === 'funny' ? "voted" : "")} href data-placement="top"
             onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="left" data-title="Engraçado">
               <img src="/assets/funny.svg" width="35px" height="35px" />
             </a>
@@ -127,7 +127,7 @@ export default class PostVoteBox extends Component {
             </span>
           </div>
           <div className="col-4 text-center">
-            <a className={"vote-link " + (this.state.userVote === 'smart' ? "voted" : "")} href="#"
+            <a className={"vote-link " + (this.state.userVote === 'smart' ? "voted" : "")} href data-placement="top"
             onClick={(e) => this.vote(e, 'smart')} data-toggle="tooltip" data-placement="left" data-title="Interessante">
               <img src="/assets/brain.svg" width="35px" height="35px"/>
             </a>
@@ -136,7 +136,7 @@ export default class PostVoteBox extends Component {
             </span>
           </div>
           <div className="col-4 text-center pt-1">
-            <a className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href="#"
+            <a className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href data-placement="top"
             onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="left" data-title="Negativo">
               <img src="/assets/downvote.svg" width="28px" height="28px" />
             </a>
