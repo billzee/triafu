@@ -1,7 +1,7 @@
-<div class="col p-0 posts">
+<div class="col posts p-0">
   <div class="row m-0">
     <%= render "partials/devise_communications" %>
-    <div class="col-12">
+    <div class="col-12 p-0">
       <%= react_component("PostSection", prerender: true,
       props: { category: params[:category], isMobile: true }) %>
     </div>

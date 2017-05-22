@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 import PostsApi from '../api/PostsApi';
 
+import CommentSection from '../comment/CommentSection';
+
 import PostBoxViewDesktop from './templates/PostBoxViewDesktop';
 import PostBoxViewMobile from './templates/PostBoxViewMobile';
 
@@ -54,17 +56,17 @@ export default class PostBox extends Component {
   }
 
   render(){
-    return (
-      this.props.isMobile ?
-      (
-        <PostBoxViewMobile post={this.state.post} points={this.state.points}
-        currentPost={this.props.currentPost}/>
-      )
-      :
-      (
+    if (this.props.isMobile){
+      return(
+        <PostBoxViewMobile post={this.state.post}
+        points={this.state.points} currentPost={this.props.currentPost}/>
+      );
+    } else{
+      return(
         <PostBoxViewDesktop post={this.state.post} points={this.state.points}
         currentPost={this.props.currentPost}/>
-      )
-    );
+      );
+    }
   }
+
 }
