@@ -1,5 +1,6 @@
 $(function(){
   if($(".posts").length){
+    $(".header-mobile.sub").css("display", "none");
     var lastScrollTop = 0;
 
     $(".posts").scroll(function(event){
@@ -7,9 +8,9 @@ $(function(){
 
       if($(".header-mobile.sub").length){
         if (st == 0 || st > lastScrollTop){
-          $(".header-mobile.sub").slideUp(200);
+          $(".header-mobile.sub").fadeOut(200);
         } else{
-          $(".header-mobile.sub").slideDown(200);
+          $(".header-mobile.sub").fadeIn(200);
         }
       }
 

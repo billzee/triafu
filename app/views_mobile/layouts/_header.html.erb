@@ -36,18 +36,4 @@
       </div>
     <% end %>
   </div>
-
-  <div class="row header-mobile sub bg-inverse no-gutters">
-    <div class="col-4 header-item pt-2">
-      <%= link_to('Top', top_posts_path, class: "header-link" +
-      if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
-    </div>
-    <div class="col-4 header-item pt-2">
-      <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
-      if current_page? newcomer_posts_path then " active" else "" end) %>
-    </div>
-    <div class="col-4 header-item pt-2">
-      <%= react_component("PostSort", prerender: true) %>
-    </div>
-  </div>
 </div>
