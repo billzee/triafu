@@ -1,25 +1,21 @@
 $(function(){
-  // if($(".posts").length){
-  //   var lastScrollTop = 0;
-  //   $(".posts").scroll(function(event){
-  //     var st = $(".posts").scrollTop();
-  //
-  //     if (st > lastScrollTop){
-  //       if($(".header.sub").length){
-  //         $(".header.sub").slideUp(400);
-  //       }
-  //     } else{
-  //      if($(".header.sub").length){
-  //        $(".header.sub").css("visibility", "visible");
-  //        setTimeout(function(){
-  //          $(".header.sub").slideDown(400);
-  //        }, 4000);
-  //      }
-  //     }
-  //
-  //     lastScrollTop = st;
-  //   });
-  // }
+  if($(".posts").length){
+    var lastScrollTop = 0;
+
+    $(".posts").scroll(function(event){
+      var st = $(".posts").scrollTop();
+
+      if($(".header-mobile.sub").length){
+        if (st == 0 || st > lastScrollTop){
+          $(".header-mobile.sub").slideUp(200);
+        } else{
+          $(".header-mobile.sub").slideDown(200);
+        }
+      }
+
+      lastScrollTop = st;
+    });
+  }
 
   if($(".communications").length){
     setTimeout(function(){

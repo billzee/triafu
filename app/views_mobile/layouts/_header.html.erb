@@ -1,7 +1,7 @@
 <div class="fixed-top">
   <div class="row header-mobile bg-inverse no-gutters">
     <%= link_to root_path, class: "logo" do %>
-      <%= image_tag "triafu-logo.svg", height: 32%>
+      <%= image_tag "triafu-logo.svg", height: 28%>
     <% end %>
 
     <div class="col pt-2 text-right">
@@ -37,7 +37,7 @@
     <% end %>
   </div>
 
-  <!-- <div class="row header-mobile sub bg-inverse no-gutters justify-content-center">
+  <div class="row header-mobile sub bg-inverse no-gutters">
     <div class="col-4 header-item pt-2">
       <%= link_to('Top', top_posts_path, class: "header-link" +
       if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
@@ -46,8 +46,8 @@
       <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
       if current_page? newcomer_posts_path then " active" else "" end) %>
     </div>
-    <div class="col-4 header-item">
-      
+    <div class="col-4 header-item pt-2">
+      <%= react_component("PostSort", prerender: true) %>
     </div>
-  </div> -->
+  </div>
 </div>

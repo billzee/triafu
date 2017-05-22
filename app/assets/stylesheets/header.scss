@@ -15,7 +15,6 @@
     &.categories {
       width: 14em !important;
       max-width: 14em !important;
-
     }
   }
 
@@ -58,13 +57,12 @@
 .header-mobile {
   font-weight: bold;
   width: 100%;
-  height: 2.8em;
+  height: 2.7em;
   padding: 0;
+  top: 0;
 
   &.sub{
     border-top: 2px solid white;
-    height: 2.5em;
-    visibility: visible;
   }
 
   .col {
@@ -80,9 +78,9 @@
   }
 
   .logo {
-    padding: 0.2em;
+    padding: 0.3em;
     background: $light-gray;
-    width: 8em;
+    width: 7.2em;
     border-right: 4px solid $flag-green;
   }
 
@@ -93,7 +91,6 @@
   }
 
   .header-item {
-    height: 100%;
     text-align: center;
 
     a.header-link {
