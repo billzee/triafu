@@ -16,6 +16,7 @@ export default class PostBox extends Component {
   componentDidMount(){
     pubsub.subscribe('watch-post', (msg, data)=>{
       if(this.video !== null){
+        this.ref.video.getDOMNode().setAttribute('webkit-playsinline');
         if(data.postId === this.props.postId){
           this.video.play();
           this.setState({paused: false});
@@ -26,6 +27,8 @@ export default class PostBox extends Component {
         }
       }
     });
+
+
   }
 
   controlManually(){
@@ -58,7 +61,7 @@ export default class PostBox extends Component {
               </div>
             ) : null
           }
-          <video loop ref={(video) => {this.video = video}} muted webkit-playsinline>
+          <video loop ref={(video) => {this.video = video}} muted>
             <source src={this.state.video.webm.url} type="video/webm"/>
             <source src={this.state.video.mp4.url} type="video/mp4"/>
           </video>

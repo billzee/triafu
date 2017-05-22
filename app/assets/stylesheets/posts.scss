@@ -1,9 +1,10 @@
 @import "variables";
 
 .posts{
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 100%;
+  position: relative;
   -webkit-overflow-scrolling: touch;
 }
 

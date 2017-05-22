@@ -8,7 +8,7 @@ import PostVoteBox from '../PostVoteBox';
 export default class PostBoxViewDesktop extends Component {
   render(){
     return (
-      <div className="row justify-content-center mb-5 mt-4">
+      <div className="row justify-content-end mb-5 mt-4 mr-5">
       <div className="col-700">
       <h1 className="col-550">{this.props.post.title}</h1>
       { this.props.post.original ?

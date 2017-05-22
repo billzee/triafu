@@ -1,8 +1,10 @@
-<div class="col p-0">
-  <%= render "partials/devise_communications" %>
+<div class="col p-0 posts">
+  <div class="row m-0">
+    <%= render "partials/devise_communications" %>
+    <div class="col-12">
+      <%= react_component("PostSection", props: { category: params[:category] }, prerender: true) %>
+    </div>
 
-  <div class="col-12 posts">
-    <%= react_component("PostSection", props: { category: params[:category] }, prerender: true) %>
   </div>
 </div>
 
