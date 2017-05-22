@@ -14,8 +14,8 @@ export default class PostShareLinks extends Component {
 
   render(){
     return (
-      <ul className="list-unstyled list-inline mb-0">
-        <li className="list-inline-item">
+      <div className="row">
+        <div className="col-4 pr-0">
           <CopyToClipboard
             text={this.state.postUrl}
             onCopy={() => {
@@ -24,27 +24,27 @@ export default class PostShareLinks extends Component {
               copyBtn.tooltip('show');
               setTimeout(()=>{ copyBtn.tooltip('hide'); }, 3000);
             }}>
-            <button className="btn btn-sm btn-success"
+            <button className="btn btn-sm btn-block btn-success"
             data-toggle={this.props.post.id}
             data-placement="bottom" data-title="Copiado!">
               <i className="fa fa-clipboard fa-1x"></i>
               <span className="ml-1">Copiar Link</span>
             </button>
           </CopyToClipboard>
-        </li>
-        <li className="list-inline-item">
-          <button className="btn btn-sm btn-facebook">
+        </div>
+        <div className="col-4 pl-1 pr-0">
+          <button className="btn btn-sm btn-block btn-facebook">
             <i className="fa fa-facebook-f fa-1x"></i>
             <span className="ml-1">Facebook</span>
           </button>
-        </li>
-        <li className="list-inline-item">
-          <button className="btn btn-sm btn-twitter">
+        </div>
+        <div className="col-4 pl-1">
+          <button className="btn btn-sm btn-block btn-twitter">
             <i className="fa fa-twitter fa-1x"></i>
             <span className="ml-1">Twitter</span>
           </button>
-        </li>
-      </ul>
+        </div>
+      </div>
     );
   }
 }

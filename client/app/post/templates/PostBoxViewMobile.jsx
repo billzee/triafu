@@ -27,13 +27,18 @@ export default class PostBoxViewMobile extends Component {
           postId={this.props.post.id} />
 
           <div className="row">
-            <div className="col-sm-6 text-center">
+            <div className="col-8 mt-1">
               <small className="text-muted">
               {this.props.points || 0} {helper.pluralize(this.props.points, "ponto")}<br/>
               Publicado { moment(this.props.post.createdAt).fromNow() }
               </small>
             </div>
-            <div className="col-sm-6 text-center mt-1">
+            <div className="col-4 mt-2 text-right align-self-center">
+              <button className="btn btn-block btn-primary p-2">
+                <i className="fa fa-comments"></i> 0
+              </button>
+            </div>
+            <div className="col-12 mt-2">
               <PostShareLinks post={this.props.post} />
             </div>
           </div>
