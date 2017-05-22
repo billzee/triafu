@@ -3,19 +3,21 @@
     <%= image_tag "triafu-logo.svg", height: 30%>
   <% end %>
 
-  <div class="col pt-25 text-right">
+  <div class="col pt-1 text-right">
     <% if !user_signed_in? %>
-      <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#m_signup">
+      <button class="btn btn-primary" data-toggle="modal"
+      data-target="#m_signup">
         Criar Conta
       </button>
 
       <div class="list-inline-item header-item">
-        <a href="#" class="header-link" data-toggle="modal" data-target="#m_login">
+        <a href class="header-link" data-toggle="modal"
+        data-target="#m_login">
           Entrar
         </a>
       </div>
     <% else %>
-      <button class="btn btn-sm btn-success mr-1"
+      <button class="btn btn-success mr-1"
       data-toggle="modal" data-target="#m_new_post">
         <i class="fa fa-plus"></i> Publicar
       </button>
@@ -24,7 +26,7 @@
 
   <% if user_signed_in? %>
     <div class="profile-actions header-item">
-      <a href="#" class="dropdown-toggle header-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a href class="dropdown-toggle header-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag(current_user.image, class: "rounded-circle", height: 32, width: 32) %>
       </a>
       <div class="dropdown-menu dropdown-menu-left mr-2 z-index">
