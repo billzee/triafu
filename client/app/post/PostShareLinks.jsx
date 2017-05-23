@@ -18,7 +18,7 @@ export default class PostShareLinks extends Component {
         <div className="col-5 pr-0">
           <CopyToClipboard
             text={this.state.postUrl}
-            onCopy={() => {
+            onCopy={()=> {
               let copyBtn = $('[data-toggle='+this.props.post.id+']');
               copyBtn.tooltip({trigger: 'manual'});
               copyBtn.tooltip('show');

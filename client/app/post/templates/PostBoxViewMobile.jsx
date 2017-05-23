@@ -6,6 +6,21 @@ import PostShareLinks from '../PostShareLinks';
 import PostVoteBox from '../PostVoteBox';
 
 export default class PostBoxViewMobile extends Component {
+  constructor(){
+    super();
+    this.state = {social: false};
+
+    this.toggleShareLinks = this.toggleShareLinks.bind(this);
+  }
+
+  toggleShareLinks(){
+    if(this.state.social === false){
+      this.setState({social: true});
+    } else{
+      this.setState({social: false});
+    }
+  }
+
   render(){
     return (
       <div className="row justify-content-center mb-2 mt-2 no-gutters">
@@ -44,18 +59,23 @@ export default class PostBoxViewMobile extends Component {
               <PostVoteBox post={this.props.post} isMobile="true" />
             </div>
 
-            <div className="col-2 align-self-center pl-0 dropup">
+            <div className="col-2 align-self-center pl-0">
               &nbsp;
-              <button
-              className="btn btn-block btn-secondary p-2"
-              data-toggle="dropdown">
+              <button onClick={()=> this.toggleShareLinks()}
+              className="btn btn-block btn-secondary p-2">
                 <i className="fa fa-share-alt"></i>
               </button>
-
-              <div className="dropdown-menu dropdown-menu-left mr-3 pl-2 pr-2 w-55">
-                <PostShareLinks post={this.props.post} />
-              </div>
             </div>
+
+            {
+              this.state.social === true ?
+              (
+                <div className="col-12 mt-3">
+                  <PostShareLinks post={this.props.post} />
+                </div>
+              ) : null
+            }
+
           </div>
 
           <hr className="mt-3" />
