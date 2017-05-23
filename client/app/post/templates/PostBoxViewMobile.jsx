@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
-import PostMedia from '../PostMedia';
 import helper from '../../components/Helper'
 import moment from 'moment'
+import pubsub from 'pubsub-js'
+
+import PostMedia from '../PostMedia';
 import PostShareLinks from '../PostShareLinks';
 import PostVoteBox from '../PostVoteBox';
 
 export default class PostBoxViewMobile extends Component {
   constructor(){
     super();
-    this.state = {social: false};
+    this.state = {share: false};
 
     this.toggleShareLinks = this.toggleShareLinks.bind(this);
+    this.showCommentSection = this.showCommentSection.bind(this);
+  }
+
+  showCommentSection(){
+    pubsub.publish('toggle-comment-section', true);
   }
 
   toggleShareLinks(){
-    if(this.state.social === false){
-      this.setState({social: true});
+    if(this.state.share === false){
+      this.setState({share: true});
     } else{
-      this.setState({social: false});
+      this.setState({share: false});
     }
   }
 
@@ -46,7 +53,8 @@ export default class PostBoxViewMobile extends Component {
           <div className="row pr-2 pl-2 mt-1">
             <div className="col-2 align-self-center pr-0 text-center">
               999
-              <button className="btn btn-block btn-secondary p-2">
+              <button onClick={()=> this.showCommentSection()}
+              className="btn btn-block btn-secondary p-2">
                 <i className="fa fa-comments"></i>
               </button>
             </div>
@@ -66,16 +74,10 @@ export default class PostBoxViewMobile extends Component {
                 <i className="fa fa-share-alt"></i>
               </button>
             </div>
-
             {
-              this.state.social === true ?
-              (
-                <div className="col-12 mt-3">
-                  <PostShareLinks post={this.props.post} />
-                </div>
-              ) : null
+              this.state.share === true ?
+              (<div className="col-12 mt-3"><PostShareLinks post={this.props.post} /></div>) : null
             }
-
           </div>
 
           <hr className="mt-3" />

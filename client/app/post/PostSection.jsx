@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 import Waypoint from 'react-waypoint';
+
+import CommentSection from '../comment/CommentSection';
 import PostsApi from '../api/PostsApi';
 import PostBox from './PostBox';
 
@@ -11,9 +13,11 @@ export default class PostSection extends Component {
       postId: props.postId,
       isMobile: (props.isMobile || false),
       currentPost: props.postId,
+      currentPostAuthor: '',
       posts: [],
       sortBy: '',
       page: 1,
+      showCommentSection: false,
       lastPage: true
     };
 
@@ -24,7 +28,7 @@ export default class PostSection extends Component {
 
   _handleEnter(postId, postAuthor){
     pubsub.publish('watch-post', {postId: postId, postAuthor: postAuthor});
-    this.setState({currentPost: postId});
+    this.setState({currentPost: postId, currentPostAuthor: postAuthor});
   }
 
   async show(){
@@ -111,6 +115,7 @@ export default class PostSection extends Component {
     pubsub.subscribe('category', (msg, category)=>{
       this._index(category);
     });
+
     pubsub.subscribe('sort-by', (msg, sortBy)=>{
       this.setState({sortBy: sortBy});
       if(this.state.posts.length > 0){
@@ -123,11 +128,23 @@ export default class PostSection extends Component {
         this.setState({posts: sortedPosts})
       }
     });
+
+    pubsub.subscribe('toggle-comment-section', (msg, toggle)=>{
+      console.log('received');
+      this.setState({showCommentSection: toggle})
+    });
   }
 
   render(){
     return (
       <box>
+        {
+          this.state.showCommentSection === true ?
+          (
+            <CommentSection postId={this.state.currentPost}
+            userId={this.state.currentPostAuthor} className="bgm-gray"/>
+          ) : null
+        }
         {
           this.state.posts.map((post)=>{
             return(
@@ -161,7 +178,6 @@ export default class PostSection extends Component {
         }
 
         { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null }
-
       </box>
     );
   }

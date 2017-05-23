@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 import PostsApi from '../api/PostsApi';
 
-import CommentSection from '../comment/CommentSection';
-
 import PostBoxViewDesktop from './templates/PostBoxViewDesktop';
 import PostBoxViewMobile from './templates/PostBoxViewMobile';
 

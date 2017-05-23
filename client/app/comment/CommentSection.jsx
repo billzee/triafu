@@ -64,14 +64,16 @@ export default class CommentSection extends Component {
     } catch(error){
       console.log(error);
     }
+
     this.setState({loading: false});
   }
 
   componentWillMount(){
     pubsub.subscribe('watch-post', (msg, data)=>{
       this.setState({postId: data.postId, postAuthor: data.postAuthor});
-      this.getComments();
     });
+
+    this.getComments();
   }
 
   componentDidMount(){
@@ -85,7 +87,7 @@ export default class CommentSection extends Component {
       });
 
       this.commentScroll.scrollTop = 0;
-      pubsub.publish('clear-comments-state', null);
+      pubsub.publish('clear-comments-state');
     });
   }
 
