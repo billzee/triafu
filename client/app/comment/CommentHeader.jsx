@@ -19,9 +19,10 @@ export default class CommentHeader extends Component {
             {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}
           </strong>
         </div>
-        <div className="col-3 text-right"
-        onClick={()=> this.hideCommentSection()}>
-          <i className="fa fa-close"></i>
+        <div className="col-3 text-right">
+          <button type="button" className="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       </div>
     );

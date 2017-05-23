@@ -53,7 +53,7 @@ export default class PostBoxViewMobile extends Component {
           <div className="row pr-2 pl-2 mt-1">
             <div className="col-2 align-self-center pr-0 text-center">
               999
-              <button onClick={()=> this.showCommentSection()}
+              <button data-toggle="modal" data-target="#m_comments"
               className="btn btn-block btn-secondary p-2">
                 <i className="fa fa-comments"></i>
               </button>

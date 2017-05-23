@@ -1,10 +1,21 @@
+@import "variables";
+
+.mobile-comments{
+  margin: 0 !important;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
+  height: 100vh;
+  background-color: $light-gray;
+}
+
 .comment-top {
   height: 1.5em;
 }
 
 .comment-middle {
   overflow: auto;
-  height: calc(100% - 100px);
+  height: calc(100vh - 150px);
   top: 10em;
   -webkit-overflow-scrolling: touch;
 }
