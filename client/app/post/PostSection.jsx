@@ -149,13 +149,11 @@ export default class PostSection extends Component {
         {
           this.state.postId ?
           (
-            <div className="row justify-content-center pb-5">
-              <div className="col-700">
-                <div className="col-550">
-                  <button type="button" className="btn btn-block btn-primary" onClick={(e) => this.paginatePosts(e)}>
-                    Carregar mais publicações
-                  </button>
-                </div>
+            <div className="row pb-4">
+              <div className="col-10 offset-1 col-md-8 offset-md-2">
+                <button type="button" className="btn btn-block btn-primary" onClick={(e) => this.paginatePosts(e)}>
+                  Carregar mais publicações
+                </button>
               </div>
             </div>
           )
