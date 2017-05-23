@@ -15,7 +15,7 @@ export default class PostShareLinks extends Component {
   render(){
     return (
       <div className="row">
-        <div className="col-4 pr-0">
+        <div className="col-5 pr-0">
           <CopyToClipboard
             text={this.state.postUrl}
             onCopy={() => {
@@ -32,7 +32,7 @@ export default class PostShareLinks extends Component {
             </button>
           </CopyToClipboard>
         </div>
-        <div className="col-4 pl-1 pr-0">
+        <div className="col-3 pl-1 pr-0">
           <button className="btn btn-sm btn-block btn-facebook">
             <i className="fa fa-facebook-f fa-1x"></i>
             <span className="ml-1">Facebook</span>

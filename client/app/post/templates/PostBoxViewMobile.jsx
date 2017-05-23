@@ -8,7 +8,7 @@ import PostVoteBox from '../PostVoteBox';
 export default class PostBoxViewMobile extends Component {
   render(){
     return (
-      <div className="row justify-content-center mb-3 mt-3 no-gutters">
+      <div className="row justify-content-center mb-2 mt-2 no-gutters">
         <div className="col-12 p-0">
           <h1 className="pl-2 pr-2">
             {this.props.post.title}
@@ -28,33 +28,37 @@ export default class PostBoxViewMobile extends Component {
           video={this.props.post.video}
           postId={this.props.post.id} />
 
-          <div className="row pr-2 pl-2">
-            <div className="col-12">
-              <small className="text-muted">
-              {this.props.points || 0} {helper.pluralize(this.props.points, "ponto")}
-              &nbsp;&bull;&nbsp;Publicado { moment(this.props.post.createdAt).fromNow() }
-              </small>
-            </div>
-          </div>
-
           <div className="row pr-2 pl-2 mt-1">
-            <div className="col-9 pr-0">
-              <PostVoteBox post={this.props.post} isMobile="true" />
-            </div>
-            <div className="col-3 pl-0 text-right align-self-center">
-              <button className="btn btn-secondary p-2">
-                <i className="fa fa-comments"></i> 999
+            <div className="col-2 align-self-center pr-0 text-center">
+              999
+              <button className="btn btn-block btn-secondary p-2">
+                <i className="fa fa-comments"></i>
               </button>
             </div>
-          </div>
 
-          <div className="row pr-2 pl-2">
-            <div className="col-12 mt-2">
-              <PostShareLinks post={this.props.post} />
+            <div className="col-8 text-center pr-1 pl-1">
+              <small className="text-muted">
+                {this.props.points || 0} {helper.pluralize(this.props.points, "ponto")}
+                &nbsp;&bull;&nbsp;publicado { moment(this.props.post.createdAt).fromNow() }
+              </small>
+              <PostVoteBox post={this.props.post} isMobile="true" />
+            </div>
+
+            <div className="col-2 align-self-center pl-0 dropup">
+              &nbsp;
+              <button
+              className="btn btn-block btn-secondary p-2"
+              data-toggle="dropdown">
+                <i className="fa fa-share-alt"></i>
+              </button>
+
+              <div className="dropdown-menu dropdown-menu-left mr-3 pl-2 pr-2 w-55">
+                <PostShareLinks post={this.props.post} />
+              </div>
             </div>
           </div>
 
-          <hr className="mt-2" />
+          <hr className="mt-3" />
         </div>
       </div>
     );
