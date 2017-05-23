@@ -52,8 +52,7 @@ export default class PostBox extends Component {
           {
             this.state.paused ?
             (
-              <div className="play-icon text-center rounded-circle pl-2 pt-3"
-              onClick={()=> this.controlManually()}>
+              <div className="play-icon text-center rounded-circle pl-2 pt-3">
                 <i className="fa fa-play fa-3x"/>
               </div>
             ) : null
