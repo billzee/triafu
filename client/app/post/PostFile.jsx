@@ -119,7 +119,7 @@ export default class PostFile extends Component {
                       : null
                     }
                   </div>
-                  <div className="col-120 text-center">
+                  <div className="col-140 text-center">
                     {
                       this.state.imagePreview ?
                         (<div style={this.state.imagePreview} className="image-preview rounded m-0"/>)

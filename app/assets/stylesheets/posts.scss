@@ -92,12 +92,12 @@
 
 .thumb-video{
   background: black;
-  height: 120px;
+  height: 140px;
 
   video{
-    width: 120px;
-    min-height: 120px;
-    max-height: 120px;
+    width: 140px;
+    min-height: 140px;
+    max-height: 140px;
   }
 }
 
@@ -129,7 +129,7 @@
 
   .row{
     .col-120{
-      width: 120px;
+      width: 140px;
 
       .image-preview{
         position: relative;
@@ -137,8 +137,8 @@
         background-clip: content-box;
         background-size: cover;
         background-position: center center;
-        height: 120px;
-        width: 120px
+        height: 140px;
+        width: 140px
       }
     }
     .col-30{
