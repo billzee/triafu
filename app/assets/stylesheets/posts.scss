@@ -34,7 +34,7 @@
       left: 50%;
       margin-left: -35px;
       margin-top: -35px;
-      z-index: 1000;
+      z-index: 500;
       height: 70px;
       width: 70px;
       background-color: $play-icon;
@@ -161,8 +161,4 @@
   &.voted{
     opacity: 1;
   }
-}
-
-.w-55{
-  width: 55vh;
 }
