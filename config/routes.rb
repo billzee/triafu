@@ -43,4 +43,8 @@ Rails.application.routes.draw do
   get '/novas' => 'posts#index', category: "newcomer", as: :newcomer_posts
 
   root :to => "posts#index"
+
+  %w( 404 422 500 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
 end

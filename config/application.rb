@@ -13,5 +13,6 @@ module Triafu
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = 'pt-BR'
     config.autoload_paths  = %W(#{config.root}/lib)
+    config.exceptions_app = self.routes
   end
 end
