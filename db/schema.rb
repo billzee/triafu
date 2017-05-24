@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170423012118) do
     t.text "text"
     t.integer "upvotes"
     t.integer "downvotes"
+    t.string "image"
     t.integer "post_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170423012118) do
     t.text "text"
     t.integer "upvotes"
     t.integer "downvotes"
+    t.string "image"
     t.integer "comment_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

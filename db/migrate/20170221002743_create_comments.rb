@@ -5,6 +5,8 @@ class CreateComments < ActiveRecord::Migration[5.0]
       t.integer :upvotes
       t.integer :downvotes
 
+      t.string :image
+
       t.integer :post_id
       t.integer :user_id
 

@@ -44,7 +44,7 @@ class PostsController < ApplicationController
     end
 
     if @@new_post.save
-      render :json => @@new_post.id
+      render :json => { :reference_id => @@new_post.reference_id }
       @@new_post = nil
     else
       file_errors = resolve_image_or_video @@new_post.errors
