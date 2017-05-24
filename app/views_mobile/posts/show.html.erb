@@ -3,6 +3,15 @@
 <div class="row container-mobile">
   <%= render "partials/devise_communications" %>
   <div class="col-12 p-0 posts">
-    <%= react_component("PostSection", props: { postId: @post.id, isMobile: true }, prerender: true) %>
+    <%= react_component("PostSection", prerender: true,
+    props: { postId: @post.id, isMobile: true }) %>
+  </div>
+</div>
+
+<div class="modal" id="m_comments" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog mobile-comments">
+    <div class="row">
+      <%= react_component("CommentSection", props: { isMobile: true }, html_options: {class: "col-12"}) %>
+    </div>
   </div>
 </div>
