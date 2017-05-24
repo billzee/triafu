@@ -35,7 +35,7 @@ class User < ApplicationRecord
     elsif self.facebook_image || self.google_image
       self.facebook_image || self.google_image
     else
-      "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/assets/#{self.default_image}.png"
+      "#{ENV['S3_URL']}/assets/avatars/#{self.default_image}.png"
     end
   end
 

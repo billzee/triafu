@@ -1,0 +1,12 @@
+<div class="error-vin-diesel" style="background-image: url(<%= asset_path 'bg-errors/vin-diesel.png' %>)">
+  <div class="container text-center text-white">
+    <h1>
+      <%= params[:code] %>
+    </h1>
+    <% if params[:code] == "404" %>
+      <p>a página que você procura não existe.</p>
+    <% else %>
+      <p>aconteceu algum problema.</p>
+    <% end %>
+  </div>
+</div>

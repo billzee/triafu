@@ -120,7 +120,7 @@ export default class PostVoteBox extends Component {
           <div className="col-4 text-center">
             <a className={"vote-link " + (this.state.userVote === 'funny' ? "voted" : "")} href data-placement="top"
             onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="bottom" data-title="Engraçado">
-              <img src="/assets/funny.svg" width="35px" height="35px" />
+              <img src="/assets/icons/funny.svg" width="35px" height="35px" />
             </a>
             <span className="ml-2 text-success">
               {this.state.funnyCount}
@@ -129,7 +129,7 @@ export default class PostVoteBox extends Component {
           <div className="col-4 text-center">
             <a className={"vote-link " + (this.state.userVote === 'smart' ? "voted" : "")} href data-placement="top"
             onClick={(e) => this.vote(e, 'smart')} data-toggle="tooltip" data-placement="bottom" data-title="Interessante">
-              <img src="/assets/brain.svg" width="35px" height="35px"/>
+              <img src="/assets/icons/brain.svg" width="35px" height="35px"/>
             </a>
             <span className="ml-2 text-success">
               {this.state.smartCount}
@@ -138,7 +138,7 @@ export default class PostVoteBox extends Component {
           <div className="col-4 text-center pt-1">
             <a className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href data-placement="top"
             onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="bottom" data-title="Negativo">
-              <img src="/assets/downvote.svg" width="28px" height="28px" />
+              <img src="/assets/icons/downvote.svg" width="28px" height="28px" />
             </a>
             <span className="ml-2 text-danger">
               {this.state.negativeCount}
@@ -154,19 +154,19 @@ export default class PostVoteBox extends Component {
               <li className="text-center">
                 <a className={"vote-link " + (this.state.userVote === 'funny' ? "voted" : "")} href="#"
                 onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="left" data-title="Engraçado">
-                  <img src="/assets/funny.svg" width="35px" height="35px" />
+                  <img src="/assets/icons/funny.svg" width="35px" height="35px" />
                 </a>
               </li>
               <li className="mt-3 text-center">
                 <a className={"vote-link " + (this.state.userVote === 'smart' ? "voted" : "")} href="#"
                 onClick={(e) => this.vote(e, 'smart')} data-toggle="tooltip" data-placement="left" data-title="Interessante">
-                  <img src="/assets/brain.svg" width="35px" height="35px"/>
+                  <img src="/assets/icons/brain.svg" width="35px" height="35px"/>
                 </a>
               </li>
               <li className="mt-3 text-center">
                 <a className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href="#"
                 onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="left" data-title="Negativo">
-                  <img src="/assets/downvote.svg" width="30px" height="30px" />
+                  <img src="/assets/icons/downvote.svg" width="30px" height="30px" />
                 </a>
               </li>
             </ul>
