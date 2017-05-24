@@ -1,13 +1,15 @@
 @import "variables";
 
 .mobile-comments{
+  z-index: 9999;
+  overflow: hidden;
   margin: 0 !important;
   float: right;
   padding-right: 15px;
   padding-left: 15px;
   padding-top: 10px;
   min-width: 40vh;
-  width: 100vh;
+  max-width: 90vh;
   height: 100vh;
   background-color: $light-gray;
 }

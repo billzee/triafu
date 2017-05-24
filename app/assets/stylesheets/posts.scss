@@ -164,12 +164,14 @@
 }
 
 .mobile-share-links{
+  overflow: hidden;
+  z-index: 9999;
   margin: 0 !important;
   padding-right: 15px;
   padding-left: 15px;
-  padding-top: 10px;
+  padding-top: 15px;
   float: left;
-  height: 45vh;
-  top: 55vh;
+  height: 50vh;
+  top: 50vh;
   background: white
 }
