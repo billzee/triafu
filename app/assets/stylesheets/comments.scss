@@ -2,9 +2,12 @@
 
 .mobile-comments{
   margin: 0 !important;
+  float: right;
   padding-right: 15px;
   padding-left: 15px;
   padding-top: 10px;
+  min-width: 40vh;
+  width: 100vh;
   height: 100vh;
   background-color: $light-gray;
 }

@@ -81,7 +81,7 @@ h5 {
   }
 }
 
-.container-desktop {
+.desktop-container {
   padding-top: 3.3em;
   position: relative;
   display: flex;
@@ -93,7 +93,7 @@ h5 {
   will-change: overflow;
 }
 
-.container-mobile {
+.mobile-container {
   padding-top: 2.9em;
   position: relative;
   overflow: hidden;
@@ -205,7 +205,6 @@ hr.or:after {
   -webkit-transform: translate(-50%);
   -moz-transform: translate(-50%);
   -ms-transform: translate(-50%);
-  -o-transform: translate(-50%);
   transform: translate(-50%);
 }
 
@@ -219,4 +218,24 @@ hr.or:after {
 
 .break-all{
   word-break: break-all;
+}
+
+.error-vin-diesel{
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%),
+  url(https://i.ytimg.com/vi/Dyo3GCsctiY/maxresdefault.jpg) no-repeat;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  background-size: cover;
+  background-position: center center;
+  .container {
+    padding-top: 5em;
+    h1{
+      font-size: 70px;
+    }
+  }
 }

@@ -52,11 +52,11 @@ export default class PostBoxViewMobile extends Component {
             postId={this.props.post.id} />
 
             <div className="row pr-2 pl-2 mt-1">
-              <div className="col-2 align-self-center pr-0 text-center">
-                {this.props.post.commentCount || 0}
-                <button data-toggle="modal" data-target="#m_comments"
+              <div className="col-2 align-self-center pr-0">
+                &nbsp;
+                <button data-toggle="modal" data-target="#m_share_links"
                 className="btn btn-block btn-secondary p-2">
-                  <i className="fa fa-comments"></i>
+                  <i className="fa fa-share-alt"></i>
                 </button>
               </div>
 
@@ -68,13 +68,14 @@ export default class PostBoxViewMobile extends Component {
                 <PostVoteBox post={this.props.post} isMobile="true" />
               </div>
 
-              <div className="col-2 align-self-center pl-0">
-                &nbsp;
-                <button data-toggle="modal" data-target="#m_share_links"
+              <div className="col-2 align-self-center text-center pl-0">
+                <span className="text-muted">{this.props.post.commentCount || 0}</span>
+                <button data-toggle="modal" data-target="#m_comments"
                 className="btn btn-block btn-secondary p-2">
-                  <i className="fa fa-share-alt"></i>
+                  <i className="fa fa-comments"></i>
                 </button>
               </div>
+
             </div>
 
             <hr className="mt-3" />
