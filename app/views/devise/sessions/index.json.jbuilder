@@ -5,11 +5,7 @@ json.user do
   json.username_changed @current_user.username_changed
 
   if @current_user.avatar.file
-    if @current_user.avatar.versions.include?(:thumb)
-      json.image @current_user.image.thumb.url
-    else
-      json.image @current_user.avatar.url
-    end
+    json.image @current_user.avatar.url
   else
     json.image @current_user.image
   end
