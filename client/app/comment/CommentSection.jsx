@@ -17,6 +17,7 @@ export default class CommentSection extends Component {
       comments: [],
       postAuthor: props.userId,
       postId: props.postId,
+      isMobile: (props.isMobile || false),
       page: '',
       totalCount: 0,
       lastPage: true,
@@ -31,8 +32,6 @@ export default class CommentSection extends Component {
     try{
       let res = await CommentsApi._get(this.state.postId);
       let resJson = await res.json();
-
-      console.log(resJson);
 
       this.setState({
         comments: resJson.comments,
@@ -95,7 +94,7 @@ export default class CommentSection extends Component {
   render(){
     return (
       <box>
-        <CommentHeader totalCount={this.state.totalCount} />
+        <CommentHeader totalCount={this.state.totalCount} isMobile={this.state.isMobile} />
 
         <div className="row panel pt-2 comment-middle" ref={(div) => {this.commentScroll = div}}>
           {

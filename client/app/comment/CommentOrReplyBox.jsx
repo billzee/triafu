@@ -23,8 +23,6 @@ export default class CommentOrReplyBox extends Component {
     pubsub.subscribe('clear-comments-state', ()=>{
       this.setState({showReplyFormTo: null, release: null});
     });
-
-    console.log(this.props.commentOrReply.user);
   }
 
   toggleReply(e, commentId){

@@ -18,4 +18,5 @@ json.post do
   if @post.video.file then json.video @post.video.versions end
 
   json.created_at @post.created_at
+  json.comment_count @post.comments.size
 end

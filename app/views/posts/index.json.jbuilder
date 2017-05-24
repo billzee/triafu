@@ -18,6 +18,8 @@ json.posts @paginated_posts do |post|
   if post.video.file then json.video post.video.versions end
 
   json.created_at post.created_at
+
+  json.comment_count post.comments.size
 end
 
 if @paginated_posts.size > 0 then json.last_page @paginated_posts.last_page? else json.last_page true end
