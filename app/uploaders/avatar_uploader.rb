@@ -8,10 +8,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   process :efficient_conversion => [150, 150]
 
-  version :thumb do
-    process :efficient_conversion => [48, 48]
-  end
-
   def remember_cache_id(new_file)
     @cache_id_was = cache_id
   end

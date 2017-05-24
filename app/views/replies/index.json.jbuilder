@@ -10,11 +10,7 @@ json.replies @paginated_replies[:replies] do |reply|
     json.username reply.user.username
 
     if reply.user.avatar.file
-      if reply.user.avatar.versions.include?(:thumb)
-        json.image reply.user.image.thumb.url
-      else
-        json.image reply.user.avatar.url
-      end
+      json.image reply.user.avatar.url
     else
       json.image reply.user.image
     end

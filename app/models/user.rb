@@ -46,7 +46,6 @@ class User < ApplicationRecord
 
         user.full_name = info["name"]
         user.email = info["email"]
-
       end
     end
   end

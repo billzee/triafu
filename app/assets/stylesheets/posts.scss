@@ -15,7 +15,7 @@
 
 .col-12{
   .post-image{
-    min-height: 320px;
+    min-height: 150px;
     width: 100%;
   }
 
@@ -24,7 +24,7 @@
     cursor: pointer;
     background: black;
     width: 100%;
-    min-height: 280px;
+    min-height: 150px;
     max-height: 320px;
 
     .play-icon{
@@ -44,7 +44,7 @@
       display: block;
       cursor: pointer;
       width: 100%;
-      min-height: 280px;
+      min-height: 150px;
       max-height: 320px;
     }
   }
