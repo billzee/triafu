@@ -1,5 +1,7 @@
 json.post do
   json.id @post.id
+  json.reference_id @post.reference_id
+
   json.title @post.title
   json.user_id @post.user_id
 

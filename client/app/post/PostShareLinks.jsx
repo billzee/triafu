@@ -8,7 +8,7 @@ export default class PostShareLinks extends Component {
   }
 
   componentDidMount(){
-    let postUrl = window.location.host + '/posts/' + this.props.post.id;
+    let postUrl = window.location.host + '/post/' + this.props.post.referenceId;
     this.setState({postUrl: postUrl});
   }
 
@@ -20,7 +20,7 @@ export default class PostShareLinks extends Component {
             <CopyToClipboard
               text={this.state.postUrl}
               onCopy={()=> {
-                let copyBtn = $('[data-toggle='+this.props.post.id+']');
+                let copyBtn = $('[data-toggle='+this.props.post.referenceId+']');
                 copyBtn.tooltip({trigger: 'manual'});
                 copyBtn.tooltip('show');
                 setTimeout(()=>{ copyBtn.tooltip('hide'); }, 3000);

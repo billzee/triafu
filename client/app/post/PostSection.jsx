@@ -10,7 +10,7 @@ export default class PostSection extends Component {
   constructor(props){
     super();
     this.state = {
-      postId: props.postId,
+      postReferenceId: props.postReferenceId,
       isMobile: (props.isMobile || false),
       currentPost: props.postId,
       currentPostAuthor: '',
@@ -33,7 +33,7 @@ export default class PostSection extends Component {
 
   async show(){
     try{
-      let res = await PostsApi._show(this.state.postId);
+      let res = await PostsApi._show(this.state.postReferenceId);
       let resJson = await res.json();
 
       this.setState({
@@ -51,8 +51,6 @@ export default class PostSection extends Component {
     try{
       let res = await PostsApi._index(null, category);
       let resJson = await res.json();
-
-      console.log(resJson);
 
       var sortedPosts;
       if(this.state.sortBy){
@@ -78,7 +76,7 @@ export default class PostSection extends Component {
     if(e) e.preventDefault();
 
     try{
-      if(this.state.postId) this.setState({postId: null});
+      if(this.state.postReferenceId) this.setState({postReferenceId: null});
 
       let res = await PostsApi._index(this.state.page, category);
       let resJson = await res.json();
@@ -104,7 +102,7 @@ export default class PostSection extends Component {
   }
 
   componentWillMount(){
-    if(this.state.postId){
+    if(this.state.postReferenceId){
       this.show();
     } else{
       this.index();
@@ -164,7 +162,7 @@ export default class PostSection extends Component {
         }
 
         {
-          this.state.postId ?
+          this.state.postReferenceId ?
           (
             <div className="row pb-4">
               <div className="col-10 offset-1 col-md-8 offset-md-2">

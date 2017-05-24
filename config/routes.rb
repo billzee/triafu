@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   shallow do
 
-    resources :posts, concerns: :paginatable, only: [:index, :create, :show], path_names: { index: 'new/:id' } do
+    resources :posts, concerns: :paginatable, only: [:index, :create] do
       resources :post_vote, only: [:index, :create]
 
       resources :comments, concerns: :paginatable, only: [:index, :create] do
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   end
 
   post 'post/upload_file' => 'posts#upload_file'
+  get 'post/:reference_id' => 'posts#show', as: :post
   get 'post/remove_file' => 'posts#remove_file'
 
   get '/top' => 'posts#index', category: "top", as: :top_posts

@@ -9,8 +9,8 @@ var PostsApi = {
     return Api('/posts/page/' + page + '?category=' + category, {method: 'GET'});
   },
 
-  _show: function(postId){
-    return Api('/posts/' + postId, {method: 'GET'});
+  _show: function(postReferenceId){
+    return Api('/post/' + postReferenceId, {method: 'GET'});
   },
 
   _create: function(post){

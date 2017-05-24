@@ -32,8 +32,8 @@ export default class PostBoxViewMobile extends Component {
     return (
       <box>
         <div className="row justify-content-center mb-2 mt-2 no-gutters">
-          <div className="col-12 p-0">
-            <h1 className="pl-2 pr-2">
+          <div className="col-12 text-center mw-550 p-0">
+            <h1 className="text-left pl-2 pr-2">
               {this.props.post.title}
             </h1>
             { this.props.post.original ?
