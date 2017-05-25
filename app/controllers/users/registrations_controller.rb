@@ -9,6 +9,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    p "creating"
+    p sign_up_params
+
     build_resource(sign_up_params)
 
     if resource.invalid? && resource.errors.include?(:full_name)
@@ -128,11 +131,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up , keys: [:full_name])
+    devise_parameter_sanitizer.permit(:sign_up , keys: [:full_name, :email])
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :username, :email])
   end
 
   def update_resource(resource, params)
