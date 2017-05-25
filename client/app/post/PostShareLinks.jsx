@@ -35,14 +35,14 @@ export default class PostShareLinks extends Component {
             <hr/>
           </div>
           <div className="col-12">
-            <button className="btn btn btn-block btn-facebook">
+            <button className="btn btn btn-block btn-facebook" disabled="true">
               <i className="fa fa-facebook-f fa-1x"></i>
               <span className="ml-1">Facebook</span>
             </button>
             <hr/>
           </div>
           <div className="col-12">
-            <button className="btn btn btn-block btn-twitter">
+            <button className="btn btn btn-block btn-twitter" disabled="true">
               <i className="fa fa-twitter fa-1x"></i>
               <span className="ml-1">Twitter</span>
             </button>
@@ -56,13 +56,13 @@ export default class PostShareLinks extends Component {
             <CopyToClipboard
               text={this.state.postUrl}
               onCopy={()=> {
-                let copyBtn = $('[data-toggle='+this.props.post.id+']');
+                let copyBtn = $('[data-toggle='+this.props.post.referenceId+']');
                 copyBtn.tooltip({trigger: 'manual'});
                 copyBtn.tooltip('show');
                 setTimeout(()=>{ copyBtn.tooltip('hide'); }, 3000);
               }}>
               <button className="btn btn-sm btn-block btn-success"
-              data-toggle={this.props.post.id}
+              data-toggle={this.props.post.referenceId}
               data-placement="bottom" data-title="Copiado!">
                 <i className="fa fa-clipboard fa-1x"></i>
                 <span className="ml-1">Copiar Link</span>

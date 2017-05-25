@@ -2,9 +2,9 @@
 
 <div class="row mobile-container">
   <%= render "partials/devise_communications" %>
-  <div class="col-12 p-0 posts">
+  <div class="col-12 p-0 posts" id="posts">
     <%= react_component("PostSection", prerender: true,
-    props: { postId: @post.id, isMobile: true }) %>
+    props: { postReferenceId: @post.reference_id, isMobile: true }) %>
   </div>
 </div>
 

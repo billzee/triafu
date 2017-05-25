@@ -8,44 +8,9 @@ import PostShareLinks from '../PostShareLinks';
 import PostVoteBox from '../PostVoteBox';
 
 export default class PostBoxViewMobile extends Component {
-  constructor(){
-    super();
-    this.state = {share: false};
-
-    this.toggleShareLinks = this.toggleShareLinks.bind(this);
-    this.showCommentSection = this.showCommentSection.bind(this);
-  }
-
-  showCommentSection(){
-    pubsub.publish('toggle-comment-section', true);
-  }
-
-  toggleShareLinks(){
-    if(this.state.share === false){
-      this.setState({share: true});
-    } else{
-      this.setState({share: false});
-    }
-  }
-
   render(){
     return (
       <box>
-      <div className="modal" id="m_share_links" tabIndex="-1" role="dialog" aria-hidden="true">
-        <div className="modal-dialog mobile-share-links">
-          <div className="row">
-            <div className="col-8 text-muted">
-              Compartilhar
-            </div>
-            <div className="col-4">
-              <button type="button" className="close" data-dismiss="modal">
-                <span>&times;</span>
-              </button>
-            </div>
-          </div>
-          <PostShareLinks post={this.props.post} isMobile="true" />
-        </div>
-      </div>
         <div className="row justify-content-center mb-2 mt-2 no-gutters">
           <div className="col-12 text-center mw-550 p-0">
             <h1 className="text-left pl-2 pr-2">
@@ -81,6 +46,7 @@ export default class PostBoxViewMobile extends Component {
                   {this.props.points || 0} {helper.pluralize(this.props.points, "ponto")}
                   &nbsp;&bull;&nbsp;publicado {moment(this.props.post.createdAt).fromNow()}
                 </small>
+
                 <PostVoteBox post={this.props.post} isMobile="true" />
               </div>
 
@@ -97,6 +63,22 @@ export default class PostBoxViewMobile extends Component {
             </div>
 
             <hr className="mt-3" />
+          </div>
+        </div>
+
+        <div className="modal" id="m_share_links" tabIndex="-1" role="dialog" aria-hidden="true">
+          <div className="modal-dialog mobile-share-links">
+            <div className="row">
+              <div className="col-8 text-muted">
+                Compartilhar
+              </div>
+              <div className="col-4">
+                <button type="button" className="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+            </div>
+            <PostShareLinks post={this.props.post} isMobile="true" />
           </div>
         </div>
 
