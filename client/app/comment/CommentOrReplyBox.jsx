@@ -46,6 +46,7 @@ export default class CommentOrReplyBox extends Component {
               {this.props.commentOrReply.user.username}
               {this.props.commentOrReply.user.id === this.props.postAuthor ? (<span className="text-success">&nbsp;autor</span>) : null}
             </strong>
+            <br/>
             <small className="text-muted">&nbsp;{ moment(this.props.commentOrReply.createdAt).fromNow() }</small>
             <br/>
             {

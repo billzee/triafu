@@ -78,7 +78,7 @@ export default class CommentOrReplyVoteBox extends Component {
 
   render(){
     return (
-      <box className="ml-2">
+      <box className="ml-3">
         <i className={"fa fa-arrow-up mr-2 href " + (this.state.userVote === true ? "text-success" : "")} onClick={() => this.vote(true)}></i>
         <i className={"fa fa-arrow-down mr-2 href " + (this.state.userVote === false ? "text-danger" : "")} onClick={() => this.vote(false)}></i>
         <small className="text-muted"><strong>{this.state.points || 0}</strong> {helper.pluralize(this.state.points, "ponto")}&nbsp;</small>

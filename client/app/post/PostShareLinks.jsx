@@ -4,7 +4,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 export default class PostShareLinks extends Component {
   constructor(props){
     super();
-    this.state = {postUrl: ''};
+    this.state = {postUrl: '', copyLinkLabel: 'Copiar Link', blockCopy: false};
   }
 
   componentDidMount(){
@@ -20,16 +20,12 @@ export default class PostShareLinks extends Component {
             <CopyToClipboard
               text={this.state.postUrl}
               onCopy={()=> {
-                let copyBtn = $('[data-toggle='+this.props.post.referenceId+']');
-                copyBtn.tooltip({trigger: 'manual'});
-                copyBtn.tooltip('show');
-                setTimeout(()=>{ copyBtn.tooltip('hide'); }, 3000);
+                this.setState({copyLinkLabel: 'Copiado!', blockCopy: true});
+                setTimeout(()=>{ this.setState({copyLinkLabel: 'Copiar Link', blockCopy: false}); }, 2000);
               }}>
-              <button className="btn btn btn-block btn-success"
-              data-toggle={this.props.post.id}
-              data-placement="bottom" data-title="Copiado!">
+              <button className="btn btn btn-block btn-success" disabled={this.state.blockCopy}>
                 <i className="fa fa-clipboard fa-1x"></i>
-                <span className="ml-1">Copiar Link</span>
+                <span className="ml-1">{this.state.copyLinkLabel}</span>
               </button>
             </CopyToClipboard>
             <hr/>
@@ -56,27 +52,23 @@ export default class PostShareLinks extends Component {
             <CopyToClipboard
               text={this.state.postUrl}
               onCopy={()=> {
-                let copyBtn = $('[data-toggle='+this.props.post.referenceId+']');
-                copyBtn.tooltip({trigger: 'manual'});
-                copyBtn.tooltip('show');
-                setTimeout(()=>{ copyBtn.tooltip('hide'); }, 3000);
+                this.setState({copyLinkLabel: 'Copiado!', blockCopy: true});
+                setTimeout(()=>{ this.setState({copyLinkLabel: 'Copiar Link', blockCopy: false}); }, 2000);
               }}>
-              <button className="btn btn-sm btn-block btn-success"
-              data-toggle={this.props.post.referenceId}
-              data-placement="bottom" data-title="Copiado!">
+              <button className="btn btn-sm btn-block btn-success" disabled={this.state.blockCopy}>
                 <i className="fa fa-clipboard fa-1x"></i>
-                <span className="ml-1">Copiar Link</span>
+                <span className="ml-1">{this.state.copyLinkLabel}</span>
               </button>
             </CopyToClipboard>
           </div>
           <div className="col-4 pl-1 pr-0">
-            <button className="btn btn-sm btn-block btn-facebook">
+            <button className="btn btn-sm btn-block btn-facebook" disabled="true">
               <i className="fa fa-facebook-f fa-1x"></i>
               <span className="ml-1">Facebook</span>
             </button>
           </div>
           <div className="col-4 pl-1">
-            <button className="btn btn-sm btn-block btn-twitter">
+            <button className="btn btn-sm btn-block btn-twitter" disabled="true">
               <i className="fa fa-twitter fa-1x"></i>
               <span className="ml-1">Twitter</span>
             </button>
