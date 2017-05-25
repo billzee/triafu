@@ -15,8 +15,13 @@
 
 .col-12{
   .post-image{
+    text-align: center;
     min-height: 150px;
-    width: 100%;
+
+    img{
+      min-height: 150px;
+      width: 100%;
+    }
   }
 
   .post-video{
@@ -55,9 +60,14 @@
   max-width: 550px !important;
 
   .post-image{
-    width: 550px;
-    max-width: 550px;
+    text-align: center;
     min-height: 350px;
+
+    img{
+      width: 550px;
+      max-width: 550px;
+      min-height: 350px;
+    }
   }
 
   .post-video{

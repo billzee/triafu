@@ -7,6 +7,7 @@ export default class PostBox extends Component {
     this.state = {
       image: (props.image || null),
       video: (props.video || null),
+      imgLoading: true,
       paused: true
     };
 
@@ -40,11 +41,21 @@ export default class PostBox extends Component {
     }
   }
 
+  stopSpinning(){
+    this.setState({imgLoading: false});
+  }
+
   render(){
     return (
       this.state.image ?
       (
-        <img src={this.state.image.url} className="post-image"/>
+        <div className="post-image">
+          <img src={this.state.image.url} onLoad={()=> this.stopSpinning()}/>
+          {
+            this.state.imgLoading ?
+            (<i className="fa fa-spinner fa-pulse fa-2x text-purple fa-fw"></i>): null
+          }
+        </div>
       )
       : this.state.video ?
       (
