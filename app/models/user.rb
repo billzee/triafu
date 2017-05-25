@@ -35,7 +35,7 @@ class User < ApplicationRecord
     elsif self.facebook_image || self.google_image
       self.facebook_image || self.google_image
     else
-      "avatars/#{self.default_image}.png"
+      ActionController::Base.helpers.asset_path("assets/avatars/#{self.default_image}.png", :digest => false)
     end
   end
 
