@@ -164,8 +164,8 @@
 }
 
 .mobile-share-links{
-  overflow: hidden;
   z-index: 9999;
+  overflow: hidden;
   margin: 0 !important;
   padding-right: 15px;
   padding-left: 15px;
@@ -173,5 +173,5 @@
   float: left;
   height: 50vh;
   top: 50vh;
-  background: white
+  background-color: white;
 }

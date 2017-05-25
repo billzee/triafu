@@ -80,9 +80,9 @@ export default class PostBoxViewMobile extends Component {
 
             <hr className="mt-3" />
           </div>
-
         </div>
-        <div className="modal" id="m_share_links" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div className="modal" id="m_share_links" tabIndex="-1" role="dialog" aria-hidden="true">
           <div className="modal-dialog mobile-share-links">
             <div className="row">
               <div className="col-8 text-muted">
@@ -98,6 +98,7 @@ export default class PostBoxViewMobile extends Component {
             <PostShareLinks post={this.props.post} isMobile="true" />
           </div>
         </div>
+
       </box>
     );
   }
