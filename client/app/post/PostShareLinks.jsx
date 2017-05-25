@@ -48,7 +48,7 @@ export default class PostShareLinks extends Component {
     } else {
       return (
         <div className="row">
-          <div className="col-4 pr-0">
+          <div className="col-4 pl-0 pr-0">
             <CopyToClipboard
               text={this.state.postUrl}
               onCopy={()=> {
