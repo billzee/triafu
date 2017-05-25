@@ -82,7 +82,7 @@ export default class PostBoxViewMobile extends Component {
           </div>
 
         </div>
-        <div className="modal" id="m_share_links">
+        <div className="modal" id="m_share_links" tabindex="-1" role="dialog" aria-hidden="true">
           <div className="modal-dialog mobile-share-links">
             <div className="row">
               <div className="col-8 text-muted">
