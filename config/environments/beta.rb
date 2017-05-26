@@ -1,15 +1,23 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+
+  # facebook
   ENV['FACEBOOK_KEY'] = "1029068483890843"
   ENV['FACEBOOK_SECRET'] = "47cc9db12fcd936de7f15e8e5d6fc112"
 
+  # google
   ENV['GOOGLE_OAUTH2_KEY'] = "970037955727-jdmsea41h87dvn7oqqspjkct0hugguk6.apps.googleusercontent.com"
   ENV['GOOGLE_OAUTH2_SECRET'] = "HiynYuWnv8SLPbUz6C6uRBBV"
 
+  # aws s3
   ENV['S3_BUCKET_NAME'] = "triafu-beta"
-
   ENV['S3_KEY'] = "AKIAJ4MWWZ6DIH2P3LGA"
   ENV['S3_SECRET'] = "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"
+  ENV['S3_URL'] = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazon.com/"
+
+  # zoho
+  ENV['ZOHO_MAIL'] = "vindiesel@triafu.com.br"
+  ENV['ZOHO_PASS'] = "57d1f0f8c0928960f607b4077f072c7c"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
