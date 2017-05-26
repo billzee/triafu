@@ -37,7 +37,7 @@ class User < ApplicationRecord
     elsif self.google_image
       self.google_image
     else
-      ActionController::Base.helpers.asset_path("assets/avatars/#{self.default_image}.png", :digest => false)
+      ActionController::Base.helpers.asset_path("/assets/avatars/#{self.default_image}.png", :digest => false)
     end
   end
 
@@ -130,7 +130,7 @@ class User < ApplicationRecord
     end
   end
 
-  def confirmation_required?
-    false
-  end
+  # def confirmation_required?
+  #   false
+  # end
 end

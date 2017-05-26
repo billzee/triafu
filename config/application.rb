@@ -15,5 +15,10 @@ module Triafu
     config.autoload_paths  = %W(#{config.root}/lib)
 
     config.exceptions_app = self.routes
+
+    config.to_prepare do
+      Devise::Mailer.layout "mailer" # email.haml or email.erb
+    end
+
   end
 end
