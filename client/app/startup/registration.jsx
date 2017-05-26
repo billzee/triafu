@@ -2,8 +2,9 @@ import ReactOnRails from 'react-on-rails';
 import moment from 'moment'
 import 'whatwg-fetch'
 
-import PostSort from '../post/PostSort';
+import PostShareLinks from '../post/PostShareLinks';
 import PostSection from '../post/PostSection';
+import PostSort from '../post/PostSort';
 import PostForm from '../post/PostForm';
 import PostBox from '../post/PostBox';
 
@@ -21,11 +22,11 @@ ReactOnRails.register({
   PostSort,
   PostSection,
   PostForm,
+  PostShareLinks,
   PostBox,
   CommentSection,
   LoginForm,
   SocialLogin,
   SocialConnect,
-  UserImage,
-  CurrentUser
+  UserImage
 });

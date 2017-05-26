@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
+
+import pubsub from 'pubsub-js'
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 export default class PostShareLinks extends Component {
   constructor(props){
-    super();
-    this.state = {postUrl: '', copyLinkLabel: 'Copiar Link', blockCopy: false};
+    super(props);
+    this.state = {
+      referenceId: '',
+      postUrl: '',
+      copyLinkLabel: 'Copiar Link',
+      blockCopy: false,
+    };
   }
 
   componentDidMount(){
-    let postUrl = window.location.host + '/post/' + this.props.post.referenceId;
+    if(this.props.post){
+      this.setState({referenceId: this.props.post.referenceId});
+    }
+    let postUrl = window.location.host + '/post/' + this.state.referenceId;
     this.setState({postUrl: postUrl});
+
+    pubsub.subscribe('share-links-for', (msg, referenceId)=>{
+      this.setState({referenceId: referenceId});
+    });
   }
 
   render(){
     if (this.props.isMobile){
       return(
-        <div className="row mt-3">
+        <div className="row p-3">
           <div className="col-12">
             <CopyToClipboard
               text={this.state.postUrl}

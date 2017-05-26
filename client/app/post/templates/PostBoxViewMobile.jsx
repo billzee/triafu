@@ -8,6 +8,10 @@ import PostShareLinks from '../PostShareLinks';
 import PostVoteBox from '../PostVoteBox';
 
 export default class PostBoxViewMobile extends Component {
+  componentDidMount(){
+    pubsub.publish('share-links-for', this.props.post.referenceId);
+  }
+
   render(){
     return (
       <box>
@@ -63,22 +67,6 @@ export default class PostBoxViewMobile extends Component {
             </div>
 
             <hr className="mt-3" />
-          </div>
-        </div>
-
-        <div className="modal" id="m_share_links" tabIndex="-1" role="dialog" aria-hidden="true">
-          <div className="modal-dialog mobile-share-links">
-            <div className="row">
-              <div className="col-8 text-muted">
-                Compartilhar
-              </div>
-              <div className="col-4">
-                <button type="button" className="close" data-dismiss="modal">
-                  <span>&times;</span>
-                </button>
-              </div>
-            </div>
-            <PostShareLinks post={this.props.post} isMobile="true" />
           </div>
         </div>
 
