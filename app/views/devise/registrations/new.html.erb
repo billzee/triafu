@@ -28,4 +28,8 @@
 
     <%= f.submit "Criar", class: "btn btn-success float-right" %>
   <% end %>
+
+  <p class="text-muted text-left">
+    Já tem uma conta? <%= link_to "Entre", new_user_session_path %>
+  </p>
 </div>

@@ -12,8 +12,8 @@ export default class CommentHeader extends Component {
             </strong>
           </div>
           <div className="col-3 text-right">
-            <button type="button" className="close" data-dismiss="modal">
-              <span>&times;</span>
+            <button type="button" className="btn btn-sm btn-secondary" data-dismiss="modal">
+              Fechar
             </button>
           </div>
         </div>

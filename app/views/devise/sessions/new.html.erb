@@ -6,7 +6,7 @@
   <%= react_component("SocialLogin") %>
 
   <p class="text-muted text-center pt-3 pb-2">Usando seu e-mail ou nome de usuário</p>
-  
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
     <div class="form-group">
@@ -27,7 +27,7 @@
     <br/>
 
     <p class="text-muted text-center">
-      Ainda não tem uma conta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#m_signup">Crie uma</a>
+      Ainda não tem uma conta? <%= link_to "Crie uma",new_user_registration_path %>
     </p>
   <% end %>
 
