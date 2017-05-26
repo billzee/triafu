@@ -9,9 +9,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    p "creating"
-    p sign_up_params
-
     build_resource(sign_up_params)
 
     if resource.invalid? && resource.errors.include?(:full_name)
