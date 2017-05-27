@@ -86,7 +86,7 @@ export default class PostSection extends Component {
                 <ErrorMessage message={this.state.errors.title} />
               </div>
 
-              <small className="font-weight-bold">link do autor original (se existir)</small>
+              <small className="font-weight-bold text-left">link do autor original (se existir)</small>
               <div className={"form-group mb-0 " + (this.state.errors.hasOwnProperty('original') ? "has-danger" : "")}>
                 <input value={this.state.original}
                 onChange={helper.handleChange.bind(this, 'original')}
