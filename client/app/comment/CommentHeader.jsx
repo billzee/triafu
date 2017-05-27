@@ -11,7 +11,7 @@ export default class CommentHeader extends Component {
               {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}
             </strong>
           </div>
-          <div className="col-3 text-right">
+          <div className="col-3 align-self-center text-right">
             <button type="button" className="btn btn-sm btn-secondary" data-dismiss="modal">
               Fechar
             </button>

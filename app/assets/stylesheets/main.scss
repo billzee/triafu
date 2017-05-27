@@ -235,3 +235,17 @@ hr.or:after {
 .break-all{
   word-break: break-all;
 }
+
+.modal {
+  &.slide-right .modal-dialog {
+    @include transition(transform .6s);
+    transform: translate3d(100%, 0, 0)
+  }
+
+  &.slide-bottom .modal-dialog {
+    @include transition(transform .6s);
+    transform: translate3d(0, 100%, 0)
+  }
+
+  &.show .modal-dialog { transform: translate3d(0, 0, 0); }
+}
