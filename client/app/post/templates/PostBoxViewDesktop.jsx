@@ -11,12 +11,14 @@ export default class PostBoxViewDesktop extends Component {
       <div className="row justify-content-end mb-5 mt-4 mr-5">
         <div className="col-700">
           <h1 className="col-550">{this.props.post.title}</h1>
+          
           { this.props.post.original ?
             (
               <h4>
-              <a href={"//"+this.props.post.original} target="_blank" content="noindex, nofollow">
-              link do autor original
-              </a>
+                <a href={this.props.post.original}
+                target="_blank" content="noindex, nofollow">
+                  link do autor original
+                </a>
               </h4>
             )
             : null
