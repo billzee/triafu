@@ -5,7 +5,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 export default class PostShareLinks extends Component {
   constructor(props){
-    super(props);
+    super();
     this.state = {
       referenceId: '',
       postUrl: '',
@@ -14,16 +14,22 @@ export default class PostShareLinks extends Component {
     };
   }
 
-  componentDidMount(){
-    if(this.props.post){
-      this.setState({referenceId: this.props.post.referenceId});
-    }
-    let postUrl = window.location.host + '/post/' + this.state.referenceId;
-    this.setState({postUrl: postUrl});
+  componentWillMount(){
+    if(this.props.post) this.setState({referenceId: this.props.post.referenceId});
 
     pubsub.subscribe('share-links-for', (msg, referenceId)=>{
       this.setState({referenceId: referenceId});
+      this.setupPostUrl();
     });
+  }
+
+  componentDidMount(){
+    this.setupPostUrl();
+  }
+
+  setupPostUrl(){
+    let postUrl = window.location.host + '/post/' + this.state.referenceId;
+    this.setState({postUrl: postUrl});
   }
 
   render(){
@@ -63,6 +69,7 @@ export default class PostShareLinks extends Component {
       return (
         <div className="row">
           <div className="col-4 pl-0 pr-0">
+                      a  {this.state.postUrl}
             <CopyToClipboard
               text={this.state.postUrl}
               onCopy={()=> {
