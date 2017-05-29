@@ -1,0 +1,86 @@
+@import "variables";
+
+.header-mobile {
+  background: $light-gray;
+  font-weight: 600;
+  width: 100%;
+  height: 40px;
+  padding: 0;
+  top: 0;
+
+  .col {
+    height: 100%;
+    padding: 0;
+    
+    &:first-of-type {
+      border-left: 1px solid $flag-yellow;
+    }
+  }
+
+  .logo {
+    padding: 0.4em;
+    width: 3.8em;
+    background: $purple;
+    border-right: 3px solid $flag-green;
+  }
+
+  .profile-actions {
+    width: 5em;
+    padding-top: 0.2em;
+    text-align: center;
+  }
+
+  .header-item {
+    text-align: center;
+
+    a.header-link {
+      text-align: center;
+      padding: .5em 1em;
+      text-decoration: none;
+      color: rgba(50,50,50,.5);
+      &:link:hover:visited {
+        color: rgba(50,50,50,.5);
+      }
+      &:hover {
+        color: rgba(50,50,50,1);
+      }
+      &.active {
+        color: rgba(50,50,50,1);
+      }
+    }
+  }
+}
+
+.sub-header-mobile{
+  z-index: 1000;
+  background: $light-gray;
+  font-weight: 600;
+  width: 100%;
+  height: 40px;
+  padding: 0;
+  top: 0;
+
+  &:not(.fixed-top){
+    margin-top: 40px;
+  }
+
+  .header-item {
+    text-align: center;
+
+    a.header-link {
+      text-align: center;
+      padding: .5em 1em;
+      text-decoration: none;
+      color: rgba(255,255,255,.5);
+      &:link:hover:visited {
+        color: rgba(255,255,255,.5);
+      }
+      &:hover {
+        color: rgba(255,255,255,1);
+      }
+      &.active {
+        color: rgba(255,255,255,1);
+      }
+    }
+  }
+}

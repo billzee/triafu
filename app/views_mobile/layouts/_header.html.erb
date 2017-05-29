@@ -1,6 +1,6 @@
-<div class="row header-mobile fixed-top bg-inverse no-gutters">
+<div class="row header-mobile no-gutters p-absolute">
   <%= link_to root_path, class: "logo" do %>
-    <%= image_tag "logos/triafu-logo.svg", height: 30%>
+    <%= image_tag "brand/triafu-triangle.svg", height: 30%>
   <% end %>
 
   <div class="col pt-1 text-right">
@@ -26,7 +26,7 @@
 
   <% if user_signed_in? %>
     <div class="profile-actions header-item">
-      <a href class="dropdown-toggle header-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a href class="dropdown-toggle header-link pr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag(current_user.image, class: "rounded-circle", height: 35, width: 35) %>
       </a>
       <div class="dropdown-menu dropdown-menu-left mr-2 z-index">
