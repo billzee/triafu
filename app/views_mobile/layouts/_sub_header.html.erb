@@ -1,13 +1,13 @@
 <div class="row sub-header-mobile bg-inverse no-gutters">
-  <div class="col-4 header-item pt-25">
+  <div class="col-4 header-item">
     <%= link_to('Top', top_posts_path, class: "header-link" +
     if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
   </div>
-  <div class="col-4 header-item pt-25">
+  <div class="col-4 header-item">
     <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
     if current_page? newcomer_posts_path then " active" else "" end) %>
   </div>
-  <div class="col-4 header-item pt-15">
+  <div class="col-4 header-item pt-0">
     <%= react_component("PostSort", prerender: true) %>
   </div>
 </div>

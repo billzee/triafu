@@ -53,6 +53,10 @@ h5 {
   max-width: 550px;
 }
 
+.pt-09{
+  padding-top: .9rem !important;
+}
+
 .pt-25{
   padding-top: 0.7rem !important;
 }
@@ -241,12 +245,12 @@ hr.or:after {
 
 .modal {
   &.slide-right .modal-dialog {
-    @include transition(transform .6s);
+    @include transition(transform .3s);
     transform: translate3d(100%, 0, 0)
   }
 
   &.slide-bottom .modal-dialog {
-    @include transition(transform .6s);
+    @include transition(transform .3s);
     transform: translate3d(0, 100%, 0)
   }
 

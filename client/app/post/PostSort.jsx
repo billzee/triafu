@@ -16,7 +16,7 @@ export default class PostSort extends Component {
 
   render(){
     return(
-      <div className={"dropdown header-item " + (this.state.sortBy === '' ? "mt-15" : "")}>
+      <div className={"dropdown " + (this.state.sortBy === '' ? "pt-09" : "mt-2")}>
         {
           this.state.sortBy === "funnyCount" ?
           (

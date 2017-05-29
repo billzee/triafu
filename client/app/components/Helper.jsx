@@ -29,6 +29,7 @@ var Helper = {
   authErrorDispatcher: function(errors){
     if(errors.auth){
       pubsub.publish('auth-error', errors);
+      $('.modal').modal('hide');
       $('#m_login').modal('show');
     }
   },

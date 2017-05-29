@@ -3,21 +3,22 @@
     <%= image_tag "brand/triafu-logo.svg", height: 32%>
   <% end %>
 
-  <div class="col categories pt-2">
-    <ul class="list-inline list-unstyled mb-0 mt-15">
-      <li class="list-inline-item header-item">
-        <%= link_to('Top', top_posts_path, class: "header-link" +
-        if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
-      </li>
-      <li class="list-inline-item header-item">
-        <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
-        if current_page? newcomer_posts_path then " active" else "" end) %>
-      </li>
-    </ul>
-  </div>
+  <div class="col categories">
+   <div class="row">
+     <div class="col-4 header-item">
+       <%= link_to('Top', top_posts_path, class: "header-link" +
+       if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
+     </div>
 
-  <div class="col pt-2 float-right">
-    <%= react_component("PostSort", prerender: true) %>
+     <div class="col-4 header-item">
+       <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
+       if current_page? newcomer_posts_path then " active" else "" end) %>
+     </div>
+
+     <div class="col-4 header-item pt-0">
+       <%= react_component("PostSort", prerender: true) %>
+     </div>
+   </div>
   </div>
 
   <div class="col pt-2 text-right">

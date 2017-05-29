@@ -10,12 +10,18 @@
   .col {
     height: 100%;
     padding: 0;
+
     &:first-of-type {
       border-left: 2px solid $flag-yellow;
     }
+
     &.categories {
-      width: 14em !important;
-      max-width: 14em !important;
+      width: 20em !important;
+      max-width: 20em !important;
+
+      .header-item{
+        padding-top: .9em;
+      }
     }
   }
 
