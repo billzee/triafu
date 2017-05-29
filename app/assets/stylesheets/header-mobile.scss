@@ -19,10 +19,16 @@
   }
 
   .logo {
-    padding: 0.4em;
-    width: 3.8em;
-    background: $purple;
+    padding-left: 5px;
+    width: 55px;
+    height: 40px;
+    max-height: 40px;
     border-right: 3px solid $flag-green;
+    background: $purple;
+
+    img{
+      max-height: 40px;
+    }
   }
 
   .profile-actions {

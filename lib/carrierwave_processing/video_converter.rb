@@ -1,5 +1,3 @@
-require 'streamio-ffmpeg'
-
 module CarrierWave
   module FFMPEG
     module ClassMethods
