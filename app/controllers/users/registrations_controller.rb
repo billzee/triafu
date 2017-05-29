@@ -78,10 +78,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_password
     @user = User.find(current_user.id)
     if @user.update(user_password_params)
-
       bypass_sign_in(@user)
+      flash[:notice] = "senha alterada!"
       redirect_to root_path
     else
+      flash[:alert] = @user.errors.full_messages.first
       redirect_to edit_user_registration_password_path
     end
   end
