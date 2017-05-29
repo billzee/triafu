@@ -18,10 +18,6 @@ export default class Login extends Component {
       this.setState({errors: data});
     });
 
-    pubsub.subscribe('watch-post', (msg, data)=>{
-      this.setState({postId: data.postId});
-    });
-
     $('#m_login').on('hidden.bs.modal', ()=> {
       this.setState({errors: ''});
     });
@@ -34,12 +30,8 @@ export default class Login extends Component {
       let res = await DeviseApi._createSession(this.state);
       let resJson = await res.json();
 
-      console.log(resJson);
-
       if(resJson.errors){
         this.setState({errors: resJson.errors});
-      } else if(this.state.postId){
-        window.location = "/posts/" + this.state.postId;
       } else{
         window.location.reload();
       }

@@ -1,10 +1,10 @@
 $(function(){
-  if($(".posts").length && $('.sub-header-mobile').length){
+  if($('.sub-header-mobile').length && $(".posts").length){
     $(".posts").scroll(function(event){
       var subHeader = $('.sub-header-mobile'),
       scroll = $('.posts').scrollTop();
 
-      if (scroll >= 40) {
+      if (scroll >= 80) {
         subHeader.addClass('fixed-top');
       } else{
         subHeader.removeClass('fixed-top');

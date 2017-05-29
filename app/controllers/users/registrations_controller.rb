@@ -75,7 +75,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    resource_updated = update_resource(resource, account_update_params)
+    resource_updated = update_resource(resource, account_update_params.except(:section))
     yield resource if block_given?
     if resource_updated
       if is_flashing_format?
@@ -132,7 +132,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :username, :email])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :username, :email, :password, :password_confirmation])
   end
 
   def update_resource(resource, params)
