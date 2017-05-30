@@ -43,11 +43,21 @@
     width: 6em;
     text-align: center;
 
+    .dropdown{
+      &.pt-text{
+        padding-top: .9rem;
+      }
+
+      &.pt-icon{
+        padding-top: .5rem;
+      }
+    }
+
     a.header-link {
       text-align: center;
-      padding: .5em 1em;
       text-decoration: none;
       color: rgba(255,255,255,.5);
+
       &:link:hover:visited {
         color: rgba(255,255,255,.5);
       }

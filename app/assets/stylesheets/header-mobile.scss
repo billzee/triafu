@@ -67,20 +67,29 @@
   background: $light-gray;
   font-weight: 600;
   width: 100%;
-  height: 45px;
+  height: 40px;
   padding: 0;
   top: 0;
 
   .header-item {
     text-align: center;
-    padding-top: .9rem;
-    margin-bottom: .3rem;
+    padding-top: 10px;
+
+    .dropdown{
+      &.pt-text{
+        padding-top: .7rem;
+      }
+
+      &.pt-icon{
+        padding-top: .3rem;
+      }
+    }
 
     a.header-link {
       text-align: center;
-      padding: .5em 1em;
       text-decoration: none;
       color: rgba(255,255,255,.5);
+
       &:link:hover:visited {
         color: rgba(255,255,255,.5);
       }
