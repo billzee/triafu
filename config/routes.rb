@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   as :user do
     get 'current_user', to: 'users/sessions#index'
-    
+
     get 'users/edit/password', to: 'users/registrations#edit_password', as: :edit_user_registration_password
     get 'users/edit/image', to: 'users/registrations#edit_image', as: :edit_user_registration_image
 
@@ -41,9 +41,10 @@ Rails.application.routes.draw do
 
   end
 
-  post 'post/upload_file' => 'posts#upload_file'
   get 'post/:reference_id' => 'posts#show', as: :post
-  get 'post/remove_file' => 'posts#remove_file'
+  
+  post 'post/upload_file' => 'posts#upload_file'
+  delete 'post/remove_file' => 'posts#remove_file'
 
   get '/top' => 'posts#index', category: "top", as: :top_posts
   get '/novas' => 'posts#index', category: "newcomer", as: :newcomer_posts

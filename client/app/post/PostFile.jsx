@@ -92,13 +92,11 @@ export default class PostFile extends Component {
     pubsub.subscribe('file-errors', (msg, errors)=>{
       this.setState({fileErrors: errors});
     });
-    pubsub.subscribe('remove-file', (msg, errors)=>{
-      this.removeFile();
-    });
   }
 
   render(){
     let dropzoneRef;
+    
     return (
       <box>
         <Dropzone onDrop={this.onDrop.bind(this)} style={null} ref={(node) => { dropzoneRef = node; }} disableClick={true}

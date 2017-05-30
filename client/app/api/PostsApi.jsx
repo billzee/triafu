@@ -28,7 +28,7 @@ var PostsApi = {
   },
 
   _remove_file: function(){
-    return Api('/post/remove_file', {method: 'GET'});
+    return Api('/post/remove_file', {method: 'DELETE'});
   }
 };
 
