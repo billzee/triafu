@@ -96,7 +96,7 @@ export default class PostFile extends Component {
 
   render(){
     let dropzoneRef;
-    
+
     return (
       <box>
         <Dropzone onDrop={this.onDrop.bind(this)} style={null} ref={(node) => { dropzoneRef = node; }} disableClick={true}
@@ -122,7 +122,7 @@ export default class PostFile extends Component {
                       this.state.imagePreview ?
                         (<div style={this.state.imagePreview} className="image-preview rounded m-0"/>)
                       : this.state.videoPreview ?
-                        (<div className="thumb-video"><video autoPlay loop muted><source src={this.state.videoPreview}/></video></div>)
+                        (<div className="thumb-video"><video playsInline autoPlay loop muted><source src={this.state.videoPreview}/></video></div>)
                       : null
                     }
                   </div>
