@@ -5,7 +5,7 @@ class PostVideoUploader < CarrierWave::Uploader::Base
   after :store, :remove_original_file
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.reference_id}"
   end
 
   def remove_original_file(p)

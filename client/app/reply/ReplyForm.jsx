@@ -49,7 +49,7 @@ export default class ReplyForm extends Component {
 
         <div className={"input-group" + (this.state.errors.hasOwnProperty('text') ? " has-danger" : "")}>
           <span className="input-group-btn">
-            <button type="button" className="btn btn-sm btn-secondary">
+            <button type="button" className="btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_image_comment">
               <i className="fa fa-smile-o"/>
             </button>
           </span>

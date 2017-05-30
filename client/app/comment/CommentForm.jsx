@@ -50,7 +50,7 @@ export default class CommentForm extends Component {
 
             <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
               <span className="input-group-btn">
-                <button type="button" className="btn btn-sm btn-secondary"
+                <button type="button" className="btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_image_comment"
                 disabled={this.state.loading || !this.props.postId}>
                   <i className="fa fa-smile-o"/>
                 </button>
