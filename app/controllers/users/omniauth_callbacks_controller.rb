@@ -75,7 +75,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       render :index
     else
       session["omniauth_data"] = request.env["omniauth.auth"].except("extra")
-      render :index
       redirect_to new_user_registration_url
     end
   end
