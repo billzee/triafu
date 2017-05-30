@@ -137,13 +137,6 @@ export default class PostSection extends Component {
     return (
       <box>
         {
-          this.state.showCommentSection === true ?
-          (
-            <CommentSection postId={this.state.currentPost}
-            userId={this.state.currentPostAuthor} className="bgm-gray"/>
-          ) : null
-        }
-        {
           this.state.posts.map((post)=>{
             return(
               <Waypoint

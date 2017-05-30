@@ -15,14 +15,14 @@ export default class PostBoxViewMobile extends Component {
   render(){
     return (
       <box>
-        <div className="row justify-content-center mb-2 mt-2 no-gutters">
+        <div className="row justify-content-center mb-2 mt-4 no-gutters">
           <div className="col-12 text-center mw-550 p-0">
             <h1 className="text-left pl-1 pr-1">
               {this.props.post.title}
             </h1>
             { this.props.post.original ?
               (
-                <h4 className="text-left pl-1 pr-1"> 
+                <h4 className="text-left pl-1 pr-1">
                   <a href={this.props.post.original}
                   target="_blank" content="noindex, nofollow">
                     link do autor original

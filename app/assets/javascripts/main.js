@@ -4,7 +4,7 @@ $(function(){
       var subHeader = $('.sub-header-mobile'),
       scroll = $('.posts').scrollTop();
 
-      if (scroll >= 80) {
+      if (scroll >= 60) {
         subHeader.addClass('fixed-top');
       } else{
         subHeader.removeClass('fixed-top');
@@ -14,7 +14,7 @@ $(function(){
 
   if($(".communications").length){
     setTimeout(function(){
-      $(".communications").slideUp(400);
+      $(".communications").slideUp(300);
     }, 4000);
   }
 });
