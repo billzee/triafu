@@ -7,7 +7,7 @@ export default class PostBox extends Component {
     this.state = {
       image: (props.image || null),
       video: (props.video || null),
-      imgLoading: true,
+      waiting: true,
       paused: true
     };
 
@@ -15,8 +15,8 @@ export default class PostBox extends Component {
   }
 
   componentDidMount(){
-    pubsub.subscribe('watch-post', (msg, data)=>{
-      if(this.video !== null){
+    if(this.video){
+      pubsub.subscribe('watch-post', (msg, data)=>{
         if(data.postId === this.props.postId){
           this.video.play();
           this.setState({paused: false});
@@ -25,8 +25,12 @@ export default class PostBox extends Component {
           this.video.currentTime = 0;
           this.setState({paused: true});
         }
-      }
-    });
+      });
+
+      this.video.addEventListener("loadeddata", function() {
+        this.stopSpinning();
+      }.bind(this));
+    }
   }
 
   controlManually(){
@@ -42,7 +46,7 @@ export default class PostBox extends Component {
   }
 
   stopSpinning(){
-    this.setState({imgLoading: false});
+    this.setState({waiting: false});
   }
 
   render(){
@@ -51,20 +55,28 @@ export default class PostBox extends Component {
       (
         <div className="post-image">
           {
-            this.state.imgLoading ? (
+            this.state.waiting ? (
               <div className="loader">
-                <i className="fa fa-spinner fa-pulse fa-2x text-purple fa-fw"/>
+                <i className="fa fa-spinner fa-pulse fa-4x text-purple fa-fw"/>
               </div>
             ) : null
           }
 
           <img src={this.state.image.url} onLoad={()=> this.stopSpinning()}
-          className={(this.state.imgLoading ? "hidden" : "")}/>
+          className={(this.state.waiting ? "hidden" : "")}/>
         </div>
       )
       : this.state.video ?
       (
         <div className="post-video" onClick={()=> this.controlManually()}>
+          {
+            this.state.waiting ? (
+              <div className="loader">
+                <i className="fa fa-spinner fa-pulse fa-4x text-purple fa-fw"/>
+              </div>
+            ) : null
+          }
+
           {
             this.state.paused ?
             (

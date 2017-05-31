@@ -85,7 +85,7 @@ h5 {
   }
 }
 
-.desktop-container {
+.posts-container {
   padding-top: 3.3em;
   position: relative;
   display: flex;
@@ -99,6 +99,10 @@ h5 {
 
 .hidden {
   visibility: hidden;
+}
+
+.tooltip{
+  z-index: 1010;
 }
 
 .bgm-gray {
