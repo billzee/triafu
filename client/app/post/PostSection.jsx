@@ -159,7 +159,7 @@ export default class PostSection extends Component {
           (
             this.state.isMobile ?
             (
-              <div className="row pb-4">
+              <div className="row pb-4 no-gutters">
                 <div className="col-10 offset-1">
                   <button type="button" onClick={(e) => this.paginatePosts(e)}
                   className="btn btn-block btn-primary">

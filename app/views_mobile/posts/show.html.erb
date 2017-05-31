@@ -1,8 +1,8 @@
 <%= render "layouts/sub_header" %>
 
-<div class="row mobile-container">
+<div class="row no-gutters">
   <%= render "partials/devise_communications" %>
-  <div class="col-12 p-0 posts" id="posts">
+  <div class="col-12">
     <%= react_component("PostSection", prerender: true,
     props: { postReferenceId: @post.reference_id, isMobile: true }) %>
   </div>
