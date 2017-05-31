@@ -11,7 +11,14 @@ export default class PostSort extends Component {
     e.preventDefault();
     this.setState({sortBy: sortBy});
     pubsub.publish('sort-by', sortBy);
-    document.getElementById('posts').scrollTop = 0;
+
+    var posts = document.getElementById('posts');
+    if(posts){
+      posts.scrollTop = 0;
+    } else{
+      window.scrollTo(0, 0);
+    }
+
   }
 
   render(){

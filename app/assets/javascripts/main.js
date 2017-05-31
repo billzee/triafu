@@ -1,7 +1,7 @@
 $(function(){
   if($('.sub-header-mobile').length){
     $(window).scroll(function(event){
-      
+
       var subHeader = $('.sub-header-mobile'),
       scroll = $(window).scrollTop();
 
