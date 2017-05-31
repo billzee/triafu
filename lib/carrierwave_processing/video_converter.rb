@@ -13,19 +13,23 @@ module CarrierWave
 
       file = ::FFMPEG::Movie.new(tmpfile)
       new_name = File.basename(current_path, '.*') + '.' + format.to_s
-      current_extenstion = File.extname(current_path).gsub('.', '')
+      current_extension = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)
 
-      options = { audio_channels: 0, video_min_bitrate: 300, resolution: '320x240' }
-      transcoder_options = { preserve_aspect_ratio: :width }
+      options = { video_min_bitrate: 300, resolution: '320x240' }
+
+      transcoder_options = {
+        input_options: { f: current_extension },
+        preserve_aspect_ratio: :height
+      }
 
       file.transcode(encoded_file, options, transcoder_options)
 
       # warning: magic!
       # change format for uploaded file name and store file format
       # without this lines processed video files will remain in cache folder
-      self.filename[-current_extenstion.size..-1] = format.to_s
-      self.file.file[-current_extenstion.size..-1] = format.to_s
+      self.filename[-current_extension.size..-1] = format.to_s
+      self.file.file[-current_extension.size..-1] = format.to_s
 
       File.delete(tmpfile)
     end
