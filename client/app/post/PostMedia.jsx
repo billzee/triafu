@@ -85,9 +85,10 @@ export default class PostBox extends Component {
               </div>
             ) : null
           }
+          
           <video ref={(video) => {this.video = video}} loop muted playsInline preload="auto">
-            <source src={this.state.video.webm.url} type="video/webm"/>
             <source src={this.state.video.mp4.url} type="video/mp4"/>
+            <source src={this.state.video.webm.url} type="video/webm"/>
           </video>
         </div>
       )
