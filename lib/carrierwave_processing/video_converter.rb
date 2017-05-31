@@ -16,7 +16,7 @@ module CarrierWave
       current_extension = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)
 
-      options = { video_min_bitrate: 300, resolution: '320x240' }
+      options = { video_min_bitrate: 200, resolution: '320x240', custom: %w(-vc libx264 ) }
 
       transcoder_options = {
         input_options: { f: current_extension },
