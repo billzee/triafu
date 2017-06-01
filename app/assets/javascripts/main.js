@@ -7,10 +7,8 @@ $(function(){
 
       if (scroll >= 40) {
         subHeader.addClass('fixed-top');
-        subHeader.addClass('sticky-top');
       } else{
         subHeader.removeClass('fixed-top');
-        subHeader.removeClass('sticky-top');
       }
     });
   }
