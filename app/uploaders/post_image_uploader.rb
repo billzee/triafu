@@ -45,7 +45,6 @@ class PostImageUploader < CarrierWave::Uploader::Base
         c.resize      "#{width}x#{height}>"
         c.resize      "#{width}x#{height}<"
       end
-
       img
     end
   end
