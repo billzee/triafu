@@ -16,6 +16,10 @@ export default class PostShareLinks extends Component {
 
   componentWillMount(){
     if(this.props.post) this.setState({referenceId: this.props.post.referenceId});
+  }
+
+  componentDidMount(){
+    this.setupPostUrl();
 
     pubsub.subscribe('share-links-for', (msg, referenceId)=>{
       this.setState({referenceId: referenceId});
@@ -23,13 +27,17 @@ export default class PostShareLinks extends Component {
     });
   }
 
-  componentDidMount(){
-    this.setupPostUrl();
-  }
-
   setupPostUrl(){
     let postUrl = window.location.host + '/post/' + this.state.referenceId;
     this.setState({postUrl: postUrl});
+  }
+
+  facebookShare(){
+    FB.ui({
+      method: 'share',
+      display: 'popup',
+      href: 'https://developers.facebook.com/docs/',
+    }, function(response){});
   }
 
   render(){
@@ -51,7 +59,7 @@ export default class PostShareLinks extends Component {
             <hr/>
           </div>
           <div className="col-12">
-            <button className="btn btn btn-block btn-facebook" disabled="true">
+            <button className="btn btn btn-block btn-facebook" onClick={()=>this.facebookShare()}>
               <i className="fa fa-facebook-f fa-1x"></i>
               <span className="ml-1">Facebook</span>
             </button>

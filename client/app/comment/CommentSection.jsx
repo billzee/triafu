@@ -43,7 +43,7 @@ export default class CommentSection extends Component {
     } catch(error){
       console.log(error);
     }
-    
+
     this.setState({loading: false});
   }
 

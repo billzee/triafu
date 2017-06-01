@@ -12,6 +12,10 @@ export default class PostBoxViewMobile extends Component {
     pubsub.publish('share-links-for', this.props.post.referenceId);
   }
 
+  forcePostWatch(){
+    pubsub.publish('watch-post', {postId: this.props.post.id, postAuthor: this.props.post.userId});
+  }
+
   render(){
     return (
       <box>
@@ -40,7 +44,7 @@ export default class PostBoxViewMobile extends Component {
               <div className="col-2 align-self-center pr-0">
                 &nbsp;
                 <button data-toggle="modal" data-target="#m_share_links"
-                className="btn btn-block btn-secondary p-2">
+                className="btn btn-block btn-secondary p-2" onClick={()=> this.forcePostWatch()}>
                   <i className="fa fa-share-alt"></i>
                 </button>
               </div>
@@ -59,7 +63,7 @@ export default class PostBoxViewMobile extends Component {
                   {this.props.post.commentCount || 0}
                 </span>
                 <button data-toggle="modal" data-target="#m_comments"
-                className="btn btn-block btn-secondary p-2">
+                className="btn btn-block btn-secondary p-2" onClick={()=> this.forcePostWatch()}>
                   <i className="fa fa-comments"></i>
                 </button>
               </div>
