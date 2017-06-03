@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 
-export default class PostBox extends Component {
+export default class PostMedia extends Component {
   constructor(props){
     super();
     this.state = {

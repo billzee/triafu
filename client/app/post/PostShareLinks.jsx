@@ -35,8 +35,7 @@ export default class PostShareLinks extends Component {
   facebookShare(){
     FB.ui({
       method: 'share',
-      display: 'popup',
-      href: 'https://developers.facebook.com/docs/',
+      href: 'http://beta.triafu.com.br/post/67a3d26e/'
     }, function(response){});
   }
 
@@ -90,7 +89,7 @@ export default class PostShareLinks extends Component {
             </CopyToClipboard>
           </div>
           <div className="col-4 pl-1 pr-0">
-            <button className="btn btn-sm btn-block btn-facebook" disabled="true">
+            <button className="btn btn-sm btn-block btn-facebook" onClick={()=>this.facebookShare()}>
               <i className="fa fa-facebook-f fa-1x"></i>
               <span className="ml-1">Facebook</span>
             </button>

@@ -20,7 +20,7 @@
 
     .loader{
       position: absolute;
-      top: 50%;
+      top: 35%;
       left: 50%;
       margin-left: -36px;
       margin-top: -28px;
@@ -143,11 +143,6 @@
 .col-100{
   width: 100px !important;
   max-width: 100px !important;
-}
-
-.p-fixed{
-  position: fixed;
-  top: 35%;
 }
 
 .post-dropzone{
