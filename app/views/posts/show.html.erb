@@ -1,7 +1,11 @@
 <% content_for :head do %>
+  <meta property="fb:app_id" content="1029068483890843">
+  <meta property="og:url" content="<%= request.original_url %>">
   <meta property="og:type" content="article">
   <meta property="og:title" content="<%= @post.title %>">
   <meta property="og:image" content="<%= @post.image %>">
+  <meta property="og:video" content="<%= @post.video %>">
+  <meta property="og:image:width" content="550">
 <% end %>
 
 <div class="row posts-container">
