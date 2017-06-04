@@ -42,7 +42,7 @@ export default class PostShareLinks extends Component {
   }
 
   twitterShare(){
-    helper.popupCenter("https://twitter.com/intent/tweet?url=" + this.state.postUrl, '_blank', 800, 800);
+    helper.popupCenter("https://twitter.com/intent/tweet?url=" + this.state.postUrl, '_blank', 600, 270);
   }
 
   render(){
