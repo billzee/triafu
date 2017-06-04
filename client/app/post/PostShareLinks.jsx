@@ -71,7 +71,7 @@ export default class PostShareLinks extends Component {
             <hr/>
           </div>
           <div className="col-12">
-            <button className="btn btn-sm btn-block btn-twitter" disabled="true">
+            <button className="btn btn-sm btn-block btn-twitter" onClick={()=>this.twitterShare()}>
               <i className="fa fa-twitter fa-1x"></i>
               <span className="ml-1">Twitter</span>
             </button>

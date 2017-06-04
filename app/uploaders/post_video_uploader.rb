@@ -30,6 +30,14 @@ class PostVideoUploader < CarrierWave::Uploader::Base
     end
   end
 
+  version :screenshot do
+    process take_screenshot: [:jpg]
+
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.jpg'
+    end
+  end
+
   def extension_white_list
     %w(mp4 mov avi mkv 3gp mpg mpeg gif)
   end

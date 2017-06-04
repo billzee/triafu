@@ -1,25 +1,4 @@
-<% content_for :head do %>
-  <meta property="fb:app_id" content="1029068483890843">
-  <meta property="og:url" content="<%= request.original_url %>">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="<%= @post.title %>">
-  <meta property="og:description" content="Clique para ver a imagem e escrever um comentário.">
-  <% if @post.image.file %>
-    <meta property="og:image" content="<%= @post.image %>">
-    <meta property="og:image:width" content="550">
-  <% elsif @post.video.url(:mp4) %>
-    <meta property="og:image" content="">
-    <meta property="og:video" content="<%= @post.video.url(:mp4) %>">
-    <meta property="og:video:type" content="video/mp4">
-  <% end %>
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@triafusite">
-  <meta name="twitter:title" content="<%= @post.title %>">
-  <meta name="twitter:description" content="Clique para ver a imagem e escrever um comentário.">
-  <meta name="twitter:image" content="<%= @post.image %>">
-  <meta name="twitter:domain" content="<%= request.domain %>">
-<% end %>
+<%= render "partials/social_header" %>
 
 <div class="row posts-container">
   <div class="col p-0 posts" id="posts">

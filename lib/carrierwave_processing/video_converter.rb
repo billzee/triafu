@@ -16,7 +16,8 @@ module CarrierWave
       current_extension = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)
 
-      options = { resolution: '320x240',
+      options = {
+        resolution: '320x240',
         custom: %w(-vc libx264 -crf 12 -movflags +faststart -pix_fmt yuv420p)
       }
 
@@ -30,6 +31,24 @@ module CarrierWave
       # warning: magic!
       # change format for uploaded file name and store file format
       # without this lines processed video files will remain in cache folder
+      self.filename[-current_extension.size..-1] = format.to_s
+      self.file.file[-current_extension.size..-1] = format.to_s
+
+      File.delete(tmpfile)
+    end
+
+    def take_screenshot(format)
+      directory = File.dirname(current_path)
+      tmpfile = File.join(directory, 'tmpfile')
+      File.rename(current_path, tmpfile)
+
+      file = ::FFMPEG::Movie.new(tmpfile)
+      new_name = File.basename(current_path, '.*') + '.' + format.to_s
+      current_extension = File.extname(current_path).gsub('.', '')
+      encoded_file = File.join(directory, new_name)
+
+      file.screenshot(encoded_file, seek_time: 2, resolution: '320x240')
+
       self.filename[-current_extension.size..-1] = format.to_s
       self.file.file[-current_extension.size..-1] = format.to_s
 
