@@ -3,6 +3,7 @@
   <meta property="og:url" content="<%= request.original_url %>">
   <meta property="og:type" content="article">
   <meta property="og:title" content="<%= @post.title %>">
+  <meta property="og:description" content="Clique para ver a imagem e escrever um comentário.">
   <% if @post.image.file %>
     <meta property="og:image" content="<%= @post.image %>">
     <meta property="og:image:width" content="550">
