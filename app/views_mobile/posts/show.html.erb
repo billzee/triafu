@@ -1,6 +1,7 @@
-<meta property="og:type"          content="website" />
-<meta property="og:title"         content="<%= @post.title %>" />
-<meta property="og:image"         content="<%= @post.image %>" />
+<% content_for :head do %>
+  <meta property="og:title"              content="<%= @post.title %>" />
+  <meta property="og:image"              content="<%= @post.image %>" />
+<% end %>
 
 <%= render "layouts/sub_header" %>
 

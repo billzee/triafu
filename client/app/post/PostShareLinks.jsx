@@ -28,14 +28,14 @@ export default class PostShareLinks extends Component {
   }
 
   setupPostUrl(){
-    let postUrl = window.location.host + '/post/' + this.state.referenceId;
+    let postUrl = window.location.protocol + '//' + window.location.host + '/post/' + this.state.referenceId;
     this.setState({postUrl: postUrl});
   }
 
   facebookShare(){
     FB.ui({
       method: 'share',
-      href: 'http://beta.triafu.com.br/post/67a3d26e/'
+      href: this.state.postUrl
     }, function(response){});
   }
 
