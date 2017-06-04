@@ -10,7 +10,7 @@ var PostsApi = {
   },
 
   _show: function(postReferenceId){
-    return Api('/post/' + postReferenceId, {method: 'GET'});
+    return Api('/post_json/' + postReferenceId, {method: 'GET'});
   },
 
   _create: function(post){

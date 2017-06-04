@@ -42,7 +42,8 @@ Rails.application.routes.draw do
   end
 
   get 'post/:reference_id' => 'posts#show', as: :post
-  
+  get 'post_json/:reference_id' => 'posts#show_json'
+
   post 'post/upload_file' => 'posts#upload_file'
   delete 'post/remove_file' => 'posts#remove_file'
 

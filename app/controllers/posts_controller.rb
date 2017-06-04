@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, :except => [:show, :index]
+  before_action :authenticate_user!, :except => [:show, :show_json, :index]
   @@new_post = nil
 
   def index
@@ -9,6 +9,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find_by(reference_id: params[:reference_id])
+  end
+
+  def show_json
     @post = Post.find_by(reference_id: params[:reference_id])
   end
 
