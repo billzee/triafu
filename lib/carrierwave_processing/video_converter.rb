@@ -16,9 +16,12 @@ module CarrierWave
       current_extension = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)
 
-      options = { resolution: '320x240', custom: %w(-movflags faststart -pix_fmt yuv420p) }
+      options = { resolution: '320x240',
+        custom: %w(-vc libx264 -crf 12 -movflags +faststart -pix_fmt yuv420p)
+      }
 
       transcoder_options = {
+        f: format,
         preserve_aspect_ratio: :width
       }
 

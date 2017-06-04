@@ -6,9 +6,10 @@
   <% if @post.image.file %>
     <meta property="og:image" content="<%= @post.image %>">
     <meta property="og:image:width" content="550">
-  <% elsif @post.video.file %>
+  <% elsif @post.video.url(:mp4) %>
     <meta property="og:image" content="">
-    <meta property="og:video" content="<%= @post.video %>">
+    <meta property="og:video" content="<%= @post.video.url(:mp4) %>">
+    <meta property="og:video:type" content="video/mp4">
   <% end %>
 <% end %>
 
