@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
 import CopyToClipboard from 'react-copy-to-clipboard';
 
+import helper from '../components/Helper'
+
 export default class PostShareLinks extends Component {
   constructor(props){
     super();
@@ -39,6 +41,10 @@ export default class PostShareLinks extends Component {
     }, function(response){});
   }
 
+  twitterShare(){
+    helper.popupCenter("https://twitter.com/intent/tweet?url=" + this.state.postUrl, '_blank', 800, 800);
+  }
+
   render(){
     if (this.props.isMobile){
       return(
@@ -50,7 +56,7 @@ export default class PostShareLinks extends Component {
                 this.setState({copyLinkLabel: 'Copiado!', blockCopy: true});
                 setTimeout(()=>{ this.setState({copyLinkLabel: 'Copiar Link', blockCopy: false}); }, 2000);
               }}>
-              <button className="btn btn btn-block btn-success" disabled={this.state.blockCopy}>
+              <button className="btn btn-sm btn-block btn-success" disabled={this.state.blockCopy}>
                 <i className="fa fa-clipboard fa-1x"></i>
                 <span className="ml-1">{this.state.copyLinkLabel}</span>
               </button>
@@ -58,14 +64,14 @@ export default class PostShareLinks extends Component {
             <hr/>
           </div>
           <div className="col-12">
-            <button className="btn btn btn-block btn-facebook" onClick={()=>this.facebookShare()}>
+            <button className="btn btn-sm btn-block btn-facebook" onClick={()=>this.facebookShare()}>
               <i className="fa fa-facebook-f fa-1x"></i>
               <span className="ml-1">Facebook</span>
             </button>
             <hr/>
           </div>
           <div className="col-12">
-            <button className="btn btn btn-block btn-twitter" disabled="true">
+            <button className="btn btn-sm btn-block btn-twitter" disabled="true">
               <i className="fa fa-twitter fa-1x"></i>
               <span className="ml-1">Twitter</span>
             </button>
@@ -95,7 +101,7 @@ export default class PostShareLinks extends Component {
             </button>
           </div>
           <div className="col-4 pl-1">
-            <button className="btn btn-sm btn-block btn-twitter" disabled="true">
+            <button className="btn btn-sm btn-block btn-twitter" onClick={()=>this.twitterShare()}>
               <i className="fa fa-twitter fa-1x"></i>
               <span className="ml-1">Twitter</span>
             </button>

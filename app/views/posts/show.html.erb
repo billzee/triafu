@@ -12,6 +12,13 @@
     <meta property="og:video" content="<%= @post.video.url(:mp4) %>">
     <meta property="og:video:type" content="video/mp4">
   <% end %>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@triafusite">
+  <meta name="twitter:title" content="<%= @post.title %>">
+  <meta name="twitter:description" content="Clique para ver a imagem e escrever um comentário.">
+  <meta name="twitter:image" content="<%= @post.image %>">
+  <meta name="twitter:domain" content="<%= request.domain %>">
 <% end %>
 
 <div class="row posts-container">
