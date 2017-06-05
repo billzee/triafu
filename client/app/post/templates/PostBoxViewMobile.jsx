@@ -51,8 +51,7 @@ export default class PostBoxViewMobile extends Component {
 
               <div className="col-8 text-center pr-1 pl-1">
                 <small className="text-muted">
-                  {this.props.points || 0} {helper.pluralize(this.props.points, "ponto")}
-                  &nbsp;&bull;&nbsp;publicado {moment(this.props.post.createdAt).fromNow()}
+                  {this.props.points || 0}&nbsp;&bull;&nbsp;{moment(this.props.post.createdAt).fromNow()}
                 </small>
 
                 <PostVoteBox post={this.props.post} isMobile="true" />
