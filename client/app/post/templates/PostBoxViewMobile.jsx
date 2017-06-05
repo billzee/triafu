@@ -8,11 +8,9 @@ import PostShareLinks from '../PostShareLinks';
 import PostVoteBox from '../PostVoteBox';
 
 export default class PostBoxViewMobile extends Component {
-  componentDidMount(){
-    pubsub.publish('share-links-for', this.props.post.referenceId);
-  }
 
   forcePostWatch(){
+    pubsub.publish('share-links-for', this.props.post.referenceId);
     pubsub.publish('watch-post', {postId: this.props.post.id, postAuthor: this.props.post.userId});
   }
 
