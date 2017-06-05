@@ -56,7 +56,7 @@ export default class PostShareLinks extends Component {
                 this.setState({copyLinkLabel: 'Copiado!', blockCopy: true});
                 setTimeout(()=>{ this.setState({copyLinkLabel: 'Copiar Link', blockCopy: false}); }, 2000);
               }}>
-              <button className="btn btn-sm btn-block btn-success" disabled={this.state.blockCopy}>
+              <button className="btn btn-block btn-success" disabled={this.state.blockCopy}>
                 <i className="fa fa-clipboard fa-1x"></i>
                 <span className="ml-1">{this.state.copyLinkLabel}</span>
               </button>
@@ -64,14 +64,14 @@ export default class PostShareLinks extends Component {
             <hr/>
           </div>
           <div className="col-12">
-            <button className="btn btn-sm btn-block btn-facebook" onClick={()=>this.facebookShare()}>
+            <button className="btn btn-block btn-facebook" onClick={()=>this.facebookShare()}>
               <i className="fa fa-facebook-f fa-1x"></i>
               <span className="ml-1">Facebook</span>
             </button>
             <hr/>
           </div>
           <div className="col-12">
-            <button className="btn btn-sm btn-block btn-twitter" onClick={()=>this.twitterShare()}>
+            <button className="btn btn-block btn-twitter" onClick={()=>this.twitterShare()}>
               <i className="fa fa-twitter fa-1x"></i>
               <span className="ml-1">Twitter</span>
             </button>
