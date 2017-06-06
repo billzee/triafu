@@ -71,10 +71,6 @@ h5 {
   margin-right: 30px;
 }
 
-.container {
-  padding-top: 4em;
-}
-
 .dropdown-menu-left {
   left: auto;
   right: 0;
@@ -85,6 +81,11 @@ h5 {
   .alert {
     border-radius: 0;
   }
+}
+
+.devise-container{
+  padding-top: 5%;
+  padding-bottom: 2em;
 }
 
 .posts-container {

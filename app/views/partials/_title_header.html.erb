@@ -1,0 +1,15 @@
+<% if @post %>
+  <title>Triafu | <%= @post.title %></title>
+<% elsif devise_controller? %>
+  <title>Triafu | conta</title>
+<% else %>
+  <title>Triafu |</title>
+<% end %>
+
+<meta name="description" content="A description of the page" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="google" content="notranslate" />
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui'/>
+
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
