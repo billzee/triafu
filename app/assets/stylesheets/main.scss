@@ -16,8 +16,12 @@ html, body {
   margin: 0;
   font-size: 14px;
 
+  -webkit-overflow-scrolling: touch;
+
   &.modal-open{
     overflow: hidden;
+    position: fixed;
+    -webkit-overflow-scrolling: auto;
   }
 }
 
