@@ -38,7 +38,7 @@ export default class PostBoxViewMobile extends Component {
             video={this.props.post.video}
             postId={this.props.post.id} />
 
-            <div className="row mt-1 no-gutters">
+            <div className="row mt-1 no-gutters pl-1 pr-1">
               <div className="col-2 align-self-center pr-0">
                 &nbsp;
                 <button data-toggle="modal" data-target="#m_share_links"

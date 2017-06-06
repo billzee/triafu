@@ -18,7 +18,7 @@ module CarrierWave
 
       options = {
         resolution: '320x240',
-        custom: %w(-vc libx264 -crf 12 -movflags +faststart -pix_fmt yuv420p)
+        custom: %w(-crf 12 -movflags +faststart -pix_fmt yuv420p)
       }
 
       transcoder_options = {
