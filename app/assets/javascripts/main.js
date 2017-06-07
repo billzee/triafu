@@ -1,15 +1,10 @@
 $(function(){
-  $('body').on('touchmove', function(e){
-    if($('.scroll-disable').has($(e.target)).length) e.preventDefault();
-  });
-
-  $('body').on('shown.bs.modal', function(){
-    $(this).addClass('scroll-disable');
-  });
-
-  $('body').on('hidden.bs.modal', function(){
-    $(this).removeClass('scroll-disable');
-  });
+  window.onscroll = function(e) {
+    if($('body').hasClass('modal-open')){
+      var x=window.scrollX, y=window.scrollY;
+      window.onscroll=function(){window.scrollTo(x, y);};
+    }
+  }
 
   if($('.sub-header-mobile').length){
     $(window).scroll(function(event){
