@@ -19,7 +19,7 @@ html, body {
 
   &.modal-open{
     height: 100%;
-    overflow: hidden;
+    overflow: hidden !important;
     -webkit-overflow-scrolling: auto;
   }
 }
