@@ -1,14 +1,11 @@
 $(function(){
-  window.onscroll = function(e) {
+  $(window).scroll(function(event){
     if($('body').hasClass('modal-open')){
       var x=window.scrollX, y=window.scrollY;
-      window.onscroll=function(){window.scrollTo(x, y);};
+      window.scrollTo(x,y);
     }
-  }
 
-  if($('.sub-header-mobile').length){
-    $(window).scroll(function(event){
-
+    if($('.sub-header-mobile').length){
       var subHeader = $('.sub-header-mobile'),
       scroll = $(window).scrollTop();
 
@@ -17,8 +14,8 @@ $(function(){
       } else{
         subHeader.removeClass('fixed-top');
       }
-    });
-  }
+    }
+  });
 
   if($(".communications").length){
     setTimeout(function(){
