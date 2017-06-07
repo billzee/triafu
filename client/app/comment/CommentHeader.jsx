@@ -22,7 +22,7 @@ export default class CommentHeader extends Component {
       );
     } else {
       return(
-        <div className="row comment-top bb-white">
+        <div className="row bb-white">
           <div className="col-12">
             <strong>
               {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}

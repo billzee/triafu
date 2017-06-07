@@ -1,5 +1,23 @@
 @import "variables";
 
+.comment-middle {
+  overflow: auto;
+  height: calc(100vh - 150px);
+  top: 10em;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comment-bottom {
+  padding-top: 0.5em;
+  height: 150px;
+}
+
+.comment-text {
+  margin-bottom: 0.2rem;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
 .mobile-comments{
   z-index: 9999;
   overflow: hidden;
@@ -10,23 +28,12 @@
   width: 100% !important;
   height: 100%;
   background-color: $light-gray;
-}
 
-.comment-middle {
-  overflow: auto;
-  height: calc(100vh - 150px);
-  top: 10em;
-  -webkit-overflow-scrolling: touch;
-}
+  .comment-middle {
+    height: calc(100vh - 120px);
+  }
 
-.comment-bottom {
-  padding-top: 0.5em;
-  height: 80px;
-  max-height: 100px;
-}
-
-.comment-text {
-  margin-bottom: 0.2rem;
-  word-break: break-all;
-  word-wrap: break-word;
+  .comment-bottom {
+    height: 120px;
+  }
 }
