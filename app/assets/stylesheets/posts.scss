@@ -14,12 +14,15 @@
 
 .col-12{
   .post-image{
-    text-align: center;
+    position: relative;
     min-height: 150px;
+    width: 100%;
+    min-height: 150px;
+    max-height: 1200px;
 
     .loader{
       position: absolute;
-      top: 35%;
+      top: 50%;
       left: 50%;
       margin-left: -36px;
       margin-top: -28px;
@@ -77,8 +80,11 @@
   max-width: 550px !important;
 
   .post-image{
-    text-align: center;
+    position: relative;
+    min-height: 150px;
+    width: 100%;
     min-height: 350px;
+    max-height: 1200px;
 
     .loader{
       position: absolute;

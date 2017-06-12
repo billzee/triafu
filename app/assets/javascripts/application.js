@@ -1,6 +1,4 @@
 //= require webpack-bundle
-
-//= require webpack-bundle
 //= require tether
 
 // This is a manifest file that'll be compiled into application.js, which will include all the files
@@ -18,4 +16,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery-mobile
 //= require_tree .

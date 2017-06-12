@@ -40,11 +40,13 @@ class PostImageUploader < CarrierWave::Uploader::Base
   def efficient_conversion(width, height)
     manipulate! do |img|
       img.format("jpg") do |c|
+        c.auto_orient
         c.fuzz        "3%"
         c.trim
         c.resize      "#{width}x#{height}>"
         c.resize      "#{width}x#{height}<"
       end
+
       img
     end
   end
