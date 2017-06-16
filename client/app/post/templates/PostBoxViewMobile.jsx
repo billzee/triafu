@@ -14,6 +14,12 @@ export default class PostBoxViewMobile extends Component {
     pubsub.publish('watch-post', {postId: this.props.post.id, postAuthor: this.props.post.userId});
   }
 
+  openNav(){
+    this.forcePostWatch();
+    document.getElementById("mySidenav").style.width = "90%";
+    document.getElementById("main").style.marginLeft = "90%";
+  }
+
   render(){
     return (
       <box>
@@ -59,8 +65,7 @@ export default class PostBoxViewMobile extends Component {
                 <span className="text-muted">
                   {this.props.post.commentCount || 0}
                 </span>
-                <button data-toggle="modal" data-target="#m_comments"
-                className="btn btn-block btn-secondary p-2" onClick={()=> this.forcePostWatch()}>
+                <button className="btn btn-block btn-secondary p-2" onClick={()=> this.openNav()}>
                   <i className="fa fa-comments"></i>
                 </button>
               </div>

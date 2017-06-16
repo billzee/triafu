@@ -1,17 +1,14 @@
 <%= render "layouts/sub_header" %>
 
-<a href="#mypanel">Open panel</a>
-
-<div class="row no-gutters" data-role="page">
+<div class="row no-gutters">
   <%= render "partials/devise_communications" %>
-  <div class="col-12 pb-4">
+
+  <div id="mySidenav" class="sidenav">
+    <%= react_component("CommentSection", props: { isMobile: true }, html_options: {class: "col-12"}) %>
+  </div>
+
+  <div id="main" class="col-12 pb-4">
     <%= react_component("PostSection", prerender: true,
     props: { category: params[:category], isMobile: true }) %>
   </div>
-
-  <div data-role="panel" id="mypanel">
-    panelllllllll
-  </div>
-
 </div>
-<%= render "modals/comments" %>
