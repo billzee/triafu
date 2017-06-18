@@ -16,6 +16,8 @@ export default class PostBoxViewMobile extends Component {
 
   openNav(){
     this.forcePostWatch();
+    var html = document.getElementsByTagName("body")[0];
+    html.className = "modal-open";
     document.getElementById("mySidenav").style.width = "90%";
     document.getElementById("main").style.marginLeft = "90%";
   }
@@ -69,7 +71,6 @@ export default class PostBoxViewMobile extends Component {
                   <i className="fa fa-comments"></i>
                 </button>
               </div>
-
             </div>
 
             <hr className="mt-3" />

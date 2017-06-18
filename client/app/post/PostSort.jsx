@@ -18,7 +18,6 @@ export default class PostSort extends Component {
     } else{
       window.scrollTo(0, 0);
     }
-
   }
 
   render(){
