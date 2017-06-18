@@ -1,7 +1,6 @@
 @import 'variables';
 
 .sidenav {
-  background: $light-gray;
   height: 100vh; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -9,10 +8,10 @@
   top: 0;
   left: 0;
   overflow: hidden; /* Disable horizontal scroll */
-  transition: 0.3s; /* 0.5 second transition effect to slide in the sidenav */
+  transition: .1s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-  transition: margin-left .3s;
+  transition: margin-left .1s;
 }

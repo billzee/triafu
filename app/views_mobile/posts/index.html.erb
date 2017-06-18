@@ -1,12 +1,11 @@
 <%= render "layouts/sub_header" %>
 
+<div id="mySidenav" class="sidenav mobile-comments">
+  <%= react_component("CommentSection", props: { isMobile: true }, html_options: {class: "col-12"}) %>
+</div>
+
 <div class="row no-gutters">
   <%= render "partials/devise_communications" %>
-
-  <div id="mySidenav" class="sidenav">
-    <%= react_component("CommentSection", props: { isMobile: true }, html_options: {class: "col-12"}) %>
-  </div>
-
   <div id="main" class="col-12 pb-4">
     <%= react_component("PostSection", prerender: true,
     props: { category: params[:category], isMobile: true }) %>

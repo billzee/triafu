@@ -5,6 +5,8 @@ export default class CommentHeader extends Component {
   closeNav(){
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
+    var body = document.getElementsByTagName("body")[0];
+    body.className = "";
   }
 
   render(){

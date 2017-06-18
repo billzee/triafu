@@ -17,11 +17,6 @@ html, body {
   font-size: 14px;
   height: 100vh;
   -webkit-overflow-scrolling: touch;
-
-  &.modal-open{
-    overflow: hidden !important;
-    -webkit-overflow-scrolling: auto;
-  }
 }
 
 img {
