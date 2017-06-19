@@ -45,38 +45,59 @@ export default class PostShareLinks extends Component {
     helper.popupCenter("https://twitter.com/intent/tweet?url=" + this.state.postUrl, '_blank', 600, 270);
   }
 
+  hideShareLinks(){
+    document.getElementById("share-links").style.height = "0";
+    var body = document.getElementsByTagName("body")[0];
+    var html = document.getElementsByTagName("html")[0];
+    body.className = "";
+    html.className = "";
+  }
+
   render(){
     if (this.props.isMobile){
       return(
-        <div className="row p-3">
-          <div className="col-12">
-            <CopyToClipboard
-              text={this.state.postUrl}
-              onCopy={()=> {
-                this.setState({copyLinkLabel: 'Copiado!', blockCopy: true});
-                setTimeout(()=>{ this.setState({copyLinkLabel: 'Copiar Link', blockCopy: false}); }, 2000);
-              }}>
-              <button className="btn btn-block btn-success" disabled={this.state.blockCopy}>
-                <i className="fa fa-clipboard fa-1x"></i>
-                <span className="ml-1">{this.state.copyLinkLabel}</span>
+        <box>
+          <div className="row p-3 pb-2">
+            <div className="col-6">
+              <h1>Compartilhar</h1>
+            </div>
+            <div className="col-6 text-right">
+              <button type="button" className="btn btn-sm btn-secondary"
+              onClick={()=> this.hideShareLinks()}>
+                Fechar
               </button>
-            </CopyToClipboard>
-            <hr/>
+            </div>
           </div>
-          <div className="col-12">
-            <button className="btn btn-block btn-facebook" onClick={()=>this.facebookShare()}>
-              <i className="fa fa-facebook-f fa-1x"></i>
-              <span className="ml-1">Facebook</span>
-            </button>
-            <hr/>
+          <div className="row p-3">
+            <div className="col-12">
+              <CopyToClipboard
+                text={this.state.postUrl}
+                onCopy={()=> {
+                  this.setState({copyLinkLabel: 'Copiado!', blockCopy: true});
+                  setTimeout(()=>{ this.setState({copyLinkLabel: 'Copiar Link', blockCopy: false}); }, 2000);
+                }}>
+                <button className="btn btn-block btn-success" disabled={this.state.blockCopy}>
+                  <i className="fa fa-clipboard fa-1x"></i>
+                  <span className="ml-1">{this.state.copyLinkLabel}</span>
+                </button>
+              </CopyToClipboard>
+              <hr/>
+            </div>
+            <div className="col-12">
+              <button className="btn btn-block btn-facebook" onClick={()=>this.facebookShare()}>
+                <i className="fa fa-facebook-f fa-1x"></i>
+                <span className="ml-1">Facebook</span>
+              </button>
+              <hr/>
+            </div>
+            <div className="col-12">
+              <button className="btn btn-block btn-twitter" onClick={()=>this.twitterShare()}>
+                <i className="fa fa-twitter fa-1x"></i>
+                <span className="ml-1">Twitter</span>
+              </button>
+            </div>
           </div>
-          <div className="col-12">
-            <button className="btn btn-block btn-twitter" onClick={()=>this.twitterShare()}>
-              <i className="fa fa-twitter fa-1x"></i>
-              <span className="ml-1">Twitter</span>
-            </button>
-          </div>
-        </div>
+        </box>
       );
     } else {
       return (
