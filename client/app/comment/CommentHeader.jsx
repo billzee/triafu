@@ -3,7 +3,7 @@ import pubsub from 'pubsub-js'
 
 export default class CommentHeader extends Component {
   closeNav(){
-    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("mobile-comments").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
     var body = document.getElementsByTagName("body")[0];
     body.className = "";
@@ -13,12 +13,12 @@ export default class CommentHeader extends Component {
     if(this.props.isMobile){
       return(
         <div className="row bb-white pt-1 pb-1">
-          <div className="col-8 align-self-center">
+          <div className="col-8 align-self-center pl-2">
             <strong>
               {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}
             </strong>
           </div>
-          <div className="col-4 align-self-center text-right">
+          <div className="col-4 align-self-center text-right pr-1">
             <button type="button"
             className="btn btn-sm btn-secondary"
             onClick={()=> this.closeNav()}>

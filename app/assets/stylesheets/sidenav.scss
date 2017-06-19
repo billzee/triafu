@@ -2,6 +2,7 @@
   height: 100vh;
   position: fixed;
   z-index: 9998;
+  max-width: 48em;
   width: 0;
   top: 0;
   left: 0;
@@ -9,6 +10,6 @@
   transition: .1s;
 }
 
-#main {
+#main{
   transition: margin-right .1s;
 }

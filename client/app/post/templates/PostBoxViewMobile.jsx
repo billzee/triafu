@@ -16,7 +16,7 @@ export default class PostBoxViewMobile extends Component {
 
   openNav(){
     this.forcePostWatch();
-    document.getElementById("mySidenav").style.width = "85%";
+    document.getElementById("mobile-comments").style.width = "95%";
     var body = document.getElementsByTagName("body")[0];
     body.className = "modal-open";
   }

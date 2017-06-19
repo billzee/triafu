@@ -5,7 +5,7 @@
       if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
       <%= link_to('Novas', newcomer_posts_path, class: "header-link col-4 header-link" +
       if current_page? newcomer_posts_path then " active" else "" end) %>
-      <div class="col-4 header-link pt-0 header-link">
+      <div class="col-4 header-link pt-0 pl-2">
         <%= react_component("PostSort", prerender: true) %>
       </div>
     </div>
