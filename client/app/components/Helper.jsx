@@ -65,7 +65,7 @@ var Helper = {
   },
 
   showShareLinks: function(){
-    document.getElementById("share-links").style.height = "50vh";
+    document.getElementById("share-links").style.height = "45vh";
     this.lockScroll();
   },
 
