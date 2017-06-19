@@ -5,13 +5,13 @@
 
   <div class="col categories">
      <div class="row no-gutters">
-        <%= link_to('Top', top_posts_path, class: "col-4 header-item" +
+        <%= link_to('Top', top_posts_path, class: "col-4 header-link" +
         if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
 
-       <%= link_to('Novas', newcomer_posts_path, class: "col-4 header-item" +
+       <%= link_to('Novas', newcomer_posts_path, class: "col-4 header-link" +
        if current_page? newcomer_posts_path then " active" else "" end) %>
 
-       <div class="col-4 header-item pt-0">
+       <div class="col-4 header-link pt-0">
          <%= react_component("PostSort", prerender: true) %>
        </div>
      </div>
@@ -27,7 +27,7 @@
         Criar Conta
       </button>
 
-      <a href class="header-item mt-1 pl-4 pr-4" data-toggle="modal" data-target="#m_login">
+      <a href class="header-link mt-1 pl-4 pr-4" data-toggle="modal" data-target="#m_login">
         Entrar
       </a>
     <% else %>
@@ -38,7 +38,7 @@
   </div>
 
   <% if user_signed_in? %>
-    <div class="profile-actions header-item">
+    <div class="profile-actions">
       <a href class="dropdown-toggle header-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag(current_user.image, class: "rounded-circle", height: 38, width: 38) %>
       </a>

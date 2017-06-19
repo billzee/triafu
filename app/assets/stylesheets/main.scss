@@ -95,7 +95,7 @@ h5 {
 }
 
 .tooltip{
-  z-index: 1010;
+  z-index: 9997;
 }
 
 .bgm-gray {
@@ -239,6 +239,7 @@ hr.or:after {
 }
 
 .modal {
+  z-index: 9999;
   height: 100vh;
 
   &.slide-right .modal-dialog {
@@ -252,4 +253,25 @@ hr.or:after {
   }
 
   &.show .modal-dialog { transform: translate3d(0, 0, 0); }
+}
+
+a.header-link {
+  height: 100%;
+  text-align: center;
+  text-decoration: none !important;
+  color: rgba(255,255,255,.5);
+  padding: 0;
+
+  &:link:visited:focus:hover {
+    color: rgba(255,255,255,.5);
+  }
+
+  &:hover {
+    color: rgba(255,255,255,1);
+  }
+
+  &.active {
+    background: $dark-gray;
+    color: rgba(255,255,255,1);
+  }
 }

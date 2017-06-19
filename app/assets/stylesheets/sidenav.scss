@@ -1,15 +1,14 @@
 .sidenav {
-  position: fixed; /* Stay in place */
-  height: 100vh; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  z-index: 9999; /* Stay on top */
+  height: 100vh;
+  position: fixed;
+  z-index: 9998;
+  width: 0;
   top: 0;
   left: 0;
-  overflow: hidden; /* Disable horizontal scroll */
-  transition: .1s; /* 0.5 second transition effect to slide in the sidenav */
+  overflow: hidden;
+  transition: .1s;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-right .1s;
 }

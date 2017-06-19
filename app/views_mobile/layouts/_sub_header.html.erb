@@ -1,13 +1,27 @@
-<div class="row sub-header-mobile bg-inverse no-gutters">
-  <div class="col-4 header-item">
-    <%= link_to('Top', top_posts_path, class: "header-link" +
-    if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
+<div class="row sub-header-mobile no-gutters">
+  <div class="col-8">
+    <div class="row no-gutters">
+      <%= link_to('Top', top_posts_path, class: "col-4 header-link" +
+      if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
+      <%= link_to('Novas', newcomer_posts_path, class: "header-link col-4 header-link" +
+      if current_page? newcomer_posts_path then " active" else "" end) %>
+      <div class="col-4 header-link pt-0 header-link">
+        <%= react_component("PostSort", prerender: true) %>
+      </div>
+    </div>
   </div>
-  <div class="col-4 header-item">
-    <%= link_to('Novas', newcomer_posts_path, class: "header-link" +
-    if current_page? newcomer_posts_path then " active" else "" end) %>
-  </div>
-  <div class="col-4 header-item pt-0">
-    <%= react_component("PostSort", prerender: true) %>
+
+  <div class="col-4 float-right p-2">
+    <% if !user_signed_in? %>
+      <button class="btn btn-sm btn-block btn-success"
+      data-toggle="modal" data-target="#m_login">
+        <i class="fa fa-plus"></i> Publicar
+      </button>
+    <% else %>
+      <button class="btn btn-sm btn-block btn-success"
+      data-toggle="modal" data-target="#m_new_post">
+        <i class="fa fa-plus"></i> Publicar
+      </button>
+    <% end %>
   </div>
 </div>

@@ -24,7 +24,7 @@ export default class Login extends Component {
 
   render(){
     return(
-        <div className="profile-actions header-item">
+        <div className="profile-actions header-link">
         <a href="#" className="dropdown-toggle header-link" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img className="rounded-circle" height="36" />
         </a>

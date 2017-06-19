@@ -5,27 +5,18 @@
 
   <div class="col pt-1 text-right">
     <% if !user_signed_in? %>
-      <button class="btn btn-primary" data-toggle="modal"
-      data-target="#m_signup">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#m_signup">
         Criar Conta
       </button>
 
-      <div class="list-inline-item header-item">
-        <a href class="header-link"
-        data-toggle="modal" data-target="#m_login">
-          Entrar
-        </a>
-      </div>
-    <% else %>
-      <button class="btn btn-success mr-1"
-      data-toggle="modal" data-target="#m_new_post">
-        <i class="fa fa-plus"></i> Publicar
-      </button>
+      <a href class="header-link pl-3 pr-3" data-toggle="modal" data-target="#m_login">
+        Entrar
+      </a>
     <% end %>
   </div>
 
   <% if user_signed_in? %>
-    <div class="profile-actions header-item">
+    <div class="profile-actions">
       <a href class="dropdown-toggle header-link pr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag(current_user.image, class: "rounded-circle", height: 35, width: 35) %>
       </a>
