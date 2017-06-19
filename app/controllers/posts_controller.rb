@@ -58,6 +58,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def save
+    if @@new_post.save
+      render :json => { :reference_id => @@new_post.reference_id }
+      @@new_post = nil
+    else
+      file_errors = resolve_image_or_video @@new_post.errors
+      @@new_post.errors[:file].push(file_errors) unless file_errors.nil?
+
+      render :json => { :errors => @@new_post.errors }
+    end
+  end
+
   private
 
   def paginated_posts

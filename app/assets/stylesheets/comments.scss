@@ -20,4 +20,11 @@
 
 #mobile-comments{
   background-color: $light-gray;
+
+  .comment-middle {
+    overflow: auto;
+    height: calc(60vh - 150px);
+    top: 10em;
+    -webkit-overflow-scrolling: touch;
+  }
 }

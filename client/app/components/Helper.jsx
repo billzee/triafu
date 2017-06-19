@@ -76,12 +76,12 @@ var Helper = {
   },
 
   showComments: function(){
-    document.getElementById("mobile-comments").style.width = "95%";
+    document.getElementById("mobile-comments").style.height = "60vh";
     this.lockScroll();
   },
 
   hideComments: function(){
-    document.getElementById("mobile-comments").style.width = "0";
+    document.getElementById("mobile-comments").style.height = "0";
     this.releaseScroll();
   }
 

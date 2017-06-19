@@ -30,7 +30,7 @@ export default class PostShareLinks extends Component {
   }
 
   setupPostUrl(){
-    let postUrl = window.location.protocol + '//' + window.location.host + '/post/' + this.state.referenceId;
+    let postUrl = window.location.protocol + '//' + window.location.host + '/pub/' + this.state.referenceId;
     this.setState({postUrl: postUrl});
   }
 
