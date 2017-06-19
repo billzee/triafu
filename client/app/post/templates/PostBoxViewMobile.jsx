@@ -23,11 +23,9 @@ export default class PostBoxViewMobile extends Component {
 
   showShareLinks(){
     this.forcePostWatch();
-    document.getElementById("share-links").style.height = "45%";
+    document.getElementById("share-links").style.height = "50vh";
     var body = document.getElementsByTagName("body")[0];
-    var html = document.getElementsByTagName("html")[0];
     body.className = "modal-open";
-    html.className = "modal-open";
   }
 
   render(){

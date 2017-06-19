@@ -48,9 +48,7 @@ export default class PostShareLinks extends Component {
   hideShareLinks(){
     document.getElementById("share-links").style.height = "0";
     var body = document.getElementsByTagName("body")[0];
-    var html = document.getElementsByTagName("html")[0];
     body.className = "";
-    html.className = "";
   }
 
   render(){
@@ -58,10 +56,10 @@ export default class PostShareLinks extends Component {
       return(
         <box>
           <div className="row p-3 pb-2">
-            <div className="col-6">
+            <div className="col-8">
               <h1>Compartilhar</h1>
             </div>
-            <div className="col-6 text-right">
+            <div className="col-4 text-right">
               <button type="button" className="btn btn-sm btn-secondary"
               onClick={()=> this.hideShareLinks()}>
                 Fechar
