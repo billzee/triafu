@@ -1,15 +1,23 @@
 .sidenav {
-  height: 100vh;
   position: fixed;
   z-index: 9998;
-  max-width: 48em;
-  width: 0;
-  top: 0;
-  left: 0;
   overflow: hidden;
   transition: .1s;
-}
 
-#main{
-  transition: margin-right .1s;
+  &.right{
+    height: 100vh;
+    max-width: 48em;
+    width: 0;
+    top: 0;
+    left: 0;
+  }
+
+  &.bottom{
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 100vh;
+    max-width: 25em;
+    max-height: 20em;
+  }
 }

@@ -14,11 +14,20 @@ export default class PostBoxViewMobile extends Component {
     pubsub.publish('watch-post', {postId: this.props.post.id, postAuthor: this.props.post.userId});
   }
 
-  openNav(){
+  showComments(){
     this.forcePostWatch();
     document.getElementById("mobile-comments").style.width = "95%";
     var body = document.getElementsByTagName("body")[0];
     body.className = "modal-open";
+  }
+
+  showShareLinks(){
+    this.forcePostWatch();
+    document.getElementById("share-links").style.height = "35%";
+    var body = document.getElementsByTagName("body")[0];
+    var html = document.getElementsByTagName("html")[0];
+    body.className = "modal-open";
+    html.className = "modal-open";
   }
 
   render(){
@@ -48,8 +57,7 @@ export default class PostBoxViewMobile extends Component {
             <div className="row mt-1 no-gutters pl-1 pr-1">
               <div className="col-2 align-self-center pr-0">
                 &nbsp;
-                <button data-toggle="modal" data-target="#m_share_links"
-                className="btn btn-block btn-secondary p-2" onClick={()=> this.forcePostWatch()}>
+                <button className="btn btn-block btn-secondary p-2" onClick={()=> this.showShareLinks()}>
                   <i className="fa fa-share-alt"></i>
                 </button>
               </div>
@@ -66,7 +74,7 @@ export default class PostBoxViewMobile extends Component {
                 <span className="text-muted">
                   {this.props.post.commentCount || 0}
                 </span>
-                <button className="btn btn-block btn-secondary p-2" onClick={()=> this.openNav()}>
+                <button className="btn btn-block btn-secondary p-2" onClick={()=> this.showComments()}>
                   <i className="fa fa-comments"></i>
                 </button>
               </div>

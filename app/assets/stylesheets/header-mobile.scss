@@ -52,17 +52,12 @@
   padding: 0;
   top: 0;
 
-  button{
-    margin-top: 1px; 
-  }
-
-  .row{
+  * {
     height: 100%;
   }
 
   .header-link {
     padding-top: 10px;
-    height: 100% !important;
 
     .dropdown{
       &.pt-text{

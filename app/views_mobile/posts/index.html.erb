@@ -1,18 +1,17 @@
-<div id="mobile-comments" class="sidenav">
+<div id="mobile-comments" class="sidenav right">
   <%= react_component("CommentSection", props: { isMobile: true }, html_options: {class: "pr-3 pl-3"}) %>
 </div>
 
-<div id="main">
-  <%= render "layouts/sub_header" %>
-  <div class="row no-gutters">
-    <%= render "partials/devise_communications" %>
-    <div class="col-12 pb-4">
-      <%= react_component("PostSection", prerender: true,
-      props: { category: params[:category], isMobile: true }) %>
-    </div>
+<%= render "layouts/sub_header" %>
+<div class="row no-gutters">
+  <%= render "partials/devise_communications" %>
+  <div class="col-12 pb-4">
+    <%= react_component("PostSection", prerender: true,
+    props: { category: params[:category], isMobile: true }) %>
   </div>
 </div>
 
-<div id="share-links" class="sidenav mobile-comments">
-  <%= react_component("PostShareLinks", props: { isMobile: true }, prerender: true) %>
+<div id="share-links" class="sidenav bottom bgm-white">
+  <%= react_component("PostShareLinks", props: { isMobile: true },
+  html_options: {class: "pr-3 pl-3"}, prerender: true) %>
 </div>
