@@ -1,9 +1,7 @@
-@import 'variables';
-
 .sidenav {
   height: 100vh; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
+  position: absolute;; /* Stay in place */
   z-index: 9999; /* Stay on top */
   top: 0;
   left: 0;
@@ -13,5 +11,5 @@
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-  transition: margin-left .1s;
+  transition: margin-right .1s;
 }
