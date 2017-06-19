@@ -52,7 +52,39 @@ var Helper = {
     if (window.focus){
       newWindow.focus();
     }
+  },
+
+  lockScroll: function(){
+    var body = document.getElementsByTagName("body")[0];
+    body.className = "modal-open";
+  },
+
+  releaseScroll: function(){
+    var body = document.getElementsByTagName("body")[0];
+    body.removeAttribute("class");
+  },
+
+  showShareLinks: function(){
+    document.getElementById("share-links").style.height = "50vh";
+    this.lockScroll();
+  },
+
+  hideShareLinks: function(){
+    document.getElementById("share-links").style.height = "0";
+    this.releaseScroll();
+
+  },
+
+  showComments: function(){
+    document.getElementById("mobile-comments").style.width = "95%";
+    this.lockScroll();
+  },
+
+  hideComments: function(){
+    document.getElementById("mobile-comments").style.width = "0";
+    this.releaseScroll();
   }
+
 };
 
 export default Helper;

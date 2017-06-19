@@ -60,14 +60,19 @@
     padding-top: 10px;
 
     .dropdown{
+      padding-left: 15px;
+
       &.pt-text{
         padding-top: .7rem;
       }
 
       &.pt-icon{
-        padding-top: .3rem;
+        // padding-top: .3rem;
+      }
+
+      .dropdown-menu{
+        height: auto;
       }
     }
-
   }
 }

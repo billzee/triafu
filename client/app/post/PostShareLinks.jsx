@@ -45,12 +45,6 @@ export default class PostShareLinks extends Component {
     helper.popupCenter("https://twitter.com/intent/tweet?url=" + this.state.postUrl, '_blank', 600, 270);
   }
 
-  hideShareLinks(){
-    document.getElementById("share-links").style.height = "0";
-    var body = document.getElementsByTagName("body")[0];
-    body.className = "";
-  }
-
   render(){
     if (this.props.isMobile){
       return(
@@ -61,7 +55,7 @@ export default class PostShareLinks extends Component {
             </div>
             <div className="col-4 text-right">
               <button type="button" className="btn btn-sm btn-secondary"
-              onClick={()=> this.hideShareLinks()}>
+              onClick={()=> helper.hideShareLinks()}>
                 Fechar
               </button>
             </div>

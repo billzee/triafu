@@ -16,16 +16,14 @@ export default class PostBoxViewMobile extends Component {
 
   showComments(){
     this.forcePostWatch();
-    document.getElementById("mobile-comments").style.width = "95%";
-    var body = document.getElementsByTagName("body")[0];
-    body.className = "modal-open";
+    helper.showComments();
   }
 
   showShareLinks(){
     this.forcePostWatch();
     document.getElementById("share-links").style.height = "50vh";
     var body = document.getElementsByTagName("body")[0];
-    body.className = "modal-open";
+    body.removeAttribute("class");
   }
 
   render(){
