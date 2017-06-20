@@ -19,6 +19,11 @@ export default class PostBoxViewMobile extends Component {
     helper.showComments();
   }
 
+  showShareLinks(){
+    this.forcePostWatch();
+    helper.showShareLinks();
+  }
+
   render(){
     return (
       <box>
@@ -46,7 +51,7 @@ export default class PostBoxViewMobile extends Component {
             <div className="row mt-1 no-gutters pl-1 pr-1">
               <div className="col-2 align-self-center pr-0">
                 &nbsp;
-                <button className="btn btn-block btn-secondary p-2" onClick={()=> helper.showShareLinks()}>
+                <button className="btn btn-block btn-secondary p-2" onClick={()=> this.showShareLinks()}>
                   <i className="fa fa-share-alt"></i>
                 </button>
               </div>

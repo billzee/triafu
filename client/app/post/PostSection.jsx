@@ -134,7 +134,36 @@ export default class PostSection extends Component {
   }
 
   render(){
-    return (
+    if(this.props.isMobile){
+      return(
+        <box>
+          {
+            this.state.posts.map((post)=>{
+              return(
+                <PostBox post={post}
+                currentPost={this.state.currentPost}
+                isMobile={this.state.isMobile} />
+              );
+            })
+          }
+          {
+            this.state.postReferenceId ?
+            (
+              <div className="row pb-4 no-gutters">
+                <div className="col-10 offset-1">
+                  <button type="button" onClick={(e) => this.paginatePosts(e)}
+                  className="btn btn-block btn-primary">
+                    Carregar mais publicações
+                  </button>
+                </div>
+              </div>
+            ) : null
+          }
+          { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null }
+        </box>
+      );
+    } else{
+      return(
       <box>
         {
           this.state.posts.map((post)=>{
@@ -153,40 +182,24 @@ export default class PostSection extends Component {
             );
           })
         }
-
         {
           this.state.postReferenceId ?
           (
-            this.state.isMobile ?
-            (
-              <div className="row pb-4 no-gutters">
-                <div className="col-10 offset-1">
+            <div className="row justify-content-end mr-5">
+              <div className="col-700">
+                <div className="col-550">
                   <button type="button" onClick={(e) => this.paginatePosts(e)}
                   className="btn btn-block btn-primary">
                     Carregar mais publicações
                   </button>
                 </div>
               </div>
-            )
-            :
-            (
-              <div className="row justify-content-end mr-5">
-                <div className="col-700">
-                  <div className="col-550">
-                    <button type="button" onClick={(e) => this.paginatePosts(e)}
-                    className="btn btn-block btn-primary">
-                      Carregar mais publicações
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )
-          )
-          : null
-        }
-
-        { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null }
-      </box>
-    );
+            </div>
+            ) : null
+          }
+          { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null }
+        </box>
+      );
+    }
   }
 }
