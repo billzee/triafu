@@ -50,6 +50,8 @@ class PostsController < ApplicationController
     save_post
   end
 
+  private
+
   def save_post
     if @@new_post.save
       render :json => { :reference_id => @@new_post.reference_id }
@@ -61,8 +63,6 @@ class PostsController < ApplicationController
       render :json => { :errors => @@new_post.errors }
     end
   end
-
-  private
 
   def paginated_posts
     posts = Post.all_from_category params[:category]

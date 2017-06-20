@@ -15,13 +15,10 @@
     <% if !user_signed_in? %>
       <button class="btn btn-sm btn-block btn-success"
       data-toggle="modal" data-target="#m_login">
-        <i class="fa fa-plus"></i> Publicar
+        <strong>Publicar</strong>
       </button>
     <% else %>
-      <button class="btn btn-sm btn-block btn-success"
-      data-toggle="modal" data-target="#m_new_post">
-        <i class="fa fa-plus"></i> Publicar
-      </button>
+      <%= react_component("PublishButton", props: { isMobile: true }) %>
     <% end %>
   </div>
 </div>

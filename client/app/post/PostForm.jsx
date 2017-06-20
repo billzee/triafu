@@ -31,6 +31,8 @@ export default class PostSection extends Component {
     this.setState({submitLabel: 'Publicando...'});
     this.setState({disableInputs: true});
 
+    pubsub.publish('post-publishing', true);
+
     try{
       let res = await PostsApi._create(this.state);
       let resJson = await res.json();
@@ -51,6 +53,7 @@ export default class PostSection extends Component {
     this.setState({loading: false});
     this.setState({submitLabel: 'Publicar'});
     this.setState({disableInputs: false});
+    pubsub.publish('post-publishing', false);
   }
 
   componentDidMount(){
@@ -103,7 +106,6 @@ export default class PostSection extends Component {
 
           </div>
         </div>
-
 
       </form>
     );

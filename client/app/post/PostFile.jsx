@@ -45,8 +45,6 @@ export default class PostFile extends Component {
         let res = await PostsApi._upload_file(files[0]);
         let resJson = await res.json();
 
-        console.log(resJson);
-
         if(resJson.errors){
           this.setState({fileErrors: resJson.errors});
         }
