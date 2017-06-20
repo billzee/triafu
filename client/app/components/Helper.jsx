@@ -76,7 +76,7 @@ var Helper = {
   },
 
   showComments: function(){
-    document.getElementById("mobile-comments").style.height = "80vh";
+    document.getElementById("mobile-comments").style.height = "100vh";
     this.lockScroll();
   },
 

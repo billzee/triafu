@@ -96,11 +96,14 @@ export default class CommentSection extends Component {
   render(){
     return (
       <box>
-        <CommentHeader totalCount={this.state.totalCount} isMobile={this.state.isMobile} />
+        <div className="row comment-header bb-white">
+          <div className="col">
+            <CommentHeader totalCount={this.state.totalCount} isMobile={this.state.isMobile} />
+            <CommentForm postId={this.state.postId} />
+          </div>
+        </div>
 
-        <CommentForm postId={this.state.postId} />
-
-        <div className="row panel pt-2 comment-list" ref={(div) => {this.commentScroll = div}}>
+        <div className="row pt-2 comment-list" ref={(div) => {this.commentScroll = div}}>
           {
             this.state.comments.length > 0 ?
               (
@@ -146,7 +149,6 @@ export default class CommentSection extends Component {
               ) : null
           }
         </div>
-
       </box>
     );
   }

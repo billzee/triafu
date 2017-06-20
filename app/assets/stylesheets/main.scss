@@ -19,6 +19,10 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
+.modal-open{
+  overflow: hidden !important;
+}
+
 img {
   image-orientation: from-image;
 }

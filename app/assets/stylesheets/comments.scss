@@ -1,14 +1,13 @@
 @import "variables";
 
-.comment-list {
-  overflow: auto;
-  height: calc(100vh - 150px);
-  top: 10em;
-  -webkit-overflow-scrolling: touch;
+.comment-header{
+  height: 115px;
 }
 
-.comment-form {
-  height: 6em;
+.comment-list {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  height: calc(100% - 115px);
 }
 
 .comment-text {
@@ -19,4 +18,8 @@
 
 #mobile-comments{
   background-color: $light-gray;
+  
+  .comment-list {
+    height: calc(100vh - 115px);
+  }
 }

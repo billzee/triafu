@@ -140,7 +140,9 @@ export default class PostSection extends Component {
           {
             this.state.posts.map((post)=>{
               return(
-                <PostBox post={post}
+                <PostBox
+                key={post.id}
+                post={post}
                 currentPost={this.state.currentPost}
                 isMobile={this.state.isMobile} />
               );

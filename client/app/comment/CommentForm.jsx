@@ -44,7 +44,7 @@ export default class CommentForm extends Component {
 
   render(){
     return(
-      <div className="row bb-white pt-0 comment-form">
+      <div className="row pt-0">
         <div className="col p-2 pt-0">
           <form onSubmit={(e) => this.comment(e)} method="post" className="form">
 

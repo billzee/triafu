@@ -1,10 +1,5 @@
 $(function(){
   $(window).scroll(function(event){
-    if($('body').hasClass('modal-open')){
-      var x=window.scrollX, y=window.scrollY;
-      window.scrollTo(x,y);
-    }
-
     if($('.sub-header-mobile').length){
       var subHeader = $('.sub-header-mobile'),
       scroll = $(window).scrollTop();
