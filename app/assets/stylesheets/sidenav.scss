@@ -6,7 +6,7 @@
 
   &.right{
     height: 100vh;
-    max-width: 48em;
+    max-width: 50em;
     width: 0;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
     right: 0;
     height: 0;
     width: 100%;
-    max-width: 60em;
+    max-width: 50em;
   }
 
   &.bottom{
@@ -25,7 +25,7 @@
     left: 0;
     height: 0;
     width: 100%;
-    max-width: 25em;
+    max-width: 35em;
     max-height: 20em;
   }
 }

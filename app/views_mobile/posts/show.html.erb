@@ -1,10 +1,9 @@
 <%= render "partials/social_header" %>
+<%= render "layouts/sub_header" %>
 
 <div id="mobile-comments" class="sidenav right">
   <%= react_component("CommentSection", props: { isMobile: true }, html_options: {class: "pr-3 pl-3"}) %>
 </div>
-
-<%= render "layouts/sub_header" %>
 
 <div class="row no-gutters">
   <%= render "partials/devise_communications" %>

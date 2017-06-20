@@ -23,8 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :user_logged_in?
-  # helper_method :mobile_device?
-
+  helper_method :mobile_device?
 
   def configure_permitted_parameters
     added_attrs = [:full_name, :username, :email, :password, :password_confirmation]
