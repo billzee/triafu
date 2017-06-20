@@ -98,7 +98,9 @@ export default class CommentSection extends Component {
       <box>
         <CommentHeader totalCount={this.state.totalCount} isMobile={this.state.isMobile} />
 
-        <div className="row panel pt-2 comment-middle" ref={(div) => {this.commentScroll = div}}>
+        <CommentForm postId={this.state.postId} />
+
+        <div className="row panel pt-2 comment-list" ref={(div) => {this.commentScroll = div}}>
           {
             this.state.comments.length > 0 ?
               (
@@ -145,7 +147,6 @@ export default class CommentSection extends Component {
           }
         </div>
 
-        <CommentForm postId={this.state.postId} />
       </box>
     );
   }

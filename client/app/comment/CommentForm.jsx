@@ -44,18 +44,11 @@ export default class CommentForm extends Component {
 
   render(){
     return(
-      <div className="row bt-white pt-0 comment-bottom">
+      <div className="row bb-white pt-0 comment-form">
         <div className="col p-2 pt-0">
           <form onSubmit={(e) => this.comment(e)} method="post" className="form">
 
             <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
-              <span className="input-group-btn">
-                <button type="button" className="btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_image_comment"
-                disabled={this.state.loading || !this.props.postId}>
-                  <i className="fa fa-smile-o"/>
-                </button>
-              </span>
-
               <TextAreaAutosize
                 onKeyUp={(e) => this.isSubmiting(e)}
                 value={this.state.text}

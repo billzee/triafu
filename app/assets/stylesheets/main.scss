@@ -15,7 +15,7 @@ html, body {
   padding: 0;
   margin: 0;
   font-size: 14px;
-  height: 100vh;
+  height: 100vh !important;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -74,7 +74,7 @@ h5 {
 }
 
 .devise{
-  margin-top: 4%;
+  padding-top: 4%;
 }
 
 .posts-container {

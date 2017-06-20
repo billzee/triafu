@@ -7,7 +7,7 @@ export default class CommentHeader extends Component {
   render(){
     if(this.props.isMobile){
       return(
-        <div className="row bb-white pt-1 pb-1">
+        <div className="row pt-1 pb-1">
           <div className="col-8 align-self-center pl-2">
             <strong>
               {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}
@@ -24,7 +24,7 @@ export default class CommentHeader extends Component {
       );
     } else {
       return(
-        <div className="row bb-white">
+        <div className="row">
           <div className="col-12">
             <strong>
               {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}

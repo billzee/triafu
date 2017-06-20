@@ -20,6 +20,7 @@ export default class PostSection extends Component {
       submitLabel: 'Publicar',
       errors: {}
     };
+
     this.publish = this.publish.bind(this);
   }
 
@@ -34,13 +35,11 @@ export default class PostSection extends Component {
       let res = await PostsApi._create(this.state);
       let resJson = await res.json();
 
-      console.log(resJson);
-
       if(resJson.errors){
         this.setState({errors: resJson.errors});
         if(resJson.errors.file) pubsub.publish('file-errors', resJson.errors.file)
       } else if(resJson.reference_id){
-        window.location = "/post/" + resJson.reference_id;
+        window.location = "/pub/" + resJson.reference_id;
       } else{
         window.location.reload();
       }

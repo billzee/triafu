@@ -47,18 +47,10 @@ class PostsController < ApplicationController
       @@new_post = Post.new post_params
     end
 
-    if @@new_post.save
-      render :json => { :reference_id => @@new_post.reference_id }
-      @@new_post = nil
-    else
-      file_errors = resolve_image_or_video @@new_post.errors
-      @@new_post.errors[:file].push(file_errors) unless file_errors.nil?
-
-      render :json => { :errors => @@new_post.errors }
-    end
+    save_post
   end
 
-  def save
+  def save_post
     if @@new_post.save
       render :json => { :reference_id => @@new_post.reference_id }
       @@new_post = nil
