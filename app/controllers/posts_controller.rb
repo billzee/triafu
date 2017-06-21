@@ -4,7 +4,11 @@ class PostsController < ApplicationController
 
   def index
     if request.format.json?
-      @paginated_posts = paginated_posts
+      @paginated_posts = params[:username] ? paginated_posts_from_user : paginated_posts
+    end
+
+    if params[:username]
+      @user = User.find_by(username: params[:username])
     end
   end
 
@@ -50,6 +54,13 @@ class PostsController < ApplicationController
     save_post
   end
 
+  def user_showcase
+    if request.format.json?
+      @paginated_posts = paginated_posts
+      render :index
+    end
+  end
+
   private
 
   def save_post
@@ -66,6 +77,12 @@ class PostsController < ApplicationController
 
   def paginated_posts
     posts = Post.all_from_category params[:category]
+    page = params[:page] ? params[:page] : 1
+    posts = posts.page(page)
+  end
+
+  def paginated_posts_from_user
+    posts = Post.all_from_user params[:username]
     page = params[:page] ? params[:page] : 1
     posts = posts.page(page)
   end

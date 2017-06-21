@@ -6,6 +6,7 @@
 
 <div class="row no-gutters">
   <%= render "partials/devise_communications" %>
+  <%= render "partials/user_profile" %>
   <div class="col-12 pb-4">
     <%= react_component("PostSection", prerender: true,
     props: { category: params[:category], isMobile: true }) %>

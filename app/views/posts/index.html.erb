@@ -2,8 +2,15 @@
   <div class="col p-0 posts" id="posts">
     <div class="row m-0">
       <%= render "partials/devise_communications" %>
+      <%= render "partials/user_profile" %>
+
       <div class="col-12">
-        <%= react_component("PostSection", props: { category: params[:category] }, prerender: true) %>
+        <%= react_component("PostSection",
+        props: {
+          category: params[:category],
+          username: params[:username]
+        },
+        prerender: true) %>
       </div>
     </div>
   </div>

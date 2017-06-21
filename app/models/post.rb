@@ -41,6 +41,11 @@ class Post < ApplicationRecord
     where(category: category).order(updated_at: :desc)
   end
 
+  def self.all_from_user username
+    user = User.find_by username: username
+    where(user_id: user.id).order(updated_at: :desc)
+  end
+
   def destroy_file?
     self.file = self.video = self.image = nil
 

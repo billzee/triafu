@@ -2,11 +2,15 @@ import Api from './Api';
 import FileApi from './FileApi';
 
 var PostsApi = {
-  _index: function(p, c){
+  _index: function(p, c, u){
     let page = p ? p : 1;
     let category = c ? c : "top";
-
-    return Api('/posts/page/' + page + '?category=' + category, {method: 'GET'});
+    
+    if(u){
+      return Api('/posts/page/' + page + '?username=' + u, {method: 'GET'});
+    } else{
+      return Api('/posts/page/' + page + '?category=' + category, {method: 'GET'});
+    }
   },
 
   _show: function(postReferenceId){

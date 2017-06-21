@@ -47,9 +47,9 @@ export default class PostSection extends Component {
     }
   }
 
-  async index(category=(this.props.category || "top")){
+  async index(category=(this.props.category || "top"), username=(this.props.username || "")){
     try{
-      let res = await PostsApi._index(null, category);
+      let res = await PostsApi._index(null, category, username);
       let resJson = await res.json();
 
       var sortedPosts;
@@ -72,13 +72,13 @@ export default class PostSection extends Component {
     }
   }
 
-  async paginatePosts(e, category=(this.props.category || "top")){
+  async paginatePosts(e, category=(this.props.category || "top"), username=(this.props.username || "")){
     if(e) e.preventDefault();
 
     try{
       if(this.state.postReferenceId) this.setState({postReferenceId: null});
 
-      let res = await PostsApi._index(this.state.page, category);
+      let res = await PostsApi._index(this.state.page, category, username);
       let resJson = await res.json();
 
       var sortedPosts;

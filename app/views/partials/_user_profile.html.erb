@@ -1,0 +1,15 @@
+<% if @user %>
+  <div class="col-12 bgm-dark p-2">
+    <div class="row text-white no-gutters">
+      <div class="col-4 text-right">
+        <%= image_tag(@user.image, class: "rounded-circle", height: 60) %>
+      </div>
+      <div class="col-8 pl-3">
+        <small>você está vendo pubs do(a)</small>
+        <br>
+        <h1 class="mb-0"><%= @user.username %></h1>
+        (<%= @user.full_name %>)
+      </div>
+    </div>
+  </div>
+<% end %>
