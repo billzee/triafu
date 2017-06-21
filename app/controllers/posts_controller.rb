@@ -3,12 +3,12 @@ class PostsController < ApplicationController
   @@new_post = nil
 
   def index
-    if request.format.json?
-      @paginated_posts = params[:username] ? paginated_posts_from_user : paginated_posts
+    if params[:username]
+      @user = User.find_by!(username: params[:username])
     end
 
-    if params[:username]
-      @user = User.find_by(username: params[:username])
+    if request.format.json?
+      @paginated_posts = params[:username] ? paginated_posts_from_user : paginated_posts
     end
   end
 
