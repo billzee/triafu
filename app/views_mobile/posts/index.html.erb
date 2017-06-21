@@ -8,8 +8,13 @@
   <%= render "partials/devise_communications" %>
   <%= render "partials/user_profile" %>
   <div class="col-12 pb-4">
-    <%= react_component("PostSection", prerender: true,
-    props: { category: params[:category], isMobile: true }) %>
+    <%= react_component("PostSection",
+    props:{
+      category: params[:category],
+      username: params[:username],
+      isMobile: true
+    },
+    prerender: true) %>
   </div>
 </div>
 
