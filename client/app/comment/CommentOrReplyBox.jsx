@@ -35,15 +35,22 @@ export default class CommentOrReplyBox extends Component {
     this.setState(({release: commentId}));
   }
 
+  visitUserPage(){
+    window.open(window.location + "usuario/" + this.props.commentOrReply.user.username, '_blank');
+  }
+
   render(){
     return (
       <box>
         <div className="row">
           <img src={this.props.commentOrReply.user.image} width={this.props.photoSize}
-          height={this.props.photoSize} className="rounded-circle ml-3 mt-1" />
+          height={this.props.photoSize} className="rounded-circle ml-3 mt-1 href"
+          onClick={()=> this.visitUserPage()} />
           <div className="col pt-1 break-all">
             <strong>
-              {this.props.commentOrReply.user.username}
+              <span onClick={()=> this.visitUserPage()} className="href">
+                {this.props.commentOrReply.user.username}
+              </span>
               {this.props.commentOrReply.user.id === this.props.postAuthor ? (<span className="text-success">&nbsp;autor</span>) : null}
             </strong>
             <br/>
