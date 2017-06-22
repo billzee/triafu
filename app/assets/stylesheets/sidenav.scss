@@ -3,10 +3,6 @@
   overflow: hidden;
   transition: .2s;
 
-  &.fixfixed{
-    position: absolute;
-  }
-
   &.right{
     height: 100vh;
     max-width: 50em;
@@ -21,6 +17,10 @@
     height: 0;
     width: 100%;
     max-width: 50em;
+
+    &.show {
+      height: 100vh;
+    }
   }
 
   &.bottom{

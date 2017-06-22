@@ -1,4 +1,4 @@
-<% if @user %>
+<% if !@user.nil? %>
   <div class="col-12 p-2 bgm-dark">
     <div class="row text-white no-gutters">
       <div class="col-sm-10 offset-sm-2 col-xs-12">
@@ -7,7 +7,7 @@
             <%= image_tag(@user.image, class: "rounded-circle", height: 60) %>
           </div>
           <div class="col-8 pl-3">
-            <% if @user.id == current_user.id %>
+            <% if user_signed_in? && @user.id == current_user.id %>
               <small>essas são as suas publicações,</small>
             <% else %>
               <small>você está vendo pubs do(a)</small>

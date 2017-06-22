@@ -17,10 +17,15 @@ html, body {
   font-size: 14px;
   height: 100vh !important;
   -webkit-overflow-scrolling: touch;
-}
 
-.modal-open{
-  overflow: hidden !important;
+  &.fixfixed {
+  }
+
+  &.modal-open{
+    position: absolute;
+    width: 100%;
+    overflow: hidden !important;
+  }
 }
 
 img {

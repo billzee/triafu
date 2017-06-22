@@ -55,8 +55,8 @@ var Helper = {
   },
 
   lockScroll: function(){
-    var body = document.getElementsByTagName("body")[0];
-    body.className = "modal-open";
+    $("body").addClass("modal-open");
+    window.fixIosScroll('sidenav');
   },
 
   releaseScroll: function(){
@@ -72,19 +72,17 @@ var Helper = {
   hideShareLinks: function(){
     document.getElementById("share-links").style.height = "0";
     this.releaseScroll();
-
   },
 
   showComments: function(){
-    document.getElementById("mobile-comments").style.height = "100vh";
+    $("#mobile-comments").addClass("show");
     this.lockScroll();
   },
 
   hideComments: function(){
-    document.getElementById("mobile-comments").style.height = "0";
+    $("#mobile-comments").removeClass("show");
     this.releaseScroll();
   }
-
 };
 
 export default Helper;
