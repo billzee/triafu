@@ -101,10 +101,6 @@ h5 {
   visibility: hidden;
 }
 
-.tooltip{
-  z-index: 9997;
-}
-
 .bgm-gray {
   background: $light-gray;
 }
@@ -174,10 +170,6 @@ h5 {
   color: white;
 }
 
-.z-index{
-  z-index: 9999 !important;
-}
-
 .mh-5 {
   max-height: 5em;
 }
@@ -195,13 +187,11 @@ h5 {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1030;
   transform: translateZ(0);
   -moz-transform: translatez(0);
   -ms-transform: translatez(0);
   -o-transform: translatez(0);
   -webkit-transform: translateZ(0);
-  -webkit-font-smoothing: antialiased; /* seems to do the same in Safari */
 }
 
 .text-purple{
@@ -250,7 +240,6 @@ hr.or:after {
 }
 
 .modal {
-  z-index: 9999;
   height: 100vh;
 
   &.slide-right .modal-dialog {

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'users/edit/password', to: 'users/registrations#edit_password', as: :edit_user_registration_password
     get 'users/edit/image', to: 'users/registrations#edit_image', as: :edit_user_registration_image
 
-    get 'usuario/:username', to: 'posts#index', as: :user_showcase
+    get 'usuario/:username', to: 'posts#index', as: :user_posts
 
     put 'user/disconnect_social_network', to: 'users/registrations#disconnect_social_network'
 

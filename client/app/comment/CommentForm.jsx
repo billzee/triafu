@@ -50,6 +50,7 @@ export default class CommentForm extends Component {
 
             <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
               <TextAreaAutosize
+                id="comment-form"
                 onKeyUp={(e) => this.isSubmiting(e)}
                 value={this.state.text}
                 onChange={helper.handleChange.bind(this, 'text')}

@@ -41,7 +41,9 @@
         <%= image_tag(current_user.image, class: "rounded-circle", height: 38, width: 38) %>
       </a>
       <div class="dropdown-menu dropdown-menu-left mr-2">
-        <div class="dropdown-header text-center"><%= current_user.username %></div>
+        <div class="dropdown-header text-center">
+          <%= link_to(current_user.username, user_posts_path(username: current_user.username), target: "_blank") %>
+        </div>
         <div class="dropdown-divider"></div>
         <%= link_to('Editar perfil', edit_user_registration_path, class: "dropdown-item") %>
         <%= link_to('Sair', destroy_user_session_path, :method => :delete, class: "dropdown-item") %>

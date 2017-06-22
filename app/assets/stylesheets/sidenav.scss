@@ -1,8 +1,11 @@
 .sidenav {
   position: fixed;
-  z-index: 9998;
   overflow: hidden;
   transition: .2s;
+
+  &.fixfixed{
+    position: absolute;
+  }
 
   &.right{
     height: 100vh;
