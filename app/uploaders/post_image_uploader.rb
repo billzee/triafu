@@ -40,6 +40,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
   def efficient_conversion(width, height)
     manipulate! do |img|
       img.format("jpg") do |c|
+        c.background '#FFFFFF'
+        c.alpha 'remove'
         c.auto_orient
         c.fuzz        "3%"
         c.trim

@@ -3,7 +3,6 @@ import pubsub from 'pubsub-js'
 import helper from '../components/Helper'
 
 import CommentHeader from './CommentHeader';
-import CommentForm from './CommentForm';
 import CommentOrReplyBox from './CommentOrReplyBox'
 
 import ReplySection from '../reply/ReplySection'
@@ -96,14 +95,9 @@ export default class CommentSection extends Component {
   render(){
     return (
       <box>
-        <div className="row comment-header bb-white">
-          <div className="col">
-            <CommentHeader totalCount={this.state.totalCount} isMobile={this.state.isMobile} />
-            <CommentForm postId={this.state.postId} />
-          </div>
-        </div>
+        <CommentHeader totalCount={this.state.totalCount} isMobile={this.state.isMobile} postId={this.state.postId}/>
 
-        <div className="row pt-2 comment-list" ref={(div) => {this.commentScroll = div}}>
+        <div className="row pt-2 pb-2 comment-list" ref={(div) => {this.commentScroll = div}}>
           {
             this.state.comments.length > 0 ?
               (
