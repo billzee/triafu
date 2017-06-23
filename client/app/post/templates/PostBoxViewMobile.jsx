@@ -16,12 +16,12 @@ export default class PostBoxViewMobile extends Component {
 
   showComments(){
     this.forcePostWatch();
-    helper.showComments();
+    helper.toggleComments();
   }
 
   showShareLinks(){
     this.forcePostWatch();
-    helper.showShareLinks();
+    helper.toggleShareLinks();
   }
 
   render(){

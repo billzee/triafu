@@ -1,13 +1,10 @@
-<div id="mobile-comments" class="sidenav top">
-  <%= react_component("CommentSection", props: { isMobile: true }, html_options: {class: "pr-3 pl-3"}) %>
-</div>
-
 <%= render "layouts/sub_header" %>
 
-<div class="row no-gutters" id="main">
+<div class="row no-gutters">
   <%= render "partials/devise_communications" %>
   <%= render "partials/user_profile" %>
-  <div class="col-12 pb-4">
+
+  <div class="col-12 pb-4" id="posts">
     <%= react_component("PostSection",
     props:{
       category: params[:category],
@@ -18,6 +15,5 @@
   </div>
 </div>
 
-<div id="share-links" class="sidenav bottom bgm-white">
-  <%= react_component("PostShareLinks", props: { isMobile: true }, prerender: true) %>
-</div>
+<%= render "modals/comments" %>
+<%= render "modals/share_links" %>

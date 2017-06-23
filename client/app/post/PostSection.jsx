@@ -17,7 +17,6 @@ export default class PostSection extends Component {
       posts: [],
       sortBy: '',
       page: 1,
-      showCommentSection: false,
       lastPage: true
     };
 
@@ -125,11 +124,6 @@ export default class PostSection extends Component {
 
         this.setState({posts: sortedPosts})
       }
-    });
-
-    pubsub.subscribe('toggle-comment-section', (msg, toggle)=>{
-      console.log('received');
-      this.setState({showCommentSection: toggle})
     });
   }
 

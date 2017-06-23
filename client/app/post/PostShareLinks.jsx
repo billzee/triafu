@@ -54,7 +54,7 @@ export default class PostShareLinks extends Component {
           </div>
           <div className="col-4 text-right mb-4">
             <button type="button" className="btn btn-sm btn-secondary"
-            onClick={()=> helper.hideShareLinks()}>
+            onClick={()=> helper.toggleShareLinks()}>
               Fechar
             </button>
           </div>

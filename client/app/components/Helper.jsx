@@ -54,34 +54,12 @@ var Helper = {
     }
   },
 
-  lockScroll: function(){
-    $("body").addClass("modal-open");
-    window.fixIosScroll('sidenav');
+  toggleShareLinks: function(){
+    $('#m_share_links').modal('toggle');
   },
 
-  releaseScroll: function(){
-    var body = document.getElementsByTagName("body")[0];
-    body.removeAttribute("class");
-  },
-
-  showShareLinks: function(){
-    document.getElementById("share-links").style.height = "45vh";
-    this.lockScroll();
-  },
-
-  hideShareLinks: function(){
-    document.getElementById("share-links").style.height = "0";
-    this.releaseScroll();
-  },
-
-  showComments: function(){
-    $("#mobile-comments").addClass("show");
-    this.lockScroll();
-  },
-
-  hideComments: function(){
-    $("#mobile-comments").removeClass("show");
-    this.releaseScroll();
+  toggleComments: function(){
+    $('#m_comments').modal('toggle');
   }
 };
 

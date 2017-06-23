@@ -18,12 +18,7 @@ html, body {
   height: 100vh !important;
   -webkit-overflow-scrolling: touch;
 
-  &.fixfixed {
-  }
-
   &.modal-open{
-    position: absolute;
-    width: 100%;
     overflow: hidden !important;
   }
 }

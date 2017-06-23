@@ -16,8 +16,15 @@
   word-wrap: break-word;
 }
 
-#mobile-comments{
-  background-color: $light-gray;
+#m_comments{
+  padding-bottom: 1rem;
+
+  .modal-dialog{
+    .modal-content{
+      background-color: $light-gray;
+      padding-bottom: 1rem;
+    }
+  }
 
   .comment-list {
     height: calc(100vh - 120px);

@@ -11,7 +11,7 @@ export default class CommentHeader extends Component {
           <div className="col-4 align-self-center pl-2">
             <button type="button"
             className="btn btn-sm btn-secondary"
-            onClick={()=> helper.hideComments()}>
+            onClick={()=> helper.toggleComments()}>
               Fechar
             </button>
           </div>
