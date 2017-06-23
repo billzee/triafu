@@ -20,14 +20,18 @@ export default class PostSection extends Component {
       lastPage: true
     };
 
-    this._handleEnter = this._handleEnter.bind(this);
     this.index = this.index.bind(this);
     this.show = this.show.bind(this);
   }
 
   _handleEnter(postId, postAuthor){
     pubsub.publish('watch-post', {postId: postId, postAuthor: postAuthor});
+    pubsub.publish('play-video', {postId: postId});
     this.setState({currentPost: postId, currentPostAuthor: postAuthor});
+  }
+
+  _playVideo(postId){
+    pubsub.publish('play-video', {postId: postId});
   }
 
   async show(){
@@ -134,11 +138,19 @@ export default class PostSection extends Component {
           {
             this.state.posts.map((post)=>{
               return(
-                <PostBox
-                key={post.id}
-                post={post}
-                currentPost={this.state.currentPost}
-                isMobile={this.state.isMobile} />
+                <Waypoint
+                  key={post.id}
+                  topOffset="49%"
+                  bottomOffset="49%"
+                  onEnter={()=> {this._playVideo(post.id)}}>
+                  <div>
+                    <PostBox
+                    key={post.id}
+                    post={post}
+                    currentPost={this.state.currentPost}
+                    isMobile={this.state.isMobile} />
+                  </div>
+                </Waypoint>
               );
             })
           }

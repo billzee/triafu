@@ -16,7 +16,7 @@ export default class PostMedia extends Component {
 
   componentDidMount(){
     if(this.video){
-      pubsub.subscribe('watch-post', (msg, data)=>{
+      pubsub.subscribe('play-video', (msg, data)=>{
         if(data.postId === this.props.postId){
           this.video.play();
           this.setState({paused: false});
