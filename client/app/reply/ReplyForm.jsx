@@ -48,11 +48,6 @@ export default class ReplyForm extends Component {
       <form onSubmit={(e) => this.reply(e)} method="post" className="mb-2">
 
         <div className={"input-group" + (this.state.errors.hasOwnProperty('text') ? " has-danger" : "")}>
-          <span className="input-group-btn">
-            <button type="button" className="btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_image_comment">
-              <i className="fa fa-smile-o"/>
-            </button>
-          </span>
 
           <TextAreaAutosize
             onKeyUp={(e) => this.isSubmiting(e)}

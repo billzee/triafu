@@ -8,6 +8,7 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   height: calc(100% - 120px);
+  padding-bottom: 1rem;
 }
 
 .comment-text {
@@ -21,11 +22,13 @@
 
   .modal-dialog{
     .modal-content{
+      max-height: 95vh;
       background-color: $light-gray;
     }
   }
 
   .comment-list {
-    height: calc(100vh - 120px);
+    height: calc(95vh - 120px);
+    max-height: 95vh;
   }
 }

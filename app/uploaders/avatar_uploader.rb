@@ -47,9 +47,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def efficient_conversion(width, height)
     manipulate! do |img|
       img.format("jpg") do |c|
+        c.background '#FFFFFF'
+        c.alpha 'remove'
+        c.auto_orient
         c.fuzz        "3%"
         c.trim
-        c.resize      "#{width}x#{height}"
+        c.resize      "#{width}x#{height}^"
+        c.gravity     "center"
+        c.extent      "#{width}x#{height}"
       end
 
       img
