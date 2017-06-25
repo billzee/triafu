@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :validatable,
-  :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable,
+  :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   attr_accessor :login
 

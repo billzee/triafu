@@ -1,8 +1,8 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation/new
-  # def new
-  #   super
-  # end
+  def new
+    self.resource = current_user
+  end
 
   # POST /resource/confirmation
   # def create
@@ -18,7 +18,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # The path used after resending confirmation instructions.
   # def after_resending_confirmation_instructions_path_for(resource_name)
-  #   super(resource_name)
+  #   redirect_to edit_user_registration_path
   # end
 
   # The path used after confirmation.
