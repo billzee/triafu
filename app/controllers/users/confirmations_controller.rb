@@ -14,12 +14,12 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # The path used after resending confirmation instructions.
-  # def after_resending_confirmation_instructions_path_for(resource_name)
-  #   redirect_to edit_user_registration_path
-  # end
+  def after_resending_confirmation_instructions_path_for(resource_name)
+    edit_user_registration_path
+  end
 
   # The path used after confirmation.
   # def after_confirmation_path_for(resource_name, resource)

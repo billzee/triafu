@@ -6,7 +6,7 @@
 
     <div class="form-group">
       <label class="form-control-label">e-mail</label>
-      <%= f.email_field :email, class: "form-control", disabled: true,
+      <%= f.email_field :email, class: "form-control",
       value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
     </div>
 
