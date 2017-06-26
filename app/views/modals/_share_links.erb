@@ -1,6 +1,14 @@
 <div class="modal" id="m_share_links" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content pr-4 pl-4 pt-3 pb-4">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title">Compartilhar</h1>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+
       <%= react_component("PostShareLinks", props: { isMobile: true }, prerender: true) %>
     </div>
   </div>

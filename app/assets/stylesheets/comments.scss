@@ -1,10 +1,15 @@
 @import "variables";
 
 .comment-header{
+  position: relative;
   height: 120px;
+  .mx{
+    max-height: 30px;
+  }
 }
 
 .comment-list {
+  position: relative;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   height: calc(100% - 120px);

@@ -44,31 +44,28 @@ export default class CommentForm extends Component {
 
   render(){
     return(
-      <div className="col-12 p-1">
+      <div className="col-12">
         <form onSubmit={(e) => this.comment(e)} method="post" className="form">
 
-          <div className={"input-group " + (this.state.errors.hasOwnProperty('text') ? "has-danger" : "")}>
+          <div className={"form-group mb-2" + (this.state.errors.hasOwnProperty('text') ? " has-danger" : "")}>
             <TextAreaAutosize
-              id="comment-form"
               onKeyUp={(e) => this.isSubmiting(e)}
               value={this.state.text}
               onChange={helper.handleChange.bind(this, 'text')}
               style={{maxHeight: 50}}
               disabled={this.state.loading || !this.props.postId}
               placeholder="escreva um comentário" />
-
-            <span className="input-group-btn">
-              <button type="submit" className="btn btn-sm btn-success"
-              disabled={this.state.loading || !this.props.postId}>Comentar</button>
-            </span>
           </div>
 
           <div className="row">
-            <div className="col-9">
+            <div className="col-6 pr-0">
               <ErrorMessage message={this.state.errors.text} />
             </div>
-            <div className="col-3 text-muted text-right">
+            <div className="col-6 text-muted text-right pl-0">
               {500 - this.state.text.length}
+
+              <button type="submit" className="btn btn-sm btn-success ml-2"
+              disabled={this.state.loading || !this.props.postId}>Comentar</button>
             </div>
           </div>
 

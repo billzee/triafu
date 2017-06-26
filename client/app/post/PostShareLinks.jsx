@@ -48,16 +48,7 @@ export default class PostShareLinks extends Component {
   render(){
     if (this.props.isMobile){
       return(
-        <div className="row">
-          <div className="col-8 mb-4">
-            <h1 className="mb-0">Compartilhar</h1>
-          </div>
-          <div className="col-4 text-right mb-4">
-            <button type="button" className="btn btn-sm btn-secondary"
-            onClick={()=> helper.toggleShareLinks()}>
-              Fechar
-            </button>
-          </div>
+        <div className="row p-3">
           <div className="col-12">
             <CopyToClipboard
               text={this.state.postUrl}
