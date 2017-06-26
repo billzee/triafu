@@ -26,6 +26,10 @@ class CommentVoteController < ApplicationController
     end
 
     if comment_vote.save
+
+      author = Comment.find(params[:comment_id]).user
+      Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :comment_upvote
+
       render :json => { :vote => comment_vote.vote }
     else
       render :json => { :errors => comment_vote.errors }
@@ -39,6 +43,6 @@ class CommentVoteController < ApplicationController
   end
 
   def vote_params
-    params.require(:comment_vote).permit(:vote).merge(user_id: current_user.id, comment_id: params[:comment_id])
+    params.require(:comment_vote).permit(:vote).merge(user: current_user, comment_id: params[:comment_id])
   end
 end

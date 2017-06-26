@@ -110,7 +110,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :original).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :original).merge(user: current_user)
   end
 
   def post_file_params

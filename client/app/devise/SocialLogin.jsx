@@ -19,11 +19,11 @@ export default class SocialLogin extends Component {
   }
 
   facebookLogin(){
-    this.popupCenter("/users/auth/facebook", '_blank', 800, 800);
+    this.popupCenter("/conta/auth/facebook", '_blank', 800, 800);
   }
 
   googleLogin(){
-    this.popupCenter("/users/auth/google_oauth2", '_blank', 800, 800);
+    this.popupCenter("/conta/auth/google_oauth2", '_blank', 800, 800);
   }
 
   render(){

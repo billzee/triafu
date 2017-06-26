@@ -55,7 +55,8 @@ pt-BR:
         subject: Instruções de desbloqueio
     omniauth_callbacks:
       failure: Não foi possível autorizar uma conta do %{kind} porque %{reason}.
-      success: oi, %{username} - autenticado via %{kind} :)
+      email_exists: Não foi possível autorizar pois já existe uma conta com esse e-mail.
+      success: oi, %{username}! Autenticado via %{kind}.
     passwords:
       edit:
         change_my_password: Alterar minha senha

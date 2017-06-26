@@ -11,6 +11,10 @@ class RepliesController < ApplicationController
   def create
     @reply = Reply.new reply_params
     if @reply.save
+
+      author = Comment.find(params[:comment_id]).user
+      Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :comment_reply
+
       render :show
     else
       render :json => { :errors => @reply.errors }
@@ -26,6 +30,6 @@ class RepliesController < ApplicationController
   end
 
   def reply_params
-    params.require(:reply).permit(:text).merge(comment_id: params[:comment_id], user_id: current_user.id)
+    params.require(:reply).permit(:text).merge(comment_id: params[:comment_id], user: current_user)
   end
 end

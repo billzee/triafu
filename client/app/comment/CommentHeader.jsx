@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import pubsub from 'pubsub-js'
 import helper from '../components/Helper'
 
 import CommentForm from './CommentForm';
@@ -26,7 +25,7 @@ export default class CommentHeader extends Component {
             </div>
           </div>
         :
-          <div className="col-12 pb-0 mx">
+          <div className="col-12 pt-2 pb-0 mx">
             <strong>
               {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}
             </strong>
@@ -34,7 +33,6 @@ export default class CommentHeader extends Component {
         }
         <CommentForm postId={this.props.postId} />
       </div>
-
     );
   }
 }

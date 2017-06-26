@@ -11,6 +11,10 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new comment_params
     if @comment.save
+      
+      author = Post.find(params[:post_id]).user
+      Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :post_comment
+
       render :show
     else
       render :json => { :errors => @comment.errors }
@@ -26,10 +30,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:text).merge(post_id: params[:post_id]).merge(user_id: current_user.id)
-  end
-
-  def reply_params
-    params.require(:comment).permit(:text).merge(post_id: params[:post_id], comment_id: params[:comment_id])
+    params.require(:comment).permit(:text).merge(post_id: params[:post_id]).merge(user: current_user)
   end
 end

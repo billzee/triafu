@@ -26,6 +26,10 @@ class ReplyVoteController < ApplicationController
     end
 
     if reply_vote.save
+
+      author = Reply.find(params[:reply_id]).user
+      Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :reply_upvote
+
       render :json => { :vote => reply_vote.vote }
     else
       render :json => { :errors => reply_vote.errors }

@@ -1,19 +1,26 @@
 Rails.application.routes.draw do
 
   devise_for :users,
-  :controllers  =>
+  controllers:
   {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
     :confirmations => 'users/confirmations',
     :omniauth_callbacks => "users/omniauth_callbacks"
+  },
+  path: 'conta',
+  path_names:
+  {
+    sign_in: 'entrar',
+    sign_out: 'sair',
+    edit: 'editar/perfil'
   }
 
   as :user do
     get 'current_user', to: 'users/sessions#index'
 
-    get 'users/edit/password', to: 'users/registrations#edit_password', as: :edit_user_registration_password
-    get 'users/edit/image', to: 'users/registrations#edit_image', as: :edit_user_registration_image
+    get 'conta/editar/senha', to: 'users/registrations#edit_password', as: :edit_user_registration_password
+    get 'conta/editar/imagem', to: 'users/registrations#edit_image', as: :edit_user_registration_image
 
     get 'usuario/:username', to: 'posts#index', as: :user_posts
 

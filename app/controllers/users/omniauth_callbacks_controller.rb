@@ -75,6 +75,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       render :index
     else
       session["omniauth_data"] = request.env["omniauth.auth"].except("extra")
+      set_flash_message(:alert, :email_exists)
       redirect_to new_user_registration_url
     end
   end
