@@ -40,7 +40,7 @@ $(function(){
 
   if($(".communications").length){
     setTimeout(function(){
-      $(".communications").slideUp(300);
-    }, 4000);
+      $(".communications").slideUp(200);
+    }, 5000);
   }
 });

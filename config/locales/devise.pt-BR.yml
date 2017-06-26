@@ -66,7 +66,7 @@ pt-BR:
         forgot_your_password: Esqueceu sua senha?
         send_me_reset_password_instructions: Enviar instruções para redefinição da senha
       no_token: Você não pode acessar esta página sem estar logado. Se você veio de um email de redefinição de senha, por favor certifique-se de ter digitado a URL corretamente.
-      send_instructions: Dentro de minutos, você receberá um email com as instruções de redefinição da sua senha.
+      send_instructions: em breve você receberá um email com instruções de redefinição de senha.
       send_paranoid_instructions: Se o seu email existir em nosso banco de dados, você receberá um email com um link para recuperação da senha.
       updated: a sua senha foi alterada. Você está autenticado :)
       updated_not_active: Sua senha foi alterada com sucesso.
@@ -87,7 +87,7 @@ pt-BR:
       signed_up_but_inactive: Você se inscreveu com sucesso, porém nós não podemos autenticá-lo porque sua conta ainda não foi ativada.
       signed_up_but_locked: Você se inscreveu com sucesso. Porém nós não podemos autenticá-lo porque sua conta está bloqueada.
       signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu e-mail. Por favor, acesse o link para ativar sua conta.
-      update_needs_confirmation: Sua conta foi atualizada com sucesso, mas nós precisamos verificar o novo endereço de email. Por favor, verifique seu email e clique no link de confirmação para finalizar confirmando o seu novo email.
+      update_needs_confirmation: Por favor, verifique seu novo e-mail e clique no link de confirmação.
       updated: sua conta foi atualizada
     sessions:
       already_signed_out: você saiu
