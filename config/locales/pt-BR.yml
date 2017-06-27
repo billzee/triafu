@@ -53,7 +53,13 @@ pt-BR:
         post:
           attributes:
             file:
+              file_size_is_greater_than_or_equal_to: arquivo muito pequeno (min. %{count})
+              less_than_or_equal_to: arquivo muito grande (máx. %{count})
               blank: escolha uma imagem ou um vídeo
+            image:
+              less_than_or_equal_to: imagem muito grande (máx. %{count})
+            video:
+              less_than_or_equal_to: vídeo muito grande (máx. %{count})
         comment:
           attributes:
             text:
