@@ -16,6 +16,8 @@ import SocialLogin from '../devise/SocialLogin';
 import SocialConnect from '../devise/SocialConnect';
 import UserImage from '../devise/UserImage';
 
+import Notification from '../components/Notification';
+
 moment.locale('pt-BR');
 
 ReactOnRails.register({
@@ -29,5 +31,6 @@ ReactOnRails.register({
   LoginForm,
   SocialLogin,
   SocialConnect,
-  UserImage
+  UserImage,
+  Notification
 });

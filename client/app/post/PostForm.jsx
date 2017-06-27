@@ -106,7 +106,6 @@ export default class PostSection extends Component {
 
           </div>
         </div>
-
       </form>
     );
   }
