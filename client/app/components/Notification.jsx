@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import pubsub from 'pubsub-js'
 
 import NotificationsApi from '../api/NotificationsApi';
 
@@ -9,7 +8,20 @@ export default class Notification extends Component {
     this.state = {notifications: []};
   }
 
-  async componentWillMount(){
+  async getNotifications(){
+    try{
+      let res = await NotificationsApi._index();
+      let resJson = await res.json();
+
+      console.log(resJson);
+
+      this.setState({notifications: resJson.notifications});
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+  componentWillMount(){
     App.notifications = App.cable.subscriptions.create("NotificationChannel", {
 
       connected: function() {
@@ -21,14 +33,7 @@ export default class Notification extends Component {
       }
     });
 
-    try{
-      let res = await NotificationsApi._index();
-      let resJson = await res.json();
-
-      this.setState({notifications: resJson.notifications});
-    } catch(error){
-      console.log(error);
-    }
+    this.getNotifications();
   }
 
   render(){
@@ -44,7 +49,7 @@ export default class Notification extends Component {
             return(
               <div className="dropdown-item"
               key={notification.id}>
-                {notification.topic}
+                {notification.topic} - {notification.actor}
               </div>
             );
           })

@@ -57,9 +57,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user.save
     elsif user.invalid?
       if user.errors.include?(:facebook_uid)
-        set_flash_message(:alert, :failure, kind: 'facebook', reason: 'existe outra conta com essa conexão')
+        set_flash_message(:alert, :failure, kind: 'Facebook', reason: 'existe outra conta com essa conexão')
       elsif user.errors.include?(:google_oauth2_uid)
-        set_flash_message(:alert, :failure, kind: 'google', reason: 'existe outra conta com essa conexão')
+        set_flash_message(:alert, :failure, kind: 'Google', reason: 'existe outra conta com essa conexão')
       end
     end
 

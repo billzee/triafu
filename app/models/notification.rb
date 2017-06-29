@@ -5,10 +5,11 @@ class Notification < ApplicationRecord
   after_create_commit { NotificationBroadcastJob.perform_now self }
 
   belongs_to :user
+  belongs_to :actor, class_name: "User", foreign_key: :actor_id
 
   protected
 
   def validate_recipient
-    if self.recipient_id == self.actor_id then throw(:abort) end
+    if self.user_id == self.actor_id then throw(:abort) end
   end
 end

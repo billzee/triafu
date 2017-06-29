@@ -13,7 +13,7 @@ class RepliesController < ApplicationController
     if @reply.save
 
       author = Comment.find(params[:comment_id]).user
-      Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :comment_reply
+      Notification.create user: author, actor_id: current_user.id, topic: :comment_reply
 
       render :show
     else

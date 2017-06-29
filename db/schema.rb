@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170624201256) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "recipient_id"
+    t.integer "user_id"
     t.integer "actor_id"
     t.datetime "read_at"
     t.integer "topic"

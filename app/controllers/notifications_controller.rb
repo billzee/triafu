@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
 
   def index
     if request.format.json?
-      @notifications = Notification.where(recipient_id: current_user.id)
+      @notifications = Notification.where(user: current_user)
     end
   end
 

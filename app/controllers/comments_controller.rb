@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     if @comment.save
 
       author = Post.find(params[:post_id]).user
-      notification = Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :post_comment
+      notification = Notification.create user: author, actor_id: current_user.id, topic: :post_comment
 
       render :show
     else

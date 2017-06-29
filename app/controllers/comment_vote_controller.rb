@@ -28,7 +28,7 @@ class CommentVoteController < ApplicationController
     if comment_vote.save
 
       author = Comment.find(params[:comment_id]).user
-      Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :comment_upvote
+      Notification.create user: author, actor_id: current_user.id, topic: :comment_upvote
 
       render :json => { :vote => comment_vote.vote }
     else
