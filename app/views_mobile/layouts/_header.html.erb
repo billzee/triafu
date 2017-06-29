@@ -16,6 +16,8 @@
   </div>
 
   <% if user_signed_in? %>
+    <%= react_component("Notification", html_options: {class: "pt-2"}) %>
+    
     <div class="profile-actions">
       <a href class="dropdown-toggle header-link pr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag(current_user.image, class: "rounded-circle", height: 35, width: 35) %>

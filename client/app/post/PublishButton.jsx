@@ -39,7 +39,7 @@ export default class PublishButton extends Component {
       );
     } else{
       return (
-        <button className="btn btn-success mr-2"
+        <button className="btn btn-success"
         data-toggle="modal" data-target="#m_new_post">
           <strong>{this.state.label}</strong>
         </button>

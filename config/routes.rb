@@ -50,6 +50,8 @@ Rails.application.routes.draw do
 
   end
 
+  resources :notifications, only: [:index]
+
   get 'pub/:reference_id' => 'posts#show', as: :post
   get 'post_json/:reference_id' => 'posts#show_json'
 

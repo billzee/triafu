@@ -9,7 +9,7 @@
 
   .col {
     height: 100%;
-    padding: 0;
+    display: inline-block;
 
     &:first-of-type {
       border-left: 2px solid $flag-yellow;
@@ -34,12 +34,6 @@
     background: $light-gray;
     width: 8.5em;
     border-right: 4px solid $flag-green;
-  }
-
-  .profile-actions {
-    width: 6em;
-    text-align: center;
-    padding-top: 0.3em;
   }
 
   .header-link {

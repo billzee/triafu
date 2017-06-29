@@ -17,7 +17,7 @@
      </div>
   </div>
 
-  <div class="col pt-2 text-right">
+  <div class="col text-right pt-2">
     <% if !user_signed_in? %>
       <button class="btn btn-success mr-2" data-toggle="modal" data-target="#m_login">
         <strong>Publicar</strong>
@@ -27,30 +27,28 @@
         Criar Conta
       </button>
 
-      <a href class="header-link mt-1 pl-4 pr-4" data-toggle="modal" data-target="#m_login">
+      <a href class="header-link mt-1 pl-4 pr-4"
+      data-toggle="modal" data-target="#m_login">
         Entrar
       </a>
-    <% else %>
-      <%= react_component("PublishButton") %>
     <% end %>
   </div>
 
   <% if user_signed_in? %>
+    <%= react_component("PublishButton", html_options: {class: "pt-2"}) %>
+    <%= react_component("Notification", html_options: {class: "pt-2 ml-4"}) %>
 
-    <%= react_component("Notification") %>
-
-    <div class="profile-actions">
-      <a href class="dropdown-toggle header-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= image_tag(current_user.image, class: "rounded-circle", height: 38, width: 38) %>
-      </a>
-      <div class="dropdown-menu dropdown-menu-left mr-2">
-        <div class="dropdown-header text-center">
-          <%= link_to(current_user.username, user_posts_path(username: current_user.username), target: "_blank") %>
-        </div>
-        <div class="dropdown-divider"></div>
-        <%= link_to('Editar perfil', edit_user_registration_path, class: "dropdown-item") %>
-        <%= link_to('Sair', destroy_user_session_path, :method => :delete, class: "dropdown-item") %>
+    <a href class="dropdown-toggle header-link ml-4 mr-3 pt-1"
+    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= image_tag(current_user.image, class: "rounded-circle", height: 38, width: 38) %>
+    </a>
+    <div class="dropdown-menu dropdown-menu-left mr-2">
+      <div class="dropdown-header text-center">
+        <%= link_to(current_user.username, user_posts_path(username: current_user.username), target: "_blank") %>
       </div>
+      <div class="dropdown-divider"></div>
+      <%= link_to('Editar perfil', edit_user_registration_path, class: "dropdown-item") %>
+      <%= link_to('Sair', destroy_user_session_path, :method => :delete, class: "dropdown-item") %>
     </div>
   <% end %>
 </header>
