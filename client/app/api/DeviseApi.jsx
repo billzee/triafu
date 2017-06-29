@@ -7,7 +7,7 @@ var DeviseApi = {
   },
 
   _createSession: function(user){
-    return Api('/users/sign_in', {method: 'POST', body: JSON.stringify({user : user})});
+    return Api('/conta/entrar', {method: 'POST', body: JSON.stringify({user : user})});
   },
 
   _updateUserImage: function(file){

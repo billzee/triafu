@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :replies
   has_many :posts
+  has_many :notifications
 
   has_many :post_votes
   has_many :comment_votes

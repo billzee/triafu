@@ -11,9 +11,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new comment_params
     if @comment.save
-      
+
       author = Post.find(params[:post_id]).user
-      Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :post_comment
+      notification = Notification.create recipient_id: author.id, actor_id: current_user.id, topic: :post_comment
 
       render :show
     else

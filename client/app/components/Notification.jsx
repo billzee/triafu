@@ -16,14 +16,15 @@ export default class PostSection extends Component {
   }
 
   componentDidMount(){
-    App.comments = App.cable.subscriptions.create("NotificationChannel", {
+    App.notifications = App.cable.subscriptions.create("NotificationChannel", {
 
-      connected: function () {
+      connected: function() {
         console.log('oie');
       },
 
-      received: function (data) {
-        console.log(data);
+      received: function(data) {
+        console.log('recebeu??');
+        alert(data);
       }
     });
   }
