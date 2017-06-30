@@ -27,14 +27,9 @@ export default class Notification extends Component {
 
   componentDidMount(){
     App.notifications = App.cable.subscriptions.create("NotificationChannel", {
-
-      connected: function() {
-        console.log('oie');
-      },
-
       received: function(newNotification) {
         this.setState({notifications: this.state.notifications.concat(newNotification)});
-      }
+      }.bind(this)
     });
 
     this.getNotifications();
@@ -91,10 +86,10 @@ export default class Notification extends Component {
               return(
                 <a className="dropdown-item" key={notification.id} href={notification.url}>
                   <div className="row no-gutters">
-                    <div className="col-1 mr-3">
+                    <div className="text-center col-2">
                       <img src={notification.image} height="36" width="36"/>
                     </div>
-                    <div className="col-10 pl-1">
+                    <div className="col-10">
                       <span>
                       {notification.actor} {this.buildActionPhrase(notification.topic)}
                       </span>

@@ -7,7 +7,13 @@ json.notifications @notifications do |notification|
     topic = notification.notifiable.vote
 
     if post.image.file
-      p post.image.url
+      json.image post.image.url
+    elsif post.video.file
+      json.image post.video.url(:screenshot)
+    end
+
+  when "comment"
+    if post.image.file
       json.image post.image.url
     elsif post.video.file
       json.image post.video.url(:screenshot)
@@ -17,8 +23,8 @@ json.notifications @notifications do |notification|
   end
 
   json.id notification.id
-  json.actor notification.actor.username
   json.topic topic
+  json.actor notification.actor.username
   json.created_at notification.created_at
 
   json.url post_path(post.reference_id)
