@@ -1,0 +1,55 @@
+@import "variables";
+
+.dropdown-menu{
+  border-radius: 0.15rem !important;
+  padding: 0 !important;
+  width: auto;
+
+  &.dropdown-menu-left {
+    left: auto;
+    right: 0;
+  }
+
+  .dropdown-divider{
+    margin: 0;
+  }
+
+  &.notifications{
+    .dropdown-item{
+      padding: 6px .5rem;
+    }
+
+    .dropdown-header{
+      font-weight: normal;
+    }
+  }
+
+  &.profile{
+    .dropdown-item{
+      padding: 6px 1rem;
+    }
+
+    .dropdown-header{
+      padding: 6px 0;
+      font-weight: normal;
+    }
+  }
+}
+
+.fa-stack{
+  .counter {
+    position:absolute;
+    right:2%;
+    bottom:6%;
+    content: attr(data-count);
+    font-size:60%;
+    padding:.1em;
+    padding-top: .15em;
+    line-height:1em;
+    border-radius: 0.15rem;
+    color: white;
+    background: $purple;
+    text-align:center;
+    font-weight:bold;
+  }
+}

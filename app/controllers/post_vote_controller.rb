@@ -4,7 +4,7 @@ class PostVoteController < ApplicationController
 
   def index
     if request.format.json?
-      post_vote = PostVote.find_by(user_id: current_user.id, post_id: params[:post_id])
+      post_vote = PostVote.find_by(user: current_user, post_id: params[:post_id])
       if post_vote
         render :json => { :vote => post_vote.vote }
       else
@@ -14,7 +14,7 @@ class PostVoteController < ApplicationController
   end
 
   def create
-    post_vote = PostVote.find_by(user_id: current_user.id, post_id: params[:post_id])
+    post_vote = PostVote.find_by(user: current_user, post_id: params[:post_id])
 
     if post_vote
       post_vote.vote = vote_params[:vote]
@@ -26,6 +26,9 @@ class PostVoteController < ApplicationController
     end
 
     if post_vote.save
+      if post_vote.vote == :funny || :smart
+        
+      end
       render :json => { :vote => post_vote.vote }
     else
       render :json => { :errors => post_vote.errors }

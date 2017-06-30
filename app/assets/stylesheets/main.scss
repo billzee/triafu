@@ -1,8 +1,6 @@
 @import "bootstrap";
 @import "variables";
 
-$input-border-focus: black;
-
 * {
   font-family: "Droid Sans", "Helvetica", sans-serif;
   font-style: normal;
@@ -22,6 +20,8 @@ html, body {
     overflow: hidden !important;
   }
 }
+
+a:hover{text-decoration: none; }
 
 .btn{
   border-radius: 0.15rem;
@@ -67,11 +67,6 @@ h5 {
 
 .mw-550{
   max-width: 550px;
-}
-
-.dropdown-menu-left {
-  left: auto;
-  right: 0;
 }
 
 .communications {
@@ -277,24 +272,6 @@ a.header-link {
   &.active {
     background: $dark-gray;
     color: rgba(255,255,255,1);
-  }
-}
-
-.fa-stack{
-  .counter {
-    position:absolute;
-    right:0;
-    bottom:4%;
-    content: attr(data-count);
-    font-size:60%;
-    padding:.2em;
-    padding-top: .3em;
-    line-height:1em;
-    border-radius: 0.15rem;
-    color: white;
-    background: $purple;
-    text-align:center;
-    font-weight:bold;
   }
 }
 
