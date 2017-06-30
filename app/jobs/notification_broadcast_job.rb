@@ -8,6 +8,6 @@ class NotificationBroadcastJob < ApplicationJob
   private
 
   def render_notification notification
-    ApplicationController.render('notifications/notification', locals: { :@notification => notification })
+    ApplicationController.render('notifications/show', locals: { :@notification => notification })
   end
 end

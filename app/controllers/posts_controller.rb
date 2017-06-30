@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(reference_id: params[:reference_id])
+    @post = Post.find_by!(reference_id: params[:reference_id])
   end
 
   def show_json
