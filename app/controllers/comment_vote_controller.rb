@@ -4,7 +4,7 @@ class CommentVoteController < ApplicationController
 
   def index
     if request.format.json?
-      comment_vote = CommentVote.find_by(user_id: current_user.id, comment_id: params[:comment_id])
+      comment_vote = CommentVote.find_by(user: current_user, comment_id: params[:comment_id])
       if comment_vote
         render :json => { :vote => comment_vote.vote }
       else
@@ -14,21 +14,25 @@ class CommentVoteController < ApplicationController
   end
 
   def create
-    comment_vote = CommentVote.find_by(user_id: current_user.id, comment_id: params[:comment_id])
+    comment_vote = CommentVote.find_by(user: current_user, comment_id: params[:comment_id])
 
     if comment_vote
       comment_vote.vote = vote_params[:vote]
       if !comment_vote.vote_changed?
         render :json => {} and return
       end
+      shouldNotificate = false
     else
       comment_vote = CommentVote.new vote_params
+      shouldNotificate = true
     end
 
     if comment_vote.save
 
-      author = Comment.find(params[:comment_id]).user
-      Notification.create user: author, actor_id: current_user.id, topic: :comment_upvote
+      if comment_vote.vote && shouldNotificate
+        author = Comment.find(comment_vote.comment.post_id).user
+        Notification.create user: author, actor: current_user, notifiable: comment_vote
+      end
 
       render :json => { :vote => comment_vote.vote }
     else

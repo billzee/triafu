@@ -9,15 +9,15 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment = Comment.new comment_params
-    if comment.save
+    @comment = Comment.new comment_params
+    if @comment.save
 
-      author = Post.find(comment.post_id).user
-      Notification.create user: author, actor: current_user, notifiable: comment
+      author = Post.find(@comment.post_id).user
+      Notification.create user: author, actor: current_user, notifiable: @comment
 
       render :show
     else
-      render :json => { :errors => comment.errors }
+      render :json => { :errors => @comment.errors }
     end
   end
 

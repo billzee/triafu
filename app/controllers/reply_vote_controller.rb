@@ -4,7 +4,7 @@ class ReplyVoteController < ApplicationController
 
   def index
     if request.format.json?
-      reply_vote = ReplyVote.find_by(user_id: current_user.id, reply_id: params[:reply_id])
+      reply_vote = ReplyVote.find_by(user: current_user, reply_id: params[:reply_id])
       if reply_vote
         render :json => { :vote => reply_vote.vote }
       else
@@ -14,7 +14,7 @@ class ReplyVoteController < ApplicationController
   end
 
   def create
-    reply_vote = ReplyVote.find_by(user_id: current_user.id, reply_id: params[:reply_id])
+    reply_vote = ReplyVote.find_by(user: current_user, reply_id: params[:reply_id])
 
     if reply_vote
       reply_vote.vote = vote_params[:vote]
@@ -43,6 +43,6 @@ class ReplyVoteController < ApplicationController
   end
 
   def vote_params
-    params.require(:reply_vote).permit(:vote).merge(user_id: current_user.id, reply_id: params[:reply_id])
+    params.require(:reply_vote).permit(:vote).merge(user: current_user, reply_id: params[:reply_id])
   end
 end
