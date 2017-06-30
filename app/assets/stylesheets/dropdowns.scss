@@ -28,10 +28,14 @@
   &.profile{
     .dropdown-item{
       padding: 6px 1rem;
+
+      &:active{
+        background: black;
+      }
     }
 
     .dropdown-header{
-      padding: 6px 0;
+      padding: 10px 0;
       font-weight: normal;
     }
   }
@@ -48,7 +52,7 @@
     padding-top: .15em;
     line-height:1em;
     border-radius: 0.15rem;
-    color: white;
+    color: black;
     background: $purple;
     text-align:center;
     font-weight:bold;

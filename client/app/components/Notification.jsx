@@ -76,38 +76,47 @@ export default class Notification extends Component {
             }
           </span>
         </a>
-        <div className="dropdown-menu dropdown-menu-left notifications mr-5">
-          <div className="dropdown-header pl-2">
-            Notificações
-          </div>
-          <div className="dropdown-divider"></div>
-          {
-            this.state.notifications.map((notification)=>{
-              return(
-                <a className="dropdown-item" key={notification.id} href={notification.url}>
-                  <div className="row no-gutters">
-                    <div className="text-center col-2">
-                      <img src={notification.image} height="36" width="36"/>
-                    </div>
-                    <div className="col-10">
-                      <span>
-                      {notification.actor} {this.buildActionPhrase(notification.topic)}
-                      </span>
-                      <br/>
-                      <small className="text-muted">
-                        { moment(notification.createdAt).fromNow() }
-                      </small>
-                    </div>
-                  </div>
-                </a>
-              );
-            })
-          }
-          <div className="dropdown-divider"></div>
-          <div className="dropdown-header text-center">
-            <a target="_blank" href>Ver todas</a>
-          </div>
-        </div>
+        {
+          this.state.notifications.length > 0 ?
+            (
+              <div className="dropdown-menu dropdown-menu-left notifications mr-5">
+                {
+                  this.state.notifications.map((notification)=>{
+                    return(
+                      <a className="dropdown-item" key={notification.id} href={notification.url}>
+                        <div className="row no-gutters">
+                          <div className="text-center col-2">
+                            <img src={notification.image} height="36" width="36"/>
+                          </div>
+                          <div className="col-10">
+                            <span>
+                            {notification.actor} {this.buildActionPhrase(notification.topic)}
+                            </span>
+                            <br/>
+                            <small className="text-muted">
+                              { moment(notification.createdAt).fromNow() }
+                            </small>
+                          </div>
+                        </div>
+                      </a>
+                    );
+                  })
+                }
+                <div className="dropdown-divider"></div>
+                <div className="dropdown-header text-center">
+                  <a target="_blank" href="/notificacoes">Ver todas notificações</a>
+                </div>
+              </div>
+            )
+          :
+            (
+              <div className="dropdown-menu dropdown-menu-left notifications mr-5">
+                <div className="dropdown-header text-center">
+                  Você não tem notificações
+                </div>
+              </div>
+            )
+        }
       </box>
     );
   }
