@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 
 import NotificationsApi from '../api/NotificationsApi';
 
@@ -24,7 +25,7 @@ export default class Notification extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     App.notifications = App.cable.subscriptions.create("NotificationChannel", {
 
       connected: function() {
@@ -47,8 +48,11 @@ export default class Notification extends Component {
       case "reply":
         return "respondeu ao seu comentário"
         break;
-      case "post_vote":
-        return "positivou sua publicação"
+      case "funny":
+        return "classificou sua publicação como engraçada"
+        break;
+      case "smart":
+        return "classificou sua publicação como interessante"
         break;
       case "reply_vote":
         return "positivou sua resposta"
@@ -57,6 +61,7 @@ export default class Notification extends Component {
         return "positivou seu comentário"
         break;
       default:
+        return "executou uma ação nesta publicação"
         break;
     }
   }
@@ -77,17 +82,26 @@ export default class Notification extends Component {
           </span>
         </a>
         <div className="dropdown-menu dropdown-menu-left notifications mr-5">
+          <div className="dropdown-header pl-2">
+            Notificações
+          </div>
+          <div className="dropdown-divider"></div>
           {
             this.state.notifications.map((notification)=>{
               return(
-                <a className="dropdown-item" key={notification.id}
-                href={notification.url}>
-                  <div className="row">
-                    <div className="col-2">
-                      <img src={notification.image} height="32" width="32"/>
+                <a className="dropdown-item" key={notification.id} href={notification.url}>
+                  <div className="row no-gutters">
+                    <div className="col-1 mr-3">
+                      <img src={notification.image} height="36" width="36"/>
                     </div>
-                    <div className="col-10 align-self-center pl-1">
+                    <div className="col-10 pl-1">
+                      <span>
                       {notification.actor} {this.buildActionPhrase(notification.topic)}
+                      </span>
+                      <br/>
+                      <small className="text-muted">
+                        { moment(notification.createdAt).fromNow() }
+                      </small>
                     </div>
                   </div>
                 </a>

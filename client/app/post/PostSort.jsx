@@ -27,12 +27,12 @@ export default class PostSort extends Component {
           this.state.sortBy === "funnyCount" ?
           (
             <a href className="dropdown-toggle header-link p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="/assets/icons/funny.svg" height="32px" /> 1º
+              <img src="/assets/icons/funny.svg" height="32" /> 1º
             </a>
           ) : this.state.sortBy === "smartCount" ?
           (
             <a href className="dropdown-toggle header-link p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="/assets/icons/brain.svg" height="32px" /> 1º
+              <img src="/assets/icons/brain.svg" height="32" /> 1º
             </a>
           ) :
           (

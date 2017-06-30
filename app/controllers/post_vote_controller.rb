@@ -26,9 +26,12 @@ class PostVoteController < ApplicationController
     end
 
     if post_vote.save
+
       if post_vote.vote == :funny || :smart
-        
+        author = Post.find(post_vote.post_id).user
+        Notification.create user: author, actor: current_user, notifiable: post_vote
       end
+
       render :json => { :vote => post_vote.vote }
     else
       render :json => { :errors => post_vote.errors }
@@ -42,6 +45,6 @@ class PostVoteController < ApplicationController
   end
 
   def vote_params
-    params.require(:post_vote).permit(:vote).merge(user_id: current_user.id, post_id: params[:post_id])
+    params.require(:post_vote).permit(:vote).merge(user: current_user, post_id: params[:post_id])
   end
 end
