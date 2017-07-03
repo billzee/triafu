@@ -1,4 +1,8 @@
 class Notification < ApplicationRecord
+  def self.default_scope
+    order(created_at: :desc)
+  end
+
   scope :unread, -> {where read_at: nil}
 
   before_create :validate_recipient
@@ -7,6 +11,10 @@ class Notification < ApplicationRecord
   belongs_to :user
   belongs_to :actor, class_name: "User"
   belongs_to :notifiable, polymorphic: true
+
+  def self.total_unread
+    self.unread.count
+  end
 
   protected
 

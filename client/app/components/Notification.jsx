@@ -28,7 +28,6 @@ export default class Notification extends Component {
   componentDidMount(){
     App.notifications = App.cable.subscriptions.create("NotificationChannel", {
       received: function(data) {
-        console.log(data);
         let newNotification = JSON.parse(data);
         this.setState({notifications: this.state.notifications.concat(newNotification)});
         this.setState({totalUnread: this.state.totalUnread + 1});
@@ -64,11 +63,25 @@ export default class Notification extends Component {
     }
   }
 
+  async readNotifications(){
+    try{
+      let res = await NotificationsApi._read();
+      let resJson = await res.json();
+
+      console.log(resJson);
+
+      this.setState({notifications: resJson.notifications});
+      this.setState({totalUnread: resJson.totalUnread});
+    } catch(error){
+      console.log(error);
+    }
+  }
+
   render(){
     return (
       <box>
         <a href className="header-link" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
+        aria-haspopup="true" aria-expanded="false" onClick={()=> this.readNotifications()}>
           <span className="fa-stack fa-15x has-badge">
             <i className="fa fa-bell fa-stack-1x"></i>
             {
@@ -101,6 +114,8 @@ export default class Notification extends Component {
                               <small className="text-muted">
                                 { moment(notification.createdAt).fromNow() }
                               </small>
+                              <br/>
+                              aa{notification.readAt}
                             </div>
                           </div>
                         </a>
