@@ -1,7 +1,7 @@
 json.notifications @notifications do |notification|
   post = notification.notifiable.post
 
-  if notification.notifiable.class == "PostVote"
+  if notification.notifiable.class.name == "PostVote"
     topic = notification.notifiable.vote.capitalize
   else
     topic = notification.notifiable.class.name

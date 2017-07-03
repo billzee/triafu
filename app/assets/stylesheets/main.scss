@@ -21,7 +21,35 @@ html, body {
   }
 }
 
-a:hover{text-decoration: none; }
+a{
+  &:visited{text-decoration: none;}
+  &:active{text-decoration: none;}
+  &:link{text-decoration: none;}
+  &.black-hyperlink{
+    color: $dark-gray;
+  }
+}
+
+a.header-link {
+  height: 100%;
+  text-align: center;
+  text-decoration: none !important;
+  color: rgba(255,255,255,.5);
+  padding: 0;
+
+  &:link:visited:focus:hover {
+    color: rgba(255,255,255,.5);
+  }
+
+  &:hover {
+    color: rgba(255,255,255,1);
+  }
+
+  &.active {
+    background: $dark-gray;
+    color: rgba(255,255,255,1);
+  }
+}
 
 .btn{
   border-radius: 0.15rem;
@@ -252,27 +280,6 @@ hr.or:after {
   }
 
   &.show .modal-dialog { transform: translate3d(0, 0, 0); }
-}
-
-a.header-link {
-  height: 100%;
-  text-align: center;
-  text-decoration: none !important;
-  color: rgba(255,255,255,.5);
-  padding: 0;
-
-  &:link:visited:focus:hover {
-    color: rgba(255,255,255,.5);
-  }
-
-  &:hover {
-    color: rgba(255,255,255,1);
-  }
-
-  &.active {
-    background: $dark-gray;
-    color: rgba(255,255,255,1);
-  }
 }
 
 .fa-15x{

@@ -27,8 +27,11 @@ export default class Notification extends Component {
 
   componentDidMount(){
     App.notifications = App.cable.subscriptions.create("NotificationChannel", {
-      received: function(newNotification) {
+      received: function(data) {
+        console.log(data);
+        let newNotification = JSON.parse(data);
         this.setState({notifications: this.state.notifications.concat(newNotification)});
+        this.setState({totalUnread: this.state.totalUnread + 1});
       }.bind(this)
     });
 
@@ -80,29 +83,31 @@ export default class Notification extends Component {
           this.state.notifications.length > 0 ?
             (
               <div className="dropdown-menu dropdown-menu-left notifications mr-5">
-                {
-                  this.state.notifications.map((notification)=>{
-                    return(
-                      <a className="dropdown-item" key={notification.id} href={notification.url}>
-                        <div className="row no-gutters">
-                          <div className="text-center col-2">
-                            <img src={notification.image} height="36" width="36"/>
+                <div className="notification-list">
+                  {
+                    this.state.notifications.map((notification)=>{
+                      return(
+                        <a className="dropdown-item" key={notification.id} href={notification.url}>
+                          <div className="row no-gutters">
+                            <div className="text-center col-2">
+                              <img src={notification.image} height="36" width="36"/>
+                            </div>
+                            <div className="col-10">
+                              <strong>
+                                {notification.actor}&nbsp;
+                              </strong>
+                              {this.buildActionPhrase(notification.topic)}
+                              <br/>
+                              <small className="text-muted">
+                                { moment(notification.createdAt).fromNow() }
+                              </small>
+                            </div>
                           </div>
-                          <div className="col-10">
-                            <strong>
-                              {notification.actor}&nbsp;
-                            </strong>
-                            {this.buildActionPhrase(notification.topic)}
-                            <br/>
-                            <small className="text-muted">
-                              { moment(notification.createdAt).fromNow() }
-                            </small>
-                          </div>
-                        </div>
-                      </a>
-                    );
-                  })
-                }
+                        </a>
+                      );
+                    })
+                  }
+                </div>
                 <div className="dropdown-divider"></div>
                 <div className="dropdown-header text-center">
                   <a target="_blank" href="/notificacoes">Ver todas notificações</a>

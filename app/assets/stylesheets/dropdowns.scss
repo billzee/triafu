@@ -21,12 +21,18 @@
   }
 
   &.notifications{
-    min-width: 27rem !important;
+    min-width: 26rem !important;
 
-    .dropdown-item{
-      white-space: normal;
-      padding: 6px .5rem;
+    .notification-list{
+      max-height: 400px;
+      overflow-y: overlay;
+
+      .dropdown-item{
+        white-space: normal;
+        padding: 6px .5rem;
+      }
     }
+
 
     .dropdown-header{
       font-weight: normal;
