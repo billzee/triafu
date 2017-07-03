@@ -6,7 +6,7 @@ else
   topic = notification.notifiable.class.name
 end
 
-json.id notification.idkiq?
+json.id notification.id
 json.topic topic
 json.actor notification.actor.username
 json.image notification.actor.image
