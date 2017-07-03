@@ -24,8 +24,8 @@
     min-width: 26rem !important;
 
     .notification-list{
-      max-height: 400px;
       overflow-y: overlay;
+      max-height: 500px;
 
       .dropdown-item{
         white-space: normal;

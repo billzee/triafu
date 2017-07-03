@@ -1,4 +1,4 @@
-class CreateReplies < ActiveRecord::Migration[5.0]
+class CreateReplies < ActiveRecord::Migration[5.1]
   def change
     create_table :replies do |t|
       t.text :text

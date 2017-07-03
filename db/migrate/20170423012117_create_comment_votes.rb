@@ -1,4 +1,4 @@
-class CreateCommentVotes < ActiveRecord::Migration[5.0]
+class CreateCommentVotes < ActiveRecord::Migration[5.1]
   def change
     create_table :comment_votes do |t|
       t.integer :comment_id

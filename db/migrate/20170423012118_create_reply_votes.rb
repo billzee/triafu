@@ -1,4 +1,4 @@
-class CreateReplyVotes < ActiveRecord::Migration[5.0]
+class CreateReplyVotes < ActiveRecord::Migration[5.1]
   def change
     create_table :reply_votes do |t|
       t.integer :reply_id
