@@ -36,7 +36,7 @@ export default class CommentOrReplyBox extends Component {
   }
 
   visitUserPage(){
-    window.open("usuario/" + this.props.commentOrReply.user.username, '_blank');
+    window.open("/usuario/" + this.props.commentOrReply.user.username, '_blank');
   }
 
   render(){

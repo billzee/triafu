@@ -12,8 +12,16 @@ class RepliesController < ApplicationController
     @reply = Reply.new reply_params
     if @reply.save
 
-      author = Comment.find(params[:comment_id]).user
-      Notification.create user: author, actor_id: current_user.id, topic: :comment_reply
+      # notify comment author
+      comment = @reply.comment
+      Notification.create user: comment.user, actor: current_user, notifiable: @reply
+
+      # notify everyone on comment thread
+      comment.replies.uniq.each do |reply|
+        if comment.user.id != reply.user.id
+          Notification.create user: reply.user, actor: current_user, notifiable: @reply
+        end
+      end
 
       render :show
     else

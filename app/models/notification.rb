@@ -1,6 +1,4 @@
 class Notification < ApplicationRecord
-  enum action: [ :post_upvote, :post_comment, :comment_upvote, :comment_reply, :reply_upvote ]
-
   scope :unread, -> {where read_at: nil}
 
   before_create :validate_recipient

@@ -37,22 +37,22 @@ export default class Notification extends Component {
 
   buildActionPhrase(topic){
     switch(topic) {
-      case "comment":
+      case "Comment":
         return "comentou a sua publicação"
         break;
-      case "reply":
+      case "Reply":
         return "respondeu ao seu comentário"
         break;
-      case "funny":
+      case "Funny":
         return "classificou sua publicação como engraçada"
         break;
-      case "smart":
+      case "Smart":
         return "classificou sua publicação como interessante"
         break;
-      case "reply_vote":
+      case "ReplyVote":
         return "positivou sua resposta"
         break;
-      case "comment_vote":
+      case "CommentVote":
         return "positivou seu comentário"
         break;
       default:
@@ -89,9 +89,10 @@ export default class Notification extends Component {
                             <img src={notification.image} height="36" width="36"/>
                           </div>
                           <div className="col-10">
-                            <span>
-                            {notification.actor} {this.buildActionPhrase(notification.topic)}
-                            </span>
+                            <strong>
+                              {notification.actor}&nbsp;
+                            </strong>
+                            {this.buildActionPhrase(notification.topic)}
                             <br/>
                             <small className="text-muted">
                               { moment(notification.createdAt).fromNow() }

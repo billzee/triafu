@@ -21,17 +21,16 @@ class PostVoteController < ApplicationController
       if !post_vote.vote_changed?
         render :json => {} and return
       end
-      shouldNotificate = false
+      should_notificate = false
     else
       post_vote = PostVote.new vote_params
-      shouldNotificate = true
+      should_notificate = true
     end
 
     if post_vote.save
 
-      if post_vote.vote == :funny || :smart && shouldNotificate
-        author = Post.find(post_vote.post_id).user
-        Notification.create user: author, actor: current_user, notifiable: post_vote
+      if post_vote.vote == :funny || :smart && should_notificate
+        Notification.create user: post_vote.post.user, actor: current_user, notifiable: post_vote
       end
 
       render :json => { :vote => post_vote.vote }

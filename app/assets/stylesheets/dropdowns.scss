@@ -14,7 +14,15 @@
     margin: 0;
   }
 
+  .dropdown-item{
+    &:active{
+      background: black;
+    }
+  }
+
   &.notifications{
+    min-width: 27rem !important;
+
     .dropdown-item{
       white-space: normal;
       padding: 6px .5rem;
@@ -28,10 +36,6 @@
   &.profile{
     .dropdown-item{
       padding: 6px 1rem;
-
-      &:active{
-        background: black;
-      }
     }
 
     .dropdown-header{

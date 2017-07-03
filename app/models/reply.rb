@@ -1,9 +1,10 @@
 class Reply < ApplicationRecord
   belongs_to :comment
   belongs_to :user
+  has_many :reply_votes
+  has_one :post, through: :comment
 
   validates_presence_of :comment_id
-  has_many :reply_votes
 
   validates :text, length: { maximum: 500 }, presence: true
 

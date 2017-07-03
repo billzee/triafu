@@ -21,14 +21,17 @@ class ReplyVoteController < ApplicationController
       if !reply_vote.vote_changed?
         render :json => {} and return
       end
+      should_notificate = false
     else
       reply_vote = ReplyVote.new vote_params
+      should_notificate = true
     end
 
     if reply_vote.save
 
-      author = Reply.find(params[:reply_id]).user
-      Notification.create user: author, actor_id: current_user.id, topic: :reply_upvote
+      if reply_vote.vote == true && should_notificate
+        Notification.create user: reply_vote.reply.user, actor: current_user, notifiable: reply_vote
+      end
 
       render :json => { :vote => reply_vote.vote }
     else

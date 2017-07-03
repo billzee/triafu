@@ -1,30 +1,16 @@
 json.notifications @notifications do |notification|
-  topic = notification.notifiable.class.to_s.underscore
   post = notification.notifiable.post
 
-  case topic
-  when "post_vote"
-    topic = notification.notifiable.vote
-
-    if post.image.file
-      json.image post.image.url
-    elsif post.video.file
-      json.image post.video.url(:screenshot)
-    end
-
-  when "comment"
-    if post.image.file
-      json.image post.image.url
-    elsif post.video.file
-      json.image post.video.url(:screenshot)
-    end
+  if notification.notifiable.class == "PostVote"
+    topic = notification.notifiable.vote.capitalize
   else
-    json.image notification.actor.image
+    topic = notification.notifiable.class.name
   end
 
   json.id notification.id
   json.topic topic
   json.actor notification.actor.username
+  json.image notification.actor.image
   json.created_at notification.created_at
 
   json.url post_path(post.reference_id)
