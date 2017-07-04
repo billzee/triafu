@@ -8,7 +8,10 @@ class CreateNotifications < ActiveRecord::Migration[5.1]
       t.string :notifiable_type
 
       t.datetime :read_at
+      t.datetime :deleted_at
       t.timestamps
     end
+
+    add_index :notifications, :deleted_at
   end
 end

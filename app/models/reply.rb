@@ -1,4 +1,5 @@
 class Reply < ApplicationRecord
+  acts_as_paranoid
   belongs_to :comment
   belongs_to :user
   has_many :reply_votes

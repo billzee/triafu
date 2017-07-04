@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  acts_as_paranoid
   attr_accessor :file, :media, :upload_progress
 
   enum category: [ :newcomer, :top ]

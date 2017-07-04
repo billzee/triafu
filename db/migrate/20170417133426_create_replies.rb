@@ -10,7 +10,10 @@ class CreateReplies < ActiveRecord::Migration[5.1]
       t.integer :comment_id
       t.integer :user_id
 
+      t.datetime :deleted_at
       t.timestamps
     end
+
+    add_index :replies, :deleted_at
   end
 end

@@ -60,5 +60,6 @@ gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'file_validators'
 gem 'streamio-ffmpeg'
+gem 'paranoia'
 
 gem 'mini_racer', platforms: :ruby

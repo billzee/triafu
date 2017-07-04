@@ -1,4 +1,5 @@
 class Notification < ApplicationRecord
+  acts_as_paranoid
   def self.default_scope
     order(created_at: :desc)
   end

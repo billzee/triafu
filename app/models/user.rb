@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_paranoid
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable,
   :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
