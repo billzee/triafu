@@ -1,7 +1,7 @@
 @import "variables";
 
 .dropdown-menu{
-  border-radius: 0.15rem !important;
+  border-radius: 0 !important;
   padding: 0 !important;
   width: auto;
 
@@ -50,24 +50,21 @@
 }
 
 .fa-stack{
-  height: 100%;
+  font-size: 1.8em !important;
+  line-height: 1.8em !important;
 
   .counter {
     position:absolute;
-    right:3%;
-    bottom:6%;
-    font-size:60%;
-    padding:.1em;
+    right: 5px;
+    bottom: 10px;
+    font-size: 60%;
+    padding: .1em;
     padding-top: .15em;
-    line-height:1em;
+    line-height: 1em;
     border-radius: 0.15rem;
     color: black;
     background: $purple;
     text-align:center;
     font-weight:bold;
   }
-}
-
-.fa-15x{
-  font-size: 25px;
 }

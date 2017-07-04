@@ -30,7 +30,7 @@ $(function(){
       var subHeader = $('.sub-header-mobile'),
       scroll = $(window).scrollTop();
 
-      if (scroll >= 40) {
+      if (scroll >= 45) {
         subHeader.addClass('fixed-top');
       } else{
         subHeader.removeClass('fixed-top');
