@@ -1,15 +1,19 @@
 <% if @post %>
-  <title>Triafu | <%= @post.title %></title>
+  <title><%= @post.title %> | Triafu</title>
   <meta name="description" content="<%= @post.title %>" />
+  <meta name="keywords" content="publicação, post, <%= @post.title %>, engraçado, divertido, interessante, informação, comentário, mídia" />
 <% elsif devise_controller? %>
-  <title>Triafu | conta</title>
-  <meta name="description" content="Configurações e informações da conta Triafu" />
+  <title>Triafu | Editar Conta</title>
+  <meta name="description" content="Configurações e informações da conta" />
+<% elsif @user %>
+  <title><%= @user.username %> | Triafu</title>
+  <meta name="description" content="Publicações do usuário" />
+  <meta name="keywords" content="publicações, autoria, usuário, <%= @user.username %>, engraçado, divertido, informação, interessante, comentário" />
 <% else %>
   <title>Triafu | você no holofote</title>
   <meta name="description" content="você no holofote" />
+  <meta name="keywords" content="post, publicação, meme, zoeira, engraçado, divertido, informação, interessante, comentário, mídia, brasil, português, tri, afu, rs" />
 <% end %>
-
-<meta name="keywords" content="post, publicação, meme, zoeira, engraçado, divertido, informação, comentário, mídia, brasil, português, tri, afu, rs" />
 
 <meta name="robots" content="noindex,nofollow" />
 <meta name="google" content="notranslate" />
