@@ -28,7 +28,10 @@ export default class Notification extends Component {
     App.notifications = App.cable.subscriptions.create("NotificationChannel", {
       received: function(data) {
         let newNotification = JSON.parse(data);
-        this.setState({notifications: this.state.notifications.concat(newNotification)});
+
+        let newArray = this.state.notifications.slice();
+        newArray.unshift(newNotification);
+        this.setState({notifications: newArray});
         this.setState({totalUnread: this.state.totalUnread + 1});
       }.bind(this)
     });
@@ -41,7 +44,6 @@ export default class Notification extends Component {
       let res = await NotificationsApi._read();
       let resJson = await res.json();
 
-      this.setState({notifications: resJson.notifications});
       this.setState({totalUnread: resJson.totalUnread});
     } catch(error){
       console.log(error);
@@ -71,12 +73,13 @@ export default class Notification extends Component {
                   {
                     this.state.notifications.map((notification)=>{
                       return(
-                        <a className="dropdown-item" key={notification.id} href={notification.url}>
+                        <a className={"dropdown-item " + (notification.readAt ? "" : "bgm-gray")}
+                        key={notification.id} href={notification.url}>
                           <div className="row no-gutters">
                             <div className="text-center col-2 align-self-center">
                               <img src={notification.image} height="42" width="42"/>
                             </div>
-                            <div className="col-10">
+                            <div className="col-10 pl-2">
                               <strong>
                                 {notification.actor}&nbsp;
                               </strong>

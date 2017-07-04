@@ -19,9 +19,7 @@ class NotificationsController < ApplicationController
           notification.update_column(:read_at, Time.zone.now)
         end
       end
-
-      @notifications = json_notifications
-      render :index
+      render :json => {totalUnread: current_user.notifications.total_unread}
     end
   end
 

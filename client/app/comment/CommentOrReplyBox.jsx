@@ -19,7 +19,7 @@ export default class CommentOrReplyBox extends Component {
     };
   }
 
-  componentDidMount(){
+  componentWillMount(){
     pubsub.subscribe('clear-comments-state', ()=>{
       this.setState({showReplyFormTo: null, release: null});
     });
