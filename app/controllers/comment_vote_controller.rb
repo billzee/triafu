@@ -30,7 +30,8 @@ class CommentVoteController < ApplicationController
     if comment_vote.save
 
       if comment_vote.vote == true && should_notificate
-        Notification.create user: comment_vote.comment.user, actor: current_user, notifiable: comment_vote
+        Notification.create user: comment_vote.comment.user,
+        actor: current_user, notifiable: comment_vote, post: comment_vote.post
       end
 
       render :json => { :vote => comment_vote.vote }

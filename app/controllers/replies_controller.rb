@@ -14,7 +14,8 @@ class RepliesController < ApplicationController
 
       # notify comment author
       comment = @reply.comment
-      Notification.create user: comment.user, actor: current_user, notifiable: @reply
+      Notification.create user: comment.user, actor: current_user,
+      notifiable: @reply, post: @reply.post
 
       # notify everyone on comment thread
       comment.replies.uniq.each do |reply|

@@ -1,6 +1,4 @@
 json.notifications @notifications do |notification|
-  post = notification.notifiable.post
-
   if notification.notifiable.class.name == "PostVote"
     topic = notification.notifiable.vote.capitalize
   else
@@ -14,7 +12,7 @@ json.notifications @notifications do |notification|
   json.created_at notification.created_at
   json.read_at notification.read_at
 
-  json.url post_path(post.reference_id)
+  json.url post_path(notification.post.reference_id)
 end
 
 json.total_unread current_user.notifications.total_unread

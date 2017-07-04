@@ -30,7 +30,8 @@ class PostVoteController < ApplicationController
     if post_vote.save
 
       if post_vote.vote == :funny || :smart && should_notificate
-        Notification.create user: post_vote.post.user, actor: current_user, notifiable: post_vote
+        Notification.create user: post_vote.post.user, actor: current_user,
+        notifiable: post_vote, post: post_vote.post
       end
 
       render :json => { :vote => post_vote.vote }

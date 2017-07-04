@@ -11,7 +11,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new comment_params
     if @comment.save
-      Notification.create user: @comment.post.user, actor: current_user, notifiable: @comment
+      Notification.create user: @comment.post.user, actor: current_user,
+      notifiable: @comment, post: @comment.post
 
       render :show
     else

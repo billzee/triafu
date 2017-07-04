@@ -30,7 +30,8 @@ class ReplyVoteController < ApplicationController
     if reply_vote.save
 
       if reply_vote.vote == true && should_notificate
-        Notification.create user: reply_vote.reply.user, actor: current_user, notifiable: reply_vote
+        Notification.create user: reply_vote.reply.user, actor: current_user,
+        notifiable: reply_vote, post: reply_vote.post
       end
 
       render :json => { :vote => reply_vote.vote }

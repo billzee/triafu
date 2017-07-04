@@ -1,7 +1,7 @@
 class Notification < ApplicationRecord
   acts_as_paranoid
   def self.default_scope
-    order(created_at: :desc)
+    where(deleted_at: nil).order(created_at: :desc)
   end
 
   scope :unread, -> {where read_at: nil}
@@ -12,6 +12,8 @@ class Notification < ApplicationRecord
   belongs_to :user
   belongs_to :actor, class_name: "User"
   belongs_to :notifiable, polymorphic: true
+
+  belongs_to :post
 
   def self.total_unread
     self.unread.count
