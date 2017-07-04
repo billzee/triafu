@@ -60,6 +60,32 @@ var Helper = {
 
   toggleComments: function(){
     $('#m_comments').modal('toggle');
+  },
+
+  buildNotificationBody: function(topic){
+    switch(topic) {
+      case "Comment":
+        return "comentou a sua publicação"
+        break;
+      case "Reply":
+        return "respondeu ao seu comentário"
+        break;
+      case "Funny":
+        return "classificou sua publicação como engraçada"
+        break;
+      case "Smart":
+        return "classificou sua publicação como interessante"
+        break;
+      case "ReplyVote":
+        return "positivou sua resposta"
+        break;
+      case "CommentVote":
+        return "positivou seu comentário"
+        break;
+      default:
+        return "executou uma ação nesta publicação"
+        break;
+    }
   }
 };
 

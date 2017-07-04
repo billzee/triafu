@@ -1,10 +1,14 @@
 class NotificationsController < ApplicationController
-  before_action :user_logged_in?
+  before_action :authenticate_user!
 
   def index
     if request.format.json?
-      @notifications = pick_notifications
+      @notifications = json_notifications
     end
+  end
+
+  def show_all
+    @notifications = paginated_notifications
   end
 
   def read
@@ -16,18 +20,20 @@ class NotificationsController < ApplicationController
         end
       end
 
-      @notifications = pick_notifications
+      @notifications = json_notifications
       render :index
     end
   end
 
   private
 
-  def pick_notifications
-    return current_user.notifications.sort_by { |a| [a ? 1 : 0, a] }.reverse.take(6)
+  def json_notifications
+    current_user.notifications.sort_by { |a| [a ? 1 : 0, a] }.reverse.take(6)
   end
 
-  def user_logged_in?
-    render :json => {} unless current_user
+  def paginated_notifications
+    notifications = current_user.notifications
+    page = params[:page] ? params[:page] : 1
+    notifications = notifications.page(page)
   end
 end

@@ -42,7 +42,7 @@
     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <%= image_tag(current_user.image, class: "rounded-circle", height: 38, width: 38) %>
     </a>
-    <div class="dropdown-menu dropdown-menu-left profile mr-1">
+    <div class="dropdown-menu dropdown-menu-left profile">
       <div class="dropdown-header text-center">
         <%= link_to(current_user.username, user_posts_path(username: current_user.username), target: "_blank") %>
       </div>

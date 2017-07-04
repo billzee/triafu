@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   {
     sign_in: 'entrar',
     sign_out: 'sair',
+    sign_up: 'registrar',
+    password: 'senha',
+    confirmation: 'confirmacao',
     edit: 'editar/perfil'
   }
 
@@ -53,6 +56,8 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index] do
     get 'read', to: 'notifications#read', on: :collection
   end
+
+  get 'notificacoes', to: 'notifications#show_all'
 
   get 'pub/:reference_id' => 'posts#show', as: :post
   get 'post_json/:reference_id' => 'posts#show_json'

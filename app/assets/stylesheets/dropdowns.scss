@@ -21,8 +21,6 @@
   }
 
   &.notifications{
-    min-width: 26rem !important;
-
     .notification-list{
       overflow-y: overlay;
       max-height: 500px;
@@ -52,11 +50,12 @@
 }
 
 .fa-stack{
+  height: 100%;
+
   .counter {
     position:absolute;
-    right:2%;
+    right:3%;
     bottom:6%;
-    content: attr(data-count);
     font-size:60%;
     padding:.1em;
     padding-top: .15em;
@@ -67,4 +66,8 @@
     text-align:center;
     font-weight:bold;
   }
+}
+
+.fa-15x{
+  font-size: 25px;
 }
