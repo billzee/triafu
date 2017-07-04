@@ -12,7 +12,7 @@
     height: 100%;
     padding: 0;
 
-    &:first-of-type {
+    &.yellow-border {
       border-left: 1px solid $flag-yellow;
     }
   }

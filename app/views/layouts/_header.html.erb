@@ -3,7 +3,7 @@
     <%= image_tag "brand/triafu-logo.svg", height: 32%>
   <% end %>
 
-  <div class="col categories">
+  <div class="col categories yellow-border">
      <div class="row no-gutters">
         <%= link_to('Top', top_posts_path, class: "col-4 header-link" +
         if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
@@ -36,7 +36,7 @@
 
   <% if user_signed_in? %>
     <%= react_component("PublishButton", html_options: {class: "pt-2"}) %>
-    <%= react_component("Notification", html_options: {class: "ml-4"}) %>
+    <%= react_component("NotificationHeader", html_options: {class: "ml-4"}) %>
 
     <a href class="dropdown-toggle header-link ml-4 mr-3 pt-1"
     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -4,7 +4,7 @@ import helper from '../components/Helper'
 
 import NotificationsApi from '../api/NotificationsApi';
 
-export default class Notification extends Component {
+export default class NotificationHeader extends Component {
   constructor(){
     super();
     this.state = {notifications: [], totalUnread: 0};
@@ -51,7 +51,7 @@ export default class Notification extends Component {
   }
 
   render(){
-    return (
+    return(
       <box>
         <a href className="header-link" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false" onClick={()=> this.readNotifications()}>
@@ -73,13 +73,11 @@ export default class Notification extends Component {
                   {
                     this.state.notifications.map((notification)=>{
                       return(
-                        <a className={"dropdown-item " + (notification.readAt ? "" : "bgm-gray")}
+                        <a className={"dropdown-item p-3 " + (notification.readAt ? "" : "bgm-gray")}
                         key={notification.id} href={notification.url}>
                           <div className="row no-gutters">
-                            <div className="text-center col-2 align-self-center">
-                              <img src={notification.image} height="42" width="42"/>
-                            </div>
-                            <div className="col-10 pl-2">
+                            <img src={notification.image} height="42" width="42" className="align-self-center"/>
+                            <div className="col pl-3">
                               <strong>
                                 {notification.actor}&nbsp;
                               </strong>
