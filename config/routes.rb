@@ -53,11 +53,10 @@ Rails.application.routes.draw do
 
   end
 
-  resources :notifications, only: [:index] do
+  resources :notifications, concerns: :paginatable, only: [:index] do
+    get 'bell', to: 'notifications#bell', on: :collection
     get 'read', to: 'notifications#read', on: :collection
   end
-
-  get 'notificacoes', to: 'notifications#show_all'
 
   get 'pub/:reference_id' => 'posts#show', as: :post
   get 'post_json/:reference_id' => 'posts#show_json'

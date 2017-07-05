@@ -15,6 +15,8 @@ class Notification < ApplicationRecord
 
   belongs_to :post
 
+  paginates_per 2
+
   def self.total_unread
     self.unread.count
   end

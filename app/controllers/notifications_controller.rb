@@ -1,14 +1,16 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
+  def bell
     if request.format.json?
-      @notifications = json_notifications
+      @notifications = bell_notifications
     end
   end
 
-  def show_all
-    @notifications = paginated_notifications
+  def index
+    if request.format.json?
+      @paginated_notifications = paginated_notifications
+    end
   end
 
   def read
@@ -25,7 +27,7 @@ class NotificationsController < ApplicationController
 
   private
 
-  def json_notifications
+  def bell_notifications
     current_user.notifications.sort_by { |a| [a ? 1 : 0, a] }.reverse.take(6)
   end
 

@@ -16,7 +16,7 @@ import SocialLogin from '../devise/SocialLogin';
 import SocialConnect from '../devise/SocialConnect';
 import UserImage from '../devise/UserImage';
 
-import NotificationHeader from '../notification/NotificationHeader';
+import NotificationBell from '../notification/NotificationBell';
 import NotificationList from '../notification/NotificationList';
 
 moment.locale('pt-BR');
@@ -34,5 +34,5 @@ ReactOnRails.register({
   SocialConnect,
   UserImage,
   NotificationList,
-  NotificationHeader
+  NotificationBell
 });

@@ -1,4 +1,4 @@
-json.notifications @paginated_notifications do |notification|
+json.notifications @notifications do |notification|
   if notification.notifiable.class.name == "PostVote"
     topic = notification.notifiable.vote.capitalize
   else
@@ -15,4 +15,4 @@ json.notifications @paginated_notifications do |notification|
   json.url post_path(notification.post.reference_id)
 end
 
-if @paginated_notifications.size > 0 then json.last_page @paginated_notifications.last_page? else json.last_page true end
+json.total_unread current_user.notifications.total_unread

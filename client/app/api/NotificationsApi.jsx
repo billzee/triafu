@@ -1,8 +1,12 @@
 import Api from './Api';
 
 var NotificationsApi = {
-  _index: function(){
-    return Api('/notifications', {method: 'GET'});
+  _bell: function(){
+    return Api('/notifications/bell', {method: 'GET'});
+  },
+
+  _index: function(page=1){
+    return Api('/notifications/page/' + page, {method: 'GET'});
   },
 
   _read: function(){

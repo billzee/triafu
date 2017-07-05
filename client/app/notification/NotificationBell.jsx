@@ -4,7 +4,7 @@ import helper from '../components/Helper'
 
 import NotificationsApi from '../api/NotificationsApi';
 
-export default class NotificationHeader extends Component {
+export default class NotificationBell extends Component {
   constructor(){
     super();
     this.state = {notifications: [], totalUnread: 0};
@@ -12,7 +12,7 @@ export default class NotificationHeader extends Component {
 
   async getNotifications(){
     try{
-      let res = await NotificationsApi._index();
+      let res = await NotificationsApi._bell();
       let resJson = await res.json();
 
       console.log(resJson);
@@ -95,7 +95,7 @@ export default class NotificationHeader extends Component {
                 </div>
                 <div className="dropdown-divider"></div>
                 <div className="dropdown-header text-center">
-                  <a href="/notificacoes">
+                  <a href="/notifications">
                     Ver todas notificações
                   </a>
                 </div>
