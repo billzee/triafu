@@ -1,6 +1,5 @@
 class PostVoteController < ApplicationController
-  before_action :user_logged_in?, only: :index
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!
 
   def index
     if request.format.json?

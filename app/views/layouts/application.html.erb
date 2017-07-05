@@ -12,6 +12,12 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <script>
+        window.userAuthenticated = true;
+      </script>
+    <% end %>
+
     <%= render "layouts/header" %>
 
     <%= yield %>

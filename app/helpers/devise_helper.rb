@@ -22,4 +22,5 @@ module DeviseHelper
       false
     end
   end
+  
 end

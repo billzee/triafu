@@ -97,13 +97,15 @@ export default class PostVoteBox extends Component {
   }
 
   async componentWillMount(){
-    try{
-      let res = await VoteApi._post_index(this.props.post.id);
-      let resJson = await res.json();
+    if(window.userAuthenticated){
+      try{
+        let res = await VoteApi._post_index(this.props.post.id);
+        let resJson = await res.json();
 
-      if(resJson.hasOwnProperty('vote')) this.updateUserVote(resJson.vote);
-    } catch(error){
-      console.log(error);
+        if(resJson.hasOwnProperty('vote')) this.updateUserVote(resJson.vote);
+      } catch(error){
+        console.log(error);
+      }
     }
   }
 
