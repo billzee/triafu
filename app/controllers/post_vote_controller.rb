@@ -41,10 +41,6 @@ class PostVoteController < ApplicationController
 
   private
 
-  def user_logged_in?
-    render :json => {} unless current_user
-  end
-
   def vote_params
     params.require(:post_vote).permit(:vote).merge(user: current_user, post_id: params[:post_id])
   end

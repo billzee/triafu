@@ -1,5 +1,4 @@
 class CommentVoteController < ApplicationController
-  before_action :user_logged_in?, only: :index
   before_action :authenticate_user!
 
   def index
@@ -41,10 +40,6 @@ class CommentVoteController < ApplicationController
   end
 
   private
-
-  def user_logged_in?
-    render :json => {} unless current_user
-  end
 
   def vote_params
     params.require(:comment_vote).permit(:vote).merge(user: current_user, comment_id: params[:comment_id])

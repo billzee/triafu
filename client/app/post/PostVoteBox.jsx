@@ -87,7 +87,7 @@ export default class PostVoteBox extends Component {
         }
 
         this.updateUserVote(resJson.vote);
-      } else if (resJson.errors){
+      } else if(resJson.errors){
         helper.authErrorDispatcher(resJson.errors);
       }
 

@@ -1,6 +1,5 @@
 class ReplyVoteController < ApplicationController
-  before_action :user_logged_in?, only: :index
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!
 
   def index
     if request.format.json?
@@ -41,10 +40,6 @@ class ReplyVoteController < ApplicationController
   end
 
   private
-
-  def user_logged_in?
-    render :json => {} unless current_user
-  end
 
   def vote_params
     params.require(:reply_vote).permit(:vote).merge(user: current_user, reply_id: params[:reply_id])
