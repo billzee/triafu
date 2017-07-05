@@ -10,7 +10,7 @@ class Notification < ApplicationRecord
 
   belongs_to :post
 
-  paginates_per 2
+  paginates_per 9
 
   def self.unread
     where(read_at: nil).order(created_at: :desc)

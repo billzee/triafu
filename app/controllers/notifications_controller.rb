@@ -4,7 +4,6 @@ class NotificationsController < ApplicationController
   def bell
     if request.format.json?
       @notifications = bell_notifications
-      p @notifications
     end
   end
 

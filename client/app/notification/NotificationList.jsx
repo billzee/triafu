@@ -17,15 +17,11 @@ export default class NotificationList extends Component {
       let res = await NotificationsApi._index(this.state.page);
       let resJson = await res.json();
 
-      console.log(resJson);
-
       this.setState({
         notifications: this.state.notifications.concat(resJson.notifications),
         lastPage: resJson.lastPage,
         page: 1 + this.state.page
       });
-
-      console.log(this.state);
 
     } catch(error){
       console.log(error);

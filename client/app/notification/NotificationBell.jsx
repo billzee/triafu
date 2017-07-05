@@ -15,8 +15,6 @@ export default class NotificationBell extends Component {
       let res = await NotificationsApi._bell();
       let resJson = await res.json();
 
-      console.log(resJson);
-
       this.setState({notifications: resJson.notifications});
       this.setState({totalUnread: resJson.totalUnread});
     } catch(error){
