@@ -4,6 +4,7 @@ class NotificationsController < ApplicationController
   def bell
     if request.format.json?
       @notifications = bell_notifications
+      p @notifications
     end
   end
 
@@ -15,7 +16,7 @@ class NotificationsController < ApplicationController
 
   def read
     if request.format.json?
-      notifications = current_user.notifications.unread.first(6)
+      notifications = current_user.notifications.unread
       if notifications.size > 0
         notifications.each do |notification|
           notification.update_column(:read_at, Time.zone.now)
@@ -28,7 +29,7 @@ class NotificationsController < ApplicationController
   private
 
   def bell_notifications
-    current_user.notifications.sort_by { |a| [a ? 1 : 0, a] }.reverse.take(6)
+    current_user.notifications.unread + current_user.notifications.latest_read
   end
 
   def paginated_notifications

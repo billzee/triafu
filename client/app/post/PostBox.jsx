@@ -56,13 +56,11 @@ export default class PostBox extends Component {
   render(){
     if (this.props.isMobile){
       return(
-        <PostBoxViewMobile post={this.state.post}
-        points={this.state.points} currentPost={this.props.currentPost}/>
+        <PostBoxViewMobile post={this.state.post} points={this.state.points} currentPost={this.props.currentPost}/>
       );
     } else{
       return(
-        <PostBoxViewDesktop post={this.state.post} points={this.state.points}
-        currentPost={this.props.currentPost}/>
+        <PostBoxViewDesktop post={this.state.post} points={this.state.points} currentPost={this.props.currentPost}/>
       );
     }
   }

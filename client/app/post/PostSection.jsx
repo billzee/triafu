@@ -17,10 +17,10 @@ export default class PostSection extends Component {
       posts: [],
       sortBy: '',
       page: 1,
-      lastPage: false
+      lastPage: true
     };
 
-    this.index = this.index.bind(this);
+    this.getPosts = this.getPosts.bind(this);
     this.show = this.show.bind(this);
   }
 
@@ -50,32 +50,7 @@ export default class PostSection extends Component {
     }
   }
 
-  async index(category=(this.props.category || "top"), username=(this.props.username || "")){
-    try{
-      let res = await PostsApi._index(null, category, username);
-      let resJson = await res.json();
-
-      var sortedPosts;
-      if(this.state.sortBy){
-        sortedPosts = resJson.posts.sort(
-          function(a, b){
-            return b[this.state.sortBy] - a[this.state.sortBy];
-          }.bind(this)
-        )
-      }
-
-      this.setState({
-        posts: (sortedPosts || resJson.posts),
-        lastPage: resJson.lastPage,
-        page: 2
-      });
-
-    } catch(error){
-      console.log(error);
-    }
-  }
-
-  async paginatePosts(e, category=(this.props.category || "top"), username=(this.props.username || "")){
+  async getPosts(e, category=(this.props.category || "top"), username=(this.props.username || "")){
     if(e) e.preventDefault();
 
     try{
@@ -108,7 +83,7 @@ export default class PostSection extends Component {
     if(this.state.postReferenceId){
       this.show();
     } else{
-      this.index();
+      this.getPosts();
     }
   }
 
@@ -145,7 +120,6 @@ export default class PostSection extends Component {
                   onEnter={()=> {this._playVideo(post.id)}}>
                   <div>
                     <PostBox
-                    key={post.id}
                     post={post}
                     currentPost={this.state.currentPost}
                     isMobile={this.state.isMobile} />
@@ -159,7 +133,7 @@ export default class PostSection extends Component {
             (
               <div className="row pb-4 no-gutters">
                 <div className="col-10 offset-1">
-                  <button type="button" onClick={(e) => this.paginatePosts(e)}
+                  <button type="button" onClick={(e) => this.getPosts(e)}
                   className="btn btn-block btn-primary">
                     Carregar mais publicações
                   </button>
@@ -167,7 +141,7 @@ export default class PostSection extends Component {
               </div>
             ) : null
           }
-          { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null }
+          {!this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null}
         </box>
       );
     } else{
@@ -196,7 +170,7 @@ export default class PostSection extends Component {
             <div className="row justify-content-end mr-5">
               <div className="col-700">
                 <div className="col-550">
-                  <button type="button" onClick={(e) => this.paginatePosts(e)}
+                  <button type="button" onClick={(e) => this.getPosts(e)}
                   className="btn btn-block btn-primary">
                     Carregar mais publicações
                   </button>
@@ -205,7 +179,7 @@ export default class PostSection extends Component {
             </div>
             ) : null
           }
-          { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.paginatePosts()}} />) : null }
+          { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null }
         </box>
       );
     }

@@ -89,7 +89,6 @@ export default class CommentSection extends Component {
       });
 
       this.commentScroll.scrollTop = 0;
-      pubsub.publish('clear-comments-state');
     });
   }
 

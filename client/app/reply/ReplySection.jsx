@@ -42,8 +42,6 @@ export default class ReplySection extends Component {
 
         this.setState({replies: newReplies});
       }
-
-      pubsub.publish('clear-comments-state', null);
     });
   }
 

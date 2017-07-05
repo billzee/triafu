@@ -36,7 +36,7 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :post_votes
 
-  paginates_per 9
+  paginates_per 2
 
   def self.all_from_category category=:top
     where(category: category).order(updated_at: :desc)

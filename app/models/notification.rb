@@ -1,10 +1,5 @@
 class Notification < ApplicationRecord
   acts_as_paranoid
-  def self.default_scope
-    where(deleted_at: nil).order(created_at: :desc)
-  end
-
-  scope :unread, -> {where read_at: nil}
 
   before_create :validate_recipient
   after_create_commit { NotificationBroadcastJob.perform_now self }
@@ -16,6 +11,14 @@ class Notification < ApplicationRecord
   belongs_to :post
 
   paginates_per 2
+
+  def self.unread
+    where(read_at: nil).order(created_at: :desc)
+  end
+
+  def self.latest_read
+    where.not(read_at: nil).order(created_at: :desc).take(6)
+  end
 
   def self.total_unread
     self.unread.count
