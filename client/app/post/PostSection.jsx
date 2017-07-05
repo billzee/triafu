@@ -17,7 +17,7 @@ export default class PostSection extends Component {
       posts: [],
       sortBy: '',
       page: 1,
-      lastPage: true
+      lastPage: false
     };
 
     this.index = this.index.bind(this);
