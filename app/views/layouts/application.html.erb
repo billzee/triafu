@@ -11,12 +11,13 @@
     <%= content_for?(:head) ? yield(:head) : '' %>
   </head>
 
+  <% if user_signed_in? %>
+    <script>
+      window.userAuthenticated = true;
+    </script>
+  <% end %>
+  
   <body>
-    <% if user_signed_in? %>
-      <script>
-        window.userAuthenticated = true;
-      </script>
-    <% end %>
 
     <%= render "layouts/header" %>
 
@@ -27,8 +28,9 @@
     <%= render "modals/signup_form" %>
     <%= render "modals/new_post" %>
 
-    <%= render "partials/google_analytics" %>
   </body>
+
+  <%= render "partials/google_analytics" %>
 
   <script>
     window.fbAsyncInit = function() {
