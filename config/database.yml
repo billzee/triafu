@@ -11,9 +11,15 @@ development:
 
 beta:
   <<: *default
-  database: d3fa43p6pqmm4c
-  username: yvaqhpcuqfinmm
-  password: 192cc4df320207bfa4d10fd387cfb82afb89357ba19dd02ff67c52ef79ad3278
+  database: d9f51g55jd5mhb
+  username: pntvzbdyoutnix
+  password: ba9154356d70628e3ade2576dc385f7a668a88b81ffb3c4c601371f597e3077c
+
+production:
+  <<: *default
+  database: dd4k9ilf4aa11p
+  username: uqrysofcblcyfk
+  password: 4b3561b4852b29f9d6e6a7ec30240d50d1ad1e5cbd9ccef4f0d0ae5253026398
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
