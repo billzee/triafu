@@ -6,8 +6,8 @@ Rails.application.configure do
   ENV['FACEBOOK_SECRET'] = "a1c91e04604477704021abb3e231c610"
 
   # google
-  ENV['GOOGLE_OAUTH2_KEY'] = "970037955727-jdmsea41h87dvn7oqqspjkct0hugguk6.apps.googleusercontent.com"
-  ENV['GOOGLE_OAUTH2_SECRET'] = "HiynYuWnv8SLPbUz6C6uRBBV"
+  ENV['GOOGLE_OAUTH2_KEY'] = "970037955727-sbj3sua5nvdoag9sqeaer7ita9prj1kf.apps.googleusercontent.com"
+  ENV['GOOGLE_OAUTH2_SECRET'] = "htgMdY4Ge4yh2P_8EwFFiE8s"
 
   # aws s3
   ENV['S3_BUCKET_NAME'] = "triafu"
