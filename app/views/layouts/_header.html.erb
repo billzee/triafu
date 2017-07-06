@@ -44,7 +44,8 @@
     </a>
     <div class="dropdown-menu dropdown-menu-left profile">
       <div class="dropdown-header text-center">
-        <%= link_to(current_user.username, user_posts_path(username: current_user.username), target: "_blank") %>
+        <%= link_to(current_user.username, user_posts_path(username: current_user.username),
+        target: "_blank", class: "black-hyperlink") %>
       </div>
       <div class="dropdown-divider"></div>
       <%= link_to('Editar perfil', edit_user_registration_path, class: "dropdown-item") %>

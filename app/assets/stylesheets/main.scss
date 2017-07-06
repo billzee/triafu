@@ -21,6 +21,16 @@ html, body {
   }
 }
 
+.form-control{
+  border-radius: 0;
+}
+
+textarea:focus,
+input:focus,
+input[type]:focus{
+  border-color: $purple !important;
+}
+
 a{
   &:visited{text-decoration: none;}
   &:active{text-decoration: none;}

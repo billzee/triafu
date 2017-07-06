@@ -24,11 +24,8 @@ export default class UserImage extends Component {
     try{
       let res = await DeviseApi._index();
       let resJson = await res.json();
-      console.log(resJson);
 
       this.setState({image: resJson.user.image});
-
-      console.log(resJson.user.image);
 
     } catch(error){
       console.log(error);
