@@ -22,7 +22,6 @@
 
     <%= yield %>
 
-    <%= render "modals/image_comment" %>
     <%= render "modals/login" %>
     <%= render "modals/signup" %>
     <%= render "modals/signup_form" %>
@@ -30,11 +29,11 @@
 
     <%= render "partials/google_analytics" %>
   </body>
-  
+
   <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId            : '1029068483890843',
+        appId            : <%= 'ENV['FACEBOOK_KEY']' %>,
         autoLogAppEvents : true,
         xfbml            : true,
         version          : 'v2.9'

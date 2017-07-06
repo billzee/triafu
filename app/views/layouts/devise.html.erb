@@ -2,6 +2,7 @@
 <html>
   <head>
     <%= render "partials/title_header" %>
+    <%= render "partials/favicon_header" %>
 
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -43,5 +44,7 @@
     <%= render "modals/signup" %>
     <%= render "modals/signup_form" %>
     <%= render "modals/new_post" %>
+
+    <%= render "partials/google_analytics" %>
   </body>
 </html>

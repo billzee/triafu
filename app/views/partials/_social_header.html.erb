@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <meta property="fb:app_id" content="1029068483890843">
+  <meta property="fb:app_id" content="<%= ENV['FACEBOOK_KEY'] %>">
   <meta property="og:url" content="<%= request.original_url %>">
   <meta property="og:type" content="article">
   <% if @post %>
