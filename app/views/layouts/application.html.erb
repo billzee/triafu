@@ -33,7 +33,7 @@
   <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId            : <%= 'ENV['FACEBOOK_KEY']' %>,
+        appId            : <%= ENV['FACEBOOK_KEY'] %>,
         autoLogAppEvents : true,
         xfbml            : true,
         version          : 'v2.9'
