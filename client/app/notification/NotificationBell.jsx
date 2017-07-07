@@ -93,7 +93,7 @@ export default class NotificationBell extends Component {
                 </div>
                 <div className="dropdown-divider"></div>
                 <div className="dropdown-header text-center">
-                  <a href="/notifications">
+                  <a href="/notificacoes">
                     Ver todas notificações
                   </a>
                 </div>

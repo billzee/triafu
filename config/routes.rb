@@ -53,7 +53,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :notifications, concerns: :paginatable, only: [:index] do
+  resources :notifications, path: 'notificacoes', concerns: :paginatable, only: [:index] do
     get 'bell', to: 'notifications#bell', on: :collection
     get 'read', to: 'notifications#read', on: :collection
   end

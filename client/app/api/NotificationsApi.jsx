@@ -2,15 +2,15 @@ import Api from './Api';
 
 var NotificationsApi = {
   _bell: function(){
-    return Api('/notifications/bell', {method: 'GET'});
+    return Api('/notificacoes/bell', {method: 'GET'});
   },
 
   _index: function(page=1){
-    return Api('/notifications/page/' + page, {method: 'GET'});
+    return Api('/notificacoes/page/' + page, {method: 'GET'});
   },
 
   _read: function(){
-    return Api('/notifications/read', {method: 'GET'});
+    return Api('/notificacoes/read', {method: 'GET'});
   },
 };
 
