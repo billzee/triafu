@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   def image
     if self.avatar.file
-      self.avatar
+      self.avatar.url
     elsif self.facebook_image
       self.facebook_image + "?type=large"
     elsif self.google_image

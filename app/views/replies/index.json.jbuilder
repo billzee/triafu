@@ -8,12 +8,7 @@ json.replies @paginated_replies[:replies] do |reply|
   json.user do
     json.id reply.user.id
     json.username reply.user.username
-
-    if reply.user.avatar.file
-      json.image reply.user.avatar.url
-    else
-      json.image reply.user.image
-    end
+    json.image reply.user.image
 
   end
 end

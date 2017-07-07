@@ -8,16 +8,7 @@ json.comment do
   json.user do
     json.id @comment.user.id
     json.username @comment.user.username
-
-    if @comment.user.avatar.file
-      if @comment.user.avatar.versions.include?(:thumb)
-        json.image @comment.user.image.thumb.url
-      else
-        json.image @comment.user.avatar.url
-      end
-    else
-      json.image @comment.user.image
-    end
+    json.image @comment.user.image
 
   end
 end
