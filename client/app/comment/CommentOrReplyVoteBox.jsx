@@ -60,24 +60,6 @@ export default class CommentOrReplyVoteBox extends Component {
     }
   }
 
-  async componentWillMount(){
-    if(window.userAuthenticated){
-      try{
-        if(this.props.isComment){
-          var res = await VoteApi._comment_index(this.props.commentOrReply.id);
-        } else if(this.props.isReply){
-          var res = await VoteApi._reply_index(this.props.commentOrReply.id);
-        } else{return;}
-
-        let resJson = await res.json();
-
-        if(resJson.hasOwnProperty('vote')) this.setState({userVote: resJson.vote});
-      } catch(error){
-        console.log(error);
-      }
-    }
-  }
-
   render(){
     return (
       <box className="ml-3">

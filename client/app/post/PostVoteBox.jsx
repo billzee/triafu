@@ -97,7 +97,7 @@ export default class PostVoteBox extends Component {
   }
 
   async componentWillMount(){
-    if(window.userAuthenticated){
+    if(this.state.userVote){
       try{
         let res = await VoteApi._post_index(this.props.post.id);
         let resJson = await res.json();
@@ -110,9 +110,7 @@ export default class PostVoteBox extends Component {
   }
 
   componentDidMount(){
-    $(function (){
-      $('[data-toggle="tooltip"]').tooltip({delay: {show: 1200}});
-    });
+    $(function(){ $('[data-toggle="tooltip"]').tooltip({delay: {show: 1200}}); });
   }
 
   render(){

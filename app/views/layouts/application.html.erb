@@ -11,12 +11,6 @@
     <%= content_for?(:head) ? yield(:head) : '' %>
   </head>
 
-  <% if user_signed_in? %>
-    <script>
-      window.userAuthenticated = true;
-    </script>
-  <% end %>
-  
   <body>
 
     <%= render "layouts/header" %>

@@ -2,7 +2,7 @@ class Notification < ApplicationRecord
   acts_as_paranoid
 
   before_create :validate_recipient
-  after_create_commit { NotificationBroadcastJob.perform_now self }
+  after_create_commit { NotificationBroadcastJob.perform_later self }
 
   belongs_to :user
   belongs_to :actor, class_name: "User"

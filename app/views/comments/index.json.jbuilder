@@ -5,6 +5,10 @@ json.comments @paginated_comments do |comment|
 
   json.points comment.points
 
+  if user_signed_in? && current_user.comment_votes.find_by(comment_id: comment.id)
+    json.user_vote current_user.comment_votes.find_by(comment_id: comment.id).vote
+  end
+
   json.has_more_replies comment.replies.size > 2 ? true : false
 
   sorted_replies = comment.replies.sort_by {|reply| -reply.points}
@@ -21,7 +25,7 @@ json.comments @paginated_comments do |comment|
       json.username reply.user.username
       json.image reply.user.image
     end
-    
+
   end
 
   json.user do

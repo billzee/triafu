@@ -21,7 +21,7 @@ export default class PostSection extends Component {
     };
 
     this.getPosts = this.getPosts.bind(this);
-    this.show = this.show.bind(this);
+    this.showPost = this.showPost.bind(this);
   }
 
   _handleEnter(postId, postAuthor){
@@ -34,7 +34,7 @@ export default class PostSection extends Component {
     pubsub.publish('play-video', {postId: postId});
   }
 
-  async show(){
+  async showPost(){
     try{
       let res = await PostsApi._show(this.state.postReferenceId);
       let resJson = await res.json();
@@ -59,6 +59,8 @@ export default class PostSection extends Component {
       let res = await PostsApi._index(this.state.page, category, username);
       let resJson = await res.json();
 
+      console.log(resJson.posts);
+
       var sortedPosts;
       if(this.state.sortBy){
         sortedPosts = resJson.posts.sort(
@@ -81,7 +83,7 @@ export default class PostSection extends Component {
 
   componentWillMount(){
     if(this.state.postReferenceId){
-      this.show();
+      this.showPost();
     } else{
       this.getPosts();
     }
