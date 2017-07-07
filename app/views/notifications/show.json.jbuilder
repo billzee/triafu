@@ -1,5 +1,3 @@
-post = notification.notifiable.post
-
 if notification.notifiable.class.name == "PostVote"
   topic = notification.notifiable.vote.capitalize
 else
@@ -12,4 +10,8 @@ json.actor notification.actor.username
 json.image notification.actor.image
 json.created_at notification.created_at
 
-json.url post_path(post.reference_id)
+if notification.post
+  json.url post_path(notification.post.reference_id)
+else
+  json.url root_path
+end

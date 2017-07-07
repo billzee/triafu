@@ -12,7 +12,11 @@ json.notifications @notifications do |notification|
   json.created_at notification.created_at
   json.read_at notification.read_at
 
-  json.url post_path(notification.post.reference_id)
+  if notification.post
+    json.url post_path(notification.post.reference_id)
+  else
+    json.url root_path
+  end
 end
 
 json.total_unread current_user.notifications.total_unread

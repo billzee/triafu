@@ -20,7 +20,8 @@ class RepliesController < ApplicationController
       # notify everyone on comment thread
       comment.replies.uniq.each do |reply|
         if comment.user.id != reply.user.id
-          Notification.create user: reply.user, actor: current_user, notifiable: @reply
+          Notification.create user: reply.user, actor: current_user,
+          notifiable: @reply, post: @reply.post
         end
       end
 
