@@ -9,7 +9,7 @@ export default class TextArea extends Component {
   render(){
     return (
       <box className="w-100">
-        <TextareaAutosize {...this.props} className="form-control w-100"></TextareaAutosize>
+        <TextareaAutosize {...this.props} className="form-control"></TextareaAutosize>
       </box>
     );
   }

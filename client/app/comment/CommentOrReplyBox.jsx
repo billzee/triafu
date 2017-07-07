@@ -4,15 +4,12 @@ import moment from 'moment'
 
 import helper from '../components/Helper';
 
-import ReplyForm from '../reply/ReplyForm';
-
 import CommentOrReplyVoteBox from './CommentOrReplyVoteBox';
 
 export default class CommentOrReplyBox extends Component {
   constructor(props){
     super();
     this.state = {
-      showReplyFormTo: null,
       release: null,
       isComment: (props.isComment || false),
       isReply: (props.isReply || false)
@@ -21,16 +18,11 @@ export default class CommentOrReplyBox extends Component {
 
   componentDidMount(){
     pubsub.subscribe('submitted-comment', ()=>{
-      this.setState({showReplyFormTo: null, release: null});
+      this.setState({release: null});
     });
     pubsub.subscribe('submitted-reply', ()=>{
-      this.setState({showReplyFormTo: null, release: null});
+      this.setState({release: null});
     });
-  }
-
-  toggleReply(e, commentId){
-    e.preventDefault();
-    this.setState(({showReplyFormTo: commentId}));
   }
 
   toggleReleaseText(e, commentId){
@@ -95,27 +87,20 @@ export default class CommentOrReplyBox extends Component {
             }
             <div className="row">
               <div className="col text-left">
-                {
-                  this.state.showReplyFormTo === this.props.commentOrReply.id ?
-                  (<a href="#" onClick={(e) => this.toggleReply(e, null)}><small>Cancelar</small></a>) :
-                  (<a href="#" onClick={(e) => this.toggleReply(e, this.props.commentOrReply.id)}><small>Responder</small></a>)
-                }
+
+                <a href onClick={(e) => {
+                    e.preventDefault();
+                    pubsub.publish("toggle-reply-to", (this.props.commentId || this.props.commentOrReply.id));
+                  }
+                }>
+                  <small>responder</small>
+                </a>
+
                 <CommentOrReplyVoteBox commentOrReply={this.props.commentOrReply} isComment={this.state.isComment} isReply={this.state.isReply} />
               </div>
             </div>
           </div>
         </div>
-        {
-          this.state.showReplyFormTo === this.props.commentOrReply.id ?
-          (
-            <div className="row">
-              <div className="col">
-                <ReplyForm commentId={this.props.commentId} />
-              </div>
-            </div>
-          )
-          : null
-        }
       </box>
     );
   }

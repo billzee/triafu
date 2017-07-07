@@ -44,10 +44,7 @@ export default class CommentOrReplyVoteBox extends Component {
         var replyVote = (vote === this.state.userVote) ? {vote: null} : {vote: vote};
         var res = await VoteApi._reply_create(this.props.commentOrReply.id, replyVote);
       } else{return;}
-
       var resJson = await res.json();
-
-      console.log(resJson);
 
       if(resJson.hasOwnProperty('vote')){
         this.updateUserVote(resJson.vote);

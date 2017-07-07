@@ -6,6 +6,7 @@ import CommentHeader from './CommentHeader';
 import CommentOrReplyBox from './CommentOrReplyBox'
 
 import ReplySection from '../reply/ReplySection'
+import ReplyForm from '../reply/ReplyForm';
 
 import CommentsApi from '../api/CommentsApi';
 
@@ -17,7 +18,8 @@ export default class CommentSection extends Component {
       postAuthor: props.userId,
       postId: props.postId,
       isMobile: (props.isMobile || false),
-      page: '',
+      showReplyFormTo: null,
+      page: 1,
       totalCount: 0,
       lastPage: true,
       loading: false
@@ -30,29 +32,6 @@ export default class CommentSection extends Component {
 
     try{
       let res = await CommentsApi._get(this.state.postId);
-      let resJson = await res.json();
-
-      this.setState({
-        comments: resJson.comments,
-        totalCount: resJson.totalCount,
-        lastPage: resJson.lastPage,
-        page: 2
-      });
-
-    } catch(error){
-      console.log(error);
-    }
-
-    this.setState({loading: false});
-  }
-
-  async paginateComments(e){
-    if(e) e.preventDefault();
-    if(this.state.loading) return;
-    this.setState({loading: true});
-
-    try{
-      let res = await CommentsApi._get(this.state.postId, this.state.page);
       let resJson = await res.json();
 
       this.setState({
@@ -90,6 +69,17 @@ export default class CommentSection extends Component {
 
       this.commentScroll.scrollTop = 0;
     });
+
+    pubsub.subscribe('submitted-comment', ()=>{
+      this.setState({showReplyFormTo: null});
+    });
+    pubsub.subscribe('submitted-reply', ()=>{
+      this.setState({showReplyFormTo: null});
+    });
+
+    pubsub.subscribe('toggle-reply-to', (msg, commentId)=>{
+      this.setState({showReplyFormTo: commentId});
+    });
   }
 
   render(){
@@ -114,6 +104,16 @@ export default class CommentSection extends Component {
                             hasMoreReplies={comment.hasMoreReplies || false} postAuthor={this.state.postAuthor}/>
 
                             {this.state.comments.length - 1 !== key ? (<hr className="bgm-white" />) : null}
+
+                            { this.state.showReplyFormTo === comment.id ?
+                              (
+                                <div className="row">
+                                  <div className="col">
+                                    <ReplyForm commentId={comment.id} />
+                                  </div>
+                                </div>
+                              ) : null
+                            }
                           </li>
                         );
                       })
@@ -123,7 +123,7 @@ export default class CommentSection extends Component {
                   {
                     !this.state.lastPage ?
                     (
-                      <div className="row mb-2">
+                      <div className="row mb-2 pr-2">
                         <div className="col text-right">
                           <a href="#" onClick={(e) => this.paginateComments(e)}>
                             Carregar mais comentários

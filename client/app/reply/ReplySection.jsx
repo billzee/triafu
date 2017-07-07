@@ -69,7 +69,7 @@ export default class ReplySection extends Component {
                 this.props.hasMoreReplies && !this.state.lastPage ?
                 (
                   <div className="row">
-                    <div className="col text-right">
+                    <div className="col text-right pr-4">
                       <small>
                         <a href="#" onClick={(e) => this.paginateReplies(e)}>
                           Carregar mais respostas
