@@ -8,6 +8,10 @@ import PostShareLinks from '../PostShareLinks';
 import PostVoteBox from '../PostVoteBox';
 
 export default class PostBoxViewMobile extends Component {
+  constructor(props){
+    super();
+    this.state = {commentCount: props.post.commentCount};
+  }
 
   forcePostWatch(){
     pubsub.publish('share-links-for', this.props.post.referenceId);
@@ -22,6 +26,12 @@ export default class PostBoxViewMobile extends Component {
   showShareLinks(){
     this.forcePostWatch();
     helper.toggleShareLinks();
+  }
+
+  componentDidMount(){
+    pubsub.subscribe('submitted-comment', ()=>{
+      this.setState({commentCount: this.state.commentCount + 1});
+    });
   }
 
   render(){
@@ -66,7 +76,7 @@ export default class PostBoxViewMobile extends Component {
 
               <div className="col-2 align-self-center text-center pl-0">
                 <span className="text-muted">
-                  {this.props.post.commentCount || 0}
+                  {this.state.commentCount || 0}
                 </span>
                 <button className="btn btn-block btn-secondary p-2" onClick={()=> this.showComments()}>
                   <i className="fa fa-comments"></i>

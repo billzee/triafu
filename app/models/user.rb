@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :full_name, presence: true, length: { :minimum => 4, :maximum => 32 }
   validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 14 }
 
-  validates_format_of :username, with: /^[a-z0-9_\.]*$/, :multiline => true
+  validates_format_of :username, with: /\A(?=.*[a-z])[a-z\d]+\Z/i, :multiline => true
 
   validate :username_cannot_be_changed_again
   validate :username_cannot_be_an_email

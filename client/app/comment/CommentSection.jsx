@@ -32,9 +32,6 @@ export default class CommentSection extends Component {
       let res = await CommentsApi._get(this.state.postId);
       let resJson = await res.json();
 
-      console.log("comments");
-      console.log(resJson);
-
       this.setState({
         comments: resJson.comments,
         totalCount: resJson.totalCount,
