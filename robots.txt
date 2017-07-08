@@ -1,8 +1,2 @@
-User-agent: Twitterbot
-Disallow:
-
-User-agent: facebookexternalhit/1.1
-Disallow:
-
 User-agent: *
-Disallow: /
+Disallow: /conta/editar/*
