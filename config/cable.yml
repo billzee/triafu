@@ -8,6 +8,6 @@ beta:
   adapter: redis
   url: redis://redistogo:4d5b9dccb364c25c2a846c95c0983b96@angelfish.redistogo.com:10112/
 
-beta:
+production:
   adapter: redis
   url: redis://redistogo:98953d7c823846701f55121eb277f7ea@angelfish.redistogo.com:10109/
