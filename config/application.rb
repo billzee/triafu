@@ -13,7 +13,6 @@ module Triafu
     # -- all .rb files in that directory are automatically loaded.
 
     config.time_zone = 'America/Sao_Paulo'
-    config.active_record.default_timezone = :local
 
     config.i18n.default_locale = 'pt-BR'
     config.autoload_paths  = %W(#{config.root}/lib)
