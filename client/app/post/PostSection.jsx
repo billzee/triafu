@@ -17,6 +17,7 @@ export default class PostSection extends Component {
       posts: [],
       sortBy: '',
       page: 1,
+      loading: false,
       lastPage: true
     };
 
@@ -35,6 +36,9 @@ export default class PostSection extends Component {
   }
 
   async showPost(){
+    if(this.state.loading) return;
+    this.setState({loading: true});
+
     try{
       let res = await PostsApi._show(this.state.postReferenceId);
       let resJson = await res.json();
@@ -48,10 +52,14 @@ export default class PostSection extends Component {
     } catch(error){
       console.log(error);
     }
+
+    this.setState({loading: false});
   }
 
   async getPosts(e, category=(this.props.category || "top"), username=(this.props.username || "")){
-    if(e) e.preventDefault();
+    if(e)e.preventDefault();
+    if(this.state.loading) return;
+    this.setState({loading: true});
 
     try{
       if(this.state.postReferenceId) this.setState({postReferenceId: null});
@@ -79,6 +87,8 @@ export default class PostSection extends Component {
     } catch(error){
       console.log(error);
     }
+
+    this.setState({loading: false});
   }
 
   componentWillMount(){
@@ -144,6 +154,12 @@ export default class PostSection extends Component {
             ) : null
           }
           {!this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null}
+          { this.state.loading ? (
+            <div className="row pb-4 no-gutters">
+              <div className="col-10 offset-1 text-center text-purple">
+                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+              </div>
+            </div> ) : null }
         </box>
       );
     } else{
@@ -182,6 +198,14 @@ export default class PostSection extends Component {
             ) : null
           }
           { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null }
+          { this.state.loading ? (
+            <div className="row justify-content-end mr-5 pb-4">
+              <div className="col-700">
+                <div className="col-550 text-purple text-center">
+                  <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+                </div>
+              </div>
+            </div> ) : null }
         </box>
       );
     }
