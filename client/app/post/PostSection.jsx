@@ -155,7 +155,7 @@ export default class PostSection extends Component {
           }
           {!this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null}
           { this.state.loading ? (
-            <div className="row pb-4 no-gutters">
+            <div className="row pb-3 pt-3 no-gutters">
               <div className="col-10 offset-1 text-center text-purple">
                 <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
               </div>
@@ -199,7 +199,7 @@ export default class PostSection extends Component {
           }
           { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null }
           { this.state.loading ? (
-            <div className="row justify-content-end mr-5 pb-4">
+            <div className="row justify-content-end mr-5 pb-3 pt-3">
               <div className="col-700">
                 <div className="col-550 text-purple text-center">
                   <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
