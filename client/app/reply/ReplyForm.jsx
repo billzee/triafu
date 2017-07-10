@@ -54,7 +54,7 @@ export default class ReplyForm extends Component {
             onChange={helper.handleChange.bind(this, 'text')}
             style={{maxHeight: 50}}
             autoFocus
-            placeholder="escreva um comentário" />
+            placeholder="escreva uma resposta" />
         </div>
 
         <div className="row">
