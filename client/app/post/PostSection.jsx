@@ -122,8 +122,7 @@ export default class PostSection extends Component {
     if(this.props.isMobile){
       return(
         <box>
-          {
-            this.state.posts.map((post)=>{
+          { this.state.posts.map((post)=>{
               return(
                 <Waypoint
                   key={post.id}
@@ -140,6 +139,13 @@ export default class PostSection extends Component {
               );
             })
           }
+          { this.state.loading ? (
+            <div className="row pb-3 pt-3 no-gutters">
+              <div className="col-10 offset-1 text-center text-purple">
+                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+              </div>
+            </div> ) : null
+          }
           {
             this.state.postReferenceId ?
             (
@@ -154,19 +160,12 @@ export default class PostSection extends Component {
             ) : null
           }
           {!this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null}
-          { this.state.loading ? (
-            <div className="row pb-3 pt-3 no-gutters">
-              <div className="col-10 offset-1 text-center text-purple">
-                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-              </div>
-            </div> ) : null }
         </box>
       );
     } else{
       return(
       <box>
-        {
-          this.state.posts.map((post)=>{
+        { this.state.posts.map((post)=>{
             return(
               <Waypoint
                 key={post.id}
@@ -182,8 +181,16 @@ export default class PostSection extends Component {
             );
           })
         }
-        {
-          this.state.postReferenceId ?
+        { this.state.loading ? (
+          <div className="row justify-content-end mr-5 pb-3 pt-3">
+            <div className="col-700">
+              <div className="col-550 text-purple text-center">
+                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+              </div>
+            </div>
+          </div> ) : null
+        }
+        { this.state.postReferenceId ?
           (
             <div className="row justify-content-end mr-5">
               <div className="col-700">
@@ -198,14 +205,6 @@ export default class PostSection extends Component {
             ) : null
           }
           { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null }
-          { this.state.loading ? (
-            <div className="row justify-content-end mr-5 pb-3 pt-3">
-              <div className="col-700">
-                <div className="col-550 text-purple text-center">
-                  <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-                </div>
-              </div>
-            </div> ) : null }
         </box>
       );
     }

@@ -32,7 +32,7 @@ class NotificationsController < ApplicationController
   end
 
   def paginated_notifications
-    notifications = current_user.notifications
+    notifications = current_user.notifications.order(created_at: :desc)
     page = params[:page] ? params[:page] : 1
     notifications = notifications.page(page)
   end
