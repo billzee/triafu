@@ -23,7 +23,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   config.web_socket_server_url = "wss://triafu.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://www.triafu.com.br/', 'http://www.triafu.com.br/']
+  config.action_cable.allowed_request_origins = ['https://triafu.com.br/', 'http://triafu.com.br/']
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -86,7 +86,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'https://www.triafu.com.br' }
+  config.action_mailer.default_url_options = { host: 'https://triafu.com.br' }
 
   config.action_mailer.default :charset => "utf-8"
 
