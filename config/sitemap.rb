@@ -6,7 +6,7 @@ SitemapGenerator::Sitemap.sitemaps_host = "https://#{ENV['S3_BUCKET_NAME']}.s3.a
 
 # The directory to write sitemaps to locally
 SitemapGenerator::Sitemap.public_path = "#{Rails.root}/public"
-SitemapGenerator::Sitemap.sitemaps_path = "#{Rails.root}/tmp"
+SitemapGenerator::Sitemap.sitemaps_path = "#{Rails.root}/public"
 
 # Instance of `SitemapGenerator::WaveAdapter`
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
