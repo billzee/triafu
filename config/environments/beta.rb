@@ -13,7 +13,7 @@ Rails.application.configure do
   ENV['S3_BUCKET_NAME'] = "triafu-beta"
   ENV['S3_KEY'] = "AKIAJ4MWWZ6DIH2P3LGA"
   ENV['S3_SECRET'] = "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"
-  ENV['S3_URL'] = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazon.com/"
+  ENV['S3_URL'] = "http://s3.amazonaws.com/#{ENV['S3_BUCKET_NAME']}/"
 
   # zoho
   ENV['ZOHO_MAIL'] = "vindiesel@triafu.com.br"

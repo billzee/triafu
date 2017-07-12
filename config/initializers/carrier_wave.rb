@@ -1,4 +1,5 @@
 require 'carrierwave/orm/activerecord'
+require 'carrierwave/storage/fog'
 
 dir = Rails.root.join('lib', 'carrierwave_processing')
 $LOAD_PATH.unshift(dir)
@@ -6,9 +7,8 @@ Dir[File.join(dir, "*.rb")].each { |file| require File.basename(file) }
 
 CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'                        # required
+  config.storage = :fog
   config.fog_public = true
-  config.cache_dir = "#{Rails.root}/tmp/"
-  config.permissions = 0666
 
   config.fog_credentials = {
     provider:              'AWS',                        # required

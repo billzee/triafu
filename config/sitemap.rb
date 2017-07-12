@@ -1,11 +1,10 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "https://triafu.com.br"
-
-SitemapGenerator::Sitemap.sitemaps_host = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/"
-SitemapGenerator::Sitemap.public_path = 'tmp/'
-SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
-
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
+
+SitemapGenerator::Sitemap.public_path = 'tmp/'
+
+SitemapGenerator::Sitemap.sitemaps_host = ENV['S3_URL']
 
 SitemapGenerator::Sitemap.create do
   add newcomer_posts_path
