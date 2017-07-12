@@ -7,6 +7,9 @@ Dir[File.join(dir, "*.rb")].each { |file| require File.basename(file) }
 CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'                        # required
   config.fog_public = true
+  config.cache_dir = "#{Rails.root}/tmp/"
+  config.storage = :fog
+  config.permissions = 0666
 
   config.fog_credentials = {
     provider:              'AWS',                        # required
