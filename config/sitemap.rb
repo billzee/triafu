@@ -7,8 +7,6 @@ SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
 
-SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
-
 SitemapGenerator::Sitemap.create do
   add newcomer_posts_path
   add top_posts_path
