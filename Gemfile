@@ -61,5 +61,6 @@ gem "omniauth-google-oauth2"
 gem 'file_validators'
 gem 'streamio-ffmpeg'
 gem 'paranoia'
+gem 'sitemap_generator'
 
 gem 'mini_racer', platforms: :ruby
