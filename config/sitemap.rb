@@ -2,10 +2,11 @@
 SitemapGenerator::Sitemap.default_host = "https://triafu.com.br"
 
 # The remote host where your sitemaps will be hosted
-SitemapGenerator::Sitemap.sitemaps_host = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazon.com/"
+SitemapGenerator::Sitemap.sitemaps_host = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/"
 
 # The directory to write sitemaps to locally
 SitemapGenerator::Sitemap.public_path = 'public/'
+SitemapGenerator::Sitemap.sitemaps_path = '/'
 
 # Instance of `SitemapGenerator::WaveAdapter`
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
