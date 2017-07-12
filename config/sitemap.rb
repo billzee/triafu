@@ -5,7 +5,7 @@ SitemapGenerator::Sitemap.default_host = "https://triafu.com.br"
 SitemapGenerator::Sitemap.sitemaps_host = "https://#{ENV['S3_BUCKET_NAME']}.s3.amazon.com/"
 
 # The directory to write sitemaps to locally
-SitemapGenerator::Sitemap.public_path = 'tmp/'
+SitemapGenerator::Sitemap.public_path = 'public/'
 
 # Instance of `SitemapGenerator::WaveAdapter`
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
