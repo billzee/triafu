@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /conta/editar/*
+Sitemap: "https://triafu.s3.amazon.com/sitemap.xml.gz"
