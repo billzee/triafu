@@ -13,8 +13,7 @@ class Post < ApplicationRecord
   mount_uploader :image, PostImageUploader
   mount_uploader :video, PostVideoUploader
 
-  validates :file,
-  presence: true,
+  validates :file, presence: true, on: :create,
   file_size: {
     greater_than_or_equal_to: 20.kilobytes,
     less_than_or_equal_to: 20.megabytes

@@ -5,9 +5,11 @@ namespace :triafu do
     selected_posts = newcomers.sort_by(&:points).reverse.take(args[:quantity].to_i || 0)
     if selected_posts.size > 0
       selected_posts.each do |post|
-        post.update_column(:category, :top)
         p "ranking... " + post.reference_id
+        post.update category: :top
       end
+    else
+      p "nothing to be ranked ):"
     end
   end
 end
