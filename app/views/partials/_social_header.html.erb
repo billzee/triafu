@@ -15,6 +15,9 @@
       <meta property="og:video:type" content="video/mp4">
       <meta name="twitter:image" content="<%= @post.video.url(:screenshot) %>">
     <% end %>
+  <% else %>
+    <meta property="og:image" content="<%= asset_path 'brand/triafu-logo.svg' %>">
+    <meta name="twitter:image" content="<%= asset_path 'brand/triafu-logo.svg' %>">
   <% end %>
   <meta property="og:description" content="Clique para ver a imagem e escrever um comentário!">
 

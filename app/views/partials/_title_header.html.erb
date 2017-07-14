@@ -11,8 +11,8 @@
   <meta name="keywords" content="publicações, autoria, usuário, <%= @user.username %>, engraçado, divertido, informação, interessante, comentário" />
 <% else %>
   <title>Triafu | você no holofote</title>
-  <meta name="description" content="você no holofote" />
-  <meta name="keywords" content="post, publicação, meme, zoeira, engraçado, divertido, informação, interessante, comentário, mídia, brasil, português, tri, afu, rs" />
+  <meta name="description" content="Abra e acabe com seu tédio! O Triafu é o site de entretenimento mais eficaz que existe no planeta: entre, publique, comente, vote e divirta-se!" />
+  <meta name="keywords" content="post, publicação, meme, zoeira, engraçado, divertido, informação, interessante, comentário, mídia, vídeo, imagem, gif, brasil, português, tri, afu, rs" />
 <% end %>
 
 <% if Rails.env == "production" %>
@@ -25,3 +25,8 @@
 <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, minimal-ui, target-densityDpi=device-dpi'/>
 
 <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+
+<% if !@post %>
+  <meta property="og:image" content="<%= asset_path 'brand/triafu-logo.svg' %>">
+  <meta name="twitter:image" content="<%= asset_path 'brand/triafu-logo.svg' %>">
+<% end %>
