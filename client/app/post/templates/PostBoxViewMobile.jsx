@@ -32,6 +32,9 @@ export default class PostBoxViewMobile extends Component {
     pubsub.subscribe('submitted-comment', ()=>{
       this.setState({commentCount: this.state.commentCount + 1});
     });
+    pubsub.subscribe('show-comments', (msg, postId)=>{
+      if(this.props.post.id == postId) this.showComments();
+    });
   }
 
   render(){
@@ -39,9 +42,10 @@ export default class PostBoxViewMobile extends Component {
       <box>
         <div className="row justify-content-center mb-2 mt-4 no-gutters">
           <div className="col-12 text-center mw-550 p-0">
-            <h1 className="text-left pl-1 pr-1">
+            <h1 className="text-left pl-1 pr-1" onClick={()=> this.showComments()}>
               {this.props.post.title}
             </h1>
+
             { this.props.post.original ?
               (
                 <h4 className="text-left pl-1 pr-1">
@@ -56,7 +60,8 @@ export default class PostBoxViewMobile extends Component {
             <PostMedia
             image={this.props.post.image}
             video={this.props.post.video}
-            postId={this.props.post.id} />
+            postId={this.props.post.id}
+            isMobile="true" />
 
             <div className="row mt-1 no-gutters pl-1 pr-1">
               <div className="col-2 align-self-center pr-0">

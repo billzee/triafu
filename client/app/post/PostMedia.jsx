@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import pubsub from 'pubsub-js'
+import helper from '../components/Helper'
 
 export default class PostMedia extends Component {
   constructor(props){
@@ -7,6 +8,7 @@ export default class PostMedia extends Component {
     this.state = {
       image: (props.image || null),
       video: (props.video || null),
+      isMobile: (props.isMobile),
       waiting: true,
       paused: true
     };
@@ -62,8 +64,19 @@ export default class PostMedia extends Component {
             ) : null
           }
 
-          <img src={this.state.image.url} onLoad={()=> this.stopSpinning()}
-          className={(this.state.waiting ? "hidden" : "")}/>
+          { this.state.isMobile ?
+            (
+              <img src={this.state.image.url}
+              onLoad={()=> this.stopSpinning()}
+              className={(this.state.waiting ? "hidden" : "")}
+              onClick={()=> pubsub.publish('show-comments', this.props.postId)}/>
+            )
+          :
+            (
+              <img src={this.state.image.url} onLoad={()=> this.stopSpinning()}
+              className={(this.state.waiting ? "hidden" : "")}/>
+            )
+          }
         </div>
       )
       : this.state.video ?
