@@ -27,6 +27,7 @@
 
   .modal-dialog{
     .modal-content{
+      max-height: calc(100vh - 40px);
       background-color: $light-gray;
     }
   }

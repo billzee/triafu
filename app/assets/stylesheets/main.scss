@@ -282,12 +282,6 @@ hr.or:after {
 .modal {
   height: 100vh;
 
-  .modal-dialog{
-    .modal-content{
-      max-height: calc(100vh - 40px);
-    }
-  }
-
   &.slide-right .modal-dialog {
     @include transition(transform .3s);
     transform: translate3d(100%, 0, 0);
