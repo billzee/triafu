@@ -67,6 +67,8 @@ Rails.application.routes.draw do
   get '/top' => 'posts#index', category: "top", as: :top_posts
   get '/novas' => 'posts#index', category: "newcomer", as: :newcomer_posts
 
+  get '/sitemap' => 'sitemaps#show'
+
   root :to => "posts#index"
 
   %w( 404 422 500 ).each do |code|
