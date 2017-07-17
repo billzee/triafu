@@ -9,7 +9,6 @@ SitemapGenerator::Sitemap.sitemaps_host = ENV['S3_URL']
 SitemapGenerator::Sitemap.create do
   add newcomer_posts_path
   add top_posts_path
-  add new_user_session_path
 
   Post.find_each do |post|
     if post.comments.size > 0

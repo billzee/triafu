@@ -28,7 +28,7 @@ class PostVoteController < ApplicationController
 
     if post_vote.save
 
-      if should_notificate && (post_vote.vote == :funny || post_vote.vote == :smart)
+      if should_notificate && (post_vote.vote == "funny" || post_vote.vote == "smart")
         Notification.create user: post_vote.post.user, actor: current_user,
         notifiable: post_vote, post: post_vote.post
       end
