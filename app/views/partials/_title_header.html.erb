@@ -21,10 +21,12 @@
   <meta name="robots" content="noindex,nofollow" />
 <% end %>
 
+<head itemscope itemtype="http://schema.org/WebSite">
+<title itemprop='name'>Triafu</title>
+<link rel="canonical" href="https://triafu.com.br/" itemprop="url">
+
 <meta name="google" content="notranslate" />
 <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, minimal-ui, target-densityDpi=device-dpi'/>
-
-<link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
 
 <% if !@post %>
   <meta property="og:image" content="<%= asset_path 'brand/triafu-logo.svg' %>">
