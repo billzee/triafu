@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import PostMedia from '../PostMedia';
-import helper from '../../components/Helper'
 import moment from 'moment'
+import helper from '../../components/Helper'
+
+import PostMedia from '../PostMedia';
 import PostShareLinks from '../PostShareLinks';
 import PostVoteBox from '../PostVoteBox';
 
 export default class PostBoxViewDesktop extends Component {
   render(){
     return (
-      <div className="row justify-content-end mb-5 mt-4 mr-5">
+      <div className="row justify-content-end mb-5 mt-4 ml-2 no-gutters">
         <div className="col-700">
           <h1 className="col-550">{this.props.post.title}</h1>
-          
+
           { this.props.post.original ?
             (
               <h4>
