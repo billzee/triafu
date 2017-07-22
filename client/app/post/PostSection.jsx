@@ -90,11 +90,10 @@ export default class PostSection extends Component {
   }
 
   componentWillMount(){
-    if(this.state.postReferenceId){
+    if(this.state.postReferenceId)
       this.showPost();
-    } else{
+    else
       this.getPosts();
-    }
   }
 
   componentDidMount(){
@@ -137,16 +136,7 @@ export default class PostSection extends Component {
               );
             })
           }
-          { this.state.loading ? (
-            <div className="row pb-3 pt-3 no-gutters">
-              <div className="col-10 offset-1 text-center text-purple">
-                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-              </div>
-            </div> ) : null
-          }
-          {
-            this.state.postReferenceId ?
-            (
+          { this.state.postReferenceId ? (
               <div className="row pb-4 no-gutters">
                 <div className="col-10 offset-1">
                   <button type="button" onClick={(e) => this.getPosts(e)}
@@ -155,53 +145,44 @@ export default class PostSection extends Component {
                   </button>
                 </div>
               </div>
-            ) : null
-          }
+            ) : null }
+            
           {!this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null}
         </box>
       );
     } else{
       return(
-      <box>
-        { this.state.posts.map((post)=>{
-            return(
-              <Waypoint
-                key={post.id}
-                topOffset="49%"
-                bottomOffset="49%"
-                onEnter={()=> {this._handleEnter(post.id, post.userId)}}>
-                <div>
-                  <PostBox post={post}
-                  currentPost={this.state.currentPost}
-                  isMobile={this.state.isMobile} />
-                </div>
-              </Waypoint>
-            );
-          })
-        }
-        { this.state.loading ? (
-          <div className="row justify-content-end mr-5 pb-3 pt-3">
-            <div className="col-700">
-              <div className="col-550 text-purple text-center">
-                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-              </div>
-            </div>
-          </div> ) : null
-        }
-        { this.state.postReferenceId ?
-          (
-            <div className="row justify-content-end mr-5">
+        <box>
+          { this.state.posts.map((post)=>{
+              return(
+                <Waypoint
+                  key={post.id}
+                  topOffset="49%"
+                  bottomOffset="49%"
+                  onEnter={()=> {this._handleEnter(post.id, post.userId)}}>
+                  <div>
+                    <PostBox post={post}
+                    currentPost={this.state.currentPost}
+                    isMobile={this.state.isMobile} />
+                  </div>
+                </Waypoint>
+              );
+            })
+          }
+
+          { this.state.postReferenceId ? (
+            <div className="row justify-content-end mr-5 pb-3 pt-3">
               <div className="col-700">
-                <div className="col-550">
+                <div className="col-550 text-center">
                   <button type="button" onClick={(e) => this.getPosts(e)}
                   className="btn btn-block btn-primary">
                     Carregar mais publicações
                   </button>
                 </div>
               </div>
-            </div>
-            ) : null
+            </div> ) : null
           }
+
           { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null }
         </box>
       );

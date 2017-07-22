@@ -17,7 +17,9 @@ json.posts @paginated_posts do |post|
   end
 
   if post.image.file then json.image post.image end
-  if post.video.file then json.video post.video.versions end
+  if post.video.file
+    json.video post.video.versions
+  end
 
   json.created_at post.created_at
 

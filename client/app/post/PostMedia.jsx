@@ -9,8 +9,10 @@ export default class PostMedia extends Component {
       image: (props.image || null),
       video: (props.video || null),
       isMobile: (props.isMobile),
-      waiting: true,
-      paused: true
+      loading: true,
+      paused: true,
+      muted: true,
+      hasAudio: false,
     };
 
     this.video = null;
@@ -29,26 +31,54 @@ export default class PostMedia extends Component {
         }
       });
 
-      this.video.addEventListener("loadeddata", function() {
+      this.video.addEventListener("loadeddata", function(){
+        if (this.video.audioTracks && this.video.audioTracks.length > 0){
+          this.setState({hasAudio: true});
+        } else if (typeof this.video.webkitAudioDecodedByteCount !== "undefined"){
+          if (this.video.webkitAudioDecodedByteCount > 0)
+            this.setState({hasAudio: true});
+          else
+            this.setState({hasAudio: false});
+        } else if (typeof this.video.mozHasAudio !== "undefined"){
+          if (this.video.mozHasAudio)
+            this.setState({hasAudio: true});
+          else
+            this.setState({hasAudio: false});
+        } else{
+          this.setState({hasAudio: false});
+        }
+
         this.stopSpinning();
       }.bind(this));
     }
   }
 
   controlManually(){
-    if(this.video != null){
-      if(this.video.paused){
-        this.video.play();
-        this.setState({paused: false});
+    if(this.video){
+      if (this.state.hasAudio){
+        if(this.video.muted){
+          this.video.muted = false;
+          this.setState({muted: false});
+        } else{
+          this.video.muted = true;
+          this.setState({muted: true});
+        }
+
       } else{
-        this.video.pause();
-        this.setState({paused: true});
+        if(this.video.paused){
+          this.video.play();
+          this.setState({paused: false});
+        } else{
+          this.video.pause();
+          this.setState({paused: true});
+        }
+
       }
     }
   }
 
   stopSpinning(){
-    this.setState({waiting: false});
+    this.setState({loading: false});
   }
 
   render(){
@@ -57,7 +87,7 @@ export default class PostMedia extends Component {
       (
         <div className="post-image">
           {
-            this.state.waiting ? (
+            this.state.loading ? (
               <div className="loader">
                 <i className="fa fa-spinner fa-pulse fa-4x text-purple fa-fw"/>
               </div>
@@ -68,13 +98,13 @@ export default class PostMedia extends Component {
             (
               <img src={this.state.image.url}
               onLoad={()=> this.stopSpinning()}
-              className={(this.state.waiting ? "hidden" : "")}
+              className={(this.state.loading ? "hidden" : "")}
               onClick={()=> pubsub.publish('show-comments', this.props.postId)}/>
             )
           :
             (
               <img src={this.state.image.url} onLoad={()=> this.stopSpinning()}
-              className={(this.state.waiting ? "hidden" : "")}/>
+              className={(this.state.loading ? "hidden" : "")}/>
             )
           }
         </div>
@@ -83,7 +113,7 @@ export default class PostMedia extends Component {
       (
         <div className="post-video" onClick={()=> this.controlManually()}>
           {
-            this.state.waiting ? (
+            this.state.loading ? (
               <div className="loader">
                 <i className="fa fa-spinner fa-pulse fa-4x text-purple fa-fw"/>
               </div>
@@ -99,7 +129,25 @@ export default class PostMedia extends Component {
             ) : null
           }
 
-          <video ref={(video) => {this.video = video}} loop playsInline preload="yes">
+          {
+            this.state.hasAudio ?
+            (
+              this.state.muted ?
+                (
+                  <div className="sound-icon text-center rounded-circle">
+                    <i className="fa fa-volume-off fa-2x"/>
+                  </div>
+                )
+              :
+              (
+                <div className="sound-icon text-center rounded-circle">
+                  <i className="fa fa-volume-up fa-2x"/>
+                </div>
+              )
+            ) : null
+          }
+
+          <video ref={(video) => {this.video = video}} muted loop playsInline preload="yes">
             <source src={this.state.video.mp4.url} type="video/mp4"/>
             <source src={this.state.video.webm.url} type="video/webm"/>
           </video>
