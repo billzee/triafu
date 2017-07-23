@@ -11,6 +11,20 @@ var Helper = {
 
   minFileSize: 20000,
 
+  urlify: function(text) {
+
+
+    var urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+    return text.replace(urlRegex, function(url) {
+      if (!/^(f|ht)tps?:\/\//i.test(url)){
+        var hrefUrl = "http://" + url;
+      } else{
+        var hrefUrl = url;
+      }
+      return '<a target="_blank" rel="nofollow" href="' + hrefUrl + '">' + url + '</a>';
+    })
+  },
+
   handleChange: function(input, e){
     var field = {errors: {}};
     field[input] = e.target.value;

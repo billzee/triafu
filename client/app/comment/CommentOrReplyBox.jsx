@@ -16,6 +16,9 @@ export default class CommentOrReplyBox extends Component {
     };
   }
 
+  componentWillMount(){
+  }
+
   componentDidMount(){
     pubsub.subscribe('submitted-comment', ()=>{
       this.setState({release: null});
@@ -50,20 +53,20 @@ export default class CommentOrReplyBox extends Component {
             {
               this.props.commentOrReply.text.length <= helper.maxLengthForRelease ?
                 (
-                  <span className="comment-text">
-                    {this.props.commentOrReply.text}
+                  <span className="comment-text"
+                  dangerouslySetInnerHTML={{__html: helper.urlify(this.props.commentOrReply.text)}}>
                   </span>
                 )
               : this.state.release === this.props.commentOrReply.id ?
                 (
-                  <span className="comment-text">
-                    {this.props.commentOrReply.text}
+                  <span className="comment-text"
+                  dangerouslySetInnerHTML={{__html: helper.urlify(this.props.commentOrReply.text)}}>
                   </span>
                 )
               :
                 (
-                  <span className="comment-text">
-                    {this.props.commentOrReply.text.substring(0,helper.maxLengthForRelease)}...
+                  <span className="comment-text"
+                  dangerouslySetInnerHTML={{__html: this.props.commentOrReply.text.substring(0,helper.maxLengthForRelease) + "..."}}>
                   </span>
                 )
             }
