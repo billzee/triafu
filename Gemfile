@@ -62,5 +62,6 @@ gem 'file_validators'
 gem 'streamio-ffmpeg'
 gem 'paranoia'
 gem 'sitemap_generator'
+gem 'airbrake', '~> 6.2'
 
 gem 'mini_racer', platforms: :ruby
