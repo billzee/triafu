@@ -23,7 +23,7 @@ export default class PostMedia extends Component {
       pubsub.subscribe('play-video', (msg, data)=>{
         if(data.postId === this.props.postId){
           this.video.play();
-          this.setState({paused: false});
+          if(!this.video.paused) this.setState({paused: false});
         } else if(!this.video.paused){
           this.video.pause();
           this.video.currentTime = 0;
@@ -34,16 +34,17 @@ export default class PostMedia extends Component {
       this.video.addEventListener("loadeddata", function(){
         if (this.video.audioTracks && this.video.audioTracks.length > 0){
           this.setState({hasAudio: true});
-        } else if (typeof this.video.webkitAudioDecodedByteCount !== "undefined"){
-          if (this.video.webkitAudioDecodedByteCount > 0)
-            this.setState({hasAudio: true});
-          else
-            this.setState({hasAudio: false});
         } else if (typeof this.video.mozHasAudio !== "undefined"){
           if (this.video.mozHasAudio)
             this.setState({hasAudio: true});
           else
             this.setState({hasAudio: false});
+        } else if (typeof this.video.webkitAudioDecodedByteCount !== "undefined"){
+          if (this.video.webkitAudioDecodedByteCount > 0){
+            this.setState({hasAudio: true});
+          } else{
+            this.setState({hasAudio: false});
+          }
         } else{
           this.setState({hasAudio: false});
         }
@@ -67,7 +68,7 @@ export default class PostMedia extends Component {
       } else{
         if(this.video.paused){
           this.video.play();
-          this.setState({paused: false});
+          if(!this.video.paused) this.setState({paused: false});
         } else{
           this.video.pause();
           this.setState({paused: true});
@@ -147,7 +148,8 @@ export default class PostMedia extends Component {
             ) : null
           }
 
-          <video ref={(video) => {this.video = video}} muted loop playsInline preload="yes">
+          <video ref={(video) => {this.video = video}}
+          muted loop playsInline>
             <source src={this.state.video.mp4.url} type="video/mp4"/>
             <source src={this.state.video.webm.url} type="video/webm"/>
           </video>
