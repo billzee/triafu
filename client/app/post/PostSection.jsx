@@ -146,7 +146,14 @@ export default class PostSection extends Component {
                 </div>
               </div>
             ) : null }
-            
+
+          { this.state.loading === true ? (
+            <div className="row pb-3 pt-3 no-gutters">
+              <div className="col-10 offset-1">
+                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+              </div>
+            </div> ) : null }
+
           {!this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null}
         </box>
       );
@@ -178,6 +185,16 @@ export default class PostSection extends Component {
                   className="btn btn-block btn-primary">
                     Carregar mais publicações
                   </button>
+                </div>
+              </div>
+            </div> ) : null
+          }
+
+          { this.state.loading === true ? (
+            <div className="row justify-content-end mr-5 pb-3 pt-3">
+              <div className="col-700">
+                <div className="col-550 text-center text-purple">
+                  <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
                 </div>
               </div>
             </div> ) : null
