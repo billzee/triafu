@@ -112,78 +112,36 @@ export default class PostVoteBox extends Component {
   }
 
   render(){
-    if(this.props.isMobile){
-      return(
-        <div className="row no-gutters bgm-gray p-2 rounded">
-          <div className="col-4 text-center">
-            <i className={"vote-link href " + (this.state.userVote === 'funny' ? "voted" : "")} href data-placement="top"
-            onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="bottom" data-title="Engraçado">
-              <img src="/assets/icons/funny.svg" width="35px" height="35px" />
-            </i>
-            <span className="ml-2 text-success">
-              {this.state.funnyCount}
-            </span>
-          </div>
-          <div className="col-4 text-center">
-            <i className={"vote-link href " + (this.state.userVote === 'smart' ? "voted" : "")} href data-placement="top"
-            onClick={(e) => this.vote(e, 'smart')} data-toggle="tooltip" data-placement="bottom" data-title="Interessante">
-              <img src="/assets/icons/brain.svg" width="35px" height="35px"/>
-            </i>
-            <span className="ml-2 text-success">
-              {this.state.smartCount}
-            </span>
-          </div>
-          <div className="col-4 text-center pt-1">
-            <i className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href data-placement="top"
-            onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="bottom" data-title="Negativo">
-              <img src="/assets/icons/downvote.svg" width="28px" height="28px" />
-            </i>
-            <span className="ml-2 text-danger">
-              {this.state.negativeCount}
-            </span>
-          </div>
+    return(
+      <div className="row no-gutters bgm-gray p-2 rounded">
+        <div className="col-4 text-center">
+          <i className={"vote-link href " + (this.state.userVote === 'funny' ? "voted" : "")} href data-placement="top"
+          onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="bottom" data-title="Engraçado">
+            <img src="/assets/icons/funny.svg" width="35px" height="35px" />
+          </i>
+          <span className="ml-2 text-success">
+            {this.state.funnyCount}
+          </span>
         </div>
-      );
-    } else{
-      return(
-        <div className="row no-gutters">
-          <div className="col-8">
-            <ul className="list-unstyled mb-0 bgm-gray p-3 rounded">
-              <li className="text-center">
-                <i className={"vote-link href " + (this.state.userVote === 'funny' ? "voted" : "")} href="#"
-                onClick={(e) => this.vote(e, 'funny')} data-toggle="tooltip" data-placement="left" data-title="Engraçado">
-                  <img src="/assets/icons/funny.svg" width="35px" height="35px" />
-                </i>
-              </li>
-              <li className="mt-3 text-center">
-                <i className={"vote-link href " + (this.state.userVote === 'smart' ? "voted" : "")} href="#"
-                onClick={(e) => this.vote(e, 'smart')} data-toggle="tooltip" data-placement="left" data-title="Interessante">
-                  <img src="/assets/icons/brain.svg" width="35px" height="35px"/>
-                </i>
-              </li>
-              <li className="mt-3 text-center">
-                <i className={"vote-link href " + (this.state.userVote === 'negative' ? "voted" : "")} href="#"
-                onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="left" data-title="Negativo">
-                  <img src="/assets/icons/downvote.svg" width="30px" height="30px" />
-                </i>
-              </li>
-            </ul>
-          </div>
-          <div className="col-4">
-            <ul className="list-unstyled mb-0 pl-3 pt-3 pb-3">
-              <li className="h-35 mt-2 text-success">
-                {this.state.funnyCount}
-              </li>
-              <li className="mt-3 h-35 text-success">
-                {this.state.smartCount}
-              </li>
-              <li className="mt-3 h-35 text-danger">
-                {this.state.negativeCount}
-              </li>
-            </ul>
-          </div>
+        <div className="col-4 text-center">
+          <i className={"vote-link href " + (this.state.userVote === 'smart' ? "voted" : "")} href data-placement="top"
+          onClick={(e) => this.vote(e, 'smart')} data-toggle="tooltip" data-placement="bottom" data-title="Interessante">
+            <img src="/assets/icons/brain.svg" width="35px" height="35px"/>
+          </i>
+          <span className="ml-2 text-success">
+            {this.state.smartCount}
+          </span>
         </div>
-      );
-    }
+        <div className="col-4 text-center pt-1">
+          <i className={"vote-link " + (this.state.userVote === 'negative' ? "voted" : "")} href data-placement="top"
+          onClick={(e) => this.vote(e, 'negative')} data-toggle="tooltip" data-placement="bottom" data-title="Negativo">
+            <img src="/assets/icons/downvote.svg" width="28px" height="28px" />
+          </i>
+          <span className="ml-2 text-danger">
+            {this.state.negativeCount}
+          </span>
+        </div>
+      </div>
+    );
   }
 }

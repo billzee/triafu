@@ -76,7 +76,7 @@ export default class PostBoxViewMobile extends Component {
                   {this.props.points || 0}&nbsp;&bull;&nbsp;{moment(this.props.post.createdAt).fromNow()}
                 </small>
 
-                <PostVoteBox post={this.props.post} isMobile="true" />
+                <PostVoteBox post={this.props.post} />
               </div>
 
               <div className="col-2 align-self-center text-center pl-0">
