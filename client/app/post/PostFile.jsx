@@ -54,7 +54,7 @@ export default class PostFile extends Component {
       }
 
     } else{
-      this.setState({fileErrors: ["O arquivo deve pesar entre 20KB e 10MB"]});
+      this.setState({fileErrors: ["O arquivo deve pesar entre 10KB e 5MB"]});
     }
 
     this.setState({loading: false});

@@ -15,18 +15,18 @@ class Post < ApplicationRecord
 
   validates :file, presence: true, on: :create,
   file_size: {
-    greater_than_or_equal_to: 20.kilobytes,
-    less_than_or_equal_to: 20.megabytes
+    greater_than_or_equal_to: 10.kilobytes,
+    less_than_or_equal_to: 5.megabytes
   }
 
   validates :image,
   file_size: {
-    less_than_or_equal_to: 8.megabytes
+    less_than_or_equal_to: 5.megabytes
   }
 
   validates :video,
   file_size: {
-    less_than_or_equal_to: 20.megabytes
+    less_than_or_equal_to: 5.megabytes
   }
 
   validate :file_to_image_or_video

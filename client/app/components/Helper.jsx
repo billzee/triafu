@@ -7,9 +7,9 @@ var Helper = {
 
   maxLengthForRelease: 100,
 
-  maxFileSize: 10000000,
+  maxFileSize: 5000000,
 
-  minFileSize: 20000,
+  minFileSize: 10000,
 
   urlify: function(text){
     var urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
