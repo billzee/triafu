@@ -149,7 +149,7 @@ export default class PostSection extends Component {
 
           { this.state.loading === true ? (
             <div className="row pb-3 pt-3 no-gutters">
-              <div className="col-10 offset-1 text-purple">
+              <div className="col-10 offset-1 text-purple text-center">
                 <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
               </div>
             </div> ) : null }

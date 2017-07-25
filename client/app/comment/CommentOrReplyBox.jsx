@@ -16,9 +16,6 @@ export default class CommentOrReplyBox extends Component {
     };
   }
 
-  componentWillMount(){
-  }
-
   componentDidMount(){
     pubsub.subscribe('submitted-comment', ()=>{
       this.setState({release: null});
@@ -46,7 +43,8 @@ export default class CommentOrReplyBox extends Component {
             target="_blank" className="black-hyperlink font-weight-bold">
               {this.props.commentOrReply.user.username}
             </a>
-            {this.props.commentOrReply.user.id === this.props.postAuthor ? (<span className="text-success">&nbsp;autor</span>) : null}
+            &nbsp;
+            {this.props.commentOrReply.user.id === this.props.postAuthor ? (<span className="badge badge-success">autor</span>) : null}
             <br/>
             <small className="text-muted">&nbsp;{ moment(this.props.commentOrReply.createdAt).fromNow() }</small>
             <br/>
