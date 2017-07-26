@@ -179,23 +179,19 @@ export default class PostSection extends Component {
 
           { this.state.postReferenceId ? (
             <div className="row justify-content-end mr-5 pb-3 pt-3">
-              <div className="col-700">
-                <div className="col-550 text-center">
-                  <button type="button" onClick={(e) => this.getPosts(e)}
-                  className="btn btn-block btn-primary">
-                    Carregar mais publicações
-                  </button>
-                </div>
-              </div>
+              <div className="col-550 text-center">
+                <button type="button" onClick={(e) => this.getPosts(e)}
+                className="btn btn-block btn-primary">
+                  Carregar mais publicações
+                </button>
+              </div>              
             </div> ) : null
           }
 
           { this.state.loading === true ? (
             <div className="row justify-content-end mr-5 pb-3 pt-3">
-              <div className="col-700">
-                <div className="col-550 text-center text-purple">
-                  <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-                </div>
+              <div className="col-550 text-center text-purple">
+                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
               </div>
             </div> ) : null
           }

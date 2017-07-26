@@ -8,7 +8,7 @@ import PostVoteBox from '../PostVoteBox';
 export default class PostBoxViewDesktop extends Component {
   render(){
     return (
-      <div className="row justify-content-end mb-5 mt-4 mr-5">
+      <div className="row justify-content-end mt-4 mr-5">
         <div className="col-550">
           <h1>{this.props.post.title}</h1>
 
@@ -39,7 +39,7 @@ export default class PostBoxViewDesktop extends Component {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row mt-1">
             <div className="col-5">
               <small className="text-muted">
               {this.props.points || 0} {helper.pluralize(this.props.points, "ponto")}<br/>
@@ -47,7 +47,7 @@ export default class PostBoxViewDesktop extends Component {
               </small>
             </div>
 
-            <div className="col-7 mt-2 text-right">
+            <div className="col-7 align-self-center mt-2 text-right">
               <PostShareLinks post={this.props.post} />
             </div>
           </div>

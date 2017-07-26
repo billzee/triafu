@@ -306,3 +306,7 @@ hr.or:after {
 
   &.show .modal-dialog { transform: translate3d(0, 0, 0); }
 }
+
+.alert{
+  border-radius: 0px;
+}

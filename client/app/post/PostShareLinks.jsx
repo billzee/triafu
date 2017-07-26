@@ -63,7 +63,7 @@ export default class PostShareLinks extends Component {
             </CopyToClipboard>
             <hr/>
           </div>
-          <div className="col-12 align-self-center">
+          <div className="col-12">
             <button className="btn btn-block btn-facebook" onClick={()=>this.facebookShare()}>
               <i className="fa fa-facebook-f fa-1x"></i>
               <span className="ml-1">Facebook</span>

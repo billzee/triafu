@@ -38,9 +38,9 @@ $(function(){
     }
   });
 
-  if($(".communications").length){
-    setTimeout(function(){
-      $(".communications").slideUp(200);
-    }, 5000);
-  }
+  // if($(".communications").length){
+  //   setTimeout(function(){
+  //     $(".communications").slideUp(200);
+  //   }, 5000);
+  // }
 });
