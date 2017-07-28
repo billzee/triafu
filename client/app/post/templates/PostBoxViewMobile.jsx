@@ -48,12 +48,12 @@ export default class PostBoxViewMobile extends Component {
 
             { this.props.post.original ?
               (
-                <h4 className="text-left pl-1 pr-1">
+                <h2 className="text-left pl-1 pr-1">
                   <a href={this.props.post.original}
                   target="_blank" content="noindex, nofollow">
                     link do autor original
                   </a>
-                </h4>
+                </h2>
               )
               : null }
 

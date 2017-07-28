@@ -11,9 +11,9 @@ export default class CommentHeader extends Component {
           <div className="col-12 p-2 mx">
             <div className="row no-gutters">
               <div className="col-8 align-self-center">
-                <strong>
+                <h2 className="mb-0">
                   {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}
-                </strong>
+                </h2>
               </div>
               <div className="col-4 align-self-center text-right mx">
                 <button type="button"
@@ -26,9 +26,9 @@ export default class CommentHeader extends Component {
           </div>
         :
           <div className="col-12 pt-2 pb-0 mx">
-            <strong>
+            <h2 className="mb-0">
               {this.props.totalCount || 0} {this.props.totalCount === 1 ? "comentário" : "comentários"}
-            </strong>
+            </h2>
           </div>
         }
         <CommentForm postId={this.props.postId} />

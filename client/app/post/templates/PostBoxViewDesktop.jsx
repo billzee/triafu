@@ -14,12 +14,12 @@ export default class PostBoxViewDesktop extends Component {
 
           { this.props.post.original ?
             (
-              <h4>
+              <h2>
                 <a href={this.props.post.original}
                 target="_blank" content="noindex, nofollow">
                   link do autor original
                 </a>
-              </h4>
+              </h2>
             )
             : null
           }
