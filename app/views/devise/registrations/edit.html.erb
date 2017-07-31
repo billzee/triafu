@@ -1,7 +1,16 @@
 <%= render "section_select" %>
 
 <div class="col-md-6 col-sm">
-  <h1>Editar Perfil</h1>
+  <div class="row">
+    <div class="col-8">
+      <h1>Editar Perfil</h1>
+    </div>
+    <div class="col-4 text-right">
+      <%= link_to(user_posts_path(username: current_user.username), target: "_blank") do %>
+        ver perfil <i class="fa fa-external-link"></i>
+      <% end %>
+    </div>
+  </div>
   <hr>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>

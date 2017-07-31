@@ -7,7 +7,7 @@ export default class PublishButton extends Component {
   constructor(){
     super();
     this.state = {
-      label: 'Publicar'
+      label: '+ Publicar'
     };
   }
 
@@ -16,7 +16,7 @@ export default class PublishButton extends Component {
       if (data === true){
         this.setState({label: 'Convertendo...'});
       } else{
-        this.setState({label: 'Publicar'});
+        this.setState({label: '+ Publicar'});
       }
     });
 
@@ -24,7 +24,7 @@ export default class PublishButton extends Component {
       if (data === true){
         this.setState({label: 'Publicando...'});
       } else{
-        this.setState({label: 'Publicar'});
+        this.setState({label: '+ Publicar'});
       }
     });
   }

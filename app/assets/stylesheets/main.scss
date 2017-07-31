@@ -44,7 +44,7 @@ a{
   &:active{text-decoration: none;}
   &:link{text-decoration: none;}
   &.black-hyperlink{
-    color: $dark-gray;
+    color: $dark-gray !important;
     &:hover{
       text-decoration: underline;
     }
