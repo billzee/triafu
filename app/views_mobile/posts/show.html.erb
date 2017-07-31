@@ -2,7 +2,7 @@
 <%= render "layouts/sub_header" %>
 
 <div class="row no-gutters">
-  <%= render "partials/devise_communications" %>
+  <%= render "partials/alert" %>
   <div class="col-12 pb-4">
     <%= react_component("PostSection", prerender: true,
     props: { postReferenceId: @post.reference_id, isMobile: true }) %>

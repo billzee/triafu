@@ -41,7 +41,7 @@ export default class PostSection extends Component {
         this.setState({errors: resJson.errors});
         if(resJson.errors.file) pubsub.publish('file-errors', resJson.errors.file)
       } else if(resJson.reference_id){
-        window.location = "/pub/" + resJson.reference_id;
+        window.location = "/pub/" + resJson.reference_id + "?new=true";
       } else{
         window.location.reload();
       }

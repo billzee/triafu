@@ -13,6 +13,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    if params[:new]
+      @notice = "Publicado! Agora compartilhe sua criação com seus amigos"
+    end
     @post = Post.find_by!(reference_id: params[:reference_id])
   end
 

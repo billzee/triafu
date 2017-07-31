@@ -3,7 +3,7 @@
 <div class="row posts-container">
   <div class="col p-0 pb-4 posts" id="posts">
     <div class="row m-0">
-      <%= render "partials/devise_communications" %>
+      <%= render "partials/alert" %>
       <div class="col-12">
         <%= react_component("PostSection", props: { postReferenceId: @post.reference_id }, prerender: true) %>
       </div>
