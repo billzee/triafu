@@ -10,7 +10,11 @@ export default class PostBoxViewDesktop extends Component {
     return (
       <div className="row justify-content-end mt-4 mr-5">
         <div className="col-550">
-          <h1>{this.props.post.title}</h1>
+          <h1>{this.props.post.title}
+          { this.props.post.id == this.props.currentPost ?
+            (<span className="text-success">&nbsp;&#9679;</span>) : null
+          }
+          </h1>
 
           { this.props.post.original ?
             (
