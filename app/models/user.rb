@@ -35,7 +35,10 @@ class User < ApplicationRecord
     if self.avatar.file
       self.avatar.url
     elsif self.facebook_image
-      self.facebook_image + "?type=large"
+      url = self.facebook_image + "?type=large"
+      uri = URI.parse(url)
+      uri.scheme = "https"
+      uri.to_s
     elsif self.google_image
       self.google_image
     else

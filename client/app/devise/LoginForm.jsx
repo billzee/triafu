@@ -9,13 +9,21 @@ import helper from '../components/Helper'
 export default class Login extends Component {
   constructor(){
     super();
-    this.state = {login: '', password: '', postId: '', errors: {}};
+    this.state = {
+      login: '',
+      password: '',
+      postReferenceId: '',
+      errors: {}};
     this.login = this.login.bind(this);
   }
 
   componentDidMount(){
     pubsub.subscribe('auth-error', (msg, data)=>{
       this.setState({errors: data});
+    });
+
+    pubsub.subscribe('watch-post', (msg, data)=>{
+      this.setState({postReferenceId: data.postReferenceId});
     });
 
     $('#m_login').on('hidden.bs.modal', ()=> {
@@ -30,8 +38,12 @@ export default class Login extends Component {
       let res = await DeviseApi._createSession(this.state);
       let resJson = await res.json();
 
+      console.log(this.state.postReferenceId);
+
       if(resJson.errors){
         this.setState({errors: resJson.errors});
+      } else if(this.state.postReferenceId){
+        window.location = "/pub/" + this.state.postReferenceId;
       } else{
         window.location.reload();
       }

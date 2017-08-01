@@ -25,8 +25,8 @@ export default class PostSection extends Component {
     this.showPost = this.showPost.bind(this);
   }
 
-  _handleEnter(postId, postAuthor){
-    pubsub.publish('watch-post', {postId: postId, postAuthor: postAuthor});
+  _handleEnter(postId, postAuthor, postReferenceId){
+    pubsub.publish('watch-post', {postId: postId, postAuthor: postAuthor, postReferenceId: postReferenceId});
     pubsub.publish('play-video', {postId: postId});
     this.setState({currentPost: postId, currentPostAuthor: postAuthor});
   }
@@ -166,7 +166,7 @@ export default class PostSection extends Component {
                   key={post.id}
                   topOffset="49%"
                   bottomOffset="49%"
-                  onEnter={()=> {this._handleEnter(post.id, post.userId)}}>
+                  onEnter={()=> {this._handleEnter(post.id, post.userId, post.referenceId)}}>
                   <div>
                     <PostBox post={post}
                     currentPost={this.state.currentPost}
@@ -184,7 +184,7 @@ export default class PostSection extends Component {
                 className="btn btn-block btn-primary">
                   Carregar mais publicações
                 </button>
-              </div>              
+              </div>
             </div> ) : null
           }
 
