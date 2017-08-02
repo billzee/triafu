@@ -136,6 +136,20 @@ export default class PostSection extends Component {
               );
             })
           }
+
+          { !this.state.loading && this.state.posts.length === 0 ?
+            (
+              <div className="row pb-4 pt-3 no-gutters">
+                <div className="col-12 text-center">
+                  Nenhuma publicação <br/>
+                  <button type="button" onClick={(e) => this.getPosts(e)}
+                  className="btn btn-success">
+                    Criar primeira publicação
+                  </button>
+                </div>
+              </div>
+            ) : null }
+
           { this.state.postReferenceId ? (
               <div className="row pb-4 no-gutters">
                 <div className="col-10 offset-1">
@@ -177,6 +191,19 @@ export default class PostSection extends Component {
             })
           }
 
+          { !this.state.loading && this.state.posts.length === 0 ?
+            (
+              <div className="row justify-content-end mr-5 pb-3 pt-3">
+                <div className="col-550 text-center">
+                  Nenhuma publicação <br/>
+                  <button type="button" onClick={(e) => this.getPosts(e)}
+                  className="btn btn-success">
+                    Criar primeira publicação
+                  </button>
+                </div>
+              </div>
+            ) : null }
+
           { this.state.postReferenceId ? (
             <div className="row justify-content-end mr-5 pb-3 pt-3">
               <div className="col-550 text-center">
@@ -200,5 +227,10 @@ export default class PostSection extends Component {
         </box>
       );
     }
+  }
+
+  componentWillUnmount() {
+    console.log('entrou');
+    this.setState({loading: true});
   }
 }
