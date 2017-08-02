@@ -1,6 +1,13 @@
 <script>
   if(window.opener) {
-    window.opener.location.reload(true);
+    var postReferenceId = window.opener.postReferenceId
+
+    if (postReferenceId){
+      window.opener.location = "/pub/" + postReferenceId;
+    } else{
+      window.opener.location.reload(true);
+    }
+
     window.close();
   }
 </script>

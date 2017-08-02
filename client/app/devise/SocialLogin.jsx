@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 
+import pubsub from 'pubsub-js'
+
 export default class SocialLogin extends Component {
+
+  componentDidMount(){
+    pubsub.subscribe('watch-post', (msg, data)=>{
+      window.postReferenceId = data.postReferenceId;
+    });
+  }
 
   popupCenter(url, title, w, h) {
     var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
