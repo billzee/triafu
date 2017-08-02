@@ -141,10 +141,9 @@ export default class PostSection extends Component {
             (
               <div className="row pb-4 pt-3 no-gutters">
                 <div className="col-12 text-center">
-                  Nenhuma publicação <br/>
-                  <button type="button" onClick={(e) => this.getPosts(e)}
-                  className="btn btn-success">
-                    Criar primeira publicação
+                  Nenhuma publicação aqui <br/>
+                  <button className="btn btn-success" data-toggle="modal" data-target="#m_new_post">
+                    Criar publicação
                   </button>
                 </div>
               </div>
@@ -193,12 +192,11 @@ export default class PostSection extends Component {
 
           { !this.state.loading && this.state.posts.length === 0 ?
             (
-              <div className="row justify-content-end mr-5 pb-3 pt-3">
+              <div className="row justify-content-end mr-5 pb-3 pt-4">
                 <div className="col-550 text-center">
-                  Nenhuma publicação <br/>
-                  <button type="button" onClick={(e) => this.getPosts(e)}
-                  className="btn btn-success">
-                    Criar primeira publicação
+                  Nenhuma publicação aqui <br/>
+                  <button className="btn btn-success" data-toggle="modal" data-target="#m_new_post">
+                    Criar publicação
                   </button>
                 </div>
               </div>
@@ -230,7 +228,6 @@ export default class PostSection extends Component {
   }
 
   componentWillUnmount() {
-    console.log('entrou');
     this.setState({loading: true});
   }
 }
