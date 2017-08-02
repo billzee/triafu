@@ -4,7 +4,19 @@
       <%= render "partials/alert" %>
       <%= render "partials/user_profile" %>
 
-      <div class="col-12">
+      <div class="col text-right pt-4">
+        <h1>Em alta <i class="fa fa-fire text-danger"></i></h1>
+        <% Post.last(6).each do |post| %>
+        
+          <%= link_to post_path(reference_id: post.reference_id), target: "_blank" do %>
+            <%= image_tag(post.image, class: "", height: 100, width: 300) %>
+            <h2><%= post.title %></h2> <br>
+          <% end %>
+
+        <% end %>
+      </div>
+
+      <div class="w-700">
         <%= react_component("PostSection",
         props: {
           category: params[:category],
