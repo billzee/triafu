@@ -6,14 +6,23 @@
 
       <div class="col text-right pt-4">
         <h1>Em alta <i class="fa fa-fire text-danger"></i></h1>
+        <ul class="list-unstyled float-right">
+
         <% Post.last(6).each do |post| %>
-        
+        <li class="featured-post mb-4">
           <%= link_to post_path(reference_id: post.reference_id), target: "_blank" do %>
-            <%= image_tag(post.image, class: "", height: 100, width: 300) %>
-            <h2><%= post.title %></h2> <br>
+          <h2 class="mb-0"><%= post.title %></h2>
+          <% if post.image.file %>
+          <div class="image" style="background-image: url(<%= asset_path(post.image) %>)"></div>
+          <% elsif post.video.file %>
+          <div class="image" style="background-image: url(<%= asset_path(post.video.url(:screenshot)) %>)"></div>
           <% end %>
+          <% end %>
+        </li>
+
 
         <% end %>
+        </ul>
       </div>
 
       <div class="w-700">
