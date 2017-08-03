@@ -1,37 +1,57 @@
-.featured-post{
-  &:hover{
-    *{
-      text-decoration: underline;
-    }
-  }
-  position: relative;
-  height: 150px;
-  width: 300px;
+ul.featured{
+  margin-bottom: 0;
+  float: right;
+  list-style: none;
 
-  .image{
-    left: 0;
-    top: 0;
+  .unsigned-message{
+    z-index: 888;
+    display: none;
     position: absolute;
-    float: right;
-    margin: 0;
-    height: 150px;
-    width: 300px;
-    background-repeat: no-repeat;
-    background-clip: content-box;
-    background-size: cover;
-    background-position: center center;
-  }
-
-  h2{
-    bottom: 0;
-    height: 35px;
-    padding-top: 10px;
-    padding-right: 10px;
-    width: 100%;
-    position: absolute;
-    z-index: 500;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.9);
+    padding-top: 100px;
+    text-align: center;
     color: white;
   }
 
+  .featured-post{
+    position: relative;
+    height: 120px;
+    width: 250px;
+
+    .image{
+      left: 0;
+      top: 0;
+      position: absolute;
+      float: right;
+      margin: 0;
+      height: 120px;
+      width: 250px;
+      background-repeat: no-repeat;
+      background-clip: content-box;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    h2{
+      bottom: 0;
+      height: 35px;
+      padding-top: 10px;
+      padding-right: 10px;
+      width: 100%;
+      position: absolute;
+      z-index: 500;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+    }
+
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    &:hover{
+      *{
+        text-decoration: underline;
+      }
+    }
+  }
 }

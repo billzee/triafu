@@ -74,6 +74,10 @@ class PostsController < ApplicationController
       file_errors = resolve_image_or_video @@new_post.errors
       @@new_post.errors[:file].push(file_errors) unless file_errors.nil?
 
+      if @@new_post.errors.nil?
+        @@new_post.errors[:file].push('Ocorreu algum problema, por favor, clique em "publicar" novamente')
+      end
+
       render :json => { :errors => @@new_post.errors }
     end
   end

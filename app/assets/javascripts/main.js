@@ -38,9 +38,17 @@ $(function(){
     }
   });
 
-  // if($(".communications").length){
-  //   setTimeout(function(){
-  //     $(".communications").slideUp(200);
-  //   }, 5000);
-  // }
+  if($('.featured.unsigned').length){
+    $('.featured.unsigned').mouseover(function(){
+      $('.unsigned-message').css("height", $('.featured.unsigned').height());
+      $('.unsigned-message').css("width", $('.featured.unsigned').width());
+      $('.unsigned-message').show();
+    });
+
+    $('.featured.unsigned').mouseleave(function(){
+      $('.unsigned-message').hide();
+      $('.unsigned-message').css("height", 0);
+      $('.unsigned-message').css("width", 0);
+    });
+  }
 });
