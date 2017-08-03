@@ -114,6 +114,14 @@ h5 {
   word-wrap: break-word;
 }
 
+.carousel{
+  width: 100%;
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .pt-15{
   padding-top: 0.4rem !important;
 }

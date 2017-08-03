@@ -37,6 +37,10 @@ class Post < ApplicationRecord
 
   paginates_per 4
 
+  def self.featured
+    where.not(featured_at: nil).order(updated_at: :desc).take(10)
+  end
+
   def self.all_from_category category=:top
     where(category: category).order(updated_at: :desc)
   end

@@ -1,20 +1,21 @@
 ul.featured{
   margin-bottom: 0;
-  float: right;
   list-style: none;
+  display: inline;
 
   .unsigned-message{
     z-index: 888;
     display: none;
     position: absolute;
     background: rgba(0, 0, 0, 0.9);
-    padding-top: 100px;
+    padding-top: 10%;
     text-align: center;
     color: white;
   }
 
   .featured-post{
     position: relative;
+    overflow-x: auto;
     height: 120px;
     width: 250px;
 
