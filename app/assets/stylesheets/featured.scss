@@ -13,13 +13,26 @@ ul.featured{
     color: white;
   }
 
+  .unsigned-message-mobile{
+    float: left;
+    z-index: 888;
+    display: none;
+    position: absolute;
+    height: 120px;
+    width: 100%;
+    padding-top: 25px;
+    padding-left: 25px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+  }
+
   .featured-post{
     position: relative;
     overflow-x: auto;
     height: 120px;
     width: 300px;
 
-    .image{
+    .featured-image{
       left: 0;
       top: 0;
       position: absolute;

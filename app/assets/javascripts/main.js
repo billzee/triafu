@@ -43,10 +43,14 @@ $(function(){
       $('.unsigned-message').css("height", $('.featured.unsigned').height());
       $('.unsigned-message').css("width", $('.featured.unsigned').width());
       $('.unsigned-message').show();
+
+      $('.unsigned-message-mobile').show();
     });
 
     $('.featured.unsigned').mouseleave(function(){
       $('.unsigned-message').hide();
+      $('.unsigned-message-mobile').hide();
+      
       $('.unsigned-message').css("height", 0);
       $('.unsigned-message').css("width", 0);
     });
