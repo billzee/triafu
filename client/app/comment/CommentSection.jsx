@@ -140,7 +140,16 @@ export default class CommentSection extends Component {
                 <div className="col align-self-center text-center text-purple">
                   <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
                 </div>
-              ) : null
+              )
+            :
+              (
+                <div className="col align-self-center text-center">
+                  Nenhum comentário <br/>
+                  <button className="btn btn-success mt-1" onClick={()=> document.getElementById("comment-form").focus()}>
+                    Seja o 1º a comentar
+                  </button>
+                </div>
+              )
           }
         </div>
       </box>

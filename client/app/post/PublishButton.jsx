@@ -34,14 +34,14 @@ export default class PublishButton extends Component {
       return (
         <button className="btn btn-sm btn-block btn-success"
         data-toggle="modal" data-target="#m_new_post">
-          <strong>{this.state.label}</strong>
+          {this.state.label}
         </button>
       );
     } else{
       return (
         <button className="btn btn-success"
         data-toggle="modal" data-target="#m_new_post">
-          <strong>{this.state.label}</strong>
+          {this.state.label}
         </button>
       );
     }

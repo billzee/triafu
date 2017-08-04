@@ -142,7 +142,7 @@ export default class PostSection extends Component {
               <div className="row pb-4 pt-3 no-gutters">
                 <div className="col-12 text-center">
                   Nenhuma publicação aqui <br/>
-                  <button className="btn btn-success" data-toggle="modal" data-target="#m_new_post">
+                  <button className="btn btn-success mt-1" data-toggle="modal" data-target="#m_new_post">
                     Criar publicação
                   </button>
                 </div>
