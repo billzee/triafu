@@ -1,10 +1,12 @@
 <%= render "partials/social_header" %>
-
 <div class="row posts-container">
-  <div class="col p-0 pb-4 posts" id="posts">
-    <div class="row m-0">
+  <div class="col p-0 posts" id="posts">
+    <div class="row no-gutters justify-content-end">
       <%= render "partials/alert" %>
-      <div class="col-12">
+      <%= render "partials/user_profile" %>
+      <%= render "partials/featured" %>
+
+      <div class="w-550 mr-4">
         <%= react_component("PostSection", props: { postReferenceId: @post.reference_id }, prerender: true) %>
       </div>
     </div>

@@ -10,12 +10,16 @@ class PostsController < ApplicationController
     if request.format.json?
       @paginated_posts = params[:username] ? paginated_posts_from_user : paginated_posts
     end
+
+    @featured_posts = Post.featured
   end
 
   def show
     if params[:new]
       @notice = "Publicado! Agora compartilhe sua criação com seus amigos"
     end
+    
+    @featured_posts = Post.featured
     @post = Post.find_by!(reference_id: params[:reference_id])
   end
 

@@ -1,12 +1,12 @@
-<div class="col text-right pt-4">
+<div class="pt-4 mr-6">
   <h1>Em alta <i class="fa fa-fire text-danger"></i></h1>
 
   <% if user_signed_in? %>
     <ul class="featured">
-      <% Post.last(6).each do |post| %>
+      <% @featured_posts.each do |post| %>
         <li class="featured-post mb-4">
           <%= link_to post_path(reference_id: post.reference_id), target: "_blank" do %>
-            <h2 class="mb-0"><%= post.title %></h2>
+            <h2 class="mb-0"><%= post.title[0..29] %></h2>
             <% if post.image.file %>
               <div class="image" style="background-image: url(<%= asset_path(post.image) %>)"></div>
             <% elsif post.video.file %>
@@ -18,14 +18,18 @@
     </ul>
   <% else %>
     <ul class="featured unsigned">
-        <li class="unsigned-message">
-          <button class="btn btn-success">Fazer login</button>
-          <small>ou</small>
-          <button class="btn btn-primary">Criar Conta</button>
-          <br>
-          <p class="mt-3 font-weight-bold">Para ver as publicações em alta</p>
-        </li>
-      <% Post.last(6).each do |post| %>
+      <li class="unsigned-message">
+        <button class="btn btn-success" data-toggle="modal" data-target="#m_login">
+          Fazer login
+        </button>
+        <small>ou</small>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#m_signup">
+          Criar Conta
+        </button>
+        <br>
+        <p class="mt-3 font-weight-bold">Para ver as publicações em alta</p>
+      </li>
+      <% @featured_posts.each do |post| %>
         <li class="featured-post mb-4">
           <h2 class="mb-0"><%= post.title %></h2>
           <% if post.image.file %>

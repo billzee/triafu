@@ -190,36 +190,28 @@ export default class PostSection extends Component {
             })
           }
 
-          { !this.state.loading && this.state.posts.length === 0 ?
-            (
-              <div className="row justify-content-end mr-5 pb-3 pt-4">
-                <div className="col-550 text-center">
-                  Nenhuma publicação aqui <br/>
-                  <button className="btn btn-success" data-toggle="modal" data-target="#m_new_post">
-                    Criar publicação
-                  </button>
-                </div>
-              </div>
-            ) : null }
+          { !this.state.loading && this.state.posts.length === 0 ? (
+            <div className="text-center mt-4">
+              Nenhuma publicação aqui <br/>
+              <button className="btn btn-success mt-1"
+              data-toggle="modal" data-target="#m_new_post">
+                Criar publicação
+              </button>
+            </div>
+          ) : null }
 
           { this.state.postReferenceId ? (
-            <div className="row justify-content-end mr-5 pb-3 pt-3">
-              <div className="col-550 text-center">
-                <button type="button" onClick={(e) => this.getPosts(e)}
-                className="btn btn-block btn-primary">
-                  Carregar mais publicações
-                </button>
-              </div>
-            </div> ) : null
+            <button type="button" onClick={(e) => this.getPosts(e)}
+            className="btn btn-block btn-primary mt-4 mb-4">
+              Carregar mais publicações
+            </button>) : null
           }
 
           { this.state.loading === true ? (
-            <div className="row justify-content-end mr-5 pb-3 pt-3">
-              <div className="col-550 text-center text-purple">
-                <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-              </div>
-            </div> ) : null
-          }
+            <div className="text-center text-purple mt-3 mb-3">
+              <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+            </div>
+            ) : null }
 
           { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null }
         </box>

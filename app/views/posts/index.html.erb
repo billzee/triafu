@@ -1,11 +1,11 @@
 <div class="row posts-container">
   <div class="col p-0 posts" id="posts">
-    <div class="row no-gutters">
+    <div class="row no-gutters justify-content-end">
       <%= render "partials/alert" %>
       <%= render "partials/user_profile" %>
       <%= render "partials/featured" %>
 
-      <div class="w-700">
+      <div class="w-550 mr-4">
         <%= react_component("PostSection",
         props: {
           category: params[:category],
