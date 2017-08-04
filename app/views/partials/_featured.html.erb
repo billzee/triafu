@@ -1,4 +1,4 @@
-<% if @featured_posts.length > 0 %>
+<% if @featured_posts.length > 0 && !current_page?(user_posts_path) %>
 
   <% if !mobile_device? %>
     <div class="pt-4 mr-6 hidden-lg-down">
