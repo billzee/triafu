@@ -146,8 +146,7 @@ export default class PostSection extends Component {
                     Criar publicação
                   </button>
                 </div>
-              </div>
-            ) : null }
+              </div> ) : null }
 
           { this.state.postReferenceId ? (
               <div className="row pb-4 no-gutters">
@@ -157,8 +156,7 @@ export default class PostSection extends Component {
                     Carregar mais publicações
                   </button>
                 </div>
-              </div>
-            ) : null }
+              </div> ) : null }
 
           { this.state.loading === true ? (
             <div className="row pb-3 pt-3 no-gutters">
