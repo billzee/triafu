@@ -65,9 +65,13 @@
   <% else %>
     <ul class="featured unsigned list-inline">
       <li class="unsigned-message-mobile list-inline-item">
-        <button class="btn btn-success">Fazer login</button>
+        <button class="btn btn-success" data-toggle="modal" data-target="#m_login">
+          Fazer login
+        </button>
         <small>ou</small>
-        <button class="btn btn-primary">Criar Conta</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#m_signup">
+          Criar Conta
+        </button>
         <p class="mt-3 font-weight-bold">Para ver as publicações em alta</p>
       </li>
       <% @featured_posts.each do |post| %>

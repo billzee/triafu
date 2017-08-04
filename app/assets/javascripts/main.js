@@ -45,12 +45,15 @@ $(function(){
       $('.unsigned-message').show();
 
       $('.unsigned-message-mobile').show();
+      $('.carousel').scrollLeft(0);
+      $('.carousel').css("overflow-x", "hidden");
     });
 
     $('.featured.unsigned').mouseleave(function(){
-      $('.unsigned-message').hide();
       $('.unsigned-message-mobile').hide();
-      
+      $('.carousel').css("overflow-x", "auto");
+
+      $('.unsigned-message').hide();
       $('.unsigned-message').css("height", 0);
       $('.unsigned-message').css("width", 0);
     });

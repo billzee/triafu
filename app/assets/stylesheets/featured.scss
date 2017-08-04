@@ -15,13 +15,13 @@ ul.featured{
 
   .unsigned-message-mobile{
     float: left;
+    text-align: center;
     z-index: 888;
     display: none;
     position: absolute;
     height: 120px;
     width: 100%;
     padding-top: 25px;
-    padding-left: 25px;
     background: rgba(0, 0, 0, 0.9);
     color: white;
   }
