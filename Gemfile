@@ -63,5 +63,6 @@ gem 'streamio-ffmpeg'
 gem 'paranoia'
 gem 'sitemap_generator'
 gem 'airbrake', '~> 6.2'
+gem "font-awesome-rails"
 
 gem 'mini_racer', platforms: :ruby
