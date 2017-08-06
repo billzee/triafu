@@ -59,17 +59,21 @@ $(function(){
     });
   }
 
-  setTimeout(function(){
-    if($('#publish-button').length){
+  if($('#publish-button').length){
+    setTimeout(function(){
       $('#publish-button').popover({
         html: true,
         content: "<strong>Ei, você!</strong> Tem alguma <strong>imagem</strong>, <strong>tirinha</strong>, <strong>vídeo</strong> ou <strong>GIF</strong> para compartilhar com a galera?",
         placement: "left",
+        id: "publish-popover",
         trigger: "manual"
       });
 
-      $('#publish-button').popover("toggle");
-    }
-  }, 100000);
+      $('#publish-button').popover("show");
+    }, 100000);
+  }
 
+  $('#publish-button').click(function(){
+    $('#publish-button').popover("hide");
+  });
 });
