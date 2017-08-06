@@ -59,16 +59,17 @@ $(function(){
     });
   }
 
-  if($('#publish-button').length){
-    $('#publish-button').popover({
-      html: true,
-      title: "kkkk e ae man/woman",
-      content: "Tem alguma <strong>imagem</strong>, <strong>tirinha</strong>, <strong>vídeo</strong> ou <strong>GIF</strong> para compartilhar com a galera?",
-      placement: "bottom",
-      trigger: "manual"
-    });
+  setTimeout(function(){
+    if($('#publish-button').length){
+      $('#publish-button').popover({
+        html: true,
+        content: "<strong>Ei, você!</strong> Tem alguma <strong>imagem</strong>, <strong>tirinha</strong>, <strong>vídeo</strong> ou <strong>GIF</strong> para compartilhar com a galera?",
+        placement: "left",
+        trigger: "manual"
+      });
 
-    $('#publish-button').popover("toggle");
-  }
+      $('#publish-button').popover("toggle");
+    }
+  }, 100000);
 
 });

@@ -33,13 +33,13 @@ export default class PublishButton extends Component {
     if(this.props.isMobile){
       return (
         <button className="btn btn-sm btn-block btn-success"
-        data-toggle="modal" data-target="#m_new_post">
+        data-toggle="modal" data-target="#m_new_post" id="publish-button">
           {this.state.label}
         </button>
       );
     } else{
       return (
-        <button className="btn btn-success"
+        <button className="btn btn-success" id="publish-button"
         data-toggle="modal" data-target="#m_new_post">
           {this.state.label}
         </button>
