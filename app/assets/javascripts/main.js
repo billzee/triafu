@@ -58,4 +58,17 @@ $(function(){
       $('.unsigned-message').css("width", 0);
     });
   }
+
+  if($('#publish-button').length){
+    $('#publish-button').popover({
+      html: true,
+      title: "kkkk e ae man/woman",
+      content: "Tem alguma <strong>imagem</strong>, <strong>tirinha</strong>, <strong>vídeo</strong> ou <strong>GIF</strong> para compartilhar com a galera?",
+      placement: "bottom",
+      trigger: "manual"
+    });
+
+    $('#publish-button').popover("toggle");
+  }
+
 });
