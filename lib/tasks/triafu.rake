@@ -21,7 +21,7 @@ namespace :triafu do
       p "there are featured posts to be removed"
       featured_posts.each do |post|
         p "removing old featured post... " + post.reference_id
-        post.update featured_at: nil
+        post.update_column("featured_at", nil)
       end
     else
       p "no old post to be removed from featured"
@@ -32,7 +32,7 @@ namespace :triafu do
     if selected_posts.size > 0
       selected_posts.each do |post|
         p "featuring... " + post.reference_id
-        post.update featured_at: Time.zone.now
+        post.update_column("featured_at", Time.zone.now)
       end
     else
       p "nothing to be featured ):"
