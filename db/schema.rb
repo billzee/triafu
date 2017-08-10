@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170810191957) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "featured_at"
-    t.boolean "has_audio", default: false
+    t.boolean "has_audio"
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
   end
 
