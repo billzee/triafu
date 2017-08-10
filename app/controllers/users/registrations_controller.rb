@@ -120,7 +120,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :username, :email, :password, :password_confirmation])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :text, :username, :email, :password, :password_confirmation])
   end
 
   def update_resource(resource, params)

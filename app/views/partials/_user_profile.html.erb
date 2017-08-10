@@ -1,34 +1,40 @@
 <% if !@user.nil? %>
-  <div class="col-12 p-2 bgm-dark">
-
+  <div class="col-12 text-white bgm-dark">
     <% if mobile_device? %>
-      <div class="row text-white no-gutters">
-        <div class="col-sm-10 offset-sm-2 col-xs-12">
-          <div class="row no-gutters">
-            <div class="col-4 text-right">
-              <%= image_tag(@user.image, class: "rounded-circle", height: 60) %>
-            </div>
-            <div class="col-8 pl-3">
-              <% if user_signed_in? && @user.id == current_user.id %>
-                <small>essas são as suas publicações</small>
-              <% else %>
-                <small>publicações de</small>
-              <% end %>
-              <br>
-              <h1 class="mb-0"><%= @user.username %></h1>
-              <%= @user.full_name %>
-            </div>
+      <div class="container pt-2 pb-2">
+        <div class="row justify-content-center no-gutters">
+          <div class="col-12 text-center">
+            <%= image_tag(@user.image, class: "rounded-circle", height: 60) %>
+          </div>
+          <div class="col-12 text-center">
+            <% if user_signed_in? && @user.id == current_user.id %>
+              <small>essas são as suas publicações</small>
+            <% else %>
+              <small>publicações de</small>
+            <% end %>
+            <br>
+            <h1 class="mb-0"><%= @user.username %></h1>
+            <%= @user.full_name %>
           </div>
         </div>
+        <% if !@user.text.blank? %>
+          <hr/>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center">
+              <h2>Apresentação</h2>
+              <%= @user.text %>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% else %>
-      <div class="row no-gutters text-white justify-content-end">
-        <div class="col-550">
+      <div class="row justify-content-end no-gutters pt-2 pb-2">
+        <div class="col-550 mr-5">
           <div class="row no-gutters">
-            <div class="col-4 text-right">
+            <div class="col-12 text-center">
               <%= image_tag(@user.image, class: "rounded-circle", height: 60) %>
             </div>
-            <div class="col-8 pl-3">
+            <div class="col-12 text-center">
               <% if user_signed_in? && @user.id == current_user.id %>
                 <small>essas são as suas publicações</small>
               <% else %>
@@ -39,9 +45,19 @@
               <%= @user.full_name %>
             </div>
           </div>
+
+          <% if !@user.text.blank? %>
+            <hr/>
+            <div class="row justify-content-end">
+              <div class="col-12 text-center">
+                <h2>Apresentação</h2>
+                <%= @user.text %>
+              </div>
+            </div>
+          <% end %>
+          
         </div>
       </div>
     <% end %>
-
   </div>
 <% end %>

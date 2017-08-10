@@ -52,6 +52,14 @@
       <% end %>
     </div>
 
+    <div class="form-group">
+      <label class="form-control-label">Apresentação</label>
+      <%= f.text_area :text, class: "form-control" %>
+      <small>
+        Quer divulgar seu site, página ou perfil nas redes sociais? Use esse espaço para isso.
+      </small>
+    </div>
+
     <div class="form-group mt-4">
       <label class="form-control-label">Conectar redes sociais</label>
       <%= react_component("SocialConnect", prerender: true) %>

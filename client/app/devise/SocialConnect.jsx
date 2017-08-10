@@ -44,18 +44,18 @@ export default class SocialConnect extends Component {
       <ul className="list-unstyled">
         <li className="mb-3">
           <div className="row">
-            <div className="col-4 align-self-center text-muted">
+            <div className="col-3 align-self-center text-muted">
               Facebook
             </div>
 
-            <div className="col-6">
+            <div className="col-7">
               {
                 this.state.user.facebookConnected ?
                 (
                   <button className="btn btn-facebook btn-block"
                   onClick={()=> this.disconnect("facebook")} type="button">
                     <i className="fa fa-facebook-f fa-1x"></i>
-                    <span className="ml-3">
+                    <span className="ml-2">
                       Desconectar
                     </span>
                   </button>
@@ -65,7 +65,7 @@ export default class SocialConnect extends Component {
                   <button className="btn btn-facebook btn-block disconnected"
                   onClick={()=> this.facebookConnect()} type="button">
                     <i className="fa fa-facebook-f fa-1x"></i>
-                    <span className="ml-3">
+                    <span className="ml-2">
                       Conectar
                     </span>
                   </button>
@@ -85,18 +85,18 @@ export default class SocialConnect extends Component {
 
         <li>
           <div className="row">
-            <div className="col-4 align-self-center text-muted">
+            <div className="col-3 align-self-center text-muted">
               Google
             </div>
 
-            <div className="col-6">
+            <div className="col-7">
               {
                 this.state.user.googleConnected ?
                 (
                   <button className="btn btn-google btn-block"
                   onClick={()=> this.disconnect("google")} type="button">
                     <i className="fa fa-google fa-1x"></i>
-                    <span className="ml-3">
+                    <span className="ml-2">
                       Desconectar
                     </span>
                   </button>
@@ -106,7 +106,7 @@ export default class SocialConnect extends Component {
                   <button className="btn btn-google btn-block disconnected"
                   onClick={()=> this.googleConnect()} type="button">
                     <i className="fa fa-google fa-1x"></i>
-                    <span className="ml-3">
+                    <span className="ml-2">
                       Conectar
                     </span>
                   </button>
