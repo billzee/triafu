@@ -63,7 +63,7 @@ $(function(){
     setTimeout(function(){
       $('#publish-button').popover({
         html: true,
-        content: "<strong>Ei, você!</strong> Tem alguma <strong>imagem</strong>, <strong>tirinha</strong>, <strong>vídeo</strong> ou <strong>GIF</strong> para compartilhar com a galera?",
+        content: "<strong>Ei, você!</strong> Tem alguma <strong>imagem</strong>, <strong>vídeo</strong> ou <strong>GIF</strong> para compartilhar com a galera?",
         placement: "left",
         id: "publish-popover",
         trigger: "manual"

@@ -12,6 +12,11 @@ module CarrierWave
       File.rename(current_path, tmpfile)
 
       file = ::FFMPEG::Movie.new(tmpfile)
+
+      if !file.audio_stream.nil?
+        self.model.has_audio = true
+      end
+
       new_name = File.basename(current_path, '.*') + '.' + format.to_s
       current_extension = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)

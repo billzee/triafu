@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803233323) do
+ActiveRecord::Schema.define(version: 20170810191957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170803233323) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "featured_at"
+    t.boolean "has_audio", default: false
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
   end
 
