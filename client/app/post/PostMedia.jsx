@@ -8,11 +8,11 @@ export default class PostMedia extends Component {
     this.state = {
       image: (props.image || null),
       video: (props.video || null),
-      isMobile: (props.isMobile),
+      isMobile: props.isMobile,
+      hasAudio: props.hasAudio,
       loading: true,
       paused: true,
-      muted: true,
-      hasAudio: false,
+      muted: true
     };
 
     this.video = null;
@@ -32,21 +32,23 @@ export default class PostMedia extends Component {
       });
 
       this.video.addEventListener("loadeddata", function(){
-        if (this.video.audioTracks && this.video.audioTracks.length > 0){
-          this.setState({hasAudio: true});
-        } else if (typeof this.video.mozHasAudio !== "undefined"){
-          if (this.video.mozHasAudio)
+        if(this.state.hasAudio === null){
+          if (this.video.audioTracks && this.video.audioTracks.length > 0){
             this.setState({hasAudio: true});
-          else
-            this.setState({hasAudio: false});
-        } else if (typeof this.video.webkitAudioDecodedByteCount !== "undefined"){
-          if (this.video.webkitAudioDecodedByteCount > 0){
-            this.setState({hasAudio: true});
+          } else if (typeof this.video.mozHasAudio !== "undefined"){
+            if (this.video.mozHasAudio)
+              this.setState({hasAudio: true});
+            else
+              this.setState({hasAudio: false});
+          } else if (typeof this.video.webkitAudioDecodedByteCount !== "undefined"){
+            if (this.video.webkitAudioDecodedByteCount > 0){
+              this.setState({hasAudio: true});
+            } else{
+              this.setState({hasAudio: false});
+            }
           } else{
             this.setState({hasAudio: false});
           }
-        } else{
-          this.setState({hasAudio: false});
         }
 
         this.stopSpinning();

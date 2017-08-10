@@ -31,6 +31,7 @@ export default class PostBoxViewDesktop extends Component {
           <div className="row no-gutters">
             <div className="col-12">
               <PostMedia
+              hasAudio={this.props.post.hasAudio}
               image={this.props.post.image}
               video={this.props.post.video}
               postId={this.props.post.id} />

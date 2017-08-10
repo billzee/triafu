@@ -58,6 +58,7 @@ export default class PostBoxViewMobile extends Component {
               : null }
 
             <PostMedia
+            hasAudio={this.props.post.hasAudio}
             image={this.props.post.image}
             video={this.props.post.video}
             postId={this.props.post.id}
