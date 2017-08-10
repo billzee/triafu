@@ -32,7 +32,8 @@ export default class PostMedia extends Component {
       });
 
       this.video.addEventListener("loadeddata", function(){
-        if(this.state.hasAudio === null){
+        if(this.state.hasAudio === null ||
+        typeof this.state.hasAudio === "undefined"){
           if (this.video.audioTracks && this.video.audioTracks.length > 0){
             this.setState({hasAudio: true});
           } else if (typeof this.video.mozHasAudio !== "undefined"){
