@@ -13,6 +13,7 @@ import CommentSection from '../comment/CommentSection';
 
 import LoginForm from '../devise/LoginForm';
 import SocialLogin from '../devise/SocialLogin';
+import UserPresentation from '../devise/UserPresentation';
 import SocialConnect from '../devise/SocialConnect';
 import UserImage from '../devise/UserImage';
 
@@ -32,6 +33,7 @@ ReactOnRails.register({
   LoginForm,
   SocialLogin,
   SocialConnect,
+  UserPresentation,
   UserImage,
   NotificationList,
   NotificationBell

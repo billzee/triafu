@@ -39,6 +39,10 @@ input[type]:focus{
   border-color: $purple !important;
 }
 
+p{
+  white-space: pre-line;
+}
+
 a{
   &:visited{text-decoration: none;}
   &:active{text-decoration: none;}

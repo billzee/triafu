@@ -21,8 +21,7 @@
           <hr/>
           <div class="row justify-content-center">
             <div class="col-12 text-center">
-              <h2>Apresentação</h2>
-              <%= @user.text %>
+              <%= react_component("UserPresentation", props: {text: @user.text}) %>
             </div>
           </div>
         <% end %>
@@ -50,12 +49,11 @@
             <hr/>
             <div class="row justify-content-end">
               <div class="col-12 text-center">
-                <h2>Apresentação</h2>
-                <%= @user.text %>
+                <%= react_component("UserPresentation", props: {text: @user.text}) %>
               </div>
             </div>
           <% end %>
-          
+
         </div>
       </div>
     <% end %>

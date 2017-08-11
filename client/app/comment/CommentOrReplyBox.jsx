@@ -51,21 +51,21 @@ export default class CommentOrReplyBox extends Component {
             {
               this.props.commentOrReply.text.length <= helper.maxLengthForRelease ?
                 (
-                  <span className="comment-text"
+                  <p className="comment-text"
                   dangerouslySetInnerHTML={{__html: helper.urlify(this.props.commentOrReply.text)}}>
-                  </span>
+                  </p>
                 )
               : this.state.release === this.props.commentOrReply.id ?
                 (
-                  <span className="comment-text"
+                  <p className="comment-text"
                   dangerouslySetInnerHTML={{__html: helper.urlify(this.props.commentOrReply.text)}}>
-                  </span>
+                  </p>
                 )
               :
                 (
-                  <span className="comment-text"
+                  <p className="comment-text"
                   dangerouslySetInnerHTML={{__html: this.props.commentOrReply.text.substring(0,helper.maxLengthForRelease) + "..."}}>
-                  </span>
+                  </p>
                 )
             }
             {
