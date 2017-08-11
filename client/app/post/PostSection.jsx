@@ -148,7 +148,7 @@ export default class PostSection extends Component {
                 </div>
               </div> ) : null }
 
-          { this.state.postReferenceId ? (
+          { !this.state.loading && this.state.postReferenceId ? (
               <div className="row pb-4 no-gutters">
                 <div className="col-10 offset-1">
                   <button type="button" onClick={(e) => this.getPosts(e)}
@@ -198,18 +198,16 @@ export default class PostSection extends Component {
             </div>
           ) : null }
 
-          { this.state.postReferenceId ? (
+          { !this.state.loading && this.state.postReferenceId ? (
             <button type="button" onClick={(e) => this.getPosts(e)}
             className="btn btn-block btn-primary mt-4 mb-4">
               Carregar mais publicações
-            </button>) : null
-          }
+            </button>) : null }
 
           { this.state.loading === true ? (
             <div className="text-center text-purple mt-3 mb-3">
               <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-            </div>
-            ) : null }
+            </div> ) : null }
 
           { !this.state.lastPage ? (<Waypoint onEnter={()=> {this.getPosts()}} />) : null }
         </box>
