@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true, length: { :minimum => 4, :maximum => 32 }
   validates :username, presence: true, uniqueness: true, length: { :minimum => 4, :maximum => 14 }
+  validates :text, length: { :maximum => 120 }
 
   validates_format_of :username, with: /\A(?=.*[a-z])[a-z\d]+\Z/i, :multiline => true
 

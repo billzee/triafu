@@ -11,6 +11,7 @@ pt-BR:
         unlock_token: Token de desbloqueio
         full_name: Nome Completo
         username: Nome de Usuário
+        text: Apresentação
     models:
       user: Usuário
   devise:
