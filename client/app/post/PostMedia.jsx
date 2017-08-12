@@ -6,10 +6,9 @@ export default class PostMedia extends Component {
   constructor(props){
     super();
     this.state = {
+      isMobile: props.isMobile,
       image: (props.image || null),
       video: (props.video || null),
-      isMobile: props.isMobile,
-      hasAudio: props.hasAudio,
       loading: true,
       paused: true,
       muted: true
@@ -32,8 +31,8 @@ export default class PostMedia extends Component {
       });
 
       this.video.addEventListener("loadeddata", function(){
-        if(this.state.hasAudio === null ||
-        typeof this.state.hasAudio === "undefined"){
+        if(this.state.video.hasAudio === null ||
+        typeof this.state.video.hasAudio === "undefined"){
           if (this.video.audioTracks && this.video.audioTracks.length > 0){
             this.setState({hasAudio: true});
           } else if (typeof this.video.mozHasAudio !== "undefined"){
@@ -50,6 +49,8 @@ export default class PostMedia extends Component {
           } else{
             this.setState({hasAudio: false});
           }
+        } else{
+          this.setState({hasAudio: this.state.video.hasAudio});
         }
 
         this.stopSpinning();
@@ -151,10 +152,10 @@ export default class PostMedia extends Component {
             ) : null
           }
 
-          <video ref={(video) => {this.video = video}}
-          muted loop playsInline>
-            <source src={this.state.video.mp4.url} type="video/mp4"/>
-            <source src={this.state.video.webm.url} type="video/webm"/>
+          <video ref={(video) => {this.video = video}} muted loop playsInline
+          poster={this.state.video.screenshot}>
+            <source src={this.state.video.versions.mp4.url} type="video/mp4"/>
+            <source src={this.state.video.versions.webm.url} type="video/webm"/>
           </video>
         </div>
       )

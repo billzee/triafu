@@ -19,8 +19,11 @@ json.post do
   if @post.image.file then json.image @post.image end
 
   if @post.video.file
-    json.video @post.video.versions
-    json.has_audio @post.has_audio
+    json.video do
+      json.versions @post.video.versions
+      json.screenshot @post.video.url(:screenshot)
+      json.has_audio @post.has_audio
+    end
   end
 
   json.created_at @post.created_at
