@@ -13,10 +13,6 @@ module CarrierWave
 
       file = ::FFMPEG::Movie.new(tmpfile)
 
-      if !file.audio_stream.nil?
-        self.model.has_audio = true
-      end
-
       new_name = File.basename(current_path, '.*') + '.' + format.to_s
       current_extension = File.extname(current_path).gsub('.', '')
       encoded_file = File.join(directory, new_name)
@@ -31,7 +27,9 @@ module CarrierWave
         preserve_aspect_ratio: :width
       }
 
-      file.transcode(encoded_file, options, transcoder_options)
+      self.model.status = 1 # set status as started but not save yet
+
+      ConverterJob.perform_later(tmpfile, encoded_file, self.model, options, transcoder_options)
 
       # warning: magic!
       # change format for uploaded file name and store file format
@@ -42,22 +40,22 @@ module CarrierWave
       File.delete(tmpfile)
     end
 
-    def take_screenshot(format)
-      directory = File.dirname(current_path)
-      tmpfile = File.join(directory, 'tmpfile')
-      File.rename(current_path, tmpfile)
-
-      file = ::FFMPEG::Movie.new(tmpfile)
-      new_name = File.basename(current_path, '.*') + '.' + format.to_s
-      current_extension = File.extname(current_path).gsub('.', '')
-      encoded_file = File.join(directory, new_name)
-
-      file.screenshot(encoded_file, seek_time: 2, resolution: '320x240')
-
-      self.filename[-current_extension.size..-1] = format.to_s
-      self.file.file[-current_extension.size..-1] = format.to_s
-
-      File.delete(tmpfile)
-    end
+    # def take_screenshot(format)
+    #   directory = File.dirname(current_path)
+    #   tmpfile = File.join(directory, 'tmpfile')
+    #   File.rename(current_path, tmpfile)
+    #
+    #   file = ::FFMPEG::Movie.new(tmpfile)
+    #   new_name = File.basename(current_path, '.*') + '.' + format.to_s
+    #   current_extension = File.extname(current_path).gsub('.', '')
+    #   encoded_file = File.join(directory, new_name)
+    #
+    #   file.screenshot(encoded_file, seek_time: 2, resolution: '320x240')
+    #
+    #   self.filename[-current_extension.size..-1] = format.to_s
+    #   self.file.file[-current_extension.size..-1] = format.to_s
+    #
+    #   File.delete(tmpfile)
+    # end
   end
 end

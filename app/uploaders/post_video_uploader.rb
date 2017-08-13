@@ -31,8 +31,6 @@ class PostVideoUploader < CarrierWave::Uploader::Base
   end
 
   version :screenshot do
-    process take_screenshot: [:jpg]
-
     def full_filename(for_file)
       super.chomp(File.extname(super)) + '.jpg'
     end

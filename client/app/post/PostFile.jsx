@@ -41,17 +41,17 @@ export default class PostFile extends Component {
         });
       }
 
-      try{
-        let res = await PostsApi._upload_file(files[0]);
-        let resJson = await res.json();
-
-        if(resJson.errors){
-          this.setState({fileErrors: resJson.errors});
-        }
-
-      } catch(error){
-        console.log(error);
-      }
+      // try{
+      //   let res = await PostsApi._upload_file(files[0]);
+      //   let resJson = await res.json();
+      //
+      //   if(resJson.errors){
+      //     this.setState({fileErrors: resJson.errors});
+      //   }
+      //
+      // } catch(error){
+      //   console.log(error);
+      // }
 
     } else{
       this.setState({fileErrors: ["O arquivo deve pesar entre 10KB e 5MB"]});

@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     if params[:new]
       @notice = "Publicado! Agora compartilhe sua criação com seus amigos"
     end
-    
+
     @featured_posts = Post.featured
     @post = Post.find_by!(reference_id: params[:reference_id])
   end
@@ -56,6 +56,7 @@ class PostsController < ApplicationController
       @@new_post.update post_params
     else
       @@new_post = Post.new post_params
+      p "aquiiiiiiiiiii"
     end
 
     save_post

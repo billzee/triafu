@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   attr_accessor :file, :media, :upload_progress
 
   enum category: [ :newcomer, :top ]
+  enum status: [ :not_started, :started, :finished, :error ]
 
   before_create :generate_reference_id
 
