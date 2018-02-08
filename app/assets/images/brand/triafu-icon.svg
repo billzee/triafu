@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="39.6875mm"
+   height="39.6875mm"
+   viewBox="0 0 39.687501 39.6875"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.1 r"
+   sodipodi:docname="triafu-icon.svg"
+   inkscape:export-filename="/home/billzee/triafu-branding/png/triafu-icon-small.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="42.96308"
+     inkscape:cy="89.68857"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="2560"
+     inkscape:window-height="1021"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(387.21448,-286.40506)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.02813774;stroke-opacity:1"
+       id="rect4707"
+       width="39.659363"
+       height="39.659363"
+       x="-387.20041"
+       y="286.41913" />
+    <g
+       id="g4501"
+       transform="matrix(1.116015,0,0,1.116015,42.974792,-34.060798)">
+      <polygon
+         id="polygon3347-3-4-7-5"
+         points="671.778,447.852 447.853,89.57 223.928,447.852 "
+         style="fill:#ff96ff;fill-opacity:1;stroke:#292b2c;stroke-width:44.05806351;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.02513463,0,0,0.02513463,-378.94476,293.67622)" />
+      <polygon
+         id="polygon3349-5-5-59-6"
+         points="223.928,447.852 0,806.133 447.853,806.133 "
+         style="fill:#ffff96;fill-opacity:1;stroke:#292b2c;stroke-width:44.05806351;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.02513463,0,0,0.02513463,-378.94476,293.67622)" />
+      <polygon
+         id="polygon3351-6-0-22-2"
+         points="895.703,806.133 671.778,447.852 447.853,806.133 "
+         style="fill:#ff6e00;fill-opacity:1;stroke:#292b2c;stroke-width:44.05806351;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.02513463,0,0,0.02513463,-378.94476,293.67622)" />
+    </g>
+  </g>
+</svg>

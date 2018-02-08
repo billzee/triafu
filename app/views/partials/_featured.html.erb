@@ -1,0 +1,114 @@
+<% if @featured_posts.length > 0 && !user_posts_path? %>
+
+  <% if !mobile_device? %>
+    <div class="pt-4 mr-6">
+      <h1>Em alta <i class="fa fa-fire text-danger"></i></h1>
+
+      <% if user_signed_in? %>
+        <ul class="featured">
+          <% @featured_posts.each do |post| %>
+            <li class="featured-post mb-4">
+              <%= link_to post_path(reference_id: post.reference_id), target: "_blank" do %>
+                <% if post.title.length > 26 %>
+                  <h2 class="mb-0"><%= post.title[0..26] + "..." %></h2>
+                <% else %>
+                  <h2 class="mb-0"><%= post.title %></h2>
+                <% end %>
+
+                <% if post.image.file %>
+                  <div class="featured-image" style="background-image: url(<%= asset_path(post.image) %>)"></div>
+                <% elsif post.video.file %>
+                  <div class="featured-image" style="background-image: url(<%= asset_path(post.video.url(:screenshot)) %>)"></div>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <ul class="featured unsigned">
+          <li class="unsigned-message">
+            <button class="btn btn-success" data-toggle="modal" data-target="#m_login">
+              Fazer login
+            </button>
+            <small>ou</small>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#m_signup">
+              Criar Conta
+            </button>
+            <p class="mt-3 font-weight-bold">Para ver as publicações em alta</p>
+          </li>
+          <% @featured_posts.each do |post| %>
+            <li class="featured-post mb-4">
+              <% if post.title.length > 26 %>
+                <h2 class="mb-0"><%= post.title[0..26] + "..." %></h2>
+              <% else %>
+                <h2 class="mb-0"><%= post.title %></h2>
+              <% end %>
+
+              <% if post.image.file %>
+                <div class="featured-image" style="background-image: url(<%= asset_path(post.image) %>)"></div>
+              <% elsif post.video.file %>
+                <div class="featured-image" style="background-image: url(<%= asset_path(post.video.url(:screenshot)) %>)"></div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  <% else %>
+
+  <div class="col-12 mt-3">
+    <h1>Em alta <i class="fa fa-fire text-danger"></i></h1>
+
+    <div class="carousel hidden-xl-up">
+      <% if user_signed_in? %>
+        <ul class="featured list-inline">
+          <% @featured_posts.each do |post| %>
+            <li class="featured-post list-inline-item mr-3">
+              <%= link_to post_path(reference_id: post.reference_id), target: "_blank" do %>
+                <% if post.title.length > 26 %>
+                  <h2 class="mb-0"><%= post.title[0..26] + "..." %></h2>
+                <% else %>
+                  <h2 class="mb-0"><%= post.title %></h2>
+                <% end %>
+                <% if post.image.file %>
+                  <div class="featured-image" style="background-image: url(<%= asset_path(post.image) %>)"></div>
+                <% elsif post.video.file %>
+                  <div class="featured-image" style="background-image: url(<%= asset_path(post.video.url(:screenshot)) %>)"></div>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <ul class="featured unsigned list-inline">
+          <li class="unsigned-message-mobile list-inline-item">
+            <button class="btn btn-success" data-toggle="modal" data-target="#m_login">
+              Fazer login
+            </button>
+            <small>ou</small>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#m_signup">
+              Criar Conta
+            </button>
+            <p class="mt-3 font-weight-bold">Para ver as publicações em alta</p>
+          </li>
+          <% @featured_posts.each do |post| %>
+            <li class="featured-post list-inline-item mr-3">
+              <% if post.title.length > 26 %>
+                <h2 class="mb-0"><%= post.title[0..26] + "..." %></h2>
+              <% else %>
+                <h2 class="mb-0"><%= post.title %></h2>
+              <% end %>
+
+              <% if post.image.file %>
+                <div class="featured-image" style="background-image: url(<%= asset_path(post.image) %>)"></div>
+              <% elsif post.video.file %>
+                <div class="featured-image" style="background-image: url(<%= asset_path(post.video.url(:screenshot)) %>)"></div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<% end %>

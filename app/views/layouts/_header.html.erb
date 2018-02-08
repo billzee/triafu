@@ -1,0 +1,53 @@
+<header class="row header no-gutters fixed-top">
+  <%= link_to root_path, class: "logo" do %>
+    <%= image_tag "brand/triafu-logo.svg", height: 32%>
+  <% end %>
+
+  <div class="col categories yellow-border">
+     <div class="row no-gutters">
+        <%= link_to('Top', top_posts_path, class: "col-4 header-link" +
+        if current_page?(top_posts_path) || current_page?(root_path) then " active" else "" end) %>
+
+       <%= link_to('Novas', newcomer_posts_path, class: "col-4 header-link" +
+       if current_page? newcomer_posts_path then " active" else "" end) %>
+     </div>
+  </div>
+
+  <div class="col text-right pt-2">
+    <% if !user_signed_in? %>
+      <button id="publish-button" class="btn btn-success mr-2" data-toggle="modal" data-target="#m_login">
+        + Publicar
+      </button>
+
+      <button class="btn btn-primary" data-toggle="modal" data-target="#m_signup">
+        Criar Conta
+      </button>
+
+      <a href class="header-link mt-1 pl-4 pr-4"
+      data-toggle="modal" data-target="#m_login">
+        Entrar
+      </a>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? %>
+    <%= react_component("PublishButton", html_options: {class: "pt-2"}) %>
+    <%= react_component("NotificationBell", html_options: {class: "ml-4"}) %>
+
+    <div class="dropdown pt-1">
+      <a href class="dropdown-toggle header-link ml-4 mr-3"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= image_tag(current_user.image, class: "rounded-circle", height: 38, width: 38) %>
+      </a>
+      <div class="dropdown-menu mt-3">
+        <div class="dropdown-header text-center">
+          <%= link_to(current_user.username, user_posts_path(username: current_user.username),
+          target: "_blank", class: "black-hyperlink") %>
+        </div>
+        <div class="dropdown-divider"></div>
+        <%= link_to('Editar perfil', edit_user_registration_path, class: "dropdown-item") %>
+        <%= link_to('Sair', destroy_user_session_path, :method => :delete, class: "dropdown-item") %>
+      </div>
+    </div>
+  <% end %>
+</header>

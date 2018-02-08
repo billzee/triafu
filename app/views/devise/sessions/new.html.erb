@@ -1,0 +1,34 @@
+<div class="col-md-4 col-sm">
+
+  <h1>Entrar</h1>
+  <hr>
+
+  <%= react_component("SocialLogin") %>
+
+  <p class="text-muted text-center pt-3 pb-2">Usando seu e-mail ou nome de usuário</p>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="form-group">
+      <label class="form-control-label">e-mail/nome de usuário</label>
+      <%= f.text_field :login, class: "form-control", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">senha</label>
+      <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+      <%= link_to('esqueceu a senha?', new_user_password_path, class: "float-right") %>
+    </div>
+
+    <br/>
+
+    <%= f.submit "Entrar", class: "btn btn-block btn-success" %>
+
+    <br/>
+
+    <p class="text-muted text-center">
+      Ainda não tem uma conta? <%= link_to "Crie uma",new_user_registration_path %>
+    </p>
+  <% end %>
+
+</div>

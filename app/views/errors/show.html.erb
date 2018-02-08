@@ -1,0 +1,24 @@
+<% if params[:code] == "404" %>
+
+  <div class="error-bg vin-diesel">
+    <div class="container text-center text-white">
+      <h1>
+        <%= params[:code] %>
+      </h1>
+      <h2>a página que você procura não existe.</h2>
+    </div>
+  </div>
+
+<% else %>
+
+  <div class="error-bg ta-uma-porra">
+    <div class="container text-center text-white">
+      <h1>
+        <%= params[:code] %>
+      </h1>
+      <h2>aconteceu algum problema.</h2>
+      <h2>"esse site aqui tá uma porra."</h2>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,13 @@
+<%= render "partials/social_header" %>
+<%= render "layouts/sub_header" %>
+
+<div class="row no-gutters">
+  <%= render "partials/alert" %>
+  <div class="col-12 pb-4">
+    <%= react_component("PostSection", prerender: true,
+    props: { postReferenceId: @post.reference_id, isMobile: true }) %>
+  </div>
+</div>
+
+<%= render "modals/comments" %>
+<%= render "modals/share_links" %>

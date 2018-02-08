@@ -1,0 +1,20 @@
+<%= render "layouts/sub_header" %>
+
+<div class="row no-gutters">
+  <%= render "partials/alert" %>
+  <%= render "partials/user_profile" %>
+  <%= render "partials/featured" %>
+
+  <div class="col-12 pb-4">
+    <%= react_component("PostSection",
+    props:{
+      category: params[:category],
+      username: params[:username],
+      isMobile: true
+    },
+    prerender: true) %>
+  </div>
+</div>
+
+<%= render "modals/comments" %>
+<%= render "modals/share_links" %>

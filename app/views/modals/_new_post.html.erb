@@ -1,0 +1,12 @@
+<div class="modal" id="m_new_post" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Criar Publicação</h1>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+          Minimizar
+        </button>
+      </div>
+      <%= react_component("PostForm", prerender: true) %>
+  </div>
+</div>

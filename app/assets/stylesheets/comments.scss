@@ -1,0 +1,39 @@
+@import "variables";
+
+.comment-header{
+  position: relative;
+  height: 120px;
+  .mx{
+    max-height: 30px;
+  }
+}
+
+.comment-list {
+  position: relative;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  height: calc(100% - 120px);
+  padding-bottom: 1rem;
+}
+
+.comment-text {
+  margin-bottom: 0.2rem;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+#m_comments{
+  padding-bottom: 1rem;
+
+  .modal-dialog{
+    .modal-content{
+      max-height: calc(100vh - 40px);
+      background-color: $light-gray;
+    }
+  }
+
+  .comment-list {
+    height: calc(95vh - 120px);
+    max-height: 95vh;
+  }
+}

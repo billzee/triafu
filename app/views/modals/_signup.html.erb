@@ -1,0 +1,28 @@
+<div class="modal" id="m_signup" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Criar Conta</h1>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <%= react_component("SocialLogin", prerender: true) %>
+
+        <p class="text-muted text-center pt-4">
+          Crie sua conta usando um <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#m_signup_form">endereço de e-mail</a>
+        </p>
+      </div>
+
+      <div class="modal-footer p-2">
+        <span class="text-muted">
+          Já tem uma conta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#m_login">Entre</a>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</div>

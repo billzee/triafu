@@ -1,0 +1,19 @@
+{
+  "name": "triafu",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "6.9.0",
+    "npm": "4.1.1"
+  },
+  "scripts": {
+    "postinstall": "cd client && yarn install",
+    "start": "foreman start -f Procfile",
+    "s": "foreman start -f Procfile.dev",
+    "test": "rspec"
+  },
+  "dependencies": {
+    "popper": "^1.0.0",
+    "yarn": "^0.27.5"
+  }
+}

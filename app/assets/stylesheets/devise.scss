@@ -1,0 +1,34 @@
+@import "variables";
+
+.user-image-dropzone{
+  color: $dark-gray;
+  border: 4px dashed $dark-gray;
+  background: $light-gray;
+
+  &.active{
+    border: 4px dashed $light-gray;
+    background: $dark-gray;
+  }
+
+  &.has-danger {
+    border: 4px dashed red;
+  }
+
+  .row{
+    .col-100{
+      width: 100px;
+
+      .image{
+        height: 100px;
+        width: 100px
+      }
+    }
+    .col-80{
+      width: 80px;
+    }
+
+    .col-50{
+      width: 50px;
+    }
+  }
+}

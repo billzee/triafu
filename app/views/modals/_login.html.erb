@@ -1,0 +1,22 @@
+<div class="modal" id="m_login" ref="m_login" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title">Entrar</h1>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+
+      <%= react_component("LoginForm") %>
+
+      <div class="modal-footer p-2">
+        <span class="text-muted">
+          Ainda não tem uma conta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#m_signup">Crie uma</a>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</div>

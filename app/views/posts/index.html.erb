@@ -1,0 +1,20 @@
+<div class="row posts-container">
+  <div class="col p-0 posts" id="posts">
+    <div class="row no-gutters justify-content-end">
+      <%= render "partials/alert" %>
+      <%= render "partials/user_profile" %>
+      <%= render "partials/featured" %>
+
+      <div class="w-550 mr-5">
+        <%= react_component("PostSection",
+        props: {
+          category: params[:category],
+          username: params[:username]
+        },
+        prerender: true) %>
+      </div>
+    </div>
+  </div>
+
+  <%= react_component("CommentSection", html_options: {class: "col-xl-3 col-lg-4 mw-450 bgm-gray"}) %>
+</div>

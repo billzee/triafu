@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render "partials/title_header" %>
+    <%= render "partials/favicon_header" %>
+    <%= render "partials/adsense_header" %>
+
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+    <%= content_for?(:head) ? yield(:head) : '' %>
+  </head>
+
+  <body>
+
+    <%= render "layouts/header" %>
+
+    <%= yield %>
+
+    <%= render "modals/login" %>
+    <%= render "modals/signup" %>
+    <%= render "modals/signup_form" %>
+    <%= render "modals/new_post" %>
+
+  </body>
+
+  <%= render "partials/google_analytics" %>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : <%= ENV['FACEBOOK_KEY'] %>,
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.9'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+</html>

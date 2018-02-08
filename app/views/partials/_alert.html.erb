@@ -1,0 +1,19 @@
+<% if alert || notice || @notice %>
+  <div class="col-12 communications alert alert-info mb-0 p-2">
+    <% if mobile_device? %>
+      <div class="row no-gutters">
+        <div class="col-12 text-center">
+          <%= alert || notice || @notice %>
+        </div>
+      </div>
+
+    <% else %>
+
+      <div class="row no-gutters justify-content-end mr-5">
+        <div class="col-550 text-center">
+          <%= alert || notice || @notice %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

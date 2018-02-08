@@ -1,0 +1,14 @@
+<div class="col-md-4 col-sm">
+  <h1>Recuperar senha</h1>
+  <hr>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+    <div class="form-group">
+      <label class="form-control-label">e-mail</label>
+      <%= f.email_field :email, class: "form-control", autofocus: true %>
+    </div>
+
+    <%= f.submit "Enviar instruções por e-mail", class: "btn btn-block btn-success" %>
+  <% end %>
+</div>

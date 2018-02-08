@@ -1,0 +1,71 @@
+<%= render "section_select" %>
+
+<div class="col-md-6 col-sm">
+  <div class="row">
+    <div class="col-8">
+      <h1>Editar Perfil</h1>
+    </div>
+    <div class="col-4 text-right">
+      <%= link_to(user_posts_path(username: current_user.username), target: "_blank") do %>
+        ver perfil <i class="fa fa-external-link"></i>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="form-group">
+      <label class="form-control-label">Nome de Usuário</label>
+
+      <% if resource.username_changed %>
+        <%= f.text_field :username, class: "form-control", disabled: true %>
+      <% else %>
+        <%= f.text_field :username, class: "form-control"%>
+      <% end %>
+
+      <small class="ml-1">
+        <% if resource.username_changed %>
+          Você já alterou o nome de usuário uma vez
+        <% else %>
+          O nome de usuário só pode ser alterado uma vez
+        <% end %>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Nome Completo</label>
+      <%= f.text_field :full_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">e-mail</label>
+      <%= f.email_field :email, class: "form-control" %>
+      <% if resource.confirmed? %>
+        <small class="ml-1">
+          <i class="fa fa-check-circle text-success"></i> confirmado
+        </small>
+      <% else %>
+        <small class="ml-1">
+          <i class="fa fa-exclamation-circle text-warning"></i> aguardando confirmação
+          <%= link_to("reenviar e-mail", new_user_confirmation_path) %>
+        </small>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label">Apresentação</label>
+      <%= f.text_area :text, class: "form-control", rows: "3" %>
+      <small>
+        Quer divulgar seu site, página ou perfil nas redes sociais? Use esse espaço para isso.
+      </small>
+    </div>
+
+    <div class="form-group mt-4">
+      <label class="form-control-label">Conectar redes sociais</label>
+      <%= react_component("SocialConnect", prerender: true) %>
+    </div>
+
+    <hr/>
+    <%= f.submit "Salvar", class: "btn btn-success float-right" %>
+  <% end %>
+</div>

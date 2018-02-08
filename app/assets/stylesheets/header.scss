@@ -1,0 +1,51 @@
+@import "variables";
+
+.header {
+  background: black !important;
+  font-weight: 600;
+  width: 100%;
+  height: 3.3em;
+  padding: 0;
+
+  .col {
+    height: 100%;
+    display: inline-block;
+
+    &.categories {
+      border-left: 2px solid $flag-yellow;
+      width: 18em !important;
+      max-width: 18em !important;
+
+      .row{
+        height: 100%;
+
+        .header-link{
+          padding-top: .9em;
+        }
+      }
+    }
+  }
+
+  .logo {
+    padding: 0.5em;
+    background: $light-gray;
+    width: 8.5em;
+    border-right: 4px solid $flag-green;
+  }
+
+  .header-link {
+    .dropdown{
+      &.pt-text{
+        padding-top: .9rem;
+      }
+
+      &.pt-icon{
+        padding-top: .5rem;
+      }
+
+      .dropdown-menu{
+        height: auto;
+      }
+    }
+  }
+}

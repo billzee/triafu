@@ -1,0 +1,15 @@
+<div class="col-md-4 col-sm">
+  <h1>Reenviar e-mail de confirmação</h1>
+  <hr>
+
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+
+    <div class="form-group">
+      <label class="form-control-label">e-mail</label>
+      <%= f.email_field :email, class: "form-control",
+      value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    </div>
+
+    <%= f.submit "Enviar instruções por e-mail", class: "btn btn-block btn-success" %>
+  <% end %>
+</div>

@@ -1,0 +1,187 @@
+@import "variables";
+
+.posts{
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+}
+
+// mobile
+.col-12{
+  .post-image{
+    position: relative;
+    min-height: 150px;
+    width: 100%;
+    min-height: 150px;
+    max-height: 8000px;
+
+    img{
+      min-height: 150px;
+      max-height: 8000px;
+      width: 100%;
+    }
+  }
+
+  .post-video{
+    position: relative;
+    cursor: pointer;
+    background: black;
+    width: 100%;
+    min-height: 150px;
+    max-height: 320px;
+
+    video{
+      display: block;
+      cursor: pointer;
+      width: 100%;
+      min-height: 150px;
+      max-height: 320px;
+    }
+  }
+}
+
+// desktop
+.col-550{
+  width: 550px !important;
+  max-width: 550px !important;
+
+  .post-image{
+    position: relative;
+    min-height: 150px;
+    width: 100%;
+    min-height: 350px;
+    max-height: 8000px;
+
+    img{
+      width: 550px;
+      max-width: 550px;
+      min-height: 350px;
+      max-height: 8000px;
+    }
+  }
+
+  .post-video{
+    position: relative;
+    background: black;
+    height: 100%;
+    min-height: 350px;
+    max-height: 450px;
+
+    video{
+      display: block;
+      cursor: pointer;
+      width: 550px;
+      min-height: 350px;
+      max-height: 450px;
+    }
+  }
+}
+
+.post-video, .post-image{
+  .play-icon{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -35px;
+    margin-top: -35px;
+    z-index: 1000;
+    height: 70px;
+    width: 70px;
+    background-color: $play-icon;
+  }
+
+  .loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -35px;
+    margin-top: -35px;
+    z-index: 500;
+    height: 70px;
+    width: 70px;
+  }
+
+  .sound-icon{
+    cursor: pointer;
+    position: absolute;
+    padding-top: 4px;
+    top: 30px;
+    left: 30px;
+    margin-left: -18px;
+    margin-top: -18px;
+    z-index: 500;
+    height: 36px;
+    width: 36px;
+    background-color: $play-icon;
+  }
+}
+
+.thumb-video{
+  background: black;
+  height: 140px;
+
+  video{
+    width: 140px;
+    min-height: 140px;
+    max-height: 140px;
+  }
+}
+
+.col-100{
+  width: 100px !important;
+  max-width: 100px !important;
+}
+
+.post-dropzone{
+  height: 190px;
+  color: $purple;
+  border: 4px dashed $dark-gray;
+  background: $light-gray;
+
+  &.active{
+    color: $light-gray !important;
+    border: 4px dashed $light-gray;
+    background: $dark-gray;
+  }
+
+  &.has-danger {
+    border: 4px dashed red;
+  }
+
+  .row{
+    .col-140{
+      width: 140px;
+
+      .image-preview{
+        position: relative;
+        background-repeat: no-repeat;
+        background-clip: content-box;
+        background-size: cover;
+        background-position: center center;
+        height: 140px;
+        width: 140px
+      }
+    }
+    .col-30{
+      width: 30px;
+    }
+  }
+}
+
+.h-35{
+  height: 35px;
+}
+
+.vote-link{
+  opacity: 0.5;
+
+  &:active{
+    opacity: 1;
+  }
+
+  &.voted{
+    opacity: 1;
+  }
+}

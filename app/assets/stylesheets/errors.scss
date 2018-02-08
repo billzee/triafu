@@ -1,0 +1,31 @@
+.error-bg{
+
+  &.vin-diesel{
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%), url("/assets/bg-errors/vin-diesel.jpg");
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  &.ta-uma-porra{
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%), url("/assets/bg-errors/ta-uma-porra.jpg");
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .container {
+    padding-top: 5em;
+    h1{
+      font-size: 50px;
+    }
+  }
+
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}

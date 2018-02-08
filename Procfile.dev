@@ -1,0 +1,2 @@
+web: rails s -b 0.0.0.0 -p 5000
+client: sh -c 'cd client && bundle exec rake react_on_rails:locale && yarn run build:development'
